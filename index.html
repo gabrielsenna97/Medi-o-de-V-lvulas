@@ -243,74 +243,81 @@
   </div>
 
   <script>
-    const { jsPDF } = window.jspdf;
-    
-    document.getElementById('generatePdf').addEventListener('click', async function() {
-      // Carregar imagem de fundo
-      const img = new Image();
-      img.src = 'background.jpg';
-      img.crossOrigin = 'Anonymous';
+  const { jsPDF } = window.jspdf;
+
+  document.getElementById('generatePdf').addEventListener('click', async function() {
+    const img = new Image();
+    img.src = 'background.jpg';
+    img.crossOrigin = 'Anonymous';
+
+    await new Promise((resolve) => { img.onload = resolve; });
+
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+
+    ctx.drawImage(img, 0, 0);
+
+    ctx.font = 'bold 28px Arial';
+    ctx.fillStyle = '#000000';
+    ctx.textAlign = 'left';
+
+    // Informações principais
+    ctx.fillText(document.getElementById('mecanico').value || '', 230, 125);
+    ctx.fillText(document.getElementById('usina').value || '', 230, 175);
+    ctx.fillText(document.getElementById('serie').value || '', 230, 225);
+    ctx.fillText(document.getElementById('os').value || '', 230, 275);
+
+    const dataValue = document.getElementById('data').value;
+    if (dataValue) {
+      const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
+      ctx.fillText(dataFormatada, 830, 125);
+    }
+
+    ctx.fillText(document.getElementById('horimetro').value || '', 830, 175);
+
+    // Cada cilindro (coordenadas ajustadas com base na imagem enviada)
+    const campos = [
+      ['exaustao1_1', 160, 510], ['exaustao1_2', 160, 540], ['admissao1_1', 420, 510], ['admissao1_2', 420, 540],
+      ['exaustao5_1', 510, 510], ['exaustao5_2', 510, 540], ['admissao5_1', 770, 510], ['admissao5_2', 770, 540],
+      ['exaustao3_1', 860, 510], ['exaustao3_2', 860, 540], ['admissao3_1', 1120, 510], ['admissao3_2', 1120, 540],
       
-      await new Promise((resolve) => { img.onload = resolve; });
-      
-      // Criar canvas
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext('2d');
-      
-      // Desenhar fundo
-      ctx.drawImage(img, 0, 0);
-      
-      // Configurar texto
-      ctx.font = 'bold 14px Arial';
-      ctx.fillStyle = '#000000';
-      ctx.textAlign = 'left';
-      
-      // Preencher dados (ajuste estas coordenadas conforme sua imagem)
-      
-      // Informações básicas
-      ctx.fillText(document.getElementById('mecanico').value || '', 150, 120);
-      ctx.fillText(document.getElementById('usina').value || '', 150, 150);
-      ctx.fillText(document.getElementById('serie').value || '', 150, 180);
-      
-      // Data formatada
-      const dataValue = document.getElementById('data').value;
-      if(dataValue) {
-        const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
-        ctx.fillText(dataFormatada, 400, 120);
-      }
-      
-      ctx.fillText(document.getElementById('horimetro').value || '', 400, 150);
-      ctx.fillText(document.getElementById('os').value || '', 400, 180);
-      
-      // Medições dos cilindros (exemplo para o primeiro cilindro)
-      ctx.fillText(document.getElementById('exaustao1_1').value || '', 120, 250);
-      ctx.fillText(document.getElementById('exaustao1_2').value || '', 120, 280);
-      ctx.fillText(document.getElementById('admissao1_1').value || '', 120, 320);
-      ctx.fillText(document.getElementById('admissao1_2').value || '', 120, 350);
-      
-      // Adicione as coordenadas para os outros cilindros conforme sua imagem
-      
-      // Observações
-      ctx.fillText(document.getElementById('observacoes').value || '', 100, 500);
-      
-      // Gerar PDF
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm'
-      });
-      
-      const imgData = canvas.toDataURL('image/jpeg', 0.95);
-      pdf.addImage(imgData, 'JPEG', 0, 0, 210, 0);
-      pdf.save('medicao_valvulas_scania.pdf');
+      ['exaustao6_1', 160, 810], ['exaustao6_2', 160, 840], ['admissao6_1', 420, 810], ['admissao6_2', 420, 840],
+      ['exaustao2_1', 510, 810], ['exaustao2_2', 510, 840], ['admissao2_1', 770, 810], ['admissao2_2', 770, 840],
+      ['exaustao4_1', 860, 810], ['exaustao4_2', 860, 840], ['admissao4_1', 1120, 810], ['admissao4_2', 1120, 840]
+    ];
+
+    campos.forEach(([id, x, y]) => {
+      const val = document.getElementById(id)?.value || '';
+      ctx.fillText(val, x, y);
     });
 
-    // Botão Limpar
-    document.getElementById('clearBtn').addEventListener('click', function() {
-      const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
-      inputs.forEach(input => input.value = '');
+    // Observações
+    const observacoes = document.getElementById('observacoes').value.split('\n');
+    observacoes.forEach((linha, i) => {
+      ctx.fillText(linha, 150, 1040 + i * 30);
     });
-  </script>
+
+    // Criar PDF
+    const pdf = new jsPDF({
+      orientation: 'portrait',
+      unit: 'px',
+      format: [img.width, img.height]
+    });
+
+    const imgData = canvas.toDataURL('image/jpeg', 1.0);
+    pdf.addImage(imgData, 'JPEG', 0, 0, img.width, img.height);
+    pdf.save('medicao_valvulas_scania.pdf');
+  });
+
+  // Botão Limpar
+  document.getElementById('clearBtn').addEventListener('click', function () {
+    const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
+    inputs.forEach(input => input.value = '');
+  });
+</script>
+
 </body>
 </html>
+

@@ -273,7 +273,7 @@
     const dataValue = document.getElementById('data').value;
     if (dataValue) {
       const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
-      ctx.fillText(dataFormatada, 620, 259);
+      ctx.fillText(dataFormatada, 630, 267);
     }
 
     ctx.fillText(document.getElementById('horimetro').value || '', 620, 297);
@@ -284,7 +284,7 @@
       ['exaustao3_1', 675, 260], ['exaustao3_2', 675, 290], ['admissao3_1', 790, 260], ['admissao3_2', 790, 290],
       ['exaustao4_1', 190, 365], ['exaustao4_2', 190, 395], ['admissao4_1', 305, 365], ['admissao4_2', 305, 395],
       ['exaustao5_1', 435, 365], ['exaustao5_2', 435, 395], ['admissao5_1', 550, 365], ['admissao5_2', 550, 395],
-      ['exaustao6_1', 675, 365], ['exaustao6_2', 675, 395], ['admissao6_1', 790, 365], ['admissao6_2', 790, 395]
+      ['exaustao6_1', 675, 365], ['exaustao6_2', 675, 395], ['admissao6_1', 790, 900], ['admissao6_2', 790, 900]
     ];
 
     campos.forEach(([id, x, y]) => {
@@ -327,6 +327,7 @@
   </script>
 </body>
 </html>
+
 
 
 

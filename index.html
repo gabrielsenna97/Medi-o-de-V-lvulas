@@ -267,16 +267,16 @@
 
     ctx.fillText(document.getElementById('mecanico').value || '', 200, 230);
     ctx.fillText(document.getElementById('usina').value || '', 200, 259);
-    ctx.fillText(document.getElementById('serie').value || '', 200, 295);
+    ctx.fillText(document.getElementById('serie').value || '', 200, 297);
     ctx.fillText(document.getElementById('os').value || '', 267, 321);
 
     const dataValue = document.getElementById('data').value;
     if (dataValue) {
       const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
-      ctx.fillText(dataFormatada, 440, 75);
+      ctx.fillText(dataFormatada, 620, 259);
     }
 
-    ctx.fillText(document.getElementById('horimetro').value || '', 440, 110);
+    ctx.fillText(document.getElementById('horimetro').value || '', 620, 297);
 
     const campos = [
       ['exaustao1_1', 190, 260], ['exaustao1_2', 190, 290], ['admissao1_1', 305, 260], ['admissao1_2', 305, 290],
@@ -327,6 +327,7 @@
   </script>
 </body>
 </html>
+
 
 
 

@@ -326,8 +326,38 @@ const inputs = document.querySelectorAll('input[type="text"], input[type="date"]
 inputs.forEach(input => input.value = '');
 });
 </script>
+  <div style="text-align:center; margin-bottom: 20px;">
+  <h2>Clique na imagem para pegar coordenadas X e Y</h2>
+  <canvas id="canvasMap" style="border:1px solid #333; cursor:pointer;"></canvas>
+  <p>Clique na imagem e veja as coordenadas no console do navegador (F12)</p>
+</div>
+
+<script>
+  const canvas = document.getElementById('canvasMap');
+  const ctx = canvas.getContext('2d');
+
+  const img = new Image();
+  img.src = 'background.jpg';
+  img.crossOrigin = 'Anonymous';
+
+  img.onload = () => {
+    canvas.width = 1180;  // Use as dimensões da sua imagem
+    canvas.height = 1683;
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  };
+
+  canvas.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    // Coordenadas relativas ao canvas
+    const x = Math.round(e.clientX - rect.left);
+    const y = Math.round(e.clientY - rect.top);
+    alert(`Coordenadas do clique:\nX: ${x}\nY: ${y}`);
+    console.log(`Clique na imagem - X: ${x}, Y: ${y}`);
+  });
+</script>
 </body>
 </html>
+
 
 
 

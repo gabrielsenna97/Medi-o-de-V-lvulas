@@ -86,20 +86,10 @@
     .info-table {
       width: 100%;
       margin-bottom: 20px;
-      border-collapse: collapse;
     }
     .info-table td {
-      padding: 5px 10px;
+      padding: 5px 0;
       text-align: left;
-      border: 1px solid #ddd;
-      vertical-align: middle;
-    }
-    .info-table .title-cell {
-      text-align: center;
-      font-weight: bold;
-      font-size: 18px;
-      border: none;
-      padding: 10px 0;
     }
     .signature {
       margin-top: 50px;
@@ -146,19 +136,20 @@
   </style>
 </head>
 <body>
+  <h1>MEDIÇÃO DAS VÁLVULAS DO SCANIA-550</h1>
+
   <table class="info-table">
     <tr>
-      <td class="title-cell" colspan="3">MEDIÇÃO DAS VÁLVULAS DO SCANIA-550</td>
+      <td><strong>MECÂNICO:</strong> <input type="text" id="mecanico" style="width: 200px;"></td>
+      <td><strong>DATA:</strong> <input type="date" id="data"></td>
     </tr>
     <tr>
-      <td><strong>MECÂNICO:</strong> <input type="text" id="mecanico" style="width: 95%;"></td>
-      <td><strong>USINA:</strong> <input type="text" id="usina" style="width: 95%;"></td>
-      <td><strong>DATA DA REGULAGEM:</strong> <input type="date" id="data" style="width: 95%;"></td>
+      <td><strong>USINA:</strong> <input type="text" id="usina" style="width: 200px;"></td>
+      <td><strong>HORÍMETRO:</strong> <input type="text" id="horimetro"></td>
     </tr>
     <tr>
-      <td><strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 95%;"></td>
-      <td><strong>HORÍMETRO:</strong> <input type="text" id="horimetro" style="width: 95%;"></td>
-      <td><strong>ORDEM DE SERVIÇO:</strong> <input type="text" id="os" style="width: 95%;"></td>
+      <td><strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 200px;"></td>
+      <td><strong>OS:</strong> <input type="text" id="os"></td>
     </tr>
   </table>
 
@@ -168,8 +159,73 @@
   </div>
 
   <div class="valve-container">
-    <!-- Cilindros e demais elementos aqui, igual seu código original -->
-    <!-- (não mexi nessa parte) -->
+    <!-- Cilindro 1 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 1° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao1_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao1_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao1_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao1_2" placeholder="mm"></div>
+    </div>
+
+    <!-- Cilindro 2 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 2° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao2_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao2_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao2_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao2_2" placeholder="mm"></div>
+    </div>
+
+    <!-- Cilindro 3 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 3° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao3_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao3_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao3_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao3_2" placeholder="mm"></div>
+    </div>
+  </div>
+
+  <div class="valve-container">
+    <!-- Cilindro 4 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 4° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao4_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao4_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao4_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao4_2" placeholder="mm"></div>
+    </div>
+
+    <!-- Cilindro 5 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 5° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao5_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao5_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao5_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao5_2" placeholder="mm"></div>
+    </div>
+
+    <!-- Cilindro 6 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 6° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao6_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao6_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao6_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao6_2" placeholder="mm"></div>
+    </div>
   </div>
 
   <div class="obs">
@@ -196,6 +252,7 @@
 
     await new Promise((resolve) => { img.onload = resolve; });
 
+    // Criar canvas do tamanho da imagem original
     const canvas = document.createElement('canvas');
     canvas.width = img.width;
     canvas.height = img.height;
@@ -207,61 +264,70 @@
     ctx.fillStyle = '#000000';
     ctx.textAlign = 'left';
 
-    ctx.fillText(document.getElementById('mecanico').value || '', 115, 78);
-    ctx.fillText(document.getElementById('usina').value || '', 115, 113);
-    ctx.fillText(document.getElementById('serie').value || '', 115, 148);
-    ctx.fillText(document.getElementById('os').value || '', 115, 183);
+   // Informações principais (coordenadas ajustadas)
+ctx.fillText(document.getElementById('mecanico').value || '', 300, 20);
+ctx.fillText(document.getElementById('usina').value || '', 115, 113);
+ctx.fillText(document.getElementById('serie').value || '', 115, 148);
+ctx.fillText(document.getElementById('os').value || '', 115, 183);
 
-    const dataValue = document.getElementById('data').value;
-    if (dataValue) {
-      const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
-      ctx.fillText(dataFormatada, 445, 78);
-    }
+const dataValue = document.getElementById('data').value;
+if (dataValue) {
+  const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
+  ctx.fillText(dataFormatada, 445, 78);
+}
 
-    ctx.fillText(document.getElementById('horimetro').value || '', 445, 113);
+ctx.fillText(document.getElementById('horimetro').value || '', 445, 113);
 
-    const campos = [
-      ['exaustao1_1', 195, 265], ['exaustao1_2', 195, 295], ['admissao1_1', 310, 265], ['admissao1_2', 310, 295],
-      ['exaustao2_1', 440, 265], ['exaustao2_2', 440, 295], ['admissao2_1', 555, 265], ['admissao2_2', 555, 295],
-      ['exaustao3_1', 680, 265], ['exaustao3_2', 680, 295], ['admissao3_1', 795, 265], ['admissao3_2', 795, 295],
-      ['exaustao4_1', 195, 370], ['exaustao4_2', 195, 400], ['admissao4_1', 310, 370], ['admissao4_2', 310, 400],
-      ['exaustao5_1', 440, 370], ['exaustao5_2', 440, 400], ['admissao5_1', 555, 370], ['admissao5_2', 555, 400],
-      ['exaustao6_1', 680, 370], ['exaustao6_2', 680, 400], ['admissao6_1', 795, 370], ['admissao6_2', 795, 400]
-    ];
+// Campos dos cilindros (coordenadas ajustadas)
+const campos = [
+  ['exaustao1_1', 195, 265], ['exaustao1_2', 195, 295], ['admissao1_1', 310, 265], ['admissao1_2', 310, 295],
+  ['exaustao2_1', 440, 265], ['exaustao2_2', 440, 295], ['admissao2_1', 555, 265], ['admissao2_2', 555, 295],
+  ['exaustao3_1', 680, 265], ['exaustao3_2', 680, 295], ['admissao3_1', 795, 265], ['admissao3_2', 795, 295],
+  ['exaustao4_1', 195, 370], ['exaustao4_2', 195, 400], ['admissao4_1', 310, 370], ['admissao4_2', 310, 400],
+  ['exaustao5_1', 440, 370], ['exaustao5_2', 440, 400], ['admissao5_1', 555, 370], ['admissao5_2', 555, 400],
+  ['exaustao6_1', 680, 370], ['exaustao6_2', 680, 400], ['admissao6_1', 795, 370], ['admissao6_2', 795, 400]
+];
 
-    campos.forEach(([id, x, y]) => {
-      const val = document.getElementById(id)?.value || '';
-      ctx.fillText(val, x, y);
-    });
+campos.forEach(([id, x, y]) => {
+  const val = document.getElementById(id)?.value || '';
+  ctx.fillText(val, x, y);
+});
 
-    const observacoes = document.getElementById('observacoes').value.split('\n');
-    observacoes.forEach((linha, i) => {
-      ctx.fillText(linha, 115, 470 + i * 30);
-    });
+// Observações (posições ajustadas)
+const observacoes = document.getElementById('observacoes').value.split('\n');
+observacoes.forEach((linha, i) => {
+  ctx.fillText(linha, 115, 470 + i * 30);
+});
 
+    // Criar PDF A4 (210mm x 297mm)
     const pdf = new jsPDF({
       unit: 'mm',
       format: 'a4'
     });
 
+    // Converter o canvas para imagem (PNG)
     const imgData = canvas.toDataURL('image/png');
 
+    // Ajustar escala para caber em A4 respeitando proporção
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
 
+    // Calcular escala da imagem para caber dentro da página A4
     const scale = Math.min(pdfWidth / canvas.width, pdfHeight / canvas.height);
 
     const imgWidth = canvas.width * scale;
     const imgHeight = canvas.height * scale;
 
+    // Inserir a imagem no PDF centralizada
     const x = (pdfWidth - imgWidth) / 2;
-    const y = 10;
+    const y = 10; // margem superior pequena
 
     pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
 
     pdf.save('medicao-valvulas.pdf');
   });
 
+  // Botão limpar - limpa todos os inputs e textarea
   document.getElementById('clearBtn').addEventListener('click', function() {
     const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
     inputs.forEach(input => input.value = '');

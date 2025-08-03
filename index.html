@@ -264,40 +264,40 @@
     ctx.fillStyle = '#000000';
     ctx.textAlign = 'left';
 
-    // Informações principais (posições originais)
-    ctx.fillText(document.getElementById('mecanico').value || '', 110, 70);
-    ctx.fillText(document.getElementById('usina').value || '', 110, 105);
-    ctx.fillText(document.getElementById('serie').value || '', 110, 140);
-    ctx.fillText(document.getElementById('os').value || '', 110, 175);
+   // Informações principais (coordenadas ajustadas)
+ctx.fillText(document.getElementById('mecanico').value || '', 115, 78);
+ctx.fillText(document.getElementById('usina').value || '', 115, 113);
+ctx.fillText(document.getElementById('serie').value || '', 115, 148);
+ctx.fillText(document.getElementById('os').value || '', 115, 183);
 
-    const dataValue = document.getElementById('data').value;
-    if (dataValue) {
-      const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
-      ctx.fillText(dataFormatada, 440, 70);
-    }
+const dataValue = document.getElementById('data').value;
+if (dataValue) {
+  const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
+  ctx.fillText(dataFormatada, 445, 78);
+}
 
-    ctx.fillText(document.getElementById('horimetro').value || '', 440, 105);
+ctx.fillText(document.getElementById('horimetro').value || '', 445, 113);
 
-    // Campos dos cilindros (posições originais)
-    const campos = [
-      ['exaustao1_1', 170, 250], ['exaustao1_2', 170, 280], ['admissao1_1', 275, 250], ['admissao1_2', 275, 280],
-      ['exaustao2_1', 395, 250], ['exaustao2_2', 395, 280], ['admissao2_1', 500, 250], ['admissao2_2', 500, 280],
-      ['exaustao3_1', 610, 250], ['exaustao3_2', 610, 280], ['admissao3_1', 715, 250], ['admissao3_2', 715, 280],
-      ['exaustao4_1', 170, 350], ['exaustao4_2', 170, 380], ['admissao4_1', 275, 350], ['admissao4_2', 275, 380],
-      ['exaustao5_1', 395, 350], ['exaustao5_2', 395, 380], ['admissao5_1', 500, 350], ['admissao5_2', 500, 380],
-      ['exaustao6_1', 610, 350], ['exaustao6_2', 610, 380], ['admissao6_1', 715, 350], ['admissao6_2', 715, 380]
-    ];
+// Campos dos cilindros (coordenadas ajustadas)
+const campos = [
+  ['exaustao1_1', 195, 265], ['exaustao1_2', 195, 295], ['admissao1_1', 310, 265], ['admissao1_2', 310, 295],
+  ['exaustao2_1', 440, 265], ['exaustao2_2', 440, 295], ['admissao2_1', 555, 265], ['admissao2_2', 555, 295],
+  ['exaustao3_1', 680, 265], ['exaustao3_2', 680, 295], ['admissao3_1', 795, 265], ['admissao3_2', 795, 295],
+  ['exaustao4_1', 195, 370], ['exaustao4_2', 195, 400], ['admissao4_1', 310, 370], ['admissao4_2', 310, 400],
+  ['exaustao5_1', 440, 370], ['exaustao5_2', 440, 400], ['admissao5_1', 555, 370], ['admissao5_2', 555, 400],
+  ['exaustao6_1', 680, 370], ['exaustao6_2', 680, 400], ['admissao6_1', 795, 370], ['admissao6_2', 795, 400]
+];
 
-    campos.forEach(([id, x, y]) => {
-      const val = document.getElementById(id)?.value || '';
-      ctx.fillText(val, x, y);
-    });
+campos.forEach(([id, x, y]) => {
+  const val = document.getElementById(id)?.value || '';
+  ctx.fillText(val, x, y);
+});
 
-    // Observações (posições originais)
-    const observacoes = document.getElementById('observacoes').value.split('\n');
-    observacoes.forEach((linha, i) => {
-      ctx.fillText(linha, 110, 460 + i * 30);
-    });
+// Observações (posições ajustadas)
+const observacoes = document.getElementById('observacoes').value.split('\n');
+observacoes.forEach((linha, i) => {
+  ctx.fillText(linha, 115, 470 + i * 30);
+});
 
     // Criar PDF A4 (210mm x 297mm)
     const pdf = new jsPDF({
@@ -335,3 +335,4 @@
   </script>
 </body>
 </html>
+

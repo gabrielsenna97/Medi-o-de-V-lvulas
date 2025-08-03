@@ -136,7 +136,6 @@
   </style>
 </head>
 <body>
-<div id="formulario">
   <h1>MEDIÇÃO DAS VÁLVULAS DO SCANIA-550</h1>
 
   <table class="info-table">
@@ -160,12 +159,73 @@
   </div>
 
   <div class="valve-container">
-    <!-- CILINDROS 1 a 6 -->
-    <!-- Repete estrutura para cada cilindro, como já está no seu código -->
-    <!-- ... (já está certo e funcional) ... -->
+    <!-- Cilindro 1 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 1° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao1_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao1_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao1_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao1_2" placeholder="mm"></div>
+    </div>
 
-    <!-- Cilindros 1 a 6 já estão completos no seu código -->
-    <!-- Não repeti aqui só para economizar espaço -->
+    <!-- Cilindro 2 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 2° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao2_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao2_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao2_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao2_2" placeholder="mm"></div>
+    </div>
+
+    <!-- Cilindro 3 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 3° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao3_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao3_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao3_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao3_2" placeholder="mm"></div>
+    </div>
+  </div>
+
+  <div class="valve-container">
+    <!-- Cilindro 4 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 4° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao4_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao4_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao4_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao4_2" placeholder="mm"></div>
+    </div>
+
+    <!-- Cilindro 5 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 5° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao5_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao5_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao5_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao5_2" placeholder="mm"></div>
+    </div>
+
+    <!-- Cilindro 6 -->
+    <div class="valve-section">
+      <h2>MEDIDAS DO 6° CILINDRO</h2>
+      <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+      <div class="measurement"><input type="text" id="exaustao6_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao6_2" placeholder="mm"></div>
+      <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+      <div class="measurement"><input type="text" id="admissao6_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao6_2" placeholder="mm"></div>
+    </div>
   </div>
 
   <div class="obs">
@@ -173,35 +233,36 @@
     <textarea id="observacoes"></textarea>
   </div>
 
+  <div class="button-container">
+    <button id="generatePdf">Gerar PDF</button>
+    <button id="clearBtn" class="clear-btn">Limpar</button>
+  </div>
+
   <div class="signature">
     ASSINATURA DO MECÂNICO: _________________________
   </div>
-</div>
 
-<div class="button-container">
-  <button onclick="gerarPDF()">Gerar PDF</button>
-  <button id="clearBtn" class="clear-btn">Limpar</button>
-</div>
+  <script>
+    function gerarPDF() {
+      const element = document.body;
 
-<script>
-  function gerarPDF() {
-    const element = document.getElementById('formulario');
+      const opt = {
+        margin: 0.5,
+        filename: 'medicao-valvulas.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
+      };
 
-    const opt = {
-      margin: 0.5,
-      filename: 'medicao-valvulas.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
-    };
+      html2pdf().set(opt).from(element).save();
+    }
 
-    html2pdf().set(opt).from(element).save();
-  }
+    document.getElementById('generatePdf').addEventListener('click', gerarPDF);
 
-  document.getElementById('clearBtn').addEventListener('click', function() {
-    const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
-    inputs.forEach(input => input.value = '');
-  });
-</script>
+    document.getElementById('clearBtn').addEventListener('click', function () {
+      const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
+      inputs.forEach(input => input.value = '');
+    });
+  </script>
 </body>
 </html>

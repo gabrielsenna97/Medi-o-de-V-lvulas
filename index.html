@@ -14,126 +14,27 @@
     }
 
     #ficha {
-      background: url('background.jpg') no-repeat top center;
-      background-size: cover;
-      padding: 40px 20px;
-      min-height: 100vh;
-    }
-
-    h1, h2, h3 {
-      color: #333;
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 24px;
-      text-align: center;
-      border-bottom: 2px solid #333;
-      padding-bottom: 10px;
-    }
-
-    h2 {
-      font-size: 20px;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-
-    h3 {
-      font-size: 16px;
-      text-align: center;
-      margin: 15px 0;
-    }
-
-    .valve-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .valve-section {
-      border: 1px solid #ddd;
-      padding: 15px;
-      margin-bottom: 20px;
-      width: 32%;
-      box-sizing: border-box;
-      background-color: #ffffff;
-    }
-
-    .valve-type {
-      font-weight: bold;
-      margin-top: 10px;
-      text-align: center;
-      padding: 5px;
-      border-radius: 4px;
-    }
-
-    .exaustao {
-      background-color: #ffb84d;
-      color: #333;
-    }
-
-    .admissao {
-      background-color: #2e8b57;
-      color: #fff;
-    }
-
-    .measurement {
-      text-align: center;
-      margin: 10px 0;
-      font-size: 18px;
+      background: url('c3053f8e-31ae-4faa-af42-6606814f1406.png') no-repeat top center;
+      background-size: contain;
+      padding: 60px 40px;
+      min-height: 1200px;
+      position: relative;
     }
 
     input[type="text"], input[type="date"], textarea {
-      width: 120px;
-      padding: 8px;
-      text-align: center;
       font-size: 16px;
-      border: 1px solid #ddd;
+      padding: 6px;
+      border: 1px solid #ccc;
       border-radius: 4px;
-    }
-
-    textarea {
-      width: 100%;
-      height: 100px;
-      padding: 10px;
-      text-align: left;
-      resize: vertical;
-    }
-
-    .info-table {
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .info-table td {
-      padding: 5px 0;
-      text-align: left;
-    }
-
-    .signature {
-      margin-top: 50px;
-      border-top: 1px solid #000;
-      width: 320px;
-      padding-top: 5px;
-      text-align: center;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .warning {
-      background-color: #fff3cd;
-      padding: 10px;
-      border-left: 4px solid #ffc107;
-      margin: 15px 0;
       text-align: center;
     }
 
-    .obs {
-      margin-top: 30px;
-      font-style: italic;
+    table {
+      width: 100%;
+    }
+
+    .valve-container, .obs, .signature {
+      margin-top: 20px;
     }
 
     .button-container {
@@ -146,20 +47,18 @@
       color: white;
       border: none;
       padding: 10px 20px;
-      margin: 0 10px;
       font-size: 16px;
       border-radius: 4px;
       cursor: pointer;
+      margin: 5px;
     }
 
     button.clear-btn {
-      background-color: #ff6b6b;
+      background-color: #e74c3c;
     }
 
-    @media (max-width: 900px) {
-      .valve-section {
-        width: 100%;
-      }
+    .warning h3 {
+      margin: 5px 0;
     }
   </style>
 </head>
@@ -168,7 +67,7 @@
   <div id="ficha">
     <h1>MEDIÇÃO DAS VÁLVULAS DO SCANIA-550</h1>
 
-    <table class="info-table">
+    <table>
       <tr>
         <td><strong>MECÂNICO:</strong> <input type="text" id="mecanico" style="width: 200px;"></td>
         <td><strong>DATA:</strong> <input type="date" id="data"></td>
@@ -188,16 +87,14 @@
       <h3>ACIMA DE 67,50mm DEVE SER CONSIDERADA SUBSTITUIÇÃO</h3>
     </div>
 
+    <!-- Sua estrutura de válvulas deve estar aqui -->
     <div class="valve-container">
-      <!-- Aqui vão os blocos dos 6 cilindros -->
-      <!-- Copie e cole o conteúdo das válvulas aqui, como já estava no seu código -->
-      <!-- Mantive sua estrutura sem alteração -->
-      <!-- ... (omitido aqui por espaço, mas você já tem todos os blocos completos) -->
+      <!-- Seus blocos de válvulas vão aqui (cilindros) -->
     </div>
 
     <div class="obs">
       <p><strong>OBSERVAÇÕES:</strong></p>
-      <textarea id="observacoes"></textarea>
+      <textarea id="observacoes" style="width: 100%; height: 80px;"></textarea>
     </div>
 
     <div class="signature">
@@ -212,25 +109,25 @@
 
   <script>
     function gerarPDF() {
-      const element = document.getElementById('ficha');
+      const element = document.getElementById("ficha");
 
       const opt = {
         margin: 0,
-        filename: 'medicao-valvulas.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
+        filename: "medicao-valvulas.pdf",
+        image: { type: "jpeg", quality: 1 },
+        html2canvas: { scale: 2, logging: true, useCORS: true },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
       };
 
       html2pdf().set(opt).from(element).save();
     }
 
-    document.getElementById('generatePdf').addEventListener('click', gerarPDF);
+    document.getElementById("generatePdf").addEventListener("click", gerarPDF);
 
-    document.getElementById('clearBtn').addEventListener('click', function () {
-      const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
-      inputs.forEach(input => input.value = '');
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      document.querySelectorAll("input, textarea").forEach(el => el.value = "");
     });
   </script>
+
 </body>
 </html>

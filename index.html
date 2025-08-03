@@ -274,18 +274,18 @@ ctx.fillText(document.getElementById('os').value || '', 267, 321);
 const dataValue = document.getElementById('data').value;
 if (dataValue) {
 const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
-ctx.fillText(dataFormatada, 630, 267);
+ctx.fillText(dataFormatada, 808, 254);
 }
 
-ctx.fillText(document.getElementById('horimetro').value || '', 620, 297);
+ctx.fillText(document.getElementById('horimetro').value || '', 753, 283);
 
 const campos = [
 ['exaustao1_1', 144, 515], ['exaustao1_2', 140, 554], ['admissao1_1', 349, 555], ['admissao1_2', 351, 513],
 ['exaustao2_1', 470, 882], ['exaustao2_2', 472, 849], ['admissao2_1', 680, 884], ['admissao2_2', 678, 851],
-['exaustao3_1', 675, 260], ['exaustao3_2', 675, 290], ['admissao3_1', 790, 260], ['admissao3_2', 790, 290],
-['exaustao4_1', 190, 365], ['exaustao4_2', 190, 395], ['admissao4_1', 305, 365], ['admissao4_2', 305, 395],
-['exaustao5_1', 435, 365], ['exaustao5_2', 435, 395], ['admissao5_1', 550, 365], ['admissao5_2', 550, 395],
-['exaustao6_1', 675, 365], ['exaustao6_2', 675, 395], ['admissao6_1', 790, 900], ['admissao6_2', 790, 900]
+['exaustao3_1', 790, 546], ['exaustao3_2', 784, 512], ['admissao3_1', 989, 545], ['admissao3_2', 988, 512],
+['exaustao4_1', 786, 884], ['exaustao4_2', 788, 848], ['admissao4_1', 992, 883], ['admissao4_2', 990, 849],
+['exaustao5_1', 471, 542], ['exaustao5_2', 472, 510], ['admissao5_1', 682, 543], ['admissao5_2', 677, 507],
+['exaustao6_1', 149, 882], ['exaustao6_2', 151, 847], ['admissao6_1', 352, 883], ['admissao6_2', 347, 851]
 ];
 
 campos.forEach(([id, x, y]) => {
@@ -295,7 +295,7 @@ ctx.fillText(val, x, y);
 
 const observacoes = document.getElementById('observacoes').value.split('\n');
 observacoes.forEach((linha, i) => {
-ctx.fillText(linha, 110, 465 + i * 30);
+ctx.fillText(linha, 183, 1025 + i * 30);
 });
 
 const pdf = new jsPDF({
@@ -357,6 +357,7 @@ inputs.forEach(input => input.value = '');
 </script>
 </body>
 </html>
+
 
 
 

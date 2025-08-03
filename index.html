@@ -264,57 +264,79 @@
     ctx.textAlign = 'left';
 
     // Informações principais (posições ajustadas)
-    ctx.fillText(document.getElementById('mecanico').value || '', 110, 70);
-    ctx.fillText(document.getElementById('usina').value || '', 110, 105);
-    ctx.fillText(document.getElementById('serie').value || '', 110, 140);
-    ctx.fillText(document.getElementById('os').value || '', 110, 175);
+    ctx.fillText(document.getElementById('mecanico').value || '', 140, 90);
+    ctx.fillText(document.getElementById('usina').value || '', 110, 130);
+    ctx.fillText(document.getElementById('serie').value || '', 110, 165);
+    ctx.fillText(document.getElementById('os').value || '', 110, 200);
 
     const dataValue = document.getElementById('data').value;
     if (dataValue) {
       const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
-      ctx.fillText(dataFormatada, 440, 70);
+      ctx.fillText(dataFormatada, 440, 90);
     }
 
-    ctx.fillText(document.getElementById('horimetro').value || '', 440, 105);
+    ctx.fillText(document.getElementById('horimetro').value || '', 440, 130);
 
     // Campos dos cilindros (posições ajustadas para cada campo)
     const campos = [
       ['exaustao1_1', 170, 250], ['exaustao1_2', 170, 280], ['admissao1_1', 275, 250], ['admissao1_2', 275, 280],
       ['exaustao5_1', 395, 250], ['exaustao5_2', 395, 280], ['admissao5_1', 500, 250], ['admissao5_2', 500, 280],
       ['exaustao3_1', 610, 250], ['exaustao3_2', 610, 280], ['admissao3_1', 715, 250], ['admissao3_2', 715, 280],
-      
+
       ['exaustao6_1', 170, 350], ['exaustao6_2', 170, 380], ['admissao6_1', 275, 350], ['admissao6_2', 275, 380],
       ['exaustao2_1', 395, 350], ['exaustao2_2', 395, 380], ['admissao2_1', 500, 350], ['admissao2_2', 500, 380],
       ['exaustao4_1', 610, 350], ['exaustao4_2', 610, 380], ['admissao4_1', 715, 350], ['admissao4_2', 715, 380]
     ];
 
     campos.forEach(([id, x, y]) => {
-      const val = document.getElementById(id)?.value || '';
+      const val = document.getElementById(id).value || '';
       ctx.fillText(val, x, y);
     });
 
-    // Observações (posições ajustadas)
-    const observacoes = document.getElementById('observacoes').value.split('\n');
-    observacoes.forEach((linha, i) => {
-      ctx.fillText(linha, 20, 420 + i * 30);
-    });
+    // Observações (posição e quebra de linha)
+    ctx.font = 'bold 22px Arial';
+    const obs = document.getElementById('observacoes').value || '';
+    const maxWidth = 600;
+    const lineHeight = 25;
+    let startX = 110;
+    let startY = 430;
 
-    // Criar PDF
+    const wrapText = (context, text, x, y, maxWidth, lineHeight) => {
+      const words = text.split(' ');
+      let line = '';
+      for(let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = context.measureText(testLine);
+        const testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+          context.fillText(line, x, y);
+          line = words[n] + ' ';
+          y += lineHeight;
+        }
+        else {
+          line = testLine;
+        }
+      }
+      context.fillText(line, x, y);
+    };
+
+    wrapText(ctx, obs, startX, startY, maxWidth, lineHeight);
+
+    // Gera o PDF com a imagem do canvas
     const pdf = new jsPDF({
-      orientation: 'portrait',
+      orientation: 'landscape',
       unit: 'px',
-      format: [img.width, img.height]
+      format: [canvas.width, canvas.height]
     });
 
-    const imgData = canvas.toDataURL('image/jpeg', 1.0);
-    pdf.addImage(imgData, 'JPEG', 0, 0, img.width, img.height);
+    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, canvas.width, canvas.height);
 
-    pdf.save('medicao_valvulas_scania.pdf');
+    pdf.save('Valvulas.pdf');
   });
 
-  // Limpar campos
-  document.getElementById('clearBtn').addEventListener('click', () => {
-    document.querySelectorAll('input[type="text"], input[type="date"], textarea').forEach(el => el.value = '');
+  // Botão limpar
+  document.getElementById('clearBtn').addEventListener('click', function() {
+    document.querySelectorAll('input[type="text"], input[type="date"], textarea').forEach(input => input.value = '');
   });
   </script>
 </body>

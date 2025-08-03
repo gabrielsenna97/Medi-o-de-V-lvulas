@@ -4,16 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Medição de Válvulas do Scania-550</title>
-  <!-- Adicione estas bibliotecas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
-    /* Seu CSS original permanece EXATAMENTE igual */
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
       line-height: 1.6;
-      background-color: #d0f0c0; /* verde médio claro */
+      background-color: #d0f0c0;
     }
     h1, h2, h3 {
       color: #333;
@@ -59,16 +56,12 @@
       border-radius: 4px;
     }
     .exaustao {
-      background-color: #ffb84d; /* amarelo-laranja forte */
+      background-color: #ffb84d;
       color: #333;
     }
     .admissao {
-      background-color: #2e8b57; /* verde forte */
+      background-color: #2e8b57;
       color: #fff;
-    }
-    .perigo {
-      background-color: #f8d7da; /* vermelho claro */
-      color: #721c24;
     }
     .measurement {
       text-align: center;
@@ -104,7 +97,6 @@
       width: 320px;
       padding-top: 5px;
       text-align: center;
-      user-select: none;
       font-weight: bold;
       font-size: 16px;
     }
@@ -132,51 +124,32 @@
       font-size: 16px;
       border-radius: 4px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #246944;
     }
     button.clear-btn {
       background-color: #ff6b6b;
     }
-    button.clear-btn:hover {
-      background-color: #e64545;
-    }
     @media (max-width: 900px) {
       .valve-section {
-        width: 100%;
-      }
-      input[type="text"], input[type="date"] {
-        width: 100%;
-      }
-      .button-container button {
-        display: block;
-        width: 80%;
-        margin: 10px auto;
-      }
-      .signature {
         width: 100%;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Todo o seu HTML original permanece igual -->
   <h1>MEDIÇÃO DAS VÁLVULAS DO SCANIA-550</h1>
 
   <table class="info-table">
     <tr>
-      <td><strong>MECÂNICO:</strong> <input type="text" id="mecanico" style="width: 200px;" /></td>
-      <td><strong>DATA:</strong> <input type="date" id="data" /></td>
+      <td><strong>MECÂNICO:</strong> <input type="text" id="mecanico" style="width: 200px;"></td>
+      <td><strong>DATA:</strong> <input type="date" id="data"></td>
     </tr>
     <tr>
-      <td><strong>USINA:</strong> <input type="text" id="usina" style="width: 200px;" /></td>
-      <td><strong>HORÍMETRO:</strong> <input type="text" id="horimetro" /></td>
+      <td><strong>USINA:</strong> <input type="text" id="usina" style="width: 200px;"></td>
+      <td><strong>HORÍMETRO:</strong> <input type="text" id="horimetro"></td>
     </tr>
     <tr>
-      <td><strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 200px;" /></td>
-      <td><strong>OS:</strong> <input type="text" id="os" /></td>
+      <td><strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 200px;"></td>
+      <td><strong>OS:</strong> <input type="text" id="os"></td>
     </tr>
   </table>
 
@@ -185,75 +158,73 @@
     <h3>ACIMA DE 67,50mm DEVE SER CONSIDERADA SUBSTITUIÇÃO</h3>
   </div>
 
-  <!-- Primeira Linha - Cilindros 1, 2, 3 -->
   <div class="valve-container">
     <!-- Cilindro 1 -->
     <div class="valve-section">
       <h2>MEDIDAS DO 1° CILINDRO</h2>
       <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-      <div class="measurement"><input type="text" id="exaustao1_1" placeholder="mm" value="65.97" /></div>
-      <div class="measurement"><input type="text" id="exaustao1_2" placeholder="mm" value="64.06" /></div>
+      <div class="measurement"><input type="text" id="exaustao1_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao1_2" placeholder="mm"></div>
       <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-      <div class="measurement"><input type="text" id="admissao1_1" placeholder="mm" value="65.91" /></div>
-      <div class="measurement"><input type="text" id="admissao1_2" placeholder="mm" value="65.95" /></div>
+      <div class="measurement"><input type="text" id="admissao1_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao1_2" placeholder="mm"></div>
     </div>
 
     <!-- Cilindro 2 -->
     <div class="valve-section">
       <h2>MEDIDAS DO 2° CILINDRO</h2>
       <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-      <div class="measurement"><input type="text" id="exaustao2_1" placeholder="mm" /></div>
-      <div class="measurement"><input type="text" id="exaustao2_2" placeholder="mm" /></div>
+      <div class="measurement"><input type="text" id="exaustao2_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao2_2" placeholder="mm"></div>
       <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-      <div class="measurement"><input type="text" id="admissao2_1" placeholder="mm" /></div>
-      <div class="measurement"><input type="text" id="admissao2_2" placeholder="mm" /></div>
+      <div class="measurement"><input type="text" id="admissao2_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao2_2" placeholder="mm"></div>
     </div>
 
     <!-- Cilindro 3 -->
     <div class="valve-section">
       <h2>MEDIDAS DO 3° CILINDRO</h2>
       <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-      <div class="measurement"><input type="text" id="exaustao3_1" placeholder="mm" /></div>
-      <div class="measurement"><input type="text" id="exaustao3_2" placeholder="mm" /></div>
+      <div class="measurement"><input type="text" id="exaustao3_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao3_2" placeholder="mm"></div>
       <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-      <div class="measurement"><input type="text" id="admissao3_1" placeholder="mm" /></div>
-      <div class="measurement"><input type="text" id="admissao3_2" placeholder="mm" /></div>
+      <div class="measurement"><input type="text" id="admissao3_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao3_2" placeholder="mm"></div>
     </div>
   </div>
 
-  <!-- Segunda Linha - Cilindros 4, 5, 6 -->
   <div class="valve-container">
     <!-- Cilindro 4 -->
     <div class="valve-section">
       <h2>MEDIDAS DO 4° CILINDRO</h2>
       <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-      <div class="measurement"><input type="text" id="exaustao4_1" placeholder="mm" /></div>
-      <div class="measurement"><input type="text" id="exaustao4_2" placeholder="mm" /></div>
+      <div class="measurement"><input type="text" id="exaustao4_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao4_2" placeholder="mm"></div>
       <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-      <div class="measurement"><input type="text" id="admissao4_1" placeholder="mm" /></div>
-      <div class="measurement"><input type="text" id="admissao4_2" placeholder="mm" /></div>
+      <div class="measurement"><input type="text" id="admissao4_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao4_2" placeholder="mm"></div>
     </div>
 
     <!-- Cilindro 5 -->
     <div class="valve-section">
       <h2>MEDIDAS DO 5° CILINDRO</h2>
       <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-      <div class="measurement"><input type="text" id="exaustao5_1" placeholder="mm" /></div>
-      <div class="measurement"><input type="text" id="exaustao5_2" placeholder="mm" /></div>
+      <div class="measurement"><input type="text" id="exaustao5_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao5_2" placeholder="mm"></div>
       <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-      <div class="measurement"><input type="text" id="admissao5_1" placeholder="mm" /></div>
-      <div class="measurement"><input type="text" id="admissao5_2" placeholder="mm" /></div>
+      <div class="measurement"><input type="text" id="admissao5_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao5_2" placeholder="mm"></div>
     </div>
 
     <!-- Cilindro 6 -->
     <div class="valve-section">
       <h2>MEDIDAS DO 6° CILINDRO</h2>
       <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-      <div class="measurement"><input type="text" id="exaustao6_1" placeholder="mm" /></div>
-      <div class="measurement"><input type="text" id="exaustao6_2" placeholder="mm" /></div>
+      <div class="measurement"><input type="text" id="exaustao6_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="exaustao6_2" placeholder="mm"></div>
       <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-      <div class="measurement"><input type="text" id="admissao6_1" placeholder="mm" /></div>
-      <div class="measurement"><input type="text" id="admissao6_2" placeholder="mm" /></div>
+      <div class="measurement"><input type="text" id="admissao6_1" placeholder="mm"></div>
+      <div class="measurement"><input type="text" id="admissao6_2" placeholder="mm"></div>
     </div>
   </div>
 
@@ -263,9 +234,8 @@
   </div>
 
   <div class="button-container">
-    <button id="generatePdf" type="button">Gerar PDF</button>
-    <button id="sendBtn" type="button">Enviar</button>
-    <button id="clearBtn" type="button" class="clear-btn">Limpar</button>
+    <button id="generatePdf">Gerar PDF</button>
+    <button id="clearBtn" class="clear-btn">Limpar</button>
   </div>
 
   <div class="signature">
@@ -273,38 +243,71 @@
   </div>
 
   <script>
-    // Botões do formulário
-    const generatePdf = document.getElementById('generatePdf');
-    const sendBtn = document.getElementById('sendBtn');
-    const clearBtn = document.getElementById('clearBtn');
-
-    // Função para gerar PDF
-    generatePdf.addEventListener('click', function() {
-      // Criar um novo PDF
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF('p', 'mm', 'a4');
+    const { jsPDF } = window.jspdf;
+    
+    document.getElementById('generatePdf').addEventListener('click', async function() {
+      // Carregar imagem de fundo
+      const img = new Image();
+      img.src = 'background.jpg';
+      img.crossOrigin = 'Anonymous';
       
-      // Capturar o conteúdo do formulário
-      html2canvas(document.body).then(canvas => {
-        const imgData = canvas.toDataURL('image/png');
-        const imgWidth = doc.internal.pageSize.getWidth() - 20;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        
-        // Adicionar a imagem ao PDF
-        doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-        
-        // Salvar o PDF
-        doc.save('medicao-valvulas-scania.pdf');
+      await new Promise((resolve) => { img.onload = resolve; });
+      
+      // Criar canvas
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      
+      // Desenhar fundo
+      ctx.drawImage(img, 0, 0);
+      
+      // Configurar texto
+      ctx.font = 'bold 14px Arial';
+      ctx.fillStyle = '#000000';
+      ctx.textAlign = 'left';
+      
+      // Preencher dados (ajuste estas coordenadas conforme sua imagem)
+      
+      // Informações básicas
+      ctx.fillText(document.getElementById('mecanico').value || '', 150, 120);
+      ctx.fillText(document.getElementById('usina').value || '', 150, 150);
+      ctx.fillText(document.getElementById('serie').value || '', 150, 180);
+      
+      // Data formatada
+      const dataValue = document.getElementById('data').value;
+      if(dataValue) {
+        const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
+        ctx.fillText(dataFormatada, 400, 120);
+      }
+      
+      ctx.fillText(document.getElementById('horimetro').value || '', 400, 150);
+      ctx.fillText(document.getElementById('os').value || '', 400, 180);
+      
+      // Medições dos cilindros (exemplo para o primeiro cilindro)
+      ctx.fillText(document.getElementById('exaustao1_1').value || '', 120, 250);
+      ctx.fillText(document.getElementById('exaustao1_2').value || '', 120, 280);
+      ctx.fillText(document.getElementById('admissao1_1').value || '', 120, 320);
+      ctx.fillText(document.getElementById('admissao1_2').value || '', 120, 350);
+      
+      // Adicione as coordenadas para os outros cilindros conforme sua imagem
+      
+      // Observações
+      ctx.fillText(document.getElementById('observacoes').value || '', 100, 500);
+      
+      // Gerar PDF
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm'
       });
+      
+      const imgData = canvas.toDataURL('image/jpeg', 0.95);
+      pdf.addImage(imgData, 'JPEG', 0, 0, 210, 0);
+      pdf.save('medicao_valvulas_scania.pdf');
     });
 
-    // Função original do botão Enviar
-    sendBtn.addEventListener('click', () => {
-      alert('Informações enviadas!');
-    });
-
-    // Função original do botão Limpar
-    clearBtn.addEventListener('click', () => {
+    // Botão Limpar
+    document.getElementById('clearBtn').addEventListener('click', function() {
       const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
       inputs.forEach(input => input.value = '');
     });

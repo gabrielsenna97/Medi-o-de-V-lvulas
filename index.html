@@ -245,6 +245,26 @@ ASSINATURA DO MECÂNICO: _________________________
 <script>
 const { jsPDF } = window.jspdf;
 
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  let linesCount = 0;
+
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
+    if (testWidth > maxWidth && n > 0) {
+      ctx.fillText(line, x, y + linesCount * lineHeight);
+      line = words[n] + ' ';
+      linesCount++;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, x, y + linesCount * lineHeight);
+}
+
 document.getElementById('generatePdf').addEventListener('click', async function() {
 const img = new Image();
 img.src = 'background.jpg';
@@ -259,9 +279,7 @@ const ctx = canvas.getContext('2d');
 
 ctx.drawImage(img, 0, 0);
 
-// *** Só alterei aqui para fonte 12px ***
-ctx.font = 'bold 12px Arial';
-
+ctx.font = 'bold 18px Arial';
 ctx.fillStyle = '#000000';
 ctx.textAlign = 'left';
 
@@ -294,11 +312,9 @@ const val = document.getElementById(id)?.value || '';
 ctx.fillText(val, x, y);
 });
 
-// *** Aqui a alteração para espaçamento menor nas linhas das observações ***
-const observacoes = document.getElementById('observacoes').value.split('\n');
-observacoes.forEach((linha, i) => {
-ctx.fillText(linha, 183, 1025 + i * 18);
-});
+// Substituí aqui para usar a função de quebra de linha
+const observacoes = document.getElementById('observacoes').value;
+wrapText(ctx, observacoes, 183, 1025, 800, 18);
 
 const pdf = new jsPDF({
 unit: 'mm',

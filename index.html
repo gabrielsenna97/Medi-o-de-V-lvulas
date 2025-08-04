@@ -266,9 +266,9 @@ ctx.textAlign = 'left';
 
 // Apenas as coordenadas foram alteradas aqui, mantendo o resto igual
 
-ctx.fillText(document.getElementById('mecanico').value || '', 208, 230);
-ctx.fillText(document.getElementById('usina').value || '', 186, 259);
-ctx.fillText(document.getElementById('serie').value || '', 200, 297);
+ctx.fillText(document.getElementById('mecanico').value || '', 208, 235);
+ctx.fillText(document.getElementById('usina').value || '', 186, 263);
+ctx.fillText(document.getElementById('serie').value || '', 200, 293);
 ctx.fillText(document.getElementById('os').value || '', 267, 321);
 
 const dataValue = document.getElementById('data').value;
@@ -277,7 +277,7 @@ const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
 ctx.fillText(dataFormatada, 808, 254);
 }
 
-ctx.fillText(document.getElementById('horimetro').value || '', 753, 283);
+ctx.fillText(document.getElementById('horimetro').value || '', 753, 293);
 
 const campos = [
 ['exaustao1_1', 146, 553], ['exaustao1_2', 147, 518], ['admissao1_1', 357, 553], ['admissao1_2', 351, 518],
@@ -357,6 +357,7 @@ inputs.forEach(input => input.value = '');
 </script>
 </body>
 </html>
+
 
 
 

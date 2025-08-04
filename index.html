@@ -287,7 +287,7 @@ ctx.textAlign = 'left';
 
 ctx.fillText(document.getElementById('mecanico').value || '', 208, 235);
 ctx.fillText(document.getElementById('usina').value || '', 186, 263);
-ctx.fillText(document.getElementById('serie').value || '', 200, 293);
+ctx.fillText(document.getElementById('serie').value || '', 200, 290);
 ctx.fillText(document.getElementById('os').value || '', 267, 321);
 
 const dataValue = document.getElementById('data').value;
@@ -296,7 +296,7 @@ const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
 ctx.fillText(dataFormatada, 808, 263);
 }
 
-ctx.fillText(document.getElementById('horimetro').value || '', 753, 293);
+ctx.fillText(document.getElementById('horimetro').value || '', 753, 290);
 
 const campos = [
 ['exaustao1_1', 146, 553], ['exaustao1_2', 147, 518], ['admissao1_1', 357, 553], ['admissao1_2', 351, 518],
@@ -375,6 +375,7 @@ console.log(`Clique na imagem - X: ${x}, Y: ${y}`);
 </script>
 </body>
 </html>
+
 
 
 

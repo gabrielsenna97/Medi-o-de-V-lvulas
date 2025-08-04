@@ -108,6 +108,7 @@ textarea {
   left: 0;
   width: 320px;
   border: none;
+  /*border-bottom: 1px solid #000;*/
   font-size: 24px;
   text-align: center;
   background: transparent;
@@ -147,11 +148,6 @@ button.clear-btn {
     width: 100%;
   }
 }
-/* Estilo para valor inválido (acima de 67.5) */
-.input-invalid {
-  font-weight: bold;
-  color: red !important;
-}
 </style>
 </head>
 <body>
@@ -159,106 +155,106 @@ button.clear-btn {
 
 <table class="info-table">
 <tr>
-<td><strong>MECÂNICO:</strong> <input type="text" id="mecanico" style="width: 200px;"></td>
-<td><strong>DATA:</strong> <input type="date" id="data"></td>
+  <td><strong>MECÂNICO:</strong> <input type="text" id="mecanico" style="width: 200px;"></td>
+  <td><strong>DATA:</strong> <input type="date" id="data"></td>
 </tr>
 <tr>
-<td><strong>USINA:</strong> <input type="text" id="usina" style="width: 200px;"></td>
-<td><strong>HORÍMETRO:</strong> <input type="text" id="horimetro"></td>
+  <td><strong>USINA:</strong> <input type="text" id="usina" style="width: 200px;"></td>
+  <td><strong>HORÍMETRO:</strong> <input type="text" id="horimetro"></td>
 </tr>
 <tr>
-<td><strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 200px;"></td>
-<td><strong>OS:</strong> <input type="text" id="os"></td>
+  <td><strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 200px;"></td>
+  <td><strong>OS:</strong> <input type="text" id="os"></td>
 </tr>
 <tr>
-<td><strong>UGD-</strong> <input type="text" id="ugd" style="width: 60px;" placeholder=></td>
-<td></td>
+  <td><strong>UGD-</strong> <input type="text" id="ugd" style="width: 60px;" placeholder=></td>
+  <td></td>
 </tr>
 </table>
 
 <div class="warning">
-<h3>MEDIÇÕES ACEITÁVEIS: 64,00mm a 67,50mm</h3>
-<h3>ACIMA DE 67,50mm DEVE SER CONSIDERADA SUBSTITUIÇÃO</h3>
+  <h3>MEDIÇÕES ACEITÁVEIS: 64,00mm a <span style="font-weight:bold; color:red;">67,50mm</span></h3>
+  <h3>ACIMA DE <span style="font-weight:bold; color:red;">67,50mm</span> DEVE SER CONSIDERADA SUBSTITUIÇÃO</h3>
 </div>
 
 <div class="valve-container">
-<!-- Cilindro 1 -->
-<div class="valve-section">
-<h2>MEDIDAS DO 1° CILINDRO</h2>
-<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-<div class="measurement"><input type="text" id="exaustao1_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="exaustao1_2" placeholder="mm" class="measurement-input"></div>
-<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-<div class="measurement"><input type="text" id="admissao1_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="admissao1_2" placeholder="mm" class="measurement-input"></div>
-</div>
+  <!-- Cilindro 1 -->
+  <div class="valve-section">
+    <h2>MEDIDAS DO 1° CILINDRO</h2>
+    <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+    <div class="measurement"><input type="text" id="exaustao1_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="exaustao1_2" placeholder="mm"></div>
+    <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+    <div class="measurement"><input type="text" id="admissao1_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="admissao1_2" placeholder="mm"></div>
+  </div>
 
-<!-- Cilindro 2 -->
-<div class="valve-section">
-<h2>MEDIDAS DO 2° CILINDRO</h2>
-<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-<div class="measurement"><input type="text" id="exaustao2_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="exaustao2_2" placeholder="mm" class="measurement-input"></div>
-<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-<div class="measurement"><input type="text" id="admissao2_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="admissao2_2" placeholder="mm" class="measurement-input"></div>
-</div>
+  <!-- Cilindro 2 -->
+  <div class="valve-section">
+    <h2>MEDIDAS DO 2° CILINDRO</h2>
+    <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+    <div class="measurement"><input type="text" id="exaustao2_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="exaustao2_2" placeholder="mm"></div>
+    <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+    <div class="measurement"><input type="text" id="admissao2_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="admissao2_2" placeholder="mm"></div>
+  </div>
 
-<!-- Cilindro 3 -->
-<div class="valve-section">
-<h2>MEDIDAS DO 3° CILINDRO</h2>
-<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-<div class="measurement"><input type="text" id="exaustao3_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="exaustao3_2" placeholder="mm" class="measurement-input"></div>
-<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-<div class="measurement"><input type="text" id="admissao3_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="admissao3_2" placeholder="mm" class="measurement-input"></div>
-</div>
+  <!-- Cilindro 3 -->
+  <div class="valve-section">
+    <h2>MEDIDAS DO 3° CILINDRO</h2>
+    <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+    <div class="measurement"><input type="text" id="exaustao3_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="exaustao3_2" placeholder="mm"></div>
+    <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+    <div class="measurement"><input type="text" id="admissao3_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="admissao3_2" placeholder="mm"></div>
+  </div>
 </div>
 
 <div class="valve-container">
-<!-- Cilindro 4 -->
-<div class="valve-section">
-<h2>MEDIDAS DO 4° CILINDRO</h2>
-<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-<div class="measurement"><input type="text" id="exaustao4_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="exaustao4_2" placeholder="mm" class="measurement-input"></div>
-<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-<div class="measurement"><input type="text" id="admissao4_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="admissao4_2" placeholder="mm" class="measurement-input"></div>
-</div>
+  <!-- Cilindro 4 -->
+  <div class="valve-section">
+    <h2>MEDIDAS DO 4° CILINDRO</h2>
+    <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+    <div class="measurement"><input type="text" id="exaustao4_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="exaustao4_2" placeholder="mm"></div>
+    <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+    <div class="measurement"><input type="text" id="admissao4_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="admissao4_2" placeholder="mm"></div>
+  </div>
 
-<!-- Cilindro 5 -->
-<div class="valve-section">
-<h2>MEDIDAS DO 5° CILINDRO</h2>
-<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-<div class="measurement"><input type="text" id="exaustao5_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="exaustao5_2" placeholder="mm" class="measurement-input"></div>
-<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-<div class="measurement"><input type="text" id="admissao5_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="admissao5_2" placeholder="mm" class="measurement-input"></div>
-</div>
+  <!-- Cilindro 5 -->
+  <div class="valve-section">
+    <h2>MEDIDAS DO 5° CILINDRO</h2>
+    <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+    <div class="measurement"><input type="text" id="exaustao5_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="exaustao5_2" placeholder="mm"></div>
+    <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+    <div class="measurement"><input type="text" id="admissao5_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="admissao5_2" placeholder="mm"></div>
+  </div>
 
-<!-- Cilindro 6 -->
-<div class="valve-section">
-<h2>MEDIDAS DO 6° CILINDRO</h2>
-<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
-<div class="measurement"><input type="text" id="exaustao6_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="exaustao6_2" placeholder="mm" class="measurement-input"></div>
-<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
-<div class="measurement"><input type="text" id="admissao6_1" placeholder="mm" class="measurement-input"></div>
-<div class="measurement"><input type="text" id="admissao6_2" placeholder="mm" class="measurement-input"></div>
-</div>
+  <!-- Cilindro 6 -->
+  <div class="valve-section">
+    <h2>MEDIDAS DO 6° CILINDRO</h2>
+    <div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+    <div class="measurement"><input type="text" id="exaustao6_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="exaustao6_2" placeholder="mm"></div>
+    <div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+    <div class="measurement"><input type="text" id="admissao6_1" placeholder="mm"></div>
+    <div class="measurement"><input type="text" id="admissao6_2" placeholder="mm"></div>
+  </div>
 </div>
 
 <div class="obs">
-<p><strong>OBSERVAÇÕES:</strong></p>
-<textarea id="observacoes"></textarea>
+  <p><strong>OBSERVAÇÕES:</strong></p>
+  <textarea id="observacoes"></textarea>
 </div>
 
 <div class="button-container">
-<button id="generatePdf">Gerar PDF</button>
-<button id="clearBtn" class="clear-btn">Limpar</button>
+  <button id="generatePdf">Gerar PDF</button>
+  <button id="clearBtn" class="clear-btn">Limpar</button>
 </div>
 
 <div class="signature">
@@ -289,33 +285,6 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   ctx.fillText(line, x, y + linesCount * lineHeight);
 }
 
-// Função para validar input e destacar valores acima de 67.5
-function validateMeasurementInput(input) {
-  // Permitir só números, vírgula e ponto
-  input.value = input.value.replace(/[^0-9.,]/g, '');
-
-  // Trocar vírgula por ponto para validar número
-  const valNum = parseFloat(input.value.replace(',', '.'));
-
-  if (!isNaN(valNum) && valNum > 67.5) {
-    input.classList.add('input-invalid');
-  } else {
-    input.classList.remove('input-invalid');
-  }
-}
-
-document.querySelectorAll('.measurement-input').forEach(input => {
-  // Validar e formatar enquanto digita
-  input.addEventListener('input', () => validateMeasurementInput(input));
-  // Prevenir entrada de letras no campo
-  input.addEventListener('keypress', (e) => {
-    const char = String.fromCharCode(e.which);
-    if (!/[0-9.,]/.test(char)) {
-      e.preventDefault();
-    }
-  });
-});
-
 document.getElementById('generatePdf').addEventListener('click', async function() {
   const img = new Image();
   img.src = 'background.jpg';
@@ -338,6 +307,7 @@ document.getElementById('generatePdf').addEventListener('click', async function(
   ctx.fillText(document.getElementById('usina').value || '', 186, 263);
   ctx.fillText(document.getElementById('serie').value || '', 198, 290);
 
+  // Aqui a alteração que concatena "UGD- " + número digitado
   const ugdVal = document.getElementById('ugd').value;
   ctx.fillText(ugdVal ? `UGD- ${ugdVal}` : '', 229, 204);
 
@@ -351,6 +321,8 @@ document.getElementById('generatePdf').addEventListener('click', async function(
 
   ctx.fillText(document.getElementById('horimetro').value || '', 753, 290);
 
+  const limiteMaximo = 67.50;
+
   const campos = [
     ['exaustao1_1', 146, 553], ['exaustao1_2', 147, 518], ['admissao1_1', 357, 553], ['admissao1_2', 351, 518],
     ['exaustao2_1', 470, 895], ['exaustao2_2', 472, 853], ['admissao2_1', 680, 894], ['admissao2_2', 678, 855],
@@ -362,6 +334,15 @@ document.getElementById('generatePdf').addEventListener('click', async function(
 
   campos.forEach(([id, x, y]) => {
     const val = document.getElementById(id)?.value || '';
+    const valNum = parseFloat(val.replace(',', '.'));
+
+    if (!isNaN(valNum) && valNum >= limiteMaximo) {
+      ctx.font = 'bold 18px Arial';
+      ctx.fillStyle = 'red';
+    } else {
+      ctx.font = '18px Arial';
+      ctx.fillStyle = '#000000';
+    }
     ctx.fillText(val, x, y);
   });
 
@@ -398,8 +379,15 @@ document.getElementById('clearBtn').addEventListener('click', function() {
   const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
   inputs.forEach(input => input.value = '');
 });
+</script>
 
-// CÓDIGO PARA O CANVAS DAS COORDENADAS
+<div style="text-align:center; margin-bottom: 20px;">
+<h2>Clique na imagem para pegar coordenadas X e Y</h2>
+<canvas id="canvasMap" style="border:1px solid #333; cursor:pointer;"></canvas>
+<p>Clique na imagem e veja as coordenadas no console do navegador (F12)</p>
+</div>
+
+<script>
 const canvas = document.getElementById('canvasMap');
 const ctx = canvas.getContext('2d');
 const textareaObs = document.getElementById('observacoes');
@@ -415,6 +403,26 @@ img.onload = () => {
 };
 
 textareaObs.addEventListener('input', desenharCanvasMap);
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  let linesCount = 0;
+
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
+    if (testWidth > maxWidth && n > 0) {
+      ctx.fillText(line, x, y + linesCount * lineHeight);
+      line = words[n] + ' ';
+      linesCount++;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, x, y + linesCount * lineHeight);
+}
 
 function desenharCanvasMap() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -432,14 +440,7 @@ canvas.addEventListener('click', (e) => {
   const y = Math.round(e.clientY - rect.top);
   console.log(`Coordenadas clicadas: X=${x}, Y=${y}`);
 });
-
 </script>
-
-<div style="text-align:center; margin-bottom: 20px;">
-  <h2>Clique na imagem para pegar coordenadas X e Y</h2>
-  <canvas id="canvasMap" style="border:1px solid #333; cursor:pointer;"></canvas>
-  <p>Clique na imagem e veja as coordenadas no console do navegador (F12)</p>
-</div>
 
 </body>
 </html>

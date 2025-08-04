@@ -163,8 +163,7 @@ width: 100%;
 <td><strong>HORÍMETRO:</strong> <input type="text" id="horimetro"></td>
 </tr>
 <tr>
-<!-- Aqui está a alteração que você pediu: -->
-<td><strong>SÉRIE:</strong> <span>UGD-</span><input type="text" id="numeroSerie" style="width: 60px;" placeholder="número" /></td>
+<td><strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 200px;" placeholder="Somente o número" /></td>
 <td><strong>OS:</strong> <input type="text" id="os"></td>
 </tr>
 </table>
@@ -279,7 +278,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
       line = testLine;
     }
   }
-  ctx.fillText(line, x, y + linesCount * lineHeight);
+  ctx.fillText(line, y, y + linesCount * lineHeight);
 }
 
 document.getElementById('generatePdf').addEventListener('click', async function() {
@@ -303,10 +302,9 @@ document.getElementById('generatePdf').addEventListener('click', async function(
   ctx.fillText(document.getElementById('mecanico').value || '', 208, 235);
   ctx.fillText(document.getElementById('usina').value || '', 186, 263);
 
-  // Aqui a alteração para colocar UGD- + número nas coordenadas pedidas
-  const numeroSerieValue = document.getElementById('numeroSerie').value || '';
-  const serieCompleta = 'UGD-' + numeroSerieValue;
-  ctx.fillText(serieCompleta, 229, 204);
+  // Aqui junta "UGD-" + o que foi digitado no campo série para o PDF:
+  const serieInput = document.getElementById('serie').value || '';
+  ctx.fillText('UGD-' + serieInput, 229, 204);
 
   ctx.fillText(document.getElementById('os').value || '', 267, 321);
 
@@ -335,7 +333,6 @@ document.getElementById('generatePdf').addEventListener('click', async function(
   const observacoes = document.getElementById('observacoes').value;
   wrapText(ctx, observacoes, 183, 1033, 900, 24);
 
-  // Assinatura na posição pedida
   ctx.font = 'italic 32px Brush Script MT, cursive, Arial';
   ctx.fillText(document.getElementById('assinatura').value || '', 820, 1320);
 

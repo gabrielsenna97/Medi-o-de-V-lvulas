@@ -163,8 +163,16 @@ width: 100%;
 <td><strong>HORÍMETRO:</strong> <input type="text" id="horimetro"></td>
 </tr>
 <tr>
-<td><strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 200px;" placeholder="Somente o número" /></td>
+<td>
+  <strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 200px;">
+</td>
+<td>
+  <strong>UGD-</strong> <input type="text" id="ugd" style="width: 120px;" placeholder="Número">
+</td>
+</tr>
+<tr>
 <td><strong>OS:</strong> <input type="text" id="os"></td>
+<td></td>
 </tr>
 </table>
 
@@ -278,7 +286,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
       line = testLine;
     }
   }
-  ctx.fillText(line, y, y + linesCount * lineHeight);
+  ctx.fillText(line, x, y + linesCount * lineHeight);
 }
 
 document.getElementById('generatePdf').addEventListener('click', async function() {
@@ -301,10 +309,10 @@ document.getElementById('generatePdf').addEventListener('click', async function(
 
   ctx.fillText(document.getElementById('mecanico').value || '', 208, 235);
   ctx.fillText(document.getElementById('usina').value || '', 186, 263);
+  ctx.fillText(document.getElementById('serie').value || '', 198, 290);
 
-  // Aqui junta "UGD-" + o que foi digitado no campo série para o PDF:
-  const serieInput = document.getElementById('serie').value || '';
-  ctx.fillText('UGD-' + serieInput, 229, 204);
+  // Adiciona valor da UGD- separado no PDF
+  ctx.fillText(document.getElementById('ugd').value || '', 229, 204);
 
   ctx.fillText(document.getElementById('os').value || '', 267, 321);
 

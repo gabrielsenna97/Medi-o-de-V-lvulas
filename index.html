@@ -163,15 +163,11 @@ width: 100%;
 <td><strong>HORÍMETRO:</strong> <input type="text" id="horimetro"></td>
 </tr>
 <tr>
-<td>
-  <strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 200px;">
-</td>
-<td>
-  <strong>UGD-</strong> <input type="text" id="ugd" style="width: 120px;" placeholder="Número">
-</td>
+<td><strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 200px;"></td>
+<td><strong>OS:</strong> <input type="text" id="os"></td>
 </tr>
 <tr>
-<td><strong>OS:</strong> <input type="text" id="os"></td>
+<td><strong>UGD-</strong> <input type="text" id="ugd" style="width: 60px;" placeholder="número"></td>
 <td></td>
 </tr>
 </table>
@@ -311,8 +307,9 @@ document.getElementById('generatePdf').addEventListener('click', async function(
   ctx.fillText(document.getElementById('usina').value || '', 186, 263);
   ctx.fillText(document.getElementById('serie').value || '', 198, 290);
 
-  // Adiciona valor da UGD- separado no PDF
-  ctx.fillText(document.getElementById('ugd').value || '', 229, 204);
+  // Aqui a alteração que concatena "UGD- " + número digitado
+  const ugdVal = document.getElementById('ugd').value;
+  ctx.fillText(ugdVal ? `UGD- ${ugdVal}` : '', 229, 204);
 
   ctx.fillText(document.getElementById('os').value || '', 267, 321);
 
@@ -430,9 +427,10 @@ canvas.addEventListener('click', (e) => {
 const rect = canvas.getBoundingClientRect();
 const x = Math.round(e.clientX - rect.left);
 const y = Math.round(e.clientY - rect.top);
-alert(`Coordenadas do clique:\nX: ${x}\nY: ${y}`);
-console.log(`Clique na imagem - X: ${x}, Y: ${y}`);
+console.log(`Coordenadas clicadas: X=${x}, Y=${y}`);
 });
+
 </script>
+
 </body>
 </html>

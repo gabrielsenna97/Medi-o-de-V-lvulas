@@ -159,8 +159,73 @@ width: 100%;
 </div>
 
 <div class="valve-container">
-<!-- Cilindros 1 a 6 omitidos aqui para brevidade, mas são os mesmos do seu código acima -->
-<!-- ... (MANTIDO IGUAL) ... -->
+<!-- Cilindro 1 -->
+<div class="valve-section">
+<h2>MEDIDAS DO 1° CILINDRO</h2>
+<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+<div class="measurement"><input type="text" id="exaustao1_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="exaustao1_2" placeholder="mm"></div>
+<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+<div class="measurement"><input type="text" id="admissao1_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="admissao1_2" placeholder="mm"></div>
+</div>
+
+<!-- Cilindro 2 -->
+<div class="valve-section">
+<h2>MEDIDAS DO 2° CILINDRO</h2>
+<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+<div class="measurement"><input type="text" id="exaustao2_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="exaustao2_2" placeholder="mm"></div>
+<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+<div class="measurement"><input type="text" id="admissao2_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="admissao2_2" placeholder="mm"></div>
+</div>
+
+<!-- Cilindro 3 -->
+<div class="valve-section">
+<h2>MEDIDAS DO 3° CILINDRO</h2>
+<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+<div class="measurement"><input type="text" id="exaustao3_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="exaustao3_2" placeholder="mm"></div>
+<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+<div class="measurement"><input type="text" id="admissao3_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="admissao3_2" placeholder="mm"></div>
+</div>
+</div>
+
+<div class="valve-container">
+<!-- Cilindro 4 -->
+<div class="valve-section">
+<h2>MEDIDAS DO 4° CILINDRO</h2>
+<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+<div class="measurement"><input type="text" id="exaustao4_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="exaustao4_2" placeholder="mm"></div>
+<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+<div class="measurement"><input type="text" id="admissao4_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="admissao4_2" placeholder="mm"></div>
+</div>
+
+<!-- Cilindro 5 -->
+<div class="valve-section">
+<h2>MEDIDAS DO 5° CILINDRO</h2>
+<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+<div class="measurement"><input type="text" id="exaustao5_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="exaustao5_2" placeholder="mm"></div>
+<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+<div class="measurement"><input type="text" id="admissao5_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="admissao5_2" placeholder="mm"></div>
+</div>
+
+<!-- Cilindro 6 -->
+<div class="valve-section">
+<h2>MEDIDAS DO 6° CILINDRO</h2>
+<div class="valve-type exaustao">VÁLVULAS EXAUSTÃO</div>
+<div class="measurement"><input type="text" id="exaustao6_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="exaustao6_2" placeholder="mm"></div>
+<div class="valve-type admissao">VÁLVULAS ADMISSÃO</div>
+<div class="measurement"><input type="text" id="admissao6_1" placeholder="mm"></div>
+<div class="measurement"><input type="text" id="admissao6_2" placeholder="mm"></div>
+</div>
 </div>
 
 <div class="obs">
@@ -267,11 +332,12 @@ const x = (pdfWidth - imgWidth) / 2;
 const y = 10;
 
 pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
+
 pdf.save('medicao-valvulas.pdf');
 });
 
 document.getElementById('clearBtn').addEventListener('click', function() {
-const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
+const inputs = document.querySelectorAll('input[type=\"text\"], input[type=\"date\"], textarea');
 inputs.forEach(input => input.value = '');
 });
 </script>
@@ -299,35 +365,34 @@ desenharCanvasMap();
 
 textareaObs.addEventListener('input', desenharCanvasMap);
 
-function wrapTextPreview(ctx, text, x, y, maxWidth, lineHeight) {
-const words = text.split(' ');
-let line = '';
-let linesCount = 0;
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  let linesCount = 0;
 
-for (let n = 0; n < words.length; n++) {
-const testLine = line + words[n] + ' ';
-const metrics = ctx.measureText(testLine);
-const testWidth = metrics.width;
-if (testWidth > maxWidth && n > 0) {
-ctx.fillText(line, x, y + linesCount * lineHeight);
-line = words[n] + ' ';
-linesCount++;
-} else {
-line = testLine;
-}
-}
-ctx.fillText(line, x, y + linesCount * lineHeight);
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
+    if (testWidth > maxWidth && n > 0) {
+      ctx.fillText(line, x, y + linesCount * lineHeight);
+      line = words[n] + ' ';
+      linesCount++;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, x, y + linesCount * lineHeight);
 }
 
 function desenharCanvasMap() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-ctx.font = '18px Arial';
-ctx.fillStyle = '#000';
+ctx.font = '16px Arial';
+ctx.fillStyle = '#000000';
 ctx.textAlign = 'left';
-
-const texto = textareaObs.value;
-wrapTextPreview(ctx, texto, 183, 1033, 900, 24);
+const observacoes = textareaObs.value;
+wrapText(ctx, observacoes, 20, 1600, 1140, 22);
 }
 
 canvas.addEventListener('click', (e) => {

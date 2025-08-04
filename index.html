@@ -99,6 +99,21 @@ padding-top: 5px;
 text-align: center;
 font-weight: bold;
 font-size: 16px;
+position: relative;
+}
+/* Novo estilo para o input da assinatura, posicionando sobre a linha */
+#assinatura {
+  position: absolute;
+  top: -28px;
+  left: 0;
+  width: 320px;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-size: 18px;
+  text-align: center;
+  background: transparent;
+  outline: none;
+  font-family: 'Brush Script MT', cursive, Arial, sans-serif;
 }
 .warning {
 background-color: #fff3cd;
@@ -239,7 +254,8 @@ width: 100%;
 </div>
 
 <div class="signature">
-ASSINATURA DO MECÂNICO: _________________________
+  ASSINATURA DO MECÂNICO: _________________________
+  <input type="text" id="assinatura" placeholder="Digite seu nome aqui" />
 </div>
 
 <script>
@@ -266,79 +282,83 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
 }
 
 document.getElementById('generatePdf').addEventListener('click', async function() {
-const img = new Image();
-img.src = 'background.jpg';
-img.crossOrigin = 'Anonymous';
+  const img = new Image();
+  img.src = 'background.jpg';
+  img.crossOrigin = 'Anonymous';
 
-await new Promise((resolve) => { img.onload = resolve; });
+  await new Promise((resolve) => { img.onload = resolve; });
 
-const canvas = document.createElement('canvas');
-canvas.width = img.width;
-canvas.height = img.height;
-const ctx = canvas.getContext('2d');
+  const canvas = document.createElement('canvas');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  const ctx = canvas.getContext('2d');
 
-ctx.drawImage(img, 0, 0);
+  ctx.drawImage(img, 0, 0);
 
-ctx.font = 'bold 18px Arial';
-ctx.fillStyle = '#000000';
-ctx.textAlign = 'left';
+  ctx.font = 'bold 18px Arial';
+  ctx.fillStyle = '#000000';
+  ctx.textAlign = 'left';
 
-ctx.fillText(document.getElementById('mecanico').value || '', 208, 235);
-ctx.fillText(document.getElementById('usina').value || '', 186, 263);
-ctx.fillText(document.getElementById('serie').value || '', 198, 290);
-ctx.fillText(document.getElementById('os').value || '', 267, 321);
+  ctx.fillText(document.getElementById('mecanico').value || '', 208, 235);
+  ctx.fillText(document.getElementById('usina').value || '', 186, 263);
+  ctx.fillText(document.getElementById('serie').value || '', 198, 290);
+  ctx.fillText(document.getElementById('os').value || '', 267, 321);
 
-const dataValue = document.getElementById('data').value;
-if (dataValue) {
-const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
-ctx.fillText(dataFormatada, 808, 263);
-}
+  const dataValue = document.getElementById('data').value;
+  if (dataValue) {
+    const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
+    ctx.fillText(dataFormatada, 808, 263);
+  }
 
-ctx.fillText(document.getElementById('horimetro').value || '', 753, 290);
+  ctx.fillText(document.getElementById('horimetro').value || '', 753, 290);
 
-const campos = [
-['exaustao1_1', 146, 553], ['exaustao1_2', 147, 518], ['admissao1_1', 357, 553], ['admissao1_2', 351, 518],
-['exaustao2_1', 470, 895], ['exaustao2_2', 472, 853], ['admissao2_1', 680, 894], ['admissao2_2', 678, 855],
-['exaustao3_1', 790, 555], ['exaustao3_2', 784, 518], ['admissao3_1', 989, 555], ['admissao3_2', 988, 518],
-['exaustao4_1', 786, 895], ['exaustao4_2', 788, 853], ['admissao4_1', 992, 894], ['admissao4_2', 990, 855],
-['exaustao5_1', 471, 555], ['exaustao5_2', 472, 518], ['admissao5_1', 682, 553], ['admissao5_2', 677, 518],
-['exaustao6_1', 149, 895], ['exaustao6_2', 151, 853], ['admissao6_1', 352, 894], ['admissao6_2', 347, 855]
-];
+  const campos = [
+    ['exaustao1_1', 146, 553], ['exaustao1_2', 147, 518], ['admissao1_1', 357, 553], ['admissao1_2', 351, 518],
+    ['exaustao2_1', 470, 895], ['exaustao2_2', 472, 853], ['admissao2_1', 680, 894], ['admissao2_2', 678, 855],
+    ['exaustao3_1', 790, 555], ['exaustao3_2', 784, 518], ['admissao3_1', 989, 555], ['admissao3_2', 988, 518],
+    ['exaustao4_1', 786, 895], ['exaustao4_2', 788, 853], ['admissao4_1', 992, 894], ['admissao4_2', 990, 855],
+    ['exaustao5_1', 471, 555], ['exaustao5_2', 472, 518], ['admissao5_1', 682, 553], ['admissao5_2', 677, 518],
+    ['exaustao6_1', 149, 895], ['exaustao6_2', 151, 853], ['admissao6_1', 352, 894], ['admissao6_2', 347, 855]
+  ];
 
-campos.forEach(([id, x, y]) => {
-const val = document.getElementById(id)?.value || '';
-ctx.fillText(val, x, y);
-});
+  campos.forEach(([id, x, y]) => {
+    const val = document.getElementById(id)?.value || '';
+    ctx.fillText(val, x, y);
+  });
 
-const observacoes = document.getElementById('observacoes').value;
-wrapText(ctx, observacoes, 183, 1033, 900, 24);
+  const observacoes = document.getElementById('observacoes').value;
+  wrapText(ctx, observacoes, 183, 1033, 900, 24);
 
-const pdf = new jsPDF({
-unit: 'mm',
-format: 'a4'
-});
+  // **Aqui adiciona a assinatura na posição que você pediu**
+  ctx.font = 'italic 22px Brush Script MT, cursive, Arial';
+  ctx.fillText(document.getElementById('assinatura').value || '', 671, 1320);
 
-const imgData = canvas.toDataURL('image/png');
+  const pdf = new jsPDF({
+    unit: 'mm',
+    format: 'a4'
+  });
 
-const pdfWidth = pdf.internal.pageSize.getWidth();
-const pdfHeight = pdf.internal.pageSize.getHeight();
+  const imgData = canvas.toDataURL('image/png');
 
-const scale = Math.min(pdfWidth / canvas.width, pdfHeight / canvas.height);
+  const pdfWidth = pdf.internal.pageSize.getWidth();
+  const pdfHeight = pdf.internal.pageSize.getHeight();
 
-const imgWidth = canvas.width * scale;
-const imgHeight = canvas.height * scale;
+  const scale = Math.min(pdfWidth / canvas.width, pdfHeight / canvas.height);
 
-const x = (pdfWidth - imgWidth) / 2;
-const y = 10;
+  const imgWidth = canvas.width * scale;
+  const imgHeight = canvas.height * scale;
 
-pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
+  const x = (pdfWidth - imgWidth) / 2;
+  const y = 10;
 
-pdf.save('medicao-valvulas.pdf');
+  pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
+
+  pdf.save('medicao-valvulas.pdf');
 });
 
 document.getElementById('clearBtn').addEventListener('click', function() {
-const inputs = document.querySelectorAll('input[type=\"text\"], input[type=\"date\"], textarea');
-inputs.forEach(input => input.value = '');
+  const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
+  inputs.forEach(input => input.value = '');
 });
 </script>
 

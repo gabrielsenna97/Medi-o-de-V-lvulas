@@ -163,7 +163,8 @@ width: 100%;
 <td><strong>HORÍMETRO:</strong> <input type="text" id="horimetro"></td>
 </tr>
 <tr>
-<td><strong>SÉRIE:</strong> <input type="text" id="serie" style="width: 200px;"></td>
+<!-- Aqui está a alteração que você pediu: -->
+<td><strong>SÉRIE:</strong> <span>UGD-</span><input type="text" id="numeroSerie" style="width: 60px;" placeholder="número" /></td>
 <td><strong>OS:</strong> <input type="text" id="os"></td>
 </tr>
 </table>
@@ -301,7 +302,12 @@ document.getElementById('generatePdf').addEventListener('click', async function(
 
   ctx.fillText(document.getElementById('mecanico').value || '', 208, 235);
   ctx.fillText(document.getElementById('usina').value || '', 186, 263);
-  ctx.fillText(document.getElementById('serie').value || '', 198, 290);
+
+  // Aqui a alteração para colocar UGD- + número nas coordenadas pedidas
+  const numeroSerieValue = document.getElementById('numeroSerie').value || '';
+  const serieCompleta = 'UGD-' + numeroSerieValue;
+  ctx.fillText(serieCompleta, 229, 204);
+
   ctx.fillText(document.getElementById('os').value || '', 267, 321);
 
   const dataValue = document.getElementById('data').value;
@@ -329,7 +335,7 @@ document.getElementById('generatePdf').addEventListener('click', async function(
   const observacoes = document.getElementById('observacoes').value;
   wrapText(ctx, observacoes, 183, 1033, 900, 24);
 
-  // **Aqui adiciona a assinatura na posição que você pediu**
+  // Assinatura na posição pedida
   ctx.font = 'italic 32px Brush Script MT, cursive, Arial';
   ctx.fillText(document.getElementById('assinatura').value || '', 820, 1320);
 
@@ -425,9 +431,3 @@ console.log(`Clique na imagem - X: ${x}, Y: ${y}`);
 </script>
 </body>
 </html>
-
-
-
-
-
-

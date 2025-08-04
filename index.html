@@ -331,7 +331,7 @@ document.getElementById('generatePdf').addEventListener('click', async function(
 
   // **Aqui adiciona a assinatura na posição que você pediu**
   ctx.font = 'italic 32px Brush Script MT, cursive, Arial';
-  ctx.fillText(document.getElementById('assinatura').value || '', 671, 1320);
+  ctx.fillText(document.getElementById('assinatura').value || '', 820, 1320);
 
   const pdf = new jsPDF({
     unit: 'mm',
@@ -425,6 +425,7 @@ console.log(`Clique na imagem - X: ${x}, Y: ${y}`);
 </script>
 </body>
 </html>
+
 
 
 

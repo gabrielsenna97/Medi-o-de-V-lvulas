@@ -381,6 +381,38 @@ document.getElementById('clearBtn').addEventListener('click', function() {
   const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
   inputs.forEach(input => input.value = '');
 });
+
+// NOVO: Aplica vermelho e negrito nos inputs quando valor >= 67,50
+const camposMedicao = [
+  'exaustao1_1', 'exaustao1_2', 'admissao1_1', 'admissao1_2',
+  'exaustao2_1', 'exaustao2_2', 'admissao2_1', 'admissao2_2',
+  'exaustao3_1', 'exaustao3_2', 'admissao3_1', 'admissao3_2',
+  'exaustao4_1', 'exaustao4_2', 'admissao4_1', 'admissao4_2',
+  'exaustao5_1', 'exaustao5_2', 'admissao5_1', 'admissao5_2',
+  'exaustao6_1', 'exaustao6_2', 'admissao6_1', 'admissao6_2'
+];
+
+const limiteMaximo = 67.50;
+
+function verificarValorEColorir(input) {
+  let val = input.value.replace(',', '.');
+  let num = parseFloat(val);
+  if (!isNaN(num) && num >= limiteMaximo) {
+    input.style.color = 'red';
+    input.style.fontWeight = 'bold';
+  } else {
+    input.style.color = '';
+    input.style.fontWeight = '';
+  }
+}
+
+camposMedicao.forEach(id => {
+  const input = document.getElementById(id);
+  if (input) {
+    verificarValorEColorir(input);
+    input.addEventListener('input', () => verificarValorEColorir(input));
+  }
+});
 </script>
 
 </body>

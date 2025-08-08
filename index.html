@@ -318,10 +318,10 @@ img.crossOrigin = 'Anonymous';
   const dataValue = document.getElementById('data').value;
   if (dataValue) {
     const dataFormatada = new Date(dataValue).toLocaleDateString('pt-BR');
-    ctx.fillText(dataFormatada, 808, 204);
+    ctx.fillText(dataFormatada, 838, 204);
   }
 
-  ctx.fillText(document.getElementById('horimetro').value || '', 753, 231);
+  ctx.fillText(document.getElementById('horimetro').value || '', 783, 231);
 
   const limiteMaximo = 67.50;
 
@@ -417,6 +417,7 @@ camposMedicao.forEach(id => {
 
 </body>
 </html>
+
 
 
 

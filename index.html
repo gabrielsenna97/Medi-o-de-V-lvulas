@@ -307,13 +307,13 @@ img.crossOrigin = 'Anonymous';
   ctx.textAlign = 'left';
 
   ctx.fillText(document.getElementById('mecanico').value || '', 208, 176);
-  ctx.fillText(document.getElementById('usina').value || '', 186, 263);
-  ctx.fillText(document.getElementById('serie').value || '', 198, 290);
+  ctx.fillText(document.getElementById('usina').value || '', 186, 204);
+  ctx.fillText(document.getElementById('serie').value || '', 198, 231);
 
   const ugdVal = document.getElementById('ugd').value;
   ctx.fillText(ugdVal ? `UGD- ${ugdVal}` : '', 229, 204);
 
-  ctx.fillText(document.getElementById('os').value || '', 267, 321);
+  ctx.fillText(document.getElementById('os').value || '', 267, 262);
 
   const dataValue = document.getElementById('data').value;
   if (dataValue) {
@@ -417,6 +417,7 @@ camposMedicao.forEach(id => {
 
 </body>
 </html>
+
 
 
 

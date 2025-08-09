@@ -288,24 +288,24 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   ctx.fillText(line, x, y + linesCount * lineHeight);
 }
 
-// *** NOVA FUNÇÃO PARA PADRONIZAR VALOR ***
+// Função para padronizar valor conforme regra:
+// - Se valor tem 3 dígitos e só números, interpretar como dois primeiros dígitos + vírgula + último
+// - Se valor tem ponto, substituir por vírgula
+// - Se valor tem vírgula, manter
+// - Caso contrário, manter igual
 function padronizarValor(valor) {
-  let val = valor.trim();
-
-  // Se for exatamente 4 dígitos numéricos (ex: 6570), converte para 65,70
-  if (/^\d{4}$/.test(val)) {
-    val = val.slice(0, 2) + ',' + val.slice(2);
-    return val;
+  valor = valor.trim();
+  // só dígitos, sem vírgula ou ponto, e tamanho 3, ex: "652"
+  if (/^\d{3}$/.test(valor)) {
+    // insere vírgula antes do último dígito
+    return valor.slice(0, 2) + ',' + valor.slice(2);
   }
-
-  // Se tiver ponto decimal, troca por vírgula (ex: 65.70 -> 65,70)
-  if (val.includes('.')) {
-    val = val.replace('.', ',');
-    return val;
+  // substituir ponto por vírgula
+  if (valor.includes('.')) {
+    return valor.replace('.', ',');
   }
-
-  // Se já estiver com vírgula, ou outros formatos, retorna como está
-  return val;
+  // se já tem vírgula ou outros formatos, retorna igual
+  return valor;
 }
 
 document.getElementById('generatePdf').addEventListener('click', async function() {
@@ -357,7 +357,8 @@ document.getElementById('generatePdf').addEventListener('click', async function(
   campos.forEach(([id, x, y]) => {
     let valRaw = document.getElementById(id)?.value || '';
     let val = padronizarValor(valRaw);
-    const valNum = parseFloat(val.replace(',', '.'));
+    // substituir vírgula por ponto para parsear número
+    let valNum = parseFloat(val.replace(',', '.'));
 
     if (!isNaN(valNum)) {
       ctx.font = 'bold 18px Arial'; // sempre negrito
@@ -366,7 +367,7 @@ document.getElementById('generatePdf').addEventListener('click', async function(
     } else {
       ctx.font = '18px Arial';
       ctx.fillStyle = 'black';
-      ctx.fillText(val, x, y);
+      ctx.fillText(valRaw, x, y);
     }
   });
 
@@ -415,8 +416,7 @@ const camposMedicao = [
 ];
 
 function verificarValorEColorir(input) {
-  // aqui também uso padronizarValor para garantir
-  let valRaw = input.value;
+  let valRaw = input.value.trim();
   let val = padronizarValor(valRaw);
   let num = parseFloat(val.replace(',', '.'));
   if (!isNaN(num)) {

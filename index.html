@@ -288,10 +288,10 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   ctx.fillText(line, x, y + linesCount * lineHeight);
 }
 
-// Função que adiciona dois espaços entre os pares de dígitos quando tem 4 caracteres
+// Função para adicionar dois espaços entre os pares de dígitos (ex: "44  44")
 function addSpaceBetweenPairs(str) {
   if (str.length === 4) {
-    return str.slice(0, 2) + '  ' + str.slice(2);  // dois espaços entre os pares
+    return str.slice(0, 2) + '  ' + str.slice(2);
   }
   return str;
 }
@@ -353,7 +353,7 @@ document.getElementById('generatePdf').addEventListener('click', async function(
       ctx.font = '18px Arial';
       ctx.fillStyle = '#000000';
     }
-    
+
     const valComEspaco = addSpaceBetweenPairs(val);
     ctx.fillText(valComEspaco, x, y);
   });
@@ -391,5 +391,6 @@ document.getElementById('clearBtn').addEventListener('click', function() {
   const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
   inputs.forEach(input => input.value = '');
 });
-
-// Aplica vermelho e negrito nos inputs quando
+</script>
+</body>
+</html>

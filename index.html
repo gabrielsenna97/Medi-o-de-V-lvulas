@@ -288,10 +288,15 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   ctx.fillText(line, x, y + linesCount * lineHeight);
 }
 
+// Função para adicionar espaços entre os dígitos
+function addSpacesBetweenDigits(str) {
+  return str.split('').join(' ');
+}
+
 document.getElementById('generatePdf').addEventListener('click', async function() {
   const img = new Image();
-img.src = 'https://raw.githubusercontent.com/gabrielsenna97/Medi-o-de-V-lvulas/refs/heads/main/FORM.194_MEDI%C3%87%C3%83O%20DAS%20VALVULAS_UTE550_REV0_O%26M%20(2).jpg';
-img.crossOrigin = 'Anonymous';
+  img.src = 'https://raw.githubusercontent.com/gabrielsenna97/Medi-o-de-V-lvulas/refs/heads/main/FORM.194_MEDI%C3%87%C3%83O%20DAS%20VALVULAS_UTE550_REV0_O%26M%20(2).jpg';
+  img.crossOrigin = 'Anonymous';
 
   await new Promise((resolve) => { img.onload = resolve; });
 
@@ -345,7 +350,9 @@ img.crossOrigin = 'Anonymous';
       ctx.font = '18px Arial';
       ctx.fillStyle = '#000000';
     }
-    ctx.fillText(val, x, y);
+    // Aqui aplicamos a função para adicionar espaços entre os dígitos
+    const valComEspaco = addSpacesBetweenDigits(val);
+    ctx.fillText(valComEspaco, x, y);
   });
 
   const observacoes = document.getElementById('observacoes').value;
@@ -417,62 +424,3 @@ camposMedicao.forEach(id => {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

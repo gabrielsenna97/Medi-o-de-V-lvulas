@@ -374,7 +374,7 @@ document.getElementById('generatePdf').addEventListener('click', async function(
   const observacoes = document.getElementById('observacoes').value;
   wrapText(ctx, observacoes, 183, 1237, 950, 27);
 
-  ctx.font = 'italic 35px Brush Script MT, cursive, Arial';
+  ctx.font = 'italic 40px Brush Script MT, cursive, Arial';
   ctx.fillText(document.getElementById('assinatura').value || '', 780, 1538);
 
   const pdf = new jsPDF({
@@ -443,6 +443,7 @@ camposMedicao.forEach(id => {
 
 </body>
 </html>
+
 
 
 

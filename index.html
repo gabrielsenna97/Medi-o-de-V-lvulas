@@ -288,18 +288,10 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   ctx.fillText(line, x, y + linesCount * lineHeight);
 }
 
-// Função para adicionar dois espaços entre os pares de dígitos (ex: "44  44")
-function addSpaceBetweenPairs(str) {
-  if (str.length === 4) {
-    return str.slice(0, 2) + '  ' + str.slice(2);
-  }
-  return str;
-}
-
 document.getElementById('generatePdf').addEventListener('click', async function() {
   const img = new Image();
-  img.src = 'https://raw.githubusercontent.com/gabrielsenna97/Medi-o-de-V-lvulas/refs/heads/main/FORM.194_MEDI%C3%87%C3%83O%20DAS%20VALVULAS_UTE550_REV0_O%26M%20(2).jpg';
-  img.crossOrigin = 'Anonymous';
+img.src = 'https://raw.githubusercontent.com/gabrielsenna97/Medi-o-de-V-lvulas/refs/heads/main/FORM.194_MEDI%C3%87%C3%83O%20DAS%20VALVULAS_UTE550_REV0_O%26M%20(2).jpg';
+img.crossOrigin = 'Anonymous';
 
   await new Promise((resolve) => { img.onload = resolve; });
 
@@ -353,9 +345,7 @@ document.getElementById('generatePdf').addEventListener('click', async function(
       ctx.font = '18px Arial';
       ctx.fillStyle = '#000000';
     }
-
-    const valComEspaco = addSpaceBetweenPairs(val);
-    ctx.fillText(valComEspaco, x, y);
+    ctx.fillText(val, x, y);
   });
 
   const observacoes = document.getElementById('observacoes').value;
@@ -391,6 +381,54 @@ document.getElementById('clearBtn').addEventListener('click', function() {
   const inputs = document.querySelectorAll('input[type="text"], input[type="date"], textarea');
   inputs.forEach(input => input.value = '');
 });
+
+// NOVO: Aplica vermelho e negrito nos inputs quando valor >= 67,50
+const camposMedicao = [
+  'exaustao1_1', 'exaustao1_2', 'admissao1_1', 'admissao1_2',
+  'exaustao2_1', 'exaustao2_2', 'admissao2_1', 'admissao2_2',
+  'exaustao3_1', 'exaustao3_2', 'admissao3_1', 'admissao3_2',
+  'exaustao4_1', 'exaustao4_2', 'admissao4_1', 'admissao4_2',
+  'exaustao5_1', 'exaustao5_2', 'admissao5_1', 'admissao5_2',
+  'exaustao6_1', 'exaustao6_2', 'admissao6_1', 'admissao6_2'
+];
+
+const limiteMaximo = 67.50;
+
+function verificarValorEColorir(input) {
+  let val = input.value.replace(',', '.');
+  let num = parseFloat(val);
+  if (!isNaN(num) && num >= limiteMaximo) {
+    input.style.color = 'red';
+    input.style.fontWeight = 'bold';
+  } else {
+    input.style.color = '';
+    input.style.fontWeight = '';
+  }
+}
+
+camposMedicao.forEach(id => {
+  const input = document.getElementById(id);
+  if (input) {
+    verificarValorEColorir(input);
+    input.addEventListener('input', () => verificarValorEColorir(input));
+  }
+});
 </script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

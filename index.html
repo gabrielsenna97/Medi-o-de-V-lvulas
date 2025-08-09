@@ -340,11 +340,11 @@ document.getElementById('generatePdf').addEventListener('click', async function(
 
     if (!isNaN(valNum)) {
       ctx.font = 'bold 18px Arial'; // sempre negrito
-      ctx.fillStyle = valNum >= limiteMaximo ? 'red' : '#000000'; // vermelho se >= 67.5, preto se menor
+      ctx.fillStyle = valNum >= limiteMaximo ? 'red' : 'black'; // vermelho se >= 67.5, preto se menor
       ctx.fillText(val, x, y);
     } else {
       ctx.font = '18px Arial';
-      ctx.fillStyle = '#000000';
+      ctx.fillStyle = 'black';
       ctx.fillText(val, x, y);
     }
   });
@@ -383,42 +383,4 @@ document.getElementById('clearBtn').addEventListener('click', function() {
   inputs.forEach(input => input.value = '');
 });
 
-// Mantém todos os campos sempre em negrito e aplica cor conforme valor
-const camposMedicao = [
-  'exaustao1_1', 'exaustao1_2', 'admissao1_1', 'admissao1_2',
-  'exaustao2_1', 'exaustao2_2', 'admissao2_1', 'admissao2_2',
-  'exaustao3_1', 'exaustao3_2', 'admissao3_1', 'admissao3_2',
-  'exaustao4_1', 'exaustao4_2', 'admissao4_1', 'admissao4_2',
-  'exaustao5_1', 'exaustao5_2', 'admissao5_1', 'admissao5_2',
-  'exaustao6_1', 'exaustao6_2', 'admissao6_1', 'admissao6_2'
-];
-
-const limiteMaximo = 67.50;
-
-function verificarValorEColorir(input) {
-  let val = input.value.replace(',', '.');
-  let num = parseFloat(val);
-  if (!isNaN(num)) {
-    input.style.fontWeight = 'bold'; // sempre negrito
-    if (num >= limiteMaximo) {
-      input.style.color = 'red';
-    } else {
-      input.style.color = 'black';
-    }
-  } else {
-    input.style.fontWeight = '';
-    input.style.color = '';
-  }
-}
-
-camposMedicao.forEach(id => {
-  const input = document.getElementById(id);
-  if (input) {
-    verificarValorEColorir(input);
-    input.addEventListener('input', () => verificarValorEColorir(input));
-  }
-});
-</script>
-
-</body>
-</html>
+// Aplicar negrito sempre e cor conforme valor (

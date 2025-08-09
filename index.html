@@ -288,6 +288,26 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   ctx.fillText(line, x, y + linesCount * lineHeight);
 }
 
+// *** NOVA FUNÇÃO PARA PADRONIZAR VALOR ***
+function padronizarValor(valor) {
+  let val = valor.trim();
+
+  // Se for exatamente 4 dígitos numéricos (ex: 6570), converte para 65,70
+  if (/^\d{4}$/.test(val)) {
+    val = val.slice(0, 2) + ',' + val.slice(2);
+    return val;
+  }
+
+  // Se tiver ponto decimal, troca por vírgula (ex: 65.70 -> 65,70)
+  if (val.includes('.')) {
+    val = val.replace('.', ',');
+    return val;
+  }
+
+  // Se já estiver com vírgula, ou outros formatos, retorna como está
+  return val;
+}
+
 document.getElementById('generatePdf').addEventListener('click', async function() {
   const img = new Image();
   img.src = 'https://raw.githubusercontent.com/gabrielsenna97/Medi-o-de-V-lvulas/refs/heads/main/FORM.194_MEDI%C3%87%C3%83O%20DAS%20VALVULAS_UTE550_REV0_O%26M%20(2).jpg';
@@ -335,7 +355,8 @@ document.getElementById('generatePdf').addEventListener('click', async function(
   ];
 
   campos.forEach(([id, x, y]) => {
-    const val = document.getElementById(id)?.value || '';
+    let valRaw = document.getElementById(id)?.value || '';
+    let val = padronizarValor(valRaw);
     const valNum = parseFloat(val.replace(',', '.'));
 
     if (!isNaN(valNum)) {
@@ -394,8 +415,10 @@ const camposMedicao = [
 ];
 
 function verificarValorEColorir(input) {
-  let val = input.value.replace(',', '.');
-  let num = parseFloat(val);
+  // aqui também uso padronizarValor para garantir
+  let valRaw = input.value;
+  let val = padronizarValor(valRaw);
+  let num = parseFloat(val.replace(',', '.'));
   if (!isNaN(num)) {
     input.style.fontWeight = 'bold'; // sempre negrito
     if (num >= 67.50) {

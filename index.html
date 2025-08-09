@@ -382,7 +382,7 @@ document.getElementById('clearBtn').addEventListener('click', function() {
   inputs.forEach(input => input.value = '');
 });
 
-// NOVO: Aplica vermelho e negrito nos inputs quando valor >= 67,50
+// NOVO: Aplica negrito (sem mudar cor) nos inputs quando valor >= 67,50
 const camposMedicao = [
   'exaustao1_1', 'exaustao1_2', 'admissao1_1', 'admissao1_2',
   'exaustao2_1', 'exaustao2_2', 'admissao2_1', 'admissao2_2',
@@ -398,8 +398,8 @@ function verificarValorEColorir(input) {
   let val = input.value.replace(',', '.');
   let num = parseFloat(val);
   if (!isNaN(num) && num >= limiteMaximo) {
-    input.style.color = 'red';
-    input.style.fontWeight = 'bold';
+    input.style.color = '';           // Mantém cor padrão (preto)
+    input.style.fontWeight = 'bold';  // Apenas negrito
   } else {
     input.style.color = '';
     input.style.fontWeight = '';
@@ -417,20 +417,3 @@ camposMedicao.forEach(id => {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

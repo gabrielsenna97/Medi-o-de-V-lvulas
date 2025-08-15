@@ -372,7 +372,7 @@ document.getElementById('generatePdf').addEventListener('click', async function(
   });
 
   const observacoes = document.getElementById('observacoes').value;
-  wrapText(ctx, observacoes, 183, 1237, 950, 27);
+  wrapText(ctx, observacoes, 183, 1237, 950, 26);
 
   ctx.font = 'italic 40px Brush Script MT, cursive, Arial';
   ctx.fillText(document.getElementById('assinatura').value || '', 760, 1538);
@@ -443,6 +443,7 @@ camposMedicao.forEach(id => {
 
 </body>
 </html>
+
 
 
 

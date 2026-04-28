@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Medição de Válvulas do Scania-550</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <style>
-/* (SEU CSS ORIGINAL — NÃO ALTERADO) */
 body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; background-color: #fff; }
 h1,h2,h3{ margin-top:20px; margin-bottom:10px; }
 h1{ font-size:24px; text-align:center; border-bottom:3px solid #257500; padding-bottom:10px; color: #fff; background-color: #257500; border-radius:8px; }
@@ -20,140 +18,256 @@ textarea{ width:100%; height:100px; padding:10px; text-align:left; resize:vertic
 .info-table td{ padding:5px 0; text-align:left; }
 .signature{ margin-top:50px; border-top:2px solid #FF8C00; width:320px; padding-top:5px; text-align:center; font-weight:bold; font-size:16px; position:relative; }
 #assinatura{ position:absolute; top:-36px; left:0; width:320px; border:none; font-size:28px; text-align:center; background:transparent; outline:none; font-family:'Brush Script MT', cursive, Arial, sans-serif; color:#257500; }
-.warning{ background-color:#257500; padding:10px; text-align:center; color:white; font-weight:bold; border-radius:6px; }
+#assinatura::placeholder{ color:#999; }
+.warning{ background-color:#257500; padding:10px; border-left:6px solid #257500; margin:15px 0; text-align:center; color:white; font-weight:bold; border-radius:6px; }
+.obs{ margin-top:30px; font-style:italic; background-color:#FFFACD; padding:10px; border-radius:6px; border:1px solid #FF8C00; }
 .button-container{ margin-top:20px; text-align:center; }
-button{ background-color:#257500; color:white; border:none; padding:10px 20px; margin:0 10px; font-size:16px; border-radius:6px; cursor:pointer; font-weight:bold; }
-.photo-box{ width:120px; height:120px; border:2px dashed #FF8C00; margin:10px auto; display:flex; align-items:center; justify-content:center; font-size:12px; position:relative; background-size:cover; background-position:center; }
-.photo-box input{ position:absolute; width:100%; height:100%; opacity:0; cursor:pointer; }
+button{ background-color:#257500; color:white; border:none; padding:10px 20px; margin:0 10px; font-size:16px; border-radius:6px; cursor:pointer; font-weight:bold; transition: all 0.3s ease; }
+button:hover{ background-color:#FF4500; }
+button.clear-btn{ background-color:#FF4500; }
+.photo-box{ width:120px; height:120px; border:2px dashed #FF8C00; margin:10px auto; display:flex; align-items:center; justify-content:center; text-align:center; font-size:12px; color:#666; position:relative; background-size:cover; background-position:center; overflow:hidden; border-radius:10px; }
+.photo-box input[type="file"]{ position:absolute; width:100%; height:100%; opacity:0; cursor:pointer; }
+.remove-photo{ display:inline-block; margin-left:5px; background:#FF4500; color:#fff; border:none; padding:2px 5px; font-size:10px; cursor:pointer; border-radius:4px; vertical-align:top; }
+.photo-label { position:absolute; bottom:0; width:100%; text-align:center; background-color:#257500; color:white; font-weight:bold; font-size:12px; border-top-left-radius:5px; border-top-right-radius:5px; padding:2px 0; }
+.cilindro-label { text-align:center; font-weight:bold; color:white; background-color:#257500; border-radius:10px; padding:5px; margin-bottom:10px; font-size:16px; }
+@media(max-width:900px){ .valve-section{ width:100%; } }
 </style>
 </head>
-
 <body>
 
 <h1>MEDIÇÃO DAS VÁLVULAS DO SCANIA-550</h1>
 
+<table class="info-table">
+<tr>
+<td><strong>MECÂNICO:</strong> <input type="text" id="mecanico" style="width:200px;"></td>
+<td><strong>DATA:</strong> <input type="date" id="data"></td>
+</tr>
+<tr>
+<td><strong>USINA:</strong> <input type="text" id="usina" style="width:200px;"></td>
+<td><strong>HORÍMETRO:</strong> <input type="text" id="horimetro"></td>
+</tr>
+<tr>
+<td><strong>SÉRIE:</strong> <input type="text" id="serie" style="width:200px;"></td>
+<td><strong>OS:</strong> <input type="text" id="os"></td>
+</tr>
+<tr>
+<td><strong>UGD-</strong> <input type="text" id="ugd" style="width:60px;"></td>
+<td></td>
+</tr>
+</table>
+
+<div class="warning">
+<h3>MEDIÇÕES ACEITÁVEIS: 64,00mm a <span style="font-weight:bold; color:red;">67,50mm</span></h3>
+<h3>ACIMA DE <span style="font-weight:bold; color:red;">67,50mm</span> DEVE SER CONSIDERADA SUBSTITUIÇÃO</h3>
+</div>
+
 <div class="valve-container">
 <script>
 const container=document.currentScript.parentNode;
-
 for(let i=1;i<=6;i++){
 const section=document.createElement('div');
 section.className='valve-section';
-
-section.innerHTML=`<h3>${i}º CILINDRO</h3>`;
-
-['exaustao','admissao'].forEach(tipo=>{
-for(let j=1;j<=2;j++){
-section.innerHTML+=`
-<div>
-<input type="text" id="${tipo}${i}_${j}" placeholder="${tipo.toUpperCase()} ${j}">
-<div class="photo-box" id="photo${tipo}${i}_${j}">
-<input type="file" onchange="loadPhoto(event,'${tipo}${i}_${j}')">
-</div>
-</div>`;
-}
+section.innerHTML=`<div class="cilindro-label">${i}º CILINDRO</div>`;
+const layoutDiv = document.createElement('div');
+layoutDiv.style.display='grid';
+layoutDiv.style.gridTemplateColumns='1fr 1fr';
+layoutDiv.style.gridTemplateRows='1fr 1fr';
+layoutDiv.style.gap='10px';
+const posicoes=[
+{tipo:'exaustao', j:2},
+{tipo:'admissao', j:2},
+{tipo:'exaustao', j:1},
+{tipo:'admissao', j:1}
+];
+posicoes.forEach(({tipo,j})=>{
+const tipoNome = tipo==='exaustao'?'EXAUSTÃO':'ADMISSÃO';
+const idPhoto=tipo+i+'_'+j;
+const div = document.createElement('div');
+div.style.textAlign='center';
+div.innerHTML=`
+<div class="measurement"><input type="text" id="${tipo}${i}_${j}" placeholder="${tipoNome} ${j}"></div>
+<div class="photo-box" id="photo${idPhoto}">Clique para adicionar foto
+<div class="photo-label">${tipoNome} ${j}</div>
+<input type="file" accept="image/*" capture="environment" onchange="loadPhoto(event,'${idPhoto}')"></div>
+<button class="remove-photo" onclick="removePhoto('${idPhoto}')">REMOVER FOTO</button>`;
+layoutDiv.appendChild(div);
 });
-
-const btn=document.createElement('button');
-btn.innerText="GERAR JPG";
-btn.onclick=()=>gerarJpgCilindro(i);
-
-section.appendChild(btn);
+section.appendChild(layoutDiv);
+// botão gerar JPG individual
+const btnJpg = document.createElement('button');
+btnJpg.textContent = `Gerar JPG CILINDRO ${i}`;
+btnJpg.onclick = () => gerarJpgCilindro(i);
+section.appendChild(btnJpg);
 container.appendChild(section);
 }
 </script>
 </div>
 
+<div class="obs"><p><strong>OBSERVAÇÕES:</strong></p><textarea id="observacoes"></textarea></div>
+
+<div class="button-container">
+<button id="generatePdf">Gerar PDF</button>
+<button id="clearBtn" class="clear-btn">Limpar</button>
+</div>
+
+<div class="signature">ASSINATURA DO MECÂNICO: 
+<input type="text" id="assinatura" placeholder="Digite seu nome aqui" /></div>
+
 <script>
+const { jsPDF }=window.jspdf;
+
 function loadPhoto(event,id){
 const box=document.getElementById('photo'+id);
+const file=event.target.files[0];
+if(file){
 const reader=new FileReader();
-reader.onload=e=>{
-box.style.backgroundImage=`url(${e.target.result})`;
-};
-reader.readAsDataURL(event.target.files[0]);
+reader.onload=function(e){ box.style.backgroundImage=`url('${e.target.result}')`; box.textContent=''; }
+reader.readAsDataURL(file);
+}
+}
+function removePhoto(id){
+const box = document.getElementById('photo' + id);
+box.style.backgroundImage = '';
+box.textContent = 'Clique para adicionar foto';
+const oldInput = box.querySelector('input[type="file"]'); if(oldInput) oldInput.remove();
+const newInput = document.createElement('input'); newInput.type='file'; newInput.accept='image/*'; newInput.capture='environment'; newInput.onchange=(event)=>loadPhoto(event,id); box.appendChild(newInput);
 }
 
-// --- FUNÇÃO PRINCIPAL CORRIGIDA ---
-async function gerarJpgCilindro(i){
+// --- Função auxiliar retângulo arredondado ---
+function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+    if (typeof radius === 'undefined') radius = 5;
+    if (typeof radius === 'number') radius = {tl: radius, tr: radius, br: radius, bl: radius};
+    ctx.beginPath();
+    ctx.moveTo(x + radius.tl, y);
+    ctx.lineTo(x + width - radius.tr, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+    ctx.lineTo(x + width, y + height - radius.br);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+    ctx.lineTo(x + radius.bl, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+    ctx.lineTo(x, y + radius.tl);
+    ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+    ctx.closePath();
+    if (fill) ctx.fill();
+    if (stroke) ctx.stroke();
+}
 
+// --- GERAR PDF ---
+document.getElementById('generatePdf').addEventListener('click', async function(){
+const pdf = new jsPDF({unit:'mm', format:'a4'});
+const img = new Image();
+img.crossOrigin='anonymous';
+img.src='https://raw.githubusercontent.com/gabrielsenna97/tema/main/FORM_194_MEDICAO_DAS_VALVULAS_UTE550_REV0_O_M_2.jpg';
+await new Promise(resolve=>img.onload=resolve);
 const canvas=document.createElement('canvas');
-canvas.width=1280;
-canvas.height=1900;
-
+canvas.width=img.width; canvas.height=img.height;
 const ctx=canvas.getContext('2d');
-ctx.fillStyle="#fff";
-ctx.fillRect(0,0,1280,1900);
-
-const fotos=[
-`photoexaustao${i}_2`,
-`photoadmissao${i}_2`,
-`photoexaustao${i}_1`,
-`photoadmissao${i}_1`
+ctx.drawImage(img,0,0);
+// dados
+ctx.font='bold 18px Arial'; ctx.fillStyle='black';
+ctx.fillText(document.getElementById('mecanico').value||'',208,176);
+ctx.fillText(document.getElementById('usina').value||'',165,204);
+ctx.fillText(document.getElementById('serie').value||'',165,231);
+ctx.fillText('UGD- '+(document.getElementById('ugd').value||''),590,262);
+ctx.fillText(document.getElementById('os').value||'',292,262);
+const dataVal=document.getElementById('data').value;
+if(dataVal) ctx.fillText(new Date(dataVal).toLocaleDateString('pt-BR'),888,204);
+ctx.fillText(document.getElementById('horimetro').value||'',798,231);
+// medições
+const limiteMaximo=67.50;
+const campos=[
+['exaustao1_1',105,616],['exaustao1_2',105,576],['admissao1_1',345,628],['admissao1_2',345,589],
+['exaustao2_1',450,1064],['exaustao2_2',450,1024],['admissao2_1',689,1075],['admissao2_2',689,1038],
+['exaustao3_1',792,617],['exaustao3_2',792,576],['admissao3_1',1032,628],['admissao3_2',1032,589],
+['exaustao4_1',793,1064],['exaustao4_2',793,1024],['admissao4_1',1033,1075],['admissao4_2',1033,1038],
+['exaustao5_1',450,617],['exaustao5_2',450,576],['admissao5_1',689,628],['admissao5_2',689,589],
+['exaustao6_1',105,1064],['exaustao6_2',105,1024],['admissao6_1',345,1075],['admissao6_2',345,1038]
 ];
-
-const pos=[
-[0,0],
-[640,0],
-[0,950],
-[640,950]
-];
-
-for(let j=0;j<4;j++){
-
-const box=document.getElementById(fotos[j]);
-const inputId=fotos[j].replace('photo','');
-const input=document.getElementById(inputId);
-
-// ✅ CORREÇÃO DO VALOR
-let val=null;
-if(input && input.value.trim()!==''){
-val=parseFloat(input.value.replace(',','.').trim());
-}
-
-if(box && box.style.backgroundImage){
-
-let imgUrl=box.style.backgroundImage.replace(/^url\(["']?/,'').replace(/["']?\)$/,'');
-const img=new Image();
-img.src=imgUrl;
-
-await new Promise(r=>img.onload=r);
-
-ctx.drawImage(img,pos[j][0],pos[j][1],640,950);
-
-// 🔥 TEXTO VERMELHO CORRIGIDO
-if(!isNaN(val) && val>=67.50){
-
-ctx.fillStyle="white";
-ctx.fillRect(pos[j][0]+50,pos[j][1]+50,540,60);
-
-ctx.fillStyle="red";
-ctx.font="bold 30px Arial";
-ctx.textAlign="center";
-
-ctx.fillText(
-`AFUNDAMENTO (${val.toFixed(2).replace('.',',')}mm)`,
-pos[j][0]+320,
-pos[j][1]+90
-);
-}
-}
-}
-
-// ✅ LIMPEZA CORRETA (FORA DO LOOP)
-fotos.forEach(id=>{
-const box=document.getElementById(id);
-if(box){
-box.style.backgroundImage='';
-}
+campos.forEach(([id,x,y])=>{
+const valRaw=document.getElementById(id)?.value||'';
+const valNum=parseFloat(valRaw.replace(',', '.'));
+ctx.fillStyle=(!isNaN(valNum) && valNum>=limiteMaximo)?'red':'black';
+ctx.font=(!isNaN(valNum) && valNum>=limiteMaximo)?'bold 18px Arial':'18px Arial';
+ctx.fillText(valRaw,x,y);
+});
+// observações
+const obs=document.getElementById('observacoes').value;
+const maxWidth=950; const lineHeight=26; const words=obs.split(' '); let line=''; let y=1237;
+words.forEach(word=>{
+const testLine=line+word+' ';
+const metrics=ctx.measureText(testLine);
+if(metrics.width>maxWidth){ ctx.fillText(line,183,y); line=word+' '; y+=lineHeight; } else { line=testLine; }
+});
+ctx.fillText(line,183,y);
+// assinatura
+ctx.font='40px "Brush Script MT", cursive';
+ctx.fillText(document.getElementById('assinatura').value||'',760,1538);
+const imgData=canvas.toDataURL('image/jpeg',1.0);
+pdf.addImage(imgData,'JPEG',0,0,pdf.internal.pageSize.getWidth(),pdf.internal.pageSize.getHeight());
+pdf.save('MEDICAO_VALVULAS.pdf');
 });
 
-// download
-const link=document.createElement('a');
-link.download=`CILINDRO_${i}.jpg`;
-link.href=canvas.toDataURL('image/jpeg');
-link.click();
+// --- GERAR JPG POR CILINDRO ---
+async function gerarJpgCilindro(i){
+const imgSize=1280; const imgHeight=1900; const canvasCil=document.createElement('canvas'); canvasCil.width=imgSize; canvasCil.height=imgHeight; const ctxCil=canvasCil.getContext('2d');
+ctxCil.fillStyle="#fff"; ctxCil.fillRect(0,0,imgSize,imgHeight);
+const fotos=[`photoexaustao${i}_2`,`photoadmissao${i}_2`,`photoexaustao${i}_1`,`photoadmissao${i}_1`];
+const legendas=['EXAUSTÃO 2','ADMISSÃO 2','EXAUSTÃO 1','ADMISSÃO 1'];
+const pos=[[0,0],[imgSize/2,0],[0,imgHeight/2],[imgSize/2,imgHeight/2]];
+for(let j=0;j<4;j++){
+const box=document.getElementById(fotos[j]);
+const valInputId=fotos[j].replace('photo','');
+const inputValEl=document.getElementById(valInputId);
+const val=inputValEl?parseFloat(inputValEl.value.replace(',', '.')):null;
+if(box && box.style.backgroundImage){
+let imgUrl=box.style.backgroundImage.replace(/^url\(["']?/,'').replace(/["']?\)$/,''); const imgEl=new Image(); imgEl.src=imgUrl;
+await new Promise(resolve=>imgEl.onload=resolve);
+ctxCil.drawImage(imgEl,pos[j][0],pos[j][1],imgSize/2,imgHeight/2);
+const rectWidth=imgSize/2; const rectHeight=40; const rectX=pos[j][0]; const rectY=pos[j][1]+imgHeight/2-rectHeight;
+ctxCil.fillStyle="white"; ctxCil.strokeStyle="black"; ctxCil.lineWidth=2;
+roundRect(ctxCil, rectX, rectY, rectWidth, rectHeight, 10, true, true);
+ctxCil.fillStyle="black"; ctxCil.font="bold 30px Arial"; ctxCil.textAlign="center"; ctxCil.textBaseline="middle";
+ctxCil.fillText(legendas[j],rectX+rectWidth/2,rectY+rectHeight/2);
+if(val!==null && val>=67.50){
+    const desc=`AFUNDAMENTO (${val.toFixed(2).replace('.', ',')}mm)`; 
+    const metrics=ctxCil.measureText(desc); 
+    const padding=10;
+    const txtWidth=metrics.width+padding*2; 
+    const txtHeight=40; 
+    const txtX=pos[j][0]+(imgSize/2-txtWidth)/2; 
+    const txtY=rectY-txtHeight-10;
+
+    // ALTERAÇÃO: cor de fundo do AFUNDAMENTO
+    ctxCil.fillStyle = "#FFFFFF"; // fundo BRANCO
+    roundRect(ctxCil, txtX, txtY, txtWidth, txtHeight, 10, true, true);
+
+    // cor do texto
+    ctxCil.fillStyle="red"; 
+    ctxCil.fillText(desc,txtX+txtWidth/2,txtY+txtHeight/2);
 }
+
+// --- LIMPEZA DA FOTO NA TELA ---
+box.style.backgroundImage = '';
+box.textContent = 'Clique para adicionar foto';
+}
+}
+const numText=`CILINDRO ${i}`; ctxCil.font="bold 50px Arial"; const numWidth=ctxCil.measureText(numText).width; const numPadding=20; const rectHeight=60;
+const rectX=(imgSize-numWidth)/2-numPadding; const rectY=5;
+ctxCil.fillStyle="white"; ctxCil.strokeStyle="black"; ctxCil.lineWidth=2;
+roundRect(ctxCil, rectX, rectY, numWidth+numPadding*2, rectHeight, 15, true, true);
+ctxCil.fillStyle="black"; ctxCil.textAlign="center"; ctxCil.textBaseline="middle"; ctxCil.fillText(numText,imgSize/2,rectY+rectHeight/2);
+const link=document.createElement('a'); link.download=`CILINDRO${i}.jpg`; link.href=canvasCil.toDataURL('image/jpeg',0.95); link.click();
+}
+
+// --- LIMPAR ---
+document.getElementById('clearBtn').addEventListener('click',function(){
+document.querySelectorAll('input[type="text"], input[type="date"], textarea').forEach(input=>input.value='');
+document.querySelectorAll('.photo-box').forEach(box=>{box.style.backgroundImage=''; box.textContent='Clique para adicionar foto'; const input=box.querySelector('input[type="file"]'); if(input) input.value='';});
+});
+
+// --- DESTAQUE AUTOMÁTICO ---
+function atualizarDestaque(input){ const valor=parseFloat(input.value.replace(',', '.')); if(!isNaN(valor)&&valor>=67.50){ input.style.color="red"; input.style.fontWeight="bold"; } else { input.style.color="black"; input.style.fontWeight="normal"; } }
+document.querySelectorAll('input[type="text"]').forEach(input=>input.addEventListener('input',()=>atualizarDestaque(input)));
 </script>
 
 </body>

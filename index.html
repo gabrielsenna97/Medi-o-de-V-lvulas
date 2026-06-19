@@ -127,8 +127,8 @@ reader.readAsDataURL(file);
 }
 function removePhoto(id){
 const box = document.getElementById('photo' + id);
-// box.style.backgroundImage = '';
-// box.textContent = 'Clique para adicionar foto';
+box.style.backgroundImage = '';
+box.textContent = 'Clique para adicionar foto';
 const oldInput = box.querySelector('input[type="file"]'); if(oldInput) oldInput.remove();
 const newInput = document.createElement('input'); newInput.type='file'; newInput.accept='image/*'; newInput.capture='environment'; newInput.onchange=(event)=>loadPhoto(event,id); box.appendChild(newInput);
 }
@@ -219,7 +219,6 @@ const box=document.getElementById(fotos[j]);
 const valInputId=fotos[j].replace('photo','');
 const inputValEl=document.getElementById(valInputId);
 const val=inputValEl?parseFloat(inputValEl.value.replace(',', '.')):null;
-
 if(box && box.style.backgroundImage){
 let imgUrl=box.style.backgroundImage.replace(/^url\(["']?/,'').replace(/["']?\)$/,''); const imgEl=new Image(); imgEl.src=imgUrl;
 await new Promise(resolve=>imgEl.onload=resolve);
@@ -229,40 +228,22 @@ ctxCil.fillStyle="white"; ctxCil.strokeStyle="black"; ctxCil.lineWidth=2;
 roundRect(ctxCil, rectX, rectY, rectWidth, rectHeight, 10, true, true);
 ctxCil.fillStyle="black"; ctxCil.font="bold 30px Arial"; ctxCil.textAlign="center"; ctxCil.textBaseline="middle";
 ctxCil.fillText(legendas[j],rectX+rectWidth/2,rectY+rectHeight/2);
-if(!isNaN(val) && val >= 67.50){
+if(val!==null && val>=67.50){
+    const desc=`AFUNDAMENTO (${val.toFixed(2).replace('.', ',')}mm)`; 
+    const metrics=ctxCil.measureText(desc); 
+    const padding=10;
+    const txtWidth=metrics.width+padding*2; 
+    const txtHeight=40; 
+    const txtX=pos[j][0]+(imgSize/2-txtWidth)/2; 
+    const txtY=rectY-txtHeight-10;
 
-    const desc = `AFUNDAMENTO (${val.toFixed(2).replace('.', ',')}mm)`;
-
-    ctxCil.save();
-
-    ctxCil.font = "bold 32px Arial";
-    ctxCil.textAlign = "center";
-    ctxCil.textBaseline = "middle";
-
-    const metrics = ctxCil.measureText(desc);
-    const padding = 20;
-
-    const txtWidth = metrics.width + (padding * 2);
-    const txtHeight = 50;
-
-    const txtX = pos[j][0] + ((imgSize/2) - txtWidth) / 2;
-    const txtY = rectY - txtHeight - 10;
-
-    ctxCil.fillStyle = "#FFFFFF";
-    ctxCil.strokeStyle = "#000000";
-    ctxCil.lineWidth = 2;
-
+    // ALTERAÇÃO: cor de fundo do AFUNDAMENTO
+    ctxCil.fillStyle = "#FFFFFF"; // fundo BRANCO
     roundRect(ctxCil, txtX, txtY, txtWidth, txtHeight, 10, true, true);
 
-    ctxCil.fillStyle = "#FF0000";
-
-    ctxCil.fillText(
-        desc,
-        txtX + (txtWidth / 2),
-        txtY + (txtHeight / 2)
-    );
-
-    ctxCil.restore();
+    // cor do texto
+    ctxCil.fillStyle="red"; 
+    ctxCil.fillText(desc,txtX+txtWidth/2,txtY+txtHeight/2);
 }
 
 // --- LIMPEZA DA FOTO NA TELA ---

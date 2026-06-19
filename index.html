@@ -117,13 +117,21 @@ container.appendChild(section);
 const { jsPDF }=window.jspdf;
 
 function loadPhoto(event,id){
-const box=document.getElementById('photo'+id);
-const file=event.target.files[0];
-if(file){
-const reader=new FileReader();
-reader.onload=function(e){ box.style.backgroundImage=`url('${e.target.result}')`; box.textContent=''; }
-reader.readAsDataURL(file);
-}
+    const box = document.getElementById('photo' + id);
+    const file = event.target.files[0];
+
+    if(file){
+        const reader = new FileReader();
+
+        reader.onload = function(e){
+            box.style.backgroundImage = `url("${e.target.result}")`;
+
+            console.log("IMAGEM CARREGADA");
+            console.log("BACKGROUND:", box.style.backgroundImage);
+        };
+
+        reader.readAsDataURL(file);
+    }
 }
 function removePhoto(id){
 const box = document.getElementById('photo' + id);

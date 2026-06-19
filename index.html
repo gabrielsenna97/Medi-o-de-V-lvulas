@@ -216,6 +216,8 @@ const legendas=['EXAUSTÃO 2','ADMISSÃO 2','EXAUSTÃO 1','ADMISSÃO 1'];
 const pos=[[0,0],[imgSize/2,0],[0,imgHeight/2],[imgSize/2,imgHeight/2]];
 for(let j=0;j<4;j++){
 const box=document.getElementById(fotos[j]);
+console.log("FOTO:", fotos[j]);
+console.log("BACKGROUND:", box.style.backgroundImage);
 const valInputId=fotos[j].replace('photo','');
 const inputValEl=document.getElementById(valInputId);
 const val=inputValEl?parseFloat(inputValEl.value.replace(',', '.')):null;

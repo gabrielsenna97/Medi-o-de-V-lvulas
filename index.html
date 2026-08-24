@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8">
@@ -15,23 +16,8 @@ content="width=device-width, initial-scale=1.0"
 
 <style>
 
-:root{
-
-    --verde:#257500;
-    --verde2:#1d5d00;
-    --laranja:#FF8C00;
-    --vermelho:#FF4500;
-    --amarelo:#FFFACD;
-    --cinza:#f2f2f2;
-    --branco:#fff;
-    --preto:#111;
-
-}
-
 *{
-
     box-sizing:border-box;
-
 }
 
 body{
@@ -40,161 +26,43 @@ body{
 
     margin:0;
 
-    line-height:1.6;
-
-    background:
-    linear-gradient(
-        135deg,
-        #151515,
-        #3c3c3c
-    );
-
-    min-height:100vh;
-
     padding:20px;
 
-}
+    line-height:1.5;
 
-.container{
+    background:#f2f2f2;
 
-    max-width:1200px;
-
-    margin:auto;
-
-    background:white;
-
-    border-radius:16px;
-
-    overflow:hidden;
-
-    box-shadow:
-    0 15px 50px #0008;
+    color:#111;
 
 }
 
-/* CABEÇALHO */
-
-.header{
-
-    background:
-    linear-gradient(
-        90deg,
-        #111,
-        #257500,
-        #FF8C00
-    );
-
-    color:white;
-
-    padding:22px 30px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-}
-
-.logo{
-
-    font-size:25px;
-
-    font-weight:900;
-
-}
-
-.logo small{
-
-    display:block;
-
-    font-size:12px;
-
-    margin-top:2px;
-
-}
-
-.header h1{
-
-    text-align:center;
+h1{
 
     font-size:24px;
 
-    margin:0;
+    text-align:center;
+
+    border-bottom:3px solid #257500;
+
+    padding:12px;
+
+    color:#fff;
+
+    background:#257500;
+
+    border-radius:8px;
+
+    margin:0 0 20px 0;
 
 }
 
-.header-direita{
+h2,h3{
 
-    text-align:right;
+    margin-top:15px;
 
-}
-
-/* PROGRESSO */
-
-.navbar{
-
-    padding:15px 25px;
-
-    background:#f4f4f4;
-
-    border-bottom:1px solid #ddd;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
+    margin-bottom:10px;
 
 }
-
-.progresso{
-
-    min-width:150px;
-
-    font-size:18px;
-
-    font-weight:900;
-
-}
-
-.barra{
-
-    flex:1;
-
-    height:12px;
-
-    background:#ddd;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-}
-
-.barra-progresso{
-
-    height:100%;
-
-    width:0%;
-
-    background:var(--verde);
-
-    transition:.3s;
-
-}
-
-/* CONTEÚDO */
-
-.conteudo{
-
-    padding:25px;
-
-}
-
-/* INFORMAÇÕES */
 
 .info-table{
 
@@ -202,11 +70,19 @@ body{
 
     margin-bottom:20px;
 
+    background:#fff;
+
+    padding:10px;
+
+    border-radius:10px;
+
 }
 
 .info-table td{
 
-    padding:8px;
+    padding:7px;
+
+    text-align:left;
 
 }
 
@@ -216,34 +92,41 @@ textarea{
 
     padding:9px;
 
+    text-align:center;
+
     font-size:16px;
 
     border:2px solid #FF8C00;
 
     border-radius:6px;
 
-    outline:none;
+    background:#fff;
 
 }
 
-input:focus,
-textarea:focus{
+textarea{
 
-    border-color:var(--verde);
+    width:100%;
+
+    height:100px;
+
+    padding:10px;
+
+    text-align:left;
+
+    resize:vertical;
 
 }
-
-/* AVISO */
 
 .warning{
 
-    background-color:var(--verde);
+    background:#257500;
 
     padding:12px;
 
-    border-left:6px solid var(--verde);
+    border-left:6px solid #1b5200;
 
-    margin:15px 0 25px;
+    margin:15px 0;
 
     text-align:center;
 
@@ -255,86 +138,121 @@ textarea:focus{
 
 }
 
-.warning h3{
+/* ============================= */
+/* NAVEGAÇÃO DOS CILINDROS */
+/* ============================= */
 
-    margin:3px;
-
-}
-
-/* CILINDRO */
-
-.cilindro-card{
-
-    border:3px solid var(--verde);
-
-    border-radius:16px;
-
-    overflow:hidden;
-
-    background:white;
-
-    box-shadow:
-    0 5px 18px #0002;
-
-}
-
-.cilindro-header{
-
-    background:var(--verde);
-
-    color:white;
-
-    padding:18px 25px;
+.navegacao{
 
     display:flex;
 
-    align-items:center;
-
     justify-content:space-between;
 
+    align-items:center;
+
+    gap:15px;
+
+    margin:20px 0;
+
+    background:#fff;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
+
 }
 
-.cilindro-header h2{
+.navegacao button{
 
-    margin:0;
+    flex:1;
 
-    font-size:27px;
+    max-width:220px;
 
 }
 
-.cilindro-status{
+.cilindro-atual{
+
+    font-size:22px;
 
     font-weight:bold;
 
-    font-size:16px;
+    color:#257500;
+
+    text-align:center;
 
 }
 
-/* MEDIÇÕES */
+/* ============================= */
+/* BLOCO DO CILINDRO */
+/* ============================= */
 
-.valve-section{
+.cilindro-container{
 
-    padding:20px;
+    width:100%;
+
+    max-width:900px;
+
+    margin:0 auto 25px auto;
 
 }
 
-.measurement-grid{
+.cilindro-section{
+
+    border:3px solid #257500;
+
+    padding:18px;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+
+}
+
+.cilindro-label{
+
+    text-align:center;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:#257500;
+
+    border-radius:8px;
+
+    padding:10px;
+
+    margin-bottom:15px;
+
+    font-size:22px;
+
+}
+
+/* ============================= */
+/* GRID 2 X 2 */
+/* ============================= */
+
+.valve-grid{
 
     display:grid;
 
     grid-template-columns:1fr 1fr;
 
-    gap:20px;
+    gap:15px;
 
 }
 
-.measurement-box{
+.valve-box{
 
-    border:2px solid #ddd;
+    border:2px solid #257500;
 
-    border-radius:12px;
+    border-radius:10px;
 
-    padding:15px;
+    padding:12px;
 
     background:#fafafa;
 
@@ -342,73 +260,59 @@ textarea:focus{
 
 }
 
-.measurement-title{
+.valve-title{
 
-    background:var(--verde);
+    background:#257500;
 
     color:white;
 
-    padding:8px;
-
-    border-radius:8px;
-
     font-weight:bold;
 
-    margin-bottom:12px;
+    font-size:17px;
+
+    padding:8px;
+
+    border-radius:7px;
+
+    margin-bottom:10px;
 
 }
 
 .measurement{
 
-    text-align:center;
-
     margin:10px 0;
-
-    font-size:18px;
-
-    background-color:var(--amarelo);
-
-    border-radius:8px;
-
-    padding:8px;
-
-    font-weight:bold;
-
-    color:black;
 
 }
 
 .measurement input{
 
-    width:140px;
+    width:150px;
 
     padding:10px;
 
     text-align:center;
 
-    font-size:18px;
-
-    border:2px solid var(--laranja);
-
-    border-radius:6px;
+    font-size:20px;
 
     font-weight:bold;
 
-}
+    border:2px solid #FF8C00;
 
-/* FOTO */
+    border-radius:6px;
+
+}
 
 .photo-box{
 
     width:100%;
 
-    max-width:240px;
+    max-width:250px;
 
-    height:190px;
+    height:220px;
 
-    border:2px dashed var(--laranja);
+    border:2px dashed #FF8C00;
 
-    margin:12px auto;
+    margin:10px auto;
 
     display:flex;
 
@@ -432,7 +336,7 @@ textarea:focus{
 
     border-radius:10px;
 
-    background-color:white;
+    background-color:#fff;
 
 }
 
@@ -448,6 +352,10 @@ textarea:focus{
 
     cursor:pointer;
 
+    left:0;
+
+    top:0;
+
 }
 
 .photo-label{
@@ -462,7 +370,7 @@ textarea:focus{
 
     text-align:center;
 
-    background-color:var(--verde);
+    background:#257500;
 
     color:white;
 
@@ -470,15 +378,13 @@ textarea:focus{
 
     font-size:13px;
 
-    padding:4px 0;
+    padding:5px;
 
 }
 
 .remove-photo{
 
-    display:inline-block;
-
-    background:var(--vermelho);
+    background:#FF4500;
 
     color:white;
 
@@ -496,31 +402,39 @@ textarea:focus{
 
 }
 
+/* ============================= */
 /* BOTÕES */
+/* ============================= */
 
 .button-container{
 
-    margin-top:25px;
+    margin-top:20px;
 
     text-align:center;
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
 
 }
 
 button{
 
-    background-color:var(--verde);
+    background:#257500;
 
     color:white;
 
     border:none;
 
-    padding:12px 22px;
-
-    margin:5px;
+    padding:11px 20px;
 
     font-size:16px;
 
-    border-radius:8px;
+    border-radius:6px;
 
     cursor:pointer;
 
@@ -532,65 +446,33 @@ button{
 
 button:hover{
 
-    transform:translateY(-1px);
-
-    filter:brightness(.95);
+    background:#FF4500;
 
 }
 
-button.clear-btn{
+.clear-btn{
 
-    background-color:var(--vermelho);
-
-}
-
-/* NAVEGAÇÃO */
-
-.navegacao{
-
-    padding:20px 25px;
-
-    background:#f3f3f3;
-
-    border-top:1px solid #ddd;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:15px;
-
-}
-
-.navegacao-centro{
-
-    display:flex;
-
-    gap:10px;
-
-}
-
-.btn-anterior{
-
-    background:#555;
-
-}
-
-.btn-proximo{
-
-    background:var(--verde);
+    background:#FF4500;
 
 }
 
 .btn-jpg{
 
-    background:var(--laranja);
+    display:block;
+
+    width:100%;
+
+    max-width:350px;
+
+    margin:20px auto 5px auto;
+
+    background:#257500;
 
 }
 
-/* OBS */
+/* ============================= */
+/* OBSERVAÇÕES */
+/* ============================= */
 
 .obs{
 
@@ -598,37 +480,25 @@ button.clear-btn{
 
     font-style:italic;
 
-    background-color:var(--amarelo);
+    background:#FFFACD;
 
     padding:15px;
 
     border-radius:8px;
 
-    border:1px solid var(--laranja);
+    border:1px solid #FF8C00;
 
 }
 
-.obs textarea{
-
-    width:100%;
-
-    height:110px;
-
-    margin-top:8px;
-
-    resize:vertical;
-
-    text-align:left;
-
-}
-
+/* ============================= */
 /* ASSINATURA */
+/* ============================= */
 
 .signature{
 
-    margin:50px auto 20px;
+    margin:50px auto 20px auto;
 
-    border-top:2px solid var(--laranja);
+    border-top:2px solid #FF8C00;
 
     width:320px;
 
@@ -648,7 +518,7 @@ button.clear-btn{
 
     position:absolute;
 
-    top:-36px;
+    top:-40px;
 
     left:0;
 
@@ -666,57 +536,68 @@ button.clear-btn{
 
     font-family:'Brush Script MT',cursive,Arial,sans-serif;
 
-    color:var(--verde);
+    color:#257500;
 
 }
 
-/* PDF */
+#assinatura::placeholder{
 
-#relatorio{
+    color:#999;
+
+}
+
+/* ============================= */
+/* CILINDRO OCULTO */
+/* ============================= */
+
+.cilindro{
 
     display:none;
 
 }
 
-/* RESPONSIVO */
+.cilindro.ativo{
 
-@media(max-width:800px){
+    display:block;
+
+}
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media(max-width:700px){
 
     body{
 
-        padding:0;
+        padding:10px;
 
     }
 
-    .header{
+    h1{
 
-        flex-direction:column;
-
-        text-align:center;
+        font-size:20px;
 
     }
 
-    .header-direita{
+    .info-table,
+    .info-table tbody,
+    .info-table tr,
+    .info-table td{
 
-        text-align:center;
-
-    }
-
-    .navbar{
-
-        flex-wrap:wrap;
-
-    }
-
-    .progresso{
+        display:block;
 
         width:100%;
 
-        text-align:center;
+    }
+
+    .info-table td{
+
+        padding:5px 0;
 
     }
 
-    .measurement-grid{
+    .valve-grid{
 
         grid-template-columns:1fr;
 
@@ -728,21 +609,37 @@ button.clear-btn{
 
     }
 
-    .navegacao-centro{
+    .navegacao button{
+
+        max-width:none;
 
         width:100%;
 
     }
 
-    .navegacao-centro button{
+    .cilindro-atual{
 
-        flex:1;
+        order:-1;
 
     }
 
 }
 
-/* IMPRESSÃO */
+/* ============================= */
+/* DESTAQUE MEDIÇÃO */
+/* ============================= */
+
+.medicao-alerta{
+
+    color:red !important;
+
+    font-weight:bold !important;
+
+}
+
+/* ============================= */
+/* PRINT */
+/* ============================= */
 
 @media print{
 
@@ -754,16 +651,30 @@ button.clear-btn{
 
     }
 
-    .container{
+    .navegacao,
+    .button-container,
+    .remove-photo,
+    .btn-jpg{
 
-        box-shadow:none;
+        display:none !important;
 
     }
 
-    .navegacao,
-    .button-container{
+    .cilindro{
 
-        display:none;
+        display:none !important;
+
+    }
+
+    .cilindro.ativo{
+
+        display:block !important;
+
+    }
+
+    .cilindro-section{
+
+        box-shadow:none;
 
     }
 
@@ -775,936 +686,606 @@ button.clear-btn{
 
 <body>
 
-<div class="container">
+<h1>
+    MEDIÇÃO DAS VÁLVULAS DO SCANIA-550
+</h1>
 
-    <!-- CABEÇALHO -->
+<table class="info-table">
 
-    <div class="header">
+<tr>
 
-        <div class="logo">
+<td>
 
-            OLIVEIRA ENERGIA
+<strong>MECÂNICO:</strong>
 
-            <small>
-                Desde 1972
-            </small>
+<input
+type="text"
+id="mecanico"
+style="width:200px;"
+>
 
-        </div>
+</td>
 
-        <h1>
+<td>
 
-            MEDIÇÃO DAS VÁLVULAS<br>
-            SCANIA-550
+<strong>DATA:</strong>
 
-        </h1>
+<input
+type="date"
+id="data"
+>
 
-        <div class="header-direita">
+</td>
 
-            <strong>
-                6 CILINDROS
-            </strong>
+</tr>
 
-        </div>
+<tr>
 
-    </div>
+<td>
 
-    <!-- PROGRESSO -->
+<strong>USINA:</strong>
 
-    <div class="navbar">
+<input
+type="text"
+id="usina"
+style="width:200px;"
+>
 
-        <div
-            class="progresso"
-            id="contador"
-        >
+</td>
 
-            CILINDRO 01 / 06
+<td>
 
-        </div>
+<strong>HORÍMETRO:</strong>
 
-        <div class="barra">
+<input
+type="text"
+id="horimetro"
+>
 
-            <div
-                class="barra-progresso"
-                id="barraProgresso"
-            ></div>
+</td>
 
-        </div>
+</tr>
 
-    </div>
+<tr>
 
-    <div class="conteudo">
+<td>
 
-        <!-- INFORMAÇÕES -->
+<strong>SÉRIE:</strong>
 
-        <table class="info-table">
+<input
+type="text"
+id="serie"
+style="width:200px;"
+>
 
-            <tr>
+</td>
 
-                <td>
+<td>
 
-                    <strong>MECÂNICO:</strong>
+<strong>OS:</strong>
 
-                    <input
-                        type="text"
-                        id="mecanico"
-                        style="width:200px;"
-                    >
+<input
+type="text"
+id="os"
+>
 
-                </td>
+</td>
 
-                <td>
+</tr>
 
-                    <strong>DATA:</strong>
+<tr>
 
-                    <input
-                        type="date"
-                        id="data"
-                    >
+<td>
 
-                </td>
+<strong>UGD-</strong>
 
-            </tr>
+<input
+type="text"
+id="ugd"
+style="width:60px;"
+>
 
-            <tr>
+</td>
 
-                <td>
+<td></td>
 
-                    <strong>USINA:</strong>
+</tr>
 
-                    <input
-                        type="text"
-                        id="usina"
-                        style="width:200px;"
-                    >
+</table>
 
-                </td>
+<div class="warning">
 
-                <td>
+<h3>
+MEDIÇÕES ACEITÁVEIS:
+64,00mm a
+<span style="color:red;">
+67,50mm
+</span>
+</h3>
 
-                    <strong>HORÍMETRO:</strong>
+<h3>
+ACIMA DE
+<span style="color:red;">
+67,50mm
+</span>
+DEVE SER CONSIDERADA SUBSTITUIÇÃO
+</h3>
 
-                    <input
-                        type="text"
-                        id="horimetro"
-                    >
+</div>
 
-                </td>
+<!-- ============================= -->
+<!-- NAVEGAÇÃO -->
+<!-- ============================= -->
 
-            </tr>
+<div class="navegacao">
 
-            <tr>
+<button
+onclick="cilindroAnterior()"
+>
+← CILINDRO ANTERIOR
+</button>
 
-                <td>
+<div
+class="cilindro-atual"
+id="cilindroAtualTexto"
+>
+CILINDRO 1 / 6
+</div>
 
-                    <strong>SÉRIE:</strong>
+<button
+onclick="proximoCilindro()"
+>
+PRÓXIMO CILINDRO →
+</button>
 
-                    <input
-                        type="text"
-                        id="serie"
-                        style="width:200px;"
-                    >
+</div>
 
-                </td>
+<!-- ============================= -->
+<!-- CILINDROS -->
+<!-- ============================= -->
 
-                <td>
+<div
+class="cilindro-container"
+id="cilindros"
+></div>
 
-                    <strong>OS:</strong>
+<!-- ============================= -->
+<!-- OBSERVAÇÕES -->
+<!-- ============================= -->
 
-                    <input
-                        type="text"
-                        id="os"
-                    >
+<div class="obs">
 
-                </td>
+<p>
+<strong>OBSERVAÇÕES:</strong>
+</p>
 
-            </tr>
+<textarea
+id="observacoes"
+></textarea>
 
-            <tr>
+</div>
 
-                <td>
+<!-- ============================= -->
+<!-- BOTÕES -->
+<!-- ============================= -->
 
-                    <strong>UGD-</strong>
+<div class="button-container">
 
-                    <input
-                        type="text"
-                        id="ugd"
-                        style="width:60px;"
-                    >
+<button
+id="generatePdf"
+>
+Gerar PDF
+</button>
 
-                </td>
+<button
+id="clearBtn"
+class="clear-btn"
+>
+Limpar
+</button>
 
-            </tr>
+</div>
 
-        </table>
+<!-- ============================= -->
+<!-- ASSINATURA -->
+<!-- ============================= -->
 
-        <!-- AVISO -->
+<div class="signature">
 
-        <div class="warning">
+ASSINATURA DO MECÂNICO:
 
-            <h3>
-
-                MEDIÇÕES ACEITÁVEIS:
-                64,00mm a
-                <span style="color:red;">
-                    67,50mm
-                </span>
-
-            </h3>
-
-            <h3>
-
-                ACIMA DE
-                <span style="color:red;">
-                    67,50mm
-                </span>
-                DEVE SER CONSIDERADA SUBSTITUIÇÃO
-
-            </h3>
-
-        </div>
-
-        <!-- CILINDRO ATUAL -->
-
-        <div class="cilindro-card">
-
-            <div class="cilindro-header">
-
-                <h2 id="tituloCilindro">
-
-                    1º CILINDRO
-
-                </h2>
-
-                <div
-                    class="cilindro-status"
-                    id="statusCilindro"
-                >
-
-                    PREENCHER
-
-                </div>
-
-            </div>
-
-            <div class="valve-section">
-
-                <div
-                    class="measurement-grid"
-                    id="measurementGrid"
-                ></div>
-
-            </div>
-
-        </div>
-
-        <!-- NAVEGAÇÃO -->
-
-        <div class="navegacao">
-
-            <button
-                class="btn-anterior"
-                id="btnAnterior"
-                onclick="cilindroAnterior()"
-            >
-
-                ← ANTERIOR
-
-            </button>
-
-            <div class="navegacao-centro">
-
-                <button
-                    class="btn-jpg"
-                    onclick="gerarJpgAtual()"
-                >
-
-                    📷 GERAR IMAGEM
-
-                </button>
-
-                <button
-                    onclick="limparCilindroAtual()"
-                    class="clear-btn"
-                >
-
-                    🗑️ LIMPAR
-
-                </button>
-
-            </div>
-
-            <button
-                class="btn-proximo"
-                id="btnProximo"
-                onclick="cilindroProximo()"
-            >
-
-                PRÓXIMO →
-
-            </button>
-
-        </div>
-
-        <!-- OBSERVAÇÕES -->
-
-        <div class="obs">
-
-            <p>
-
-                <strong>
-                    OBSERVAÇÕES:
-                </strong>
-
-            </p>
-
-            <textarea
-                id="observacoes"
-            ></textarea>
-
-        </div>
-
-        <!-- BOTÕES FINAIS -->
-
-        <div class="button-container">
-
-            <button
-                id="generatePdf"
-            >
-
-                📄 GERAR PDF COMPLETO
-
-            </button>
-
-            <button
-                id="clearBtn"
-                class="clear-btn"
-            >
-
-                🗑️ LIMPAR TUDO
-
-            </button>
-
-        </div>
-
-        <!-- ASSINATURA -->
-
-        <div class="signature">
-
-            ASSINATURA DO MECÂNICO:
-
-            <input
-                type="text"
-                id="assinatura"
-                placeholder="Digite seu nome aqui"
-            >
-
-        </div>
-
-    </div>
+<input
+type="text"
+id="assinatura"
+placeholder="Digite seu nome aqui"
+/>
 
 </div>
 
 <script>
 
-const { jsPDF } = window.jspdf;
+const {jsPDF} = window.jspdf;
 
 let cilindroAtual = 1;
 
-/*
-==================================================
-CRIAR OS 6 CILINDROS
-==================================================
-*/
+const totalCilindros = 6;
 
-const dadosCilindros = {};
+/* ================================= */
+/* CRIAR OS 6 CILINDROS */
+/* ================================= */
 
-for(let i=1;i<=6;i++){
+const container =
+document.getElementById("cilindros");
 
-    dadosCilindros[i] = {
+for(
+    let i = 1;
+    i <= totalCilindros;
+    i++
+){
 
-        exaustao1:"",
-        exaustao2:"",
-        admissao1:"",
-        admissao2:"",
+    const cilindro =
+    document.createElement("div");
 
-        fotos:{
+    cilindro.className =
+    "cilindro" +
+    (i === 1 ? " ativo" : "");
 
-            exaustao1:"",
-            exaustao2:"",
-            admissao1:"",
-            admissao2:""
+    cilindro.id =
+    "cilindro" + i;
 
-        }
+    cilindro.innerHTML = `
 
-    };
+        <div class="cilindro-section">
+
+            <div class="cilindro-label">
+
+                CILINDRO ${i}
+
+            </div>
+
+            <div class="valve-grid">
+
+                ${criarValvula(
+                    "exaustao",
+                    i,
+                    2,
+                    "EXAUSTÃO 2"
+                )}
+
+                ${criarValvula(
+                    "admissao",
+                    i,
+                    2,
+                    "ADMISSÃO 2"
+                )}
+
+                ${criarValvula(
+                    "exaustao",
+                    i,
+                    1,
+                    "EXAUSTÃO 1"
+                )}
+
+                ${criarValvula(
+                    "admissao",
+                    i,
+                    1,
+                    "ADMISSÃO 1"
+                )}
+
+            </div>
+
+            <button
+                class="btn-jpg"
+                onclick="gerarJpgCilindro(${i})"
+            >
+
+                📷 GERAR JPG CILINDRO ${i}
+
+            </button>
+
+        </div>
+
+    `;
+
+    container.appendChild(cilindro);
 
 }
 
-/*
-==================================================
-CRIAR CILINDRO NA TELA
-==================================================
-*/
+/* ================================= */
+/* CRIAR CADA VÁLVULA */
+/* ================================= */
 
-function montarCilindro(){
+function criarValvula(
+    tipo,
+    cilindro,
+    numero,
+    nome
+){
 
-    const grid =
-        document.getElementById(
-            "measurementGrid"
-        );
+    const id =
+    `${tipo}${cilindro}_${numero}`;
 
-    grid.innerHTML = "";
+    const foto =
+    `photo${id}`;
 
-    const posicoes = [
+    return `
 
-        {
-            tipo:"exaustao",
-            j:2
-        },
+        <div class="valve-box">
 
-        {
-            tipo:"admissao",
-            j:2
-        },
+            <div class="valve-title">
 
-        {
-            tipo:"exaustao",
-            j:1
-        },
+                ${nome}
 
-        {
-            tipo:"admissao",
-            j:1
-        }
+            </div>
 
-    ];
+            <div class="photo-box" id="${foto}">
 
-    posicoes.forEach(
-        ({tipo,j}) => {
+                Clique para adicionar foto
 
-            const tipoNome =
-                tipo === "exaustao"
-                    ? "EXAUSTÃO"
-                    : "ADMISSÃO";
+                <div class="photo-label">
 
-            const chave =
-                tipo + j;
-
-            const box =
-                document.createElement(
-                    "div"
-                );
-
-            box.className =
-                "measurement-box";
-
-            box.innerHTML = `
-
-                <div class="measurement-title">
-
-                    ${tipoNome} ${j}
+                    ${nome}
 
                 </div>
 
-                <div class="measurement">
-
-                    <input
-                        type="text"
-                        id="${tipo}${cilindroAtual}_${j}"
-                        placeholder="MEDIÇÃO mm"
-                        value="${dadosCilindros[cilindroAtual][chave] || ""}"
-                    >
-
-                </div>
-
-                <div
-                    class="photo-box"
-                    id="photo${tipo}${cilindroAtual}_${j}"
+                <input
+                    type="file"
+                    accept="image/*"
+                    capture="environment"
+                    onchange="loadPhoto(event,'${id}')"
                 >
 
-                    Clique para adicionar foto
+            </div>
 
-                    <div class="photo-label">
+            <button
+                class="remove-photo"
+                onclick="removePhoto('${id}')"
+            >
 
-                        ${tipoNome} ${j}
+                REMOVER FOTO
 
-                    </div>
+            </button>
 
-                    <input
-                        type="file"
-                        accept="image/*"
-                        capture="environment"
-                        onchange="loadPhoto(
-                            event,
-                            '${tipo}${cilindroAtual}_${j}'
-                        )"
-                    >
+            <div class="measurement">
 
-                </div>
-
-                <button
-                    class="remove-photo"
-                    onclick="
-                        removePhoto(
-                            '${tipo}${cilindroAtual}_${j}'
-                        )
-                    "
+                <input
+                    type="text"
+                    id="${id}"
+                    placeholder="Medição mm"
                 >
 
-                    REMOVER FOTO
+            </div>
 
-                </button>
+        </div>
 
-            `;
+    `;
 
-            grid.appendChild(box);
+}
 
-            const input =
-                document.getElementById(
-                    `${tipo}${cilindroAtual}_${j}`
-                );
+/* ================================= */
+/* NAVEGAÇÃO */
+/* ================================= */
 
-            input.addEventListener(
-                "input",
-                function(){
+function atualizarCilindro(){
 
-                    dadosCilindros[
-                        cilindroAtual
-                    ][chave] =
-                        this.value;
+    document
+    .querySelectorAll(".cilindro")
+    .forEach(
+        elemento => {
 
-                    atualizarDestaque(this);
-
-                }
+            elemento.classList.remove(
+                "ativo"
             );
-
-            atualizarDestaque(input);
-
-            const foto =
-                dadosCilindros[
-                    cilindroAtual
-                ].fotos[chave];
-
-            if(foto){
-
-                const photoBox =
-                    document.getElementById(
-                        `photo${tipo}${cilindroAtual}_${j}`
-                    );
-
-                photoBox.style.backgroundImage =
-                    `url("${foto}")`;
-
-                photoBox.childNodes[0].textContent =
-                    "";
-
-            }
 
         }
     );
 
-    atualizarInterface();
+    document
+    .getElementById(
+        "cilindro" + cilindroAtual
+    )
+    .classList.add(
+        "ativo"
+    );
+
+    document
+    .getElementById(
+        "cilindroAtualTexto"
+    )
+    .innerText =
+        `CILINDRO ${cilindroAtual} / ${totalCilindros}`;
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
-/*
-==================================================
-ATUALIZAR INTERFACE
-==================================================
-*/
+function proximoCilindro(){
 
-function atualizarInterface(){
-
-    document.getElementById(
-        "tituloCilindro"
-    ).innerText =
-        cilindroAtual + "º CILINDRO";
-
-    document.getElementById(
-        "contador"
-    ).innerText =
-        "CILINDRO " +
-        String(cilindroAtual).padStart(2,"0") +
-        " / 06";
-
-    document.getElementById(
-        "barraProgresso"
-    ).style.width =
-        (
-            cilindroAtual / 6 * 100
-        ) + "%";
-
-    document.getElementById(
-        "btnAnterior"
-    ).style.visibility =
-        cilindroAtual === 1
-            ? "hidden"
-            : "visible";
-
-    document.getElementById(
-        "btnProximo"
-    ).innerText =
-        cilindroAtual === 6
-            ? "FINALIZAR ✓"
-            : "PRÓXIMO →";
-
-    atualizarStatusCilindro();
-
-}
-
-/*
-==================================================
-STATUS DO CILINDRO
-==================================================
-*/
-
-function atualizarStatusCilindro(){
-
-    const dados =
-        dadosCilindros[
-            cilindroAtual
-        ];
-
-    const valores = [
-
-        dados.exaustao1,
-        dados.exaustao2,
-        dados.admissao1,
-        dados.admissao2
-
-    ];
-
-    const preenchidos =
-        valores.filter(
-            valor =>
-                valor !== ""
-        ).length;
-
-    const status =
-        document.getElementById(
-            "statusCilindro"
-        );
-
-    if(preenchidos === 4){
-
-        status.innerText =
-            "✓ PREENCHIDO";
-
-        status.style.color =
-            "#fff";
-
-    }
-    else{
-
-        status.innerText =
-            `${preenchidos}/4 MEDIÇÕES`;
-
-        status.style.color =
-            "#FFFACD";
-
-    }
-
-}
-
-/*
-==================================================
-PRÓXIMO CILINDRO
-==================================================
-*/
-
-function cilindroProximo(){
-
-    salvarValoresTela();
-
-    if(cilindroAtual < 6){
+    if(
+        cilindroAtual <
+        totalCilindros
+    ){
 
         cilindroAtual++;
 
-        montarCilindro();
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
-    }
-    else{
-
-        alert(
-            "✅ Os 6 cilindros foram preenchidos!\n\n" +
-            "Você pode gerar o PDF completo."
-        );
+        atualizarCilindro();
 
     }
 
 }
-
-/*
-==================================================
-CILINDRO ANTERIOR
-==================================================
-*/
 
 function cilindroAnterior(){
 
-    salvarValoresTela();
-
-    if(cilindroAtual > 1){
+    if(
+        cilindroAtual >
+        1
+    ){
 
         cilindroAtual--;
 
-        montarCilindro();
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
+        atualizarCilindro();
 
     }
 
 }
 
-/*
-==================================================
-SALVAR VALORES DA TELA
-==================================================
-*/
+/* ================================= */
+/* FOTO */
+/* ================================= */
 
-function salvarValoresTela(){
-
-    const campos = [
-
-        ["exaustao1","exaustao1_1"],
-        ["exaustao2","exaustao1_2"],
-        ["admissao1","admissao1_1"],
-        ["admissao2","admissao1_2"]
-
-    ];
-
-    dadosCilindros[
-        cilindroAtual
-    ].exaustao1 =
-        document.getElementById(
-            `exaustao${cilindroAtual}_1`
-        )?.value || "";
-
-    dadosCilindros[
-        cilindroAtual
-    ].exaustao2 =
-        document.getElementById(
-            `exaustao${cilindroAtual}_2`
-        )?.value || "";
-
-    dadosCilindros[
-        cilindroAtual
-    ].admissao1 =
-        document.getElementById(
-            `admissao${cilindroAtual}_1`
-        )?.value || "";
-
-    dadosCilindros[
-        cilindroAtual
-    ].admissao2 =
-        document.getElementById(
-            `admissao${cilindroAtual}_2`
-        )?.value || "";
-
-    atualizarStatusCilindro();
-
-}
-
-/*
-==================================================
-FOTOS
-==================================================
-*/
-
-function loadPhoto(event,id){
+function loadPhoto(
+    event,
+    id
+){
 
     const box =
-        document.getElementById(
-            "photo" + id
-        );
+    document.getElementById(
+        "photo" + id
+    );
 
     const file =
-        event.target.files[0];
+    event.target.files[0];
 
     if(!file)
         return;
 
     const reader =
-        new FileReader();
+    new FileReader();
 
     reader.onload =
-        function(e){
+    function(e){
 
-            box.style.backgroundImage =
-                `url("${e.target.result}")`;
+        box.style.backgroundImage =
+        `url("${e.target.result}")`;
 
-            box.childNodes[0].textContent =
-                "";
+        box.style.color =
+        "transparent";
 
-            const partes =
-                id.match(
-                    /^(exaustao|admissao)(\d+)_(\d+)$/
-                );
-
-            if(partes){
-
-                const tipo =
-                    partes[1];
-
-                const numero =
-                    partes[2];
-
-                const j =
-                    partes[3];
-
-                dadosCilindros[
-                    numero
-                ].fotos[
-                    tipo + j
-                ] =
-                    e.target.result;
-
-            }
-
-        };
+    };
 
     reader.readAsDataURL(file);
 
 }
 
+/* ================================= */
+/* REMOVER FOTO */
+/* ================================= */
+
 function removePhoto(id){
 
     const box =
-        document.getElementById(
-            "photo" + id
-        );
-
-    if(!box)
-        return;
+    document.getElementById(
+        "photo" + id
+    );
 
     box.style.backgroundImage =
-        "";
+    "";
 
-    box.childNodes[0].textContent =
-        "Clique para adicionar foto";
+    box.style.color =
+    "#666";
 
-    const input =
-        box.querySelector(
-            'input[type="file"]'
+    const oldInput =
+    box.querySelector(
+        'input[type="file"]'
+    );
+
+    if(oldInput)
+        oldInput.remove();
+
+    const newInput =
+    document.createElement(
+        "input"
+    );
+
+    newInput.type =
+    "file";
+
+    newInput.accept =
+    "image/*";
+
+    newInput.capture =
+    "environment";
+
+    newInput.onchange =
+    function(event){
+
+        loadPhoto(
+            event,
+            id
         );
 
-    if(input)
-        input.value = "";
+    };
 
-    const partes =
-        id.match(
-            /^(exaustao|admissao)(\d+)_(\d+)$/
-        );
-
-    if(partes){
-
-        const tipo =
-            partes[1];
-
-        const numero =
-            partes[2];
-
-        const j =
-            partes[3];
-
-        dadosCilindros[
-            numero
-        ].fotos[
-            tipo + j
-        ] =
-            "";
-
-    }
+    box.appendChild(
+        newInput
+    );
 
 }
 
-/*
-==================================================
-DESTAQUE
-==================================================
-*/
+/* ================================= */
+/* DESTAQUE AUTOMÁTICO */
+/* ================================= */
 
-function atualizarDestaque(input){
+function atualizarDestaque(
+    input
+){
 
     const valor =
-        parseFloat(
-            input.value.replace(",",".")
-        );
+    parseFloat(
+        input.value.replace(
+            ",",
+            "."
+        )
+    );
 
     if(
         !isNaN(valor) &&
         valor >= 67.50
     ){
 
-        input.style.color =
-            "red";
-
-        input.style.fontWeight =
-            "bold";
+        input.classList.add(
+            "medicao-alerta"
+        );
 
     }
     else{
 
-        input.style.color =
-            "black";
-
-        input.style.fontWeight =
-            "normal";
+        input.classList.remove(
+            "medicao-alerta"
+        );
 
     }
 
 }
 
-/*
-==================================================
-RETORNA VALOR DO CILINDRO
-==================================================
-*/
+document
+.querySelectorAll(
+    'input[type="text"]'
+)
+.forEach(
+    input => {
 
-function valorCilindro(
-    numero,
-    tipo,
-    j
-){
+        input.addEventListener(
+            "input",
+            function(){
 
-    const chave =
-        tipo + j;
+                atualizarDestaque(
+                    this
+                );
 
-    return dadosCilindros[
-        numero
-    ][chave] || "";
+            }
+        );
 
-}
+    }
+);
 
-/*
-==================================================
-GERAR JPG DO CILINDRO ATUAL
-==================================================
-*/
-
-async function gerarJpgAtual(){
-
-    salvarValoresTela();
-
-    await gerarJpgCilindro(
-        cilindroAtual
-    );
-
-}
-
-/*
-==================================================
-RETÂNGULO ARREDONDADO
-==================================================
-*/
+/* ================================= */
+/* RETÂNGULO ARREDONDADO */
+/* ================================= */
 
 function roundRect(
     ctx,
@@ -1804,42 +1385,36 @@ function roundRect(
 
 }
 
-/*
-==================================================
-GERAR JPG
-==================================================
-*/
+/* ================================= */
+/* GERAR JPG DO CILINDRO */
+/* ================================= */
 
 async function gerarJpgCilindro(i){
 
-    salvarValoresTela();
-
     const imgSize =
-        1280;
+    1280;
 
     const imgHeight =
-        1900;
+    1900;
 
-    const canvasCil =
-        document.createElement(
-            "canvas"
-        );
+    const canvas =
+    document.createElement(
+        "canvas"
+    );
 
-    canvasCil.width =
-        imgSize;
+    canvas.width =
+    imgSize;
 
-    canvasCil.height =
-        imgHeight;
+    canvas.height =
+    imgHeight;
 
-    const ctxCil =
-        canvasCil.getContext(
-            "2d"
-        );
+    const ctx =
+    canvas.getContext("2d");
 
-    ctxCil.fillStyle =
-        "#fff";
+    ctx.fillStyle =
+    "#fff";
 
-    ctxCil.fillRect(
+    ctx.fillRect(
         0,
         0,
         imgSize,
@@ -1880,9 +1455,9 @@ async function gerarJpgCilindro(i){
     ){
 
         const box =
-            document.getElementById(
-                fotos[j]
-            );
+        document.getElementById(
+            fotos[j]
+        );
 
         if(
             !box ||
@@ -1894,65 +1469,61 @@ async function gerarJpgCilindro(i){
         }
 
         let imgUrl =
-            box.style.backgroundImage
-                .replace(
-                    /^url\(["']?/,
-                    ""
-                )
-                .replace(
-                    /["']?\)$/,
-                    ""
-                );
+        box.style.backgroundImage
+        .replace(
+            /^url\(["']?/,
+            ""
+        )
+        .replace(
+            /["']?\)$/,
+            ""
+        );
 
         const imgEl =
-            new Image();
+        new Image();
 
         imgEl.src =
-            imgUrl;
+        imgUrl;
 
         await new Promise(
             resolve =>
-                imgEl.onload =
-                    resolve
+            imgEl.onload =
+            resolve
         );
 
-        ctxCil.drawImage(
-
+        ctx.drawImage(
             imgEl,
-
             pos[j][0],
             pos[j][1],
-
             imgSize/2,
             imgHeight/2
-
         );
 
         const rectWidth =
-            imgSize/2;
+        imgSize/2;
 
         const rectHeight =
-            40;
+        45;
 
         const rectX =
-            pos[j][0];
+        pos[j][0];
 
         const rectY =
-            pos[j][1] +
-            imgHeight/2 -
-            rectHeight;
+        pos[j][1] +
+        imgHeight/2 -
+        rectHeight;
 
-        ctxCil.fillStyle =
-            "white";
+        ctx.fillStyle =
+        "white";
 
-        ctxCil.strokeStyle =
-            "black";
+        ctx.strokeStyle =
+        "black";
 
-        ctxCil.lineWidth =
-            2;
+        ctx.lineWidth =
+        2;
 
         roundRect(
-            ctxCil,
+            ctx,
             rectX,
             rectY,
             rectWidth,
@@ -1962,107 +1533,92 @@ async function gerarJpgCilindro(i){
             true
         );
 
-        ctxCil.fillStyle =
-            "black";
+        ctx.fillStyle =
+        "black";
 
-        ctxCil.font =
-            "bold 30px Arial";
+        ctx.font =
+        "bold 30px Arial";
 
-        ctxCil.textAlign =
-            "center";
+        ctx.textAlign =
+        "center";
 
-        ctxCil.textBaseline =
-            "middle";
+        ctx.textBaseline =
+        "middle";
 
-        ctxCil.fillText(
-
+        ctx.fillText(
             legendas[j],
-
-            rectX +
-            rectWidth/2,
-
-            rectY +
-            rectHeight/2
-
+            rectX + rectWidth/2,
+            rectY + rectHeight/2
         );
 
-        let tipo =
-            "";
+        const inputId =
+        fotos[j].replace(
+            "photo",
+            ""
+        );
+
+        const input =
+        document.getElementById(
+            inputId
+        );
+
+        const valor =
+        input
+        ? parseFloat(
+            input.value.replace(
+                ",",
+                "."
+            )
+        )
+        : null;
 
         if(
-            legendas[j]
-                .includes("EXAUSTÃO")
-        ){
-
-            tipo =
-                "exaustao";
-
-        }
-        else{
-
-            tipo =
-                "admissao";
-
-        }
-
-        const numero =
-            legendas[j]
-                .includes("2")
-                ? 2
-                : 1;
-
-        const val =
-            parseFloat(
-                valorCilindro(
-                    i,
-                    tipo,
-                    numero
-                ).replace(",",".")
-            );
-
-        if(
-            !isNaN(val) &&
-            val >= 67.50
+            valor !== null &&
+            !isNaN(valor) &&
+            valor >= 67.50
         ){
 
             const desc =
-                `AFUNDAMENTO (${val.toFixed(2).replace(".",",")}mm)`;
+            `AFUNDAMENTO (${valor.toFixed(2).replace(".",",")}mm)`;
 
-            ctxCil.font =
-                "bold 28px Arial";
+            ctx.font =
+            "bold 26px Arial";
 
             const metrics =
-                ctxCil.measureText(
-                    desc
-                );
+            ctx.measureText(
+                desc
+            );
 
             const padding =
-                10;
+            15;
 
             const txtWidth =
-                metrics.width +
-                padding * 2;
+            metrics.width +
+            padding * 2;
 
             const txtHeight =
-                40;
+            45;
 
             const txtX =
-                pos[j][0] +
-                (
-                    imgSize/2 -
-                    txtWidth
-                ) / 2;
+            pos[j][0] +
+            (
+                imgSize/2 -
+                txtWidth
+            ) / 2;
 
             const txtY =
-                rectY -
-                txtHeight -
-                10;
+            rectY -
+            txtHeight -
+            10;
 
-            ctxCil.fillStyle =
-                "#FFFFFF";
+            ctx.fillStyle =
+            "white";
+
+            ctx.strokeStyle =
+            "black";
 
             roundRect(
-                ctxCil,
+                ctx,
                 txtX,
                 txtY,
                 txtWidth,
@@ -2072,65 +1628,57 @@ async function gerarJpgCilindro(i){
                 true
             );
 
-            ctxCil.fillStyle =
-                "red";
+            ctx.fillStyle =
+            "red";
 
-            ctxCil.fillText(
-
+            ctx.fillText(
                 desc,
-
-                txtX +
-                txtWidth/2,
-
-                txtY +
-                txtHeight/2
-
+                txtX + txtWidth/2,
+                txtY + txtHeight/2
             );
 
         }
 
     }
 
-    /* TÍTULO */
-
     const numText =
-        `CILINDRO ${i}`;
+    `CILINDRO ${i}`;
 
-    ctxCil.font =
-        "bold 50px Arial";
+    ctx.font =
+    "bold 50px Arial";
 
     const numWidth =
-        ctxCil.measureText(
-            numText
-        ).width;
+    ctx.measureText(
+        numText
+    ).width;
 
     const numPadding =
-        20;
+    20;
 
     const rectHeight =
-        60;
+    65;
 
     const rectX =
-        (
-            imgSize -
-            numWidth
-        ) / 2 -
-        numPadding;
+    (
+        imgSize -
+        numWidth
+    ) / 2 -
+    numPadding;
 
     const rectY =
-        5;
+    5;
 
-    ctxCil.fillStyle =
-        "white";
+    ctx.fillStyle =
+    "white";
 
-    ctxCil.strokeStyle =
-        "black";
+    ctx.strokeStyle =
+    "black";
 
-    ctxCil.lineWidth =
-        2;
+    ctx.lineWidth =
+    2;
 
     roundRect(
-        ctxCil,
+        ctx,
         rectX,
         rectY,
         numWidth +
@@ -2141,195 +1689,86 @@ async function gerarJpgCilindro(i){
         true
     );
 
-    ctxCil.fillStyle =
-        "black";
+    ctx.fillStyle =
+    "black";
 
-    ctxCil.textAlign =
-        "center";
+    ctx.textAlign =
+    "center";
 
-    ctxCil.textBaseline =
-        "middle";
+    ctx.textBaseline =
+    "middle";
 
-    ctxCil.fillText(
-
+    ctx.fillText(
         numText,
-
         imgSize/2,
-
         rectY +
         rectHeight/2
-
     );
 
     const link =
-        document.createElement(
-            "a"
-        );
+    document.createElement(
+        "a"
+    );
 
     link.download =
-        `CILINDRO${i}.jpg`;
+    `CILINDRO${i}.jpg`;
 
     link.href =
-        canvasCil.toDataURL(
-            "image/jpeg",
-            0.95
-        );
+    canvas.toDataURL(
+        "image/jpeg",
+        0.95
+    );
 
     link.click();
 
 }
 
-/*
-==================================================
-LIMPAR CILINDRO ATUAL
-==================================================
-*/
+/* ================================= */
+/* GERAR PDF */
+/* ================================= */
 
-function limparCilindroAtual(){
-
-    if(
-        !confirm(
-            `Deseja limpar todas as informações do CILINDRO ${cilindroAtual}?`
-        )
-    )
-        return;
-
-    dadosCilindros[
-        cilindroAtual
-    ] = {
-
-        exaustao1:"",
-        exaustao2:"",
-        admissao1:"",
-        admissao2:"",
-
-        fotos:{
-
-            exaustao1:"",
-            exaustao2:"",
-            admissao1:"",
-            admissao2:""
-
-        }
-
-    };
-
-    montarCilindro();
-
-}
-
-/*
-==================================================
-LIMPAR TUDO
-==================================================
-*/
-
-document.getElementById(
-    "clearBtn"
-).addEventListener(
-    "click",
-    function(){
-
-        if(
-            !confirm(
-                "Deseja apagar TODAS as informações?"
-            )
-        )
-            return;
-
-        document
-            .querySelectorAll(
-                'input[type="text"], input[type="date"], textarea'
-            )
-            .forEach(
-                input =>
-                    input.value = ""
-            );
-
-        for(
-            let i=1;
-            i<=6;
-            i++
-        ){
-
-            dadosCilindros[i] = {
-
-                exaustao1:"",
-                exaustao2:"",
-                admissao1:"",
-                admissao2:"",
-
-                fotos:{
-
-                    exaustao1:"",
-                    exaustao2:"",
-                    admissao1:"",
-                    admissao2:""
-
-                }
-
-            };
-
-        }
-
-        cilindroAtual =
-            1;
-
-        montarCilindro();
-
-    }
-);
-
-/*
-==================================================
-GERAR PDF
-==================================================
-*/
-
-document.getElementById(
+document
+.getElementById(
     "generatePdf"
-).addEventListener(
+)
+.addEventListener(
     "click",
     async function(){
 
-        salvarValoresTela();
-
         const pdf =
-            new jsPDF({
-                unit:"mm",
-                format:"a4"
-            });
+        new jsPDF({
+            unit:"mm",
+            format:"a4"
+        });
 
         const img =
-            new Image();
+        new Image();
 
         img.crossOrigin =
-            "anonymous";
+        "anonymous";
 
         img.src =
-            "https://raw.githubusercontent.com/gabrielsenna97/tema/main/FORM_194_MEDICAO_DAS_VALVULAS_UTE550_REV0_O_M_2.jpg";
+        "https://raw.githubusercontent.com/gabrielsenna97/tema/main/FORM_194_MEDICAO_DAS_VALVULAS_UTE550_REV0_O_M_2.jpg";
 
         await new Promise(
             resolve =>
-                img.onload =
-                    resolve
+            img.onload =
+            resolve
         );
 
         const canvas =
-            document.createElement(
-                "canvas"
-            );
+        document.createElement(
+            "canvas"
+        );
 
         canvas.width =
-            img.width;
+        img.width;
 
         canvas.height =
-            img.height;
+        img.height;
 
         const ctx =
-            canvas.getContext(
-                "2d"
-            );
+        canvas.getContext("2d");
 
         ctx.drawImage(
             img,
@@ -2337,13 +1776,11 @@ document.getElementById(
             0
         );
 
-        /* DADOS */
-
         ctx.font =
-            "bold 18px Arial";
+        "bold 18px Arial";
 
         ctx.fillStyle =
-            "black";
+        "black";
 
         ctx.fillText(
             document.getElementById(
@@ -2389,9 +1826,9 @@ document.getElementById(
         );
 
         const dataVal =
-            document.getElementById(
-                "data"
-            ).value;
+        document.getElementById(
+            "data"
+        ).value;
 
         if(dataVal){
 
@@ -2415,10 +1852,8 @@ document.getElementById(
             231
         );
 
-        /* MEDIÇÕES */
-
         const limiteMaximo =
-            67.50;
+        67.50;
 
         const campos = [
 
@@ -2457,50 +1892,34 @@ document.getElementById(
         campos.forEach(
             ([id,x,y]) => {
 
-                const partes =
-                    id.match(
-                        /^(exaustao|admissao)(\d+)_(\d+)$/
-                    );
-
-                if(!partes)
-                    return;
-
-                const tipo =
-                    partes[1];
-
-                const numero =
-                    partes[2];
-
-                const j =
-                    partes[3];
-
                 const valRaw =
-                    valorCilindro(
-                        numero,
-                        tipo,
-                        j
-                    );
+                document.getElementById(
+                    id
+                )?.value || "";
 
                 const valNum =
-                    parseFloat(
-                        valRaw.replace(",",".")
-                    );
+                parseFloat(
+                    valRaw.replace(
+                        ",",
+                        "."
+                    )
+                );
 
                 ctx.fillStyle =
-                    (
-                        !isNaN(valNum) &&
-                        valNum >= limiteMaximo
-                    )
-                    ? "red"
-                    : "black";
+                (
+                    !isNaN(valNum) &&
+                    valNum >= limiteMaximo
+                )
+                ? "red"
+                : "black";
 
                 ctx.font =
-                    (
-                        !isNaN(valNum) &&
-                        valNum >= limiteMaximo
-                    )
-                    ? "bold 18px Arial"
-                    : "18px Arial";
+                (
+                    !isNaN(valNum) &&
+                    valNum >= limiteMaximo
+                )
+                ? "bold 18px Arial"
+                : "18px Arial";
 
                 ctx.fillText(
                     valRaw,
@@ -2511,40 +1930,38 @@ document.getElementById(
             }
         );
 
-        /* OBSERVAÇÕES */
-
         const obs =
-            document.getElementById(
-                "observacoes"
-            ).value;
+        document.getElementById(
+            "observacoes"
+        ).value;
 
         const maxWidth =
-            950;
+        950;
 
         const lineHeight =
-            26;
+        26;
 
         const words =
-            obs.split(" ");
+        obs.split(" ");
 
         let line =
-            "";
+        "";
 
         let y =
-            1237;
+        1237;
 
         words.forEach(
             word => {
 
                 const testLine =
-                    line +
-                    word +
-                    " ";
+                line +
+                word +
+                " ";
 
                 const metrics =
-                    ctx.measureText(
-                        testLine
-                    );
+                ctx.measureText(
+                    testLine
+                );
 
                 if(
                     metrics.width >
@@ -2558,17 +1975,17 @@ document.getElementById(
                     );
 
                     line =
-                        word +
-                        " ";
+                    word +
+                    " ";
 
                     y +=
-                        lineHeight;
+                    lineHeight;
 
                 }
                 else{
 
                     line =
-                        testLine;
+                    testLine;
 
                 }
 
@@ -2581,10 +1998,8 @@ document.getElementById(
             y
         );
 
-        /* ASSINATURA */
-
         ctx.font =
-            '40px "Brush Script MT", cursive';
+        '40px "Brush Script MT", cursive';
 
         ctx.fillText(
             document.getElementById(
@@ -2595,10 +2010,10 @@ document.getElementById(
         );
 
         const imgData =
-            canvas.toDataURL(
-                "image/jpeg",
-                1.0
-            );
+        canvas.toDataURL(
+            "image/jpeg",
+            1.0
+        );
 
         pdf.addImage(
             imgData,
@@ -2616,28 +2031,83 @@ document.getElementById(
     }
 );
 
-/*
-==================================================
-DATA AUTOMÁTICA
-==================================================
-*/
+/* ================================= */
+/* LIMPAR */
+/* ================================= */
 
-document.getElementById(
-    "data"
-).value =
-    new Date()
-        .toISOString()
-        .split("T")[0];
+document
+.getElementById(
+    "clearBtn"
+)
+.addEventListener(
+    "click",
+    function(){
 
-/*
-==================================================
-INICIAR
-==================================================
-*/
+        if(
+            !confirm(
+                "Deseja realmente limpar todos os dados?"
+            )
+        ){
 
-montarCilindro();
+            return;
+
+        }
+
+        document
+        .querySelectorAll(
+            'input[type="text"], input[type="date"], textarea'
+        )
+        .forEach(
+            input => {
+
+                input.value =
+                "";
+
+                input.classList.remove(
+                    "medicao-alerta"
+                );
+
+            }
+        );
+
+        document
+        .querySelectorAll(
+            ".photo-box"
+        )
+        .forEach(
+            box => {
+
+                box.style.backgroundImage =
+                "";
+
+                box.style.color =
+                "#666";
+
+                const input =
+                box.querySelector(
+                    'input[type="file"]'
+                );
+
+                if(input){
+
+                    input.value =
+                    "";
+
+                }
+
+            }
+        );
+
+        cilindroAtual =
+        1;
+
+        atualizarCilindro();
+
+    }
+);
 
 </script>
 
 </body>
+
 </html>

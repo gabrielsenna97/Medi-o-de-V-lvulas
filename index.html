@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 >
 
 <title>Medição de Válvulas do Scania-550</title>
@@ -19,400 +21,776 @@
 }
 
 body{
-    font-family:Arial,sans-serif;
+
+    font-family:
+    Arial,
+    sans-serif;
+
     margin:20px;
+
     line-height:1.6;
+
     background:#fff;
+
 }
 
 h1,h2,h3{
+
     margin-top:20px;
+
     margin-bottom:10px;
+
 }
 
 h1{
+
     font-size:24px;
+
     text-align:center;
+
     border-bottom:3px solid #257500;
-    padding-bottom:10px;
+
+    padding:10px;
+
     color:#fff;
-    background:#257500;
+
+    background-color:#257500;
+
     border-radius:8px;
+
 }
 
 .info-table{
+
     width:100%;
+
     margin-bottom:20px;
+
 }
 
 .info-table td{
+
     padding:5px 0;
+
     text-align:left;
+
 }
 
 input[type="text"],
 input[type="date"],
 textarea{
+
     width:120px;
+
     padding:8px;
+
     text-align:center;
+
     font-size:16px;
+
     border:2px solid #FF8C00;
+
     border-radius:4px;
+
 }
 
 textarea{
+
     width:100%;
+
     height:100px;
+
     padding:10px;
+
     text-align:left;
+
     resize:vertical;
+
     border:2px solid #FF8C00;
+
     border-radius:6px;
+
 }
 
 .warning{
-    background:#257500;
+
+    background-color:#257500;
+
     padding:10px;
+
     border-left:6px solid #257500;
+
     margin:15px 0;
+
     text-align:center;
+
     color:white;
+
     font-weight:bold;
+
     border-radius:6px;
+
 }
 
-/* ============================= */
-/* ÁREA DOS CILINDROS             */
-/* ============================= */
+/* =====================================================
+   ÁREA DOS CILINDROS
+   ===================================================== */
+
+.cilindro-wrapper{
+
+    display:none;
+
+}
+
+.cilindro-wrapper.ativo{
+
+    display:block;
+
+}
+
+.cilindro-titulo{
+
+    text-align:center;
+
+    background:#257500;
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    margin-bottom:15px;
+
+}
+
+/* =====================================================
+   GRID 2 X 2
+   ===================================================== */
 
 .valve-container{
+
     width:100%;
-    margin-bottom:20px;
+
+}
+
+.valve-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    grid-template-rows:
+    1fr 1fr;
+
+    gap:12px;
+
+    width:100%;
+
 }
 
 .valve-section{
+
     border:2px solid #257500;
-    padding:15px;
-    margin-bottom:20px;
-    width:100%;
-    box-sizing:border-box;
-    background:#fff;
+
+    padding:10px;
+
+    background-color:#fff;
+
     border-radius:10px;
-    box-shadow:0 4px 8px rgba(0,0,0,0.1);
-}
 
-.cilindro-label{
-    text-align:center;
-    font-weight:bold;
-    color:white;
-    background:#257500;
-    border-radius:10px;
-    padding:8px;
-    margin-bottom:15px;
-    font-size:20px;
-}
+    box-shadow:
+    0 4px 8px rgba(0,0,0,0.1);
 
-/* SEMPRE 2 COLUNAS */
-.cilindro-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:1fr 1fr;
-    gap:10px;
-    width:100%;
-}
-
-.valvula-box{
-    border:1px solid #ddd;
-    border-radius:8px;
-    padding:8px;
-    text-align:center;
-    background:#fafafa;
     min-width:0;
+
 }
 
-.valvula-titulo{
-    background:#257500;
-    color:white;
+.valve-title{
+
+    text-align:center;
+
     font-weight:bold;
-    border-radius:6px;
-    padding:6px 3px;
-    font-size:15px;
+
+    color:white;
+
+    background-color:#257500;
+
+    border-radius:8px;
+
+    padding:6px;
+
     margin-bottom:8px;
+
+    font-size:16px;
+
 }
 
 .measurement{
+
     text-align:center;
+
     margin:8px 0;
+
     font-size:18px;
-    background:#FFFACD;
+
+    background-color:#FFFACD;
+
     border-radius:8px;
+
     padding:5px;
+
     font-weight:bold;
+
     color:black;
+
 }
 
 .measurement input{
-    width:100%;
-    max-width:130px;
+
+    width:120px;
+
+    max-width:100%;
+
     padding:8px;
+
     text-align:center;
-    font-size:17px;
+
+    font-size:18px;
+
     border:2px solid #FF8C00;
+
     border-radius:4px;
-    background:white;
+
 }
 
 .photo-box{
+
     width:100%;
-    height:170px;
+
+    height:180px;
+
     border:2px dashed #FF8C00;
+
     margin:8px auto;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     text-align:center;
-    font-size:12px;
+
+    font-size:13px;
+
     color:#666;
+
     position:relative;
+
     background-size:cover;
+
     background-position:center;
+
     overflow:hidden;
+
     border-radius:10px;
+
 }
 
 .photo-box input[type="file"]{
+
     position:absolute;
+
     width:100%;
+
     height:100%;
+
     opacity:0;
+
     cursor:pointer;
+
 }
 
 .photo-label{
+
     position:absolute;
+
     bottom:0;
+
     width:100%;
+
     text-align:center;
-    background:#257500;
+
+    background-color:#257500;
+
     color:white;
+
     font-weight:bold;
+
     font-size:12px;
+
     padding:3px 0;
+
 }
 
 .remove-photo{
+
     display:block;
+
     margin:5px auto;
+
     background:#FF4500;
+
     color:#fff;
+
     border:none;
+
     padding:5px 8px;
+
     font-size:11px;
+
     cursor:pointer;
+
     border-radius:4px;
+
 }
 
-/* ============================= */
-/* NAVEGAÇÃO DOS CILINDROS        */
-/* ============================= */
+/* =====================================================
+   NAVEGAÇÃO
+   ===================================================== */
 
 .navegacao-cilindros{
+
     display:flex;
+
     justify-content:space-between;
-    align-items:center;
+
     gap:10px;
-    margin:15px 0;
+
+    margin:20px 0;
+
 }
 
 .navegacao-cilindros button{
+
     flex:1;
-    margin:0;
-    font-size:15px;
+
 }
 
-.indicador-cilindro{
+.progresso-cilindro{
+
     text-align:center;
+
     font-weight:bold;
+
     font-size:18px;
+
+    margin-bottom:10px;
+
     color:#257500;
-    white-space:nowrap;
+
 }
 
-/* ============================= */
-/* BOTÕES                         */
-/* ============================= */
-
-.obs{
-    margin-top:30px;
-    font-style:italic;
-    background:#FFFACD;
-    padding:10px;
-    border-radius:6px;
-    border:1px solid #FF8C00;
-}
+/* =====================================================
+   BOTÕES
+   ===================================================== */
 
 .button-container{
+
     margin-top:20px;
+
     text-align:center;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
 }
 
 button{
-    background:#257500;
+
+    background-color:#257500;
+
     color:white;
+
     border:none;
+
     padding:10px 20px;
-    margin:0 10px;
+
+    margin:0 5px;
+
     font-size:16px;
+
     border-radius:6px;
+
     cursor:pointer;
+
     font-weight:bold;
-    transition:all .3s ease;
+
+    transition:
+    all 0.3s ease;
+
 }
 
 button:hover{
-    background:#FF4500;
+
+    background-color:#FF4500;
+
 }
 
 button.clear-btn{
-    background:#FF4500;
+
+    background-color:#FF4500;
+
 }
 
-.btn-jpg{
-    width:100%;
-    margin:12px 0 0 0;
-    background:#257500;
+/* =====================================================
+   OBSERVAÇÕES
+   ===================================================== */
+
+.obs{
+
+    margin-top:30px;
+
+    font-style:italic;
+
+    background-color:#FFFACD;
+
+    padding:10px;
+
+    border-radius:6px;
+
+    border:1px solid #FF8C00;
+
 }
 
-/* ============================= */
-/* ASSINATURA                    */
-/* ============================= */
+/* =====================================================
+   ASSINATURA
+   ===================================================== */
 
 .signature{
+
     margin-top:50px;
+
     border-top:2px solid #FF8C00;
+
     width:320px;
+
     padding-top:5px;
+
     text-align:center;
+
     font-weight:bold;
+
     font-size:16px;
+
     position:relative;
+
 }
 
 #assinatura{
+
     position:absolute;
+
     top:-36px;
+
     left:0;
+
     width:320px;
+
     border:none;
+
     font-size:28px;
+
     text-align:center;
+
     background:transparent;
+
     outline:none;
-    font-family:'Brush Script MT',cursive,Arial,sans-serif;
+
+    font-family:
+    'Brush Script MT',
+    cursive,
+    Arial,
+    sans-serif;
+
     color:#257500;
+
 }
 
 #assinatura::placeholder{
+
     color:#999;
+
 }
 
-/* ============================= */
-/* RESPONSIVO                    */
-/* ============================= */
+/* =====================================================
+   DESTAQUE MEDIÇÃO
+   ===================================================== */
 
-@media(max-width:600px){
+.medicao-alerta{
+
+    color:red !important;
+
+    font-weight:bold !important;
+
+}
+
+/* =====================================================
+   TELA DE DOWNLOAD
+   ===================================================== */
+
+.download-tela{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#222;
+
+    z-index:999999;
+
+    overflow:auto;
+
+    padding:20px;
+
+    text-align:center;
+
+}
+
+.download-tela h2{
+
+    color:white;
+
+    margin:0 0 15px 0;
+
+}
+
+.download-tela img{
+
+    width:100%;
+
+    max-width:900px;
+
+    height:auto;
+
+    display:block;
+
+    margin:auto;
+
+    background:white;
+
+    border-radius:8px;
+
+}
+
+.download-botoes{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+
+}
+
+.download-botoes button{
+
+    padding:15px 25px;
+
+    font-size:16px;
+
+}
+
+/* =====================================================
+   CELULAR
+   ===================================================== */
+
+@media(max-width:900px){
 
     body{
-        margin:8px;
+
+        margin:10px;
+
     }
 
     h1{
-        font-size:18px;
+
+        font-size:19px;
+
     }
 
     .info-table{
-        font-size:13px;
-    }
 
-    .info-table tr{
         display:block;
-        margin-bottom:8px;
+
+        overflow-x:auto;
+
     }
 
-    .info-table td{
-        display:block;
-        width:100%;
-    }
+    /*
+       IMPORTANTE:
+       NÃO colocar grid-template-columns:1fr aqui.
+       O 2x2 permanece no celular.
+    */
 
-    .info-table input{
-        max-width:100%;
-    }
+    .valve-grid{
 
-    .warning h3{
-        font-size:14px;
+        grid-template-columns:
+        minmax(0,1fr)
+        minmax(0,1fr);
+
+        grid-template-rows:
+        auto auto;
+
+        gap:6px;
+
     }
 
     .valve-section{
-        padding:8px;
+
+        padding:6px;
+
     }
 
-    .cilindro-label{
-        font-size:18px;
-    }
+    .valve-title{
 
-    /* NÃO ALTERAR PARA 1 COLUNA */
-    .cilindro-grid{
-        grid-template-columns:1fr 1fr;
-        grid-template-rows:1fr 1fr;
-        gap:6px;
-    }
+        font-size:13px;
 
-    .valvula-box{
         padding:5px;
-    }
 
-    .valvula-titulo{
-        font-size:11px;
-        padding:5px 2px;
     }
 
     .photo-box{
-        height:120px;
-        font-size:10px;
+
+        height:130px;
+
     }
 
     .measurement{
+
         margin:5px 0;
+
         padding:3px;
+
     }
 
     .measurement input{
-        width:100%;
-        padding:6px 2px;
-        font-size:15px;
+
+        width:95px;
+
+        font-size:16px;
+
+        padding:6px;
+
     }
 
     .remove-photo{
+
         font-size:9px;
+
         padding:4px 5px;
+
     }
 
     .navegacao-cilindros{
+
         gap:5px;
+
     }
 
     .navegacao-cilindros button{
-        font-size:11px;
-        padding:9px 4px;
+
+        font-size:12px;
+
+        padding:10px 5px;
+
+        margin:0;
+
     }
 
-    .indicador-cilindro{
-        font-size:14px;
+    .cilindro-titulo{
+
+        font-size:20px;
+
     }
 
-    .button-container button{
+}
+
+/* =====================================================
+   CELULARES MUITO PEQUENOS
+   ===================================================== */
+
+@media(max-width:380px){
+
+    body{
+
         margin:5px;
+
+    }
+
+    .photo-box{
+
+        height:110px;
+
+    }
+
+    .measurement input{
+
+        width:80px;
+
+    }
+
+    .valve-title{
+
+        font-size:11px;
+
+    }
+
+}
+
+/* =====================================================
+   IMPRESSÃO
+   ===================================================== */
+
+@media print{
+
+    body{
+
+        background:white;
+
+        margin:0;
+
+    }
+
+    .navegacao-cilindros,
+    .button-container,
+    .remove-photo{
+
+        display:none !important;
+
+    }
+
+    .cilindro-wrapper{
+
+        display:block !important;
+
+        page-break-inside:avoid;
+
     }
 
 }
@@ -424,20 +802,25 @@ button.clear-btn{
 <body>
 
 <h1>
-    MEDIÇÃO DAS VÁLVULAS DO SCANIA-550
+MEDIÇÃO DAS VÁLVULAS DO SCANIA-550
 </h1>
+
+<!-- =====================================================
+     INFORMAÇÕES GERAIS
+     ===================================================== -->
 
 <table class="info-table">
 
 <tr>
 
 <td>
+
 <strong>MECÂNICO:</strong>
 
 <input
-    type="text"
-    id="mecanico"
-    style="width:200px;"
+type="text"
+id="mecanico"
+style="width:200px;"
 >
 
 </td>
@@ -447,8 +830,8 @@ button.clear-btn{
 <strong>DATA:</strong>
 
 <input
-    type="date"
-    id="data"
+type="date"
+id="data"
 >
 
 </td>
@@ -462,9 +845,9 @@ button.clear-btn{
 <strong>USINA:</strong>
 
 <input
-    type="text"
-    id="usina"
-    style="width:200px;"
+type="text"
+id="usina"
+style="width:200px;"
 >
 
 </td>
@@ -474,8 +857,8 @@ button.clear-btn{
 <strong>HORÍMETRO:</strong>
 
 <input
-    type="text"
-    id="horimetro"
+type="text"
+id="horimetro"
 >
 
 </td>
@@ -489,9 +872,9 @@ button.clear-btn{
 <strong>SÉRIE:</strong>
 
 <input
-    type="text"
-    id="serie"
-    style="width:200px;"
+type="text"
+id="serie"
+style="width:200px;"
 >
 
 </td>
@@ -501,8 +884,8 @@ button.clear-btn{
 <strong>OS:</strong>
 
 <input
-    type="text"
-    id="os"
+type="text"
+id="os"
 >
 
 </td>
@@ -516,9 +899,9 @@ button.clear-btn{
 <strong>UGD-</strong>
 
 <input
-    type="text"
-    id="ugd"
-    style="width:60px;"
+type="text"
+id="ugd"
+style="width:60px;"
 >
 
 </td>
@@ -529,425 +912,533 @@ button.clear-btn{
 
 </table>
 
+<!-- =====================================================
+     AVISO
+     ===================================================== -->
+
 <div class="warning">
 
 <h3>
+
 MEDIÇÕES ACEITÁVEIS:
 64,00mm a
 <span style="font-weight:bold;color:red;">
 67,50mm
 </span>
+
 </h3>
 
 <h3>
+
 ACIMA DE
 <span style="font-weight:bold;color:red;">
 67,50mm
 </span>
 DEVE SER CONSIDERADA SUBSTITUIÇÃO
+
 </h3>
 
 </div>
 
-
-<!-- ====================================== -->
-<!-- NAVEGAÇÃO -->
-<!-- ====================================== -->
+<!-- =====================================================
+     NAVEGAÇÃO
+     ===================================================== -->
 
 <div class="navegacao-cilindros">
 
 <button
-    onclick="cilindroAnterior()"
+id="btnAnterior"
+onclick="cilindroAnterior()"
 >
-    ← CILINDRO ANTERIOR
-</button>
 
-<div
-    class="indicador-cilindro"
-    id="indicadorCilindro"
->
-    CILINDRO 1 / 6
-</div>
+← CILINDRO ANTERIOR
+
+</button>
 
 <button
-    onclick="proximoCilindro()"
+id="btnProximo"
+onclick="cilindroProximo()"
 >
-    PRÓXIMO CILINDRO →
+
+PRÓXIMO CILINDRO →
+
 </button>
 
 </div>
 
-
-<!-- ====================================== -->
-<!-- CILINDROS -->
-<!-- ====================================== -->
-
 <div
-    class="valve-container"
-    id="valveContainer"
-></div>
+class="progresso-cilindro"
+id="progressoCilindro"
+>
 
+CILINDRO 1 DE 6
+
+</div>
+
+<!-- =====================================================
+     CILINDROS
+     ===================================================== -->
+
+<div id="cilindrosContainer"></div>
+
+<!-- =====================================================
+     OBSERVAÇÕES
+     ===================================================== -->
 
 <div class="obs">
 
 <p>
-<strong>OBSERVAÇÕES:</strong>
+
+<strong>
+OBSERVAÇÕES:
+</strong>
+
 </p>
 
 <textarea
-    id="observacoes"
+id="observacoes"
 ></textarea>
 
 </div>
 
+<!-- =====================================================
+     BOTÕES
+     ===================================================== -->
 
 <div class="button-container">
 
-<button id="generatePdf">
-    Gerar PDF
+<button
+id="generatePdf"
+>
+
+📄 GERAR PDF
+
 </button>
 
 <button
-    id="clearBtn"
-    class="clear-btn"
+id="clearBtn"
+class="clear-btn"
 >
-    Limpar
+
+🗑️ LIMPAR
+
 </button>
 
 </div>
 
+<!-- =====================================================
+     ASSINATURA
+     ===================================================== -->
 
 <div class="signature">
 
 ASSINATURA DO MECÂNICO:
 
 <input
-    type="text"
-    id="assinatura"
-    placeholder="Digite seu nome aqui"
+type="text"
+id="assinatura"
+placeholder="Digite seu nome aqui"
 />
 
 </div>
 
-
 <script>
 
-const { jsPDF } = window.jspdf;
-
-
-/* ========================================= */
-/* CONTROLE DO CILINDRO                      */
-/* ========================================= */
+const {
+    jsPDF
+} = window.jspdf;
 
 let cilindroAtual = 1;
 
+const totalCilindros = 6;
 
-/* ========================================= */
-/* CRIA OS 6 CILINDROS                      */
-/* ========================================= */
+/* =====================================================
+   CRIAR CILINDROS
+   ===================================================== */
 
-const container =
-    document.getElementById(
-        'valveContainer'
-    );
+function criarCilindros(){
 
-
-for(let i=1;i<=6;i++){
-
-    const section =
-        document.createElement(
-            'div'
+    const container =
+        document.getElementById(
+            'cilindrosContainer'
         );
 
-    section.className =
-        'valve-section';
+    container.innerHTML = '';
 
-    section.id =
-        'cilindro-' + i;
+    for(
+        let i = 1;
+        i <= totalCilindros;
+        i++
+    ){
 
+        const wrapper =
+            document.createElement(
+                'div'
+            );
 
-    const label =
-        document.createElement(
-            'div'
-        );
+        wrapper.className =
+            'cilindro-wrapper';
 
-    label.className =
-        'cilindro-label';
+        wrapper.id =
+            `cilindro-${i}`;
 
-    label.textContent =
-        'CILINDRO ' + i;
+        wrapper.innerHTML = `
 
+            <div class="cilindro-titulo">
 
-    section.appendChild(
-        label
-    );
+                CILINDRO ${i}
 
+            </div>
 
-    const grid =
-        document.createElement(
-            'div'
-        );
+            <div class="valve-grid">
 
-    grid.className =
-        'cilindro-grid';
+                <!-- EXAUSTÃO 2 -->
 
+                <div class="valve-section">
 
-    const posicoes = [
+                    <div class="valve-title">
 
-        {
-            tipo:'exaustao',
-            j:2
-        },
-
-        {
-            tipo:'admissao',
-            j:2
-        },
-
-        {
-            tipo:'exaustao',
-            j:1
-        },
-
-        {
-            tipo:'admissao',
-            j:1
-        }
-
-    ];
-
-
-    posicoes.forEach(
-        ({tipo,j}) => {
-
-            const tipoNome =
-                tipo === 'exaustao'
-                    ? 'EXAUSTÃO'
-                    : 'ADMISSÃO';
-
-
-            const idPhoto =
-                tipo +
-                i +
-                '_' +
-                j;
-
-
-            const box =
-                document.createElement(
-                    'div'
-                );
-
-            box.className =
-                'valvula-box';
-
-
-            box.innerHTML = `
-
-                <div class="valvula-titulo">
-
-                    ${tipoNome} ${j}
-
-                </div>
-
-
-                <div class="photo-box"
-                    id="photo${idPhoto}"
-                >
-
-                    📷 FOTO
-
-                    <div class="photo-label">
-
-                        ${tipoNome} ${j}
+                        EXAUSTÃO 2
 
                     </div>
 
-                    <input
-                        type="file"
-                        accept="image/*"
-                        capture="environment"
-                        onchange="loadPhoto(event,'${idPhoto}')"
+                    <div
+                        class="photo-box"
+                        id="photoexaustao${i}_2"
                     >
+
+                        📷 FOTO
+
+                        <div class="photo-label">
+
+                            EXAUSTÃO 2
+
+                        </div>
+
+                        <input
+                            type="file"
+                            accept="image/*"
+                            capture="environment"
+                            onchange="loadPhoto(event,'exaustao${i}_2')"
+                        >
+
+                    </div>
+
+                    <div class="measurement">
+
+                        <input
+                            type="text"
+                            id="exaustao${i}_2"
+                            placeholder="Medição"
+                            inputmode="decimal"
+                        >
+
+                    </div>
+
+                    <button
+                        class="remove-photo"
+                        onclick="removePhoto('exaustao${i}_2')"
+                    >
+
+                        REMOVER FOTO
+
+                    </button>
 
                 </div>
 
+                <!-- ADMISSÃO 2 -->
 
-                <div class="measurement">
+                <div class="valve-section">
 
-                    <input
-                        type="text"
-                        id="${tipo}${i}_${j}"
-                        placeholder="Medição"
+                    <div class="valve-title">
+
+                        ADMISSÃO 2
+
+                    </div>
+
+                    <div
+                        class="photo-box"
+                        id="photoadmissao${i}_2"
                     >
+
+                        📷 FOTO
+
+                        <div class="photo-label">
+
+                            ADMISSÃO 2
+
+                        </div>
+
+                        <input
+                            type="file"
+                            accept="image/*"
+                            capture="environment"
+                            onchange="loadPhoto(event,'admissao${i}_2')"
+                        >
+
+                    </div>
+
+                    <div class="measurement">
+
+                        <input
+                            type="text"
+                            id="admissao${i}_2"
+                            placeholder="Medição"
+                            inputmode="decimal"
+                        >
+
+                    </div>
+
+                    <button
+                        class="remove-photo"
+                        onclick="removePhoto('admissao${i}_2')"
+                    >
+
+                        REMOVER FOTO
+
+                    </button>
 
                 </div>
 
+                <!-- EXAUSTÃO 1 -->
+
+                <div class="valve-section">
+
+                    <div class="valve-title">
+
+                        EXAUSTÃO 1
+
+                    </div>
+
+                    <div
+                        class="photo-box"
+                        id="photoexaustao${i}_1"
+                    >
+
+                        📷 FOTO
+
+                        <div class="photo-label">
+
+                            EXAUSTÃO 1
+
+                        </div>
+
+                        <input
+                            type="file"
+                            accept="image/*"
+                            capture="environment"
+                            onchange="loadPhoto(event,'exaustao${i}_1')"
+                        >
+
+                    </div>
+
+                    <div class="measurement">
+
+                        <input
+                            type="text"
+                            id="exaustao${i}_1"
+                            placeholder="Medição"
+                            inputmode="decimal"
+                        >
+
+                    </div>
+
+                    <button
+                        class="remove-photo"
+                        onclick="removePhoto('exaustao${i}_1')"
+                    >
+
+                        REMOVER FOTO
+
+                    </button>
+
+                </div>
+
+                <!-- ADMISSÃO 1 -->
+
+                <div class="valve-section">
+
+                    <div class="valve-title">
+
+                        ADMISSÃO 1
+
+                    </div>
+
+                    <div
+                        class="photo-box"
+                        id="photoadmissao${i}_1"
+                    >
+
+                        📷 FOTO
+
+                        <div class="photo-label">
+
+                            ADMISSÃO 1
+
+                        </div>
+
+                        <input
+                            type="file"
+                            accept="image/*"
+                            capture="environment"
+                            onchange="loadPhoto(event,'admissao${i}_1')"
+                        >
+
+                    </div>
+
+                    <div class="measurement">
+
+                        <input
+                            type="text"
+                            id="admissao${i}_1"
+                            placeholder="Medição"
+                            inputmode="decimal"
+                        >
+
+                    </div>
+
+                    <button
+                        class="remove-photo"
+                        onclick="removePhoto('admissao${i}_1')"
+                    >
+
+                        REMOVER FOTO
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="button-container">
 
                 <button
-                    class="remove-photo"
-                    onclick="removePhoto('${idPhoto}')"
+                    onclick="gerarJpgCilindro(${i})"
                 >
 
-                    REMOVER FOTO
+                    📷 GERAR JPG CILINDRO ${i}
 
                 </button>
 
-            `;
+            </div>
 
+        `;
 
-            grid.appendChild(
-                box
-            );
-
-        }
-    );
-
-
-    section.appendChild(
-        grid
-    );
-
-
-    const btnJpg =
-        document.createElement(
-            'button'
+        container.appendChild(
+            wrapper
         );
 
-    btnJpg.className =
-        'btn-jpg';
-
-    btnJpg.textContent =
-        '📷 GERAR JPG CILINDRO ' + i;
-
-    btnJpg.onclick =
-        () => gerarJpgCilindro(i);
-
-
-    section.appendChild(
-        btnJpg
-    );
-
-
-    container.appendChild(
-        section
-    );
+    }
 
 }
 
-
-/* ========================================= */
-/* MOSTRAR SOMENTE O CILINDRO ATUAL          */
-/* ========================================= */
+/* =====================================================
+   MOSTRAR CILINDRO
+   ===================================================== */
 
 function mostrarCilindro(numero){
+
+    if(
+        numero < 1 ||
+        numero > totalCilindros
+    ){
+
+        return;
+
+    }
 
     cilindroAtual =
         numero;
 
-
     document
         .querySelectorAll(
-            '.valve-section'
+            '.cilindro-wrapper'
         )
         .forEach(
-            section => {
+            elemento => {
 
-                section.style.display =
-                    'none';
+                elemento.classList.remove(
+                    'ativo'
+                );
 
             }
         );
 
-
     const atual =
         document.getElementById(
-            'cilindro-' + numero
+            `cilindro-${numero}`
         );
-
 
     if(atual){
 
-        atual.style.display =
-            'block';
+        atual.classList.add(
+            'ativo'
+        );
 
     }
-
 
     document.getElementById(
-        'indicadorCilindro'
-    ).textContent =
-        'CILINDRO ' +
-        numero +
-        ' / 6';
+        'progressoCilindro'
+    ).innerText =
+        `CILINDRO ${numero} DE ${totalCilindros}`;
 
+    document.getElementById(
+        'btnAnterior'
+    ).disabled =
+        numero === 1;
 
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
+    document.getElementById(
+        'btnProximo'
+    ).disabled =
+        numero === totalCilindros;
 
-}
-
-
-/* ========================================= */
-/* PRÓXIMO                                    */
-/* ========================================= */
-
-function proximoCilindro(){
-
-    if(cilindroAtual < 6){
-
-        mostrarCilindro(
-            cilindroAtual + 1
-        );
-
-    }
-    else{
-
-        alert(
-            'Você já está no CILINDRO 6.'
-        );
-
-    }
+    window.scrollTo(
+        0,
+        0
+    );
 
 }
 
-
-/* ========================================= */
-/* ANTERIOR                                   */
-/* ========================================= */
+/* =====================================================
+   CILINDRO ANTERIOR
+   ===================================================== */
 
 function cilindroAnterior(){
 
-    if(cilindroAtual > 1){
+    if(
+        cilindroAtual > 1
+    ){
 
         mostrarCilindro(
             cilindroAtual - 1
         );
 
     }
-    else{
 
-        alert(
-            'Você já está no CILINDRO 1.'
+}
+
+/* =====================================================
+   PRÓXIMO CILINDRO
+   ===================================================== */
+
+function cilindroProximo(){
+
+    if(
+        cilindroAtual <
+        totalCilindros
+    ){
+
+        mostrarCilindro(
+            cilindroAtual + 1
         );
 
     }
 
 }
 
-
-/* ========================================= */
-/* INICIA NO CILINDRO 1                      */
-/* ========================================= */
-
-mostrarCilindro(1);
-
-
-/* ========================================= */
-/* FOTO                                      */
-/* ========================================= */
+/* =====================================================
+   FOTO
+   ===================================================== */
 
 function loadPhoto(
     event,
@@ -962,88 +1453,51 @@ function loadPhoto(
     const file =
         event.target.files[0];
 
+    if(!file)
+        return;
 
-    if(file){
+    const reader =
+        new FileReader();
 
-        const reader =
-            new FileReader();
+    reader.onload =
+        function(e){
 
+            box.style.backgroundImage =
+                `url("${e.target.result}")`;
 
-        reader.onload =
-            function(e){
+            box.dataset.photo =
+                e.target.result;
 
-                box.style.backgroundImage =
-                    `url("${e.target.result}")`;
+            box.innerHTML = `
 
-                box.textContent =
-                    '';
+                <div
+                    class="photo-label"
+                >
+                    ${id
+                        .replace(/[0-9_]/g,' ')
+                        .toUpperCase()}
+                </div>
 
-                const label =
-                    document.createElement(
-                        'div'
-                    );
+                <input
+                    type="file"
+                    accept="image/*"
+                    capture="environment"
+                    onchange="loadPhoto(event,'${id}')"
+                >
 
-                label.className =
-                    'photo-label';
+            `;
 
-                const nome =
-                    id.includes('exaustao')
-                        ? 'EXAUSTÃO'
-                        : 'ADMISSÃO';
+        };
 
-                const numero =
-                    id.split('_')[1];
-
-                label.textContent =
-                    nome +
-                    ' ' +
-                    numero;
-
-                box.appendChild(
-                    label
-                );
-
-
-                const input =
-                    document.createElement(
-                        'input'
-                    );
-
-                input.type =
-                    'file';
-
-                input.accept =
-                    'image/*';
-
-                input.capture =
-                    'environment';
-
-                input.onchange =
-                    (event) =>
-                        loadPhoto(
-                            event,
-                            id
-                        );
-
-                box.appendChild(
-                    input
-                );
-
-            };
-
-
-        reader.readAsDataURL(
-            file
-        );
-
-    }
+    reader.readAsDataURL(
+        file
+    );
 
 }
 
-
-/* ========================================= */
-/* REMOVER FOTO                              */
-/* ========================================= */
+/* =====================================================
+   REMOVER FOTO
+   ===================================================== */
 
 function removePhoto(id){
 
@@ -1052,77 +1506,44 @@ function removePhoto(id){
             'photo' + id
         );
 
+    if(!box)
+        return;
 
     box.style.backgroundImage =
         '';
 
+    box.dataset.photo =
+        '';
 
-    box.textContent =
-        '📷 FOTO';
+    const tipo =
+        id
+            .replace(/[0-9_]/g,' ')
+            .toUpperCase();
 
+    box.innerHTML = `
 
-    const label =
-        document.createElement(
-            'div'
-        );
+        📷 FOTO
 
-    label.className =
-        'photo-label';
+        <div class="photo-label">
 
+            ${tipo}
 
-    const nome =
-        id.includes('exaustao')
-            ? 'EXAUSTÃO'
-            : 'ADMISSÃO';
+        </div>
 
+        <input
+            type="file"
+            accept="image/*"
+            capture="environment"
+            onchange="loadPhoto(event,'${id}')"
+        >
 
-    const numero =
-        id.split('_')[1];
-
-
-    label.textContent =
-        nome +
-        ' ' +
-        numero;
-
-
-    box.appendChild(
-        label
-    );
-
-
-    const input =
-        document.createElement(
-            'input'
-        );
-
-    input.type =
-        'file';
-
-    input.accept =
-        'image/*';
-
-    input.capture =
-        'environment';
-
-    input.onchange =
-        (event) =>
-            loadPhoto(
-                event,
-                id
-            );
-
-
-    box.appendChild(
-        input
-    );
+    `;
 
 }
 
-
-/* ========================================= */
-/* RETÂNGULO ARREDONDADO                     */
-/* ========================================= */
+/* =====================================================
+   RETÂNGULO ARREDONDADO
+   ===================================================== */
 
 function roundRect(
     ctx,
@@ -1144,21 +1565,21 @@ function roundRect(
 
     }
 
-
     if(
         typeof radius ===
         'number'
     ){
 
         radius = {
+
             tl:radius,
             tr:radius,
             br:radius,
             bl:radius
+
         };
 
     }
-
 
     ctx.beginPath();
 
@@ -1225,10 +1646,9 @@ function roundRect(
 
 }
 
-
-/* ========================================= */
-/* GERAR JPG DO CILINDRO                     */
-/* ========================================= */
+/* =====================================================
+   GERAR JPG
+   ===================================================== */
 
 async function gerarJpgCilindro(i){
 
@@ -1238,12 +1658,10 @@ async function gerarJpgCilindro(i){
     const imgHeight =
         1900;
 
-
     const canvasCil =
         document.createElement(
             'canvas'
         );
-
 
     canvasCil.width =
         imgSize;
@@ -1251,15 +1669,13 @@ async function gerarJpgCilindro(i){
     canvasCil.height =
         imgHeight;
 
-
     const ctxCil =
         canvasCil.getContext(
             '2d'
         );
 
-
     ctxCil.fillStyle =
-        '#fff';
+        "#fff";
 
     ctxCil.fillRect(
         0,
@@ -1267,7 +1683,6 @@ async function gerarJpgCilindro(i){
         imgSize,
         imgHeight
     );
-
 
     const fotos = [
 
@@ -1278,6 +1693,14 @@ async function gerarJpgCilindro(i){
 
     ];
 
+    const idsMedicao = [
+
+        `exaustao${i}_2`,
+        `admissao${i}_2`,
+        `exaustao${i}_1`,
+        `admissao${i}_1`
+
+    ];
 
     const legendas = [
 
@@ -1288,20 +1711,30 @@ async function gerarJpgCilindro(i){
 
     ];
 
-
     const pos = [
 
         [0,0],
-        [imgSize/2,0],
-        [0,imgHeight/2],
-        [imgSize/2,imgHeight/2]
+
+        [
+            imgSize / 2,
+            0
+        ],
+
+        [
+            0,
+            imgHeight / 2
+        ],
+
+        [
+            imgSize / 2,
+            imgHeight / 2
+        ]
 
     ];
 
-
     for(
-        let j=0;
-        j<4;
+        let j = 0;
+        j < 4;
         j++
     ){
 
@@ -1310,35 +1743,39 @@ async function gerarJpgCilindro(i){
                 fotos[j]
             );
 
-
-        const valInputId =
-            fotos[j].replace(
-                'photo',
-                ''
-            );
-
-
-        const inputValEl =
+        const medicao =
             document.getElementById(
-                valInputId
+                idsMedicao[j]
             );
 
-
-        const val =
-            inputValEl
+        const valor =
+            medicao
                 ? parseFloat(
-                    inputValEl.value
-                        .replace(
-                            ',',
-                            '.'
-                        )
-                )
+                    medicao.value
+                        .replace(',','.')
+                  )
                 : null;
 
+        const x =
+            pos[j][0];
+
+        const y =
+            pos[j][1];
+
+        const largura =
+            imgSize / 2;
+
+        const altura =
+            imgHeight / 2;
+
+        /*
+        FOTO
+        */
 
         if(
             box &&
-            box.style.backgroundImage
+            box.style.backgroundImage &&
+            box.style.backgroundImage !== 'none'
         ){
 
             let imgUrl =
@@ -1352,173 +1789,258 @@ async function gerarJpgCilindro(i){
                         ''
                     );
 
-
             const imgEl =
                 new Image();
-
 
             imgEl.src =
                 imgUrl;
 
-
             await new Promise(
                 resolve => {
 
-                    if(imgEl.complete){
+                    imgEl.onload =
+                        resolve;
 
-                        resolve();
-
-                    }
-                    else{
-
-                        imgEl.onload =
-                            resolve;
-
-                        imgEl.onerror =
-                            resolve;
-
-                    }
+                    imgEl.onerror =
+                        resolve;
 
                 }
             );
 
-
             ctxCil.drawImage(
                 imgEl,
-                pos[j][0],
-                pos[j][1],
-                imgSize/2,
-                imgHeight/2
+                x,
+                y,
+                largura,
+                altura
             );
 
+        }
 
-            const rectWidth =
-                imgSize/2;
+        /*
+        FUNDO CASO NÃO TENHA FOTO
+        */
 
-            const rectHeight =
-                40;
-
-            const rectX =
-                pos[j][0];
-
-            const rectY =
-                pos[j][1] +
-                imgHeight/2 -
-                rectHeight;
-
+        else{
 
             ctxCil.fillStyle =
-                'white';
+                "#eeeeee";
+
+            ctxCil.fillRect(
+                x,
+                y,
+                largura,
+                altura
+            );
+
+            ctxCil.fillStyle =
+                "#777";
+
+            ctxCil.font =
+                "bold 40px Arial";
+
+            ctxCil.textAlign =
+                "center";
+
+            ctxCil.textBaseline =
+                "middle";
+
+            ctxCil.fillText(
+                "📷 FOTO",
+                x + largura / 2,
+                y + altura / 2
+            );
+
+        }
+
+        /*
+        LEGENDA
+        */
+
+        const rectHeight =
+            60;
+
+        const rectY =
+            y +
+            altura -
+            rectHeight;
+
+        ctxCil.fillStyle =
+            "white";
+
+        ctxCil.strokeStyle =
+            "black";
+
+        ctxCil.lineWidth =
+            2;
+
+        roundRect(
+            ctxCil,
+            x,
+            rectY,
+            largura,
+            rectHeight,
+            10,
+            true,
+            true
+        );
+
+        ctxCil.fillStyle =
+            "black";
+
+        ctxCil.font =
+            "bold 32px Arial";
+
+        ctxCil.textAlign =
+            "center";
+
+        ctxCil.textBaseline =
+            "middle";
+
+        ctxCil.fillText(
+            legendas[j],
+            x + largura / 2,
+            rectY + rectHeight / 2
+        );
+
+        /*
+        MEDIÇÃO
+        */
+
+        if(
+            valor !== null &&
+            !isNaN(valor)
+        ){
+
+            const medicaoTexto =
+                valor
+                    .toFixed(2)
+                    .replace(
+                        '.',
+                        ','
+                    ) +
+                " mm";
+
+            ctxCil.font =
+                "bold 42px Arial";
+
+            const larguraTexto =
+                ctxCil.measureText(
+                    medicaoTexto
+                ).width;
+
+            const caixaLargura =
+                larguraTexto + 50;
+
+            const caixaAltura =
+                65;
+
+            const caixaX =
+                x +
+                (
+                    largura -
+                    caixaLargura
+                ) / 2;
+
+            const caixaY =
+                rectY -
+                caixaAltura -
+                15;
+
+            ctxCil.fillStyle =
+                "white";
 
             ctxCil.strokeStyle =
-                'black';
+                valor >= 67.50
+                    ? "red"
+                    : "black";
 
             ctxCil.lineWidth =
-                2;
-
+                3;
 
             roundRect(
                 ctxCil,
-                rectX,
-                rectY,
-                rectWidth,
-                rectHeight,
-                10,
+                caixaX,
+                caixaY,
+                caixaLargura,
+                caixaAltura,
+                12,
                 true,
                 true
             );
 
-
             ctxCil.fillStyle =
-                'black';
-
-            ctxCil.font =
-                'bold 30px Arial';
-
-            ctxCil.textAlign =
-                'center';
-
-            ctxCil.textBaseline =
-                'middle';
-
+                valor >= 67.50
+                    ? "red"
+                    : "black";
 
             ctxCil.fillText(
-                legendas[j],
-                rectX + rectWidth/2,
-                rectY + rectHeight/2
+                medicaoTexto,
+                x + largura / 2,
+                caixaY + caixaAltura / 2
             );
 
-
-            /* =========================== */
-            /* DESTAQUE DO AFUNDAMENTO     */
-            /* =========================== */
+            /*
+            AFUNDAMENTO
+            */
 
             if(
-                val !== null &&
-                val >= 67.50
+                valor >= 67.50
             ){
 
                 const desc =
-                    `AFUNDAMENTO (${val.toFixed(2).replace('.',',')}mm)`;
+                    "AFUNDAMENTO";
 
+                ctxCil.font =
+                    "bold 28px Arial";
 
-                const metrics =
+                const larguraDesc =
                     ctxCil.measureText(
                         desc
-                    );
+                    ).width + 30;
 
+                const alturaDesc =
+                    45;
 
-                const padding =
-                    10;
-
-
-                const txtWidth =
-                    metrics.width +
-                    padding * 2;
-
-
-                const txtHeight =
-                    40;
-
-
-                const txtX =
-                    pos[j][0] +
+                const descX =
+                    x +
                     (
-                        imgSize/2 -
-                        txtWidth
+                        largura -
+                        larguraDesc
                     ) / 2;
 
-
-                const txtY =
-                    rectY -
-                    txtHeight -
+                const descY =
+                    caixaY -
+                    alturaDesc -
                     10;
 
-
                 ctxCil.fillStyle =
-                    '#FFFFFF';
+                    "white";
 
+                ctxCil.strokeStyle =
+                    "red";
+
+                ctxCil.lineWidth =
+                    2;
 
                 roundRect(
                     ctxCil,
-                    txtX,
-                    txtY,
-                    txtWidth,
-                    txtHeight,
+                    descX,
+                    descY,
+                    larguraDesc,
+                    alturaDesc,
                     10,
                     true,
                     true
                 );
 
-
                 ctxCil.fillStyle =
-                    'red';
-
+                    "red";
 
                 ctxCil.fillText(
                     desc,
-                    txtX + txtWidth/2,
-                    txtY + txtHeight/2
+                    x + largura / 2,
+                    descY + alturaDesc / 2
                 );
 
             }
@@ -1527,89 +2049,81 @@ async function gerarJpgCilindro(i){
 
     }
 
+    /*
+    =====================================================
+    TÍTULO
+    =====================================================
+    */
 
-    /* ================================= */
-    /* TÍTULO DO CILINDRO                */
-    /* ================================= */
-
-    const numText =
+    const titulo =
         `CILINDRO ${i}`;
 
-
     ctxCil.font =
-        'bold 50px Arial';
+        "bold 55px Arial";
 
-
-    const numWidth =
+    const tituloWidth =
         ctxCil.measureText(
-            numText
+            titulo
         ).width;
 
+    const tituloPadding =
+        30;
 
-    const numPadding =
-        20;
+    const tituloHeight =
+        75;
 
-
-    const rectHeight =
-        60;
-
-
-    const rectX =
+    const tituloX =
         (
             imgSize -
-            numWidth
-        ) / 2 -
-        numPadding;
+            tituloWidth -
+            tituloPadding * 2
+        ) / 2;
 
-
-    const rectY =
-        5;
-
+    const tituloY =
+        10;
 
     ctxCil.fillStyle =
-        'white';
+        "white";
 
     ctxCil.strokeStyle =
-        'black';
+        "black";
 
     ctxCil.lineWidth =
-        2;
-
+        3;
 
     roundRect(
         ctxCil,
-        rectX,
-        rectY,
-        numWidth +
-        numPadding * 2,
-        rectHeight,
+        tituloX,
+        tituloY,
+        tituloWidth +
+        tituloPadding * 2,
+        tituloHeight,
         15,
         true,
         true
     );
 
-
     ctxCil.fillStyle =
-        'black';
+        "black";
 
     ctxCil.textAlign =
-        'center';
+        "center";
 
     ctxCil.textBaseline =
-        'middle';
-
+        "middle";
 
     ctxCil.fillText(
-        numText,
-        imgSize/2,
-        rectY +
-        rectHeight/2
+        titulo,
+        imgSize / 2,
+        tituloY +
+        tituloHeight / 2
     );
 
-
-    /* ================================= */
-    /* CONVERTE PARA JPG                 */
-    /* ================================= */
+    /*
+    =====================================================
+    GERAR JPG
+    =====================================================
+    */
 
     const imgData =
         canvasCil.toDataURL(
@@ -1617,225 +2131,293 @@ async function gerarJpgCilindro(i){
             0.95
         );
 
-
     const nomeArquivo =
-        `CILINDRO${i}.jpg`;
-
+        `CILINDRO_${i}.jpg`;
 
     /*
-     * TENTA O DOWNLOAD NORMAL
-     */
+    TENTATIVA DE DOWNLOAD
+    */
+
+    const link =
+        document.createElement(
+            'a'
+        );
+
+    link.href =
+        imgData;
+
+    link.download =
+        nomeArquivo;
+
+    link.style.display =
+        'none';
+
+    document.body.appendChild(
+        link
+    );
 
     try{
 
-        const link =
-            document.createElement(
-                'a'
-            );
-
-
-        link.href =
-            imgData;
-
-        link.download =
-            nomeArquivo;
-
-
-        document.body.appendChild(
-            link
-        );
-
-
         link.click();
-
-
-        link.remove();
-
-
-        /*
-         * No celular alguns navegadores
-         * não respeitam o download.
-         *
-         * Abrimos a imagem em uma nova
-         * aba também, permitindo salvar
-         * manualmente caso necessário.
-         */
-
-        setTimeout(
-            function(){
-
-                if(
-                    /Android|iPhone|iPad|iPod/i.test(
-                        navigator.userAgent
-                    )
-                ){
-
-                    const novaAba =
-                        window.open(
-                            ''
-                        );
-
-
-                    if(novaAba){
-
-                        novaAba.document.write(`
-
-                            <html>
-
-                            <head>
-
-                                <title>
-                                    ${nomeArquivo}
-                                </title>
-
-                                <meta
-                                    name="viewport"
-                                    content="width=device-width,initial-scale=1"
-                                >
-
-                                <style>
-
-                                    body{
-                                        margin:0;
-                                        background:#222;
-                                        display:flex;
-                                        flex-direction:column;
-                                        align-items:center;
-                                        justify-content:center;
-                                        min-height:100vh;
-                                    }
-
-                                    img{
-                                        max-width:100%;
-                                        height:auto;
-                                    }
-
-                                    p{
-                                        color:white;
-                                        font-family:Arial;
-                                        text-align:center;
-                                        padding:15px;
-                                    }
-
-                                </style>
-
-                            </head>
-
-                            <body>
-
-                                <p>
-                                    Se o download não iniciou,
-                                    pressione a imagem e escolha
-                                    <b>Salvar imagem</b>.
-                                </p>
-
-                                <img
-                                    src="${imgData}"
-                                >
-
-                            </body>
-
-                            </html>
-
-                        `);
-
-
-                        novaAba.document.close();
-
-                    }
-
-                }
-
-            },
-            500
-        );
 
     }
     catch(erro){
 
-        console.error(
-            erro
+        console.log(
+            "Download automático bloqueado."
         );
 
+    }
 
-        /*
-         * FALLBACK:
-         * abre a imagem diretamente
-         */
+    document.body.removeChild(
+        link
+    );
 
-        const novaAba =
-            window.open(
-                ''
-            );
+    /*
+    =====================================================
+    TELA PARA CELULAR
+    =====================================================
+    */
 
+    setTimeout(
+        function(){
 
-        if(novaAba){
+            const janela =
+                window.open(
+                    '',
+                    '_blank'
+                );
 
-            novaAba.document.write(`
+            if(!janela){
 
-                <html>
+                alert(
+                    "O navegador bloqueou a abertura da imagem."
+                );
 
-                <head>
+                return;
 
-                    <title>
-                        ${nomeArquivo}
-                    </title>
+            }
 
-                </head>
+            janela.document.write(`
 
-                <body
-                    style="
-                    margin:0;
-                    background:#222;
-                    text-align:center;
-                    "
-                >
+<!DOCTYPE html>
 
-                    <p
-                        style="
-                        color:white;
-                        font-family:Arial;
-                        padding:15px;
-                        "
-                    >
+<html lang="pt-BR">
 
-                        Pressione a imagem e escolha
-                        <b>Salvar imagem</b>.
+<head>
 
-                    </p>
+<meta charset="UTF-8">
 
-                    <img
-                        src="${imgData}"
-                        style="
-                        max-width:100%;
-                        height:auto;
-                        "
-                    >
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0"
+>
 
-                </body>
+<title>
+CILINDRO ${i}
+</title>
 
-                </html>
+<style>
+
+body{
+
+    margin:0;
+
+    padding:15px;
+
+    background:#222;
+
+    font-family:Arial;
+
+    text-align:center;
+
+}
+
+h2{
+
+    color:white;
+
+}
+
+img{
+
+    width:100%;
+
+    max-width:900px;
+
+    height:auto;
+
+    border-radius:8px;
+
+    background:white;
+
+}
+
+button{
+
+    border:none;
+
+    background:#257500;
+
+    color:white;
+
+    padding:16px 25px;
+
+    margin:10px 5px;
+
+    border-radius:8px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+}
+
+.fechar{
+
+    background:#FF4500;
+
+}
+
+p{
+
+    color:white;
+
+    font-size:14px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>
+📷 CILINDRO ${i}
+</h2>
+
+<img
+src="${imgData}"
+id="imagem"
+/>
+
+<br>
+
+<button
+onclick="baixar()"
+>
+
+⬇️ BAIXAR IMAGEM
+
+</button>
+
+<button
+class="fechar"
+onclick="window.close()"
+>
+
+✕ FECHAR
+
+</button>
+
+<p>
+
+Se o download automático não funcionar,
+toque em <b>BAIXAR IMAGEM</b>.
+
+</p>
+
+<script>
+
+function baixar(){
+
+    const a =
+        document.createElement(
+            'a'
+        );
+
+    a.href =
+        "${imgData}";
+
+    a.download =
+        "${nomeArquivo}";
+
+    document.body.appendChild(
+        a
+    );
+
+    a.click();
+
+    document.body.removeChild(
+        a
+    );
+
+}
+
+<\/script>
+
+</body>
+
+</html>
 
             `);
 
-            novaAba.document.close();
+            janela.document.close();
 
-        }
+        },
+        300
+    );
+
+}
+
+/* =====================================================
+   DESTAQUE AUTOMÁTICO
+   ===================================================== */
+
+function atualizarDestaque(
+    input
+){
+
+    const valor =
+        parseFloat(
+            input.value.replace(
+                ',',
+                '.'
+            )
+        );
+
+    if(
+        !isNaN(valor) &&
+        valor >= 67.50
+    ){
+
+        input.style.color =
+            "red";
+
+        input.style.fontWeight =
+            "bold";
+
+    }
+    else{
+
+        input.style.color =
+            "black";
+
+        input.style.fontWeight =
+            "normal";
 
     }
 
 }
 
+/* =====================================================
+   PDF
+   ===================================================== */
 
-/* ========================================= */
-/* GERAR PDF                                 */
-/* ========================================= */
-
-document
-.getElementById(
+document.getElementById(
     'generatePdf'
-)
-.addEventListener(
+).addEventListener(
     'click',
     async function(){
 
@@ -1845,31 +2427,28 @@ document
                 format:'a4'
             });
 
-
         const img =
             new Image();
-
 
         img.crossOrigin =
             'anonymous';
 
-
         img.src =
             'https://raw.githubusercontent.com/gabrielsenna97/tema/main/FORM_194_MEDICAO_DAS_VALVULAS_UTE550_REV0_O_M_2.jpg';
 
-
         await new Promise(
-            resolve =>
-                img.onload =
-                    resolve
-        );
+            resolve => {
 
+                img.onload =
+                    resolve;
+
+            }
+        );
 
         const canvas =
             document.createElement(
                 'canvas'
             );
-
 
         canvas.width =
             img.width;
@@ -1877,12 +2456,10 @@ document
         canvas.height =
             img.height;
 
-
         const ctx =
             canvas.getContext(
                 '2d'
             );
-
 
         ctx.drawImage(
             img,
@@ -1890,13 +2467,11 @@ document
             0
         );
 
-
         ctx.font =
             'bold 18px Arial';
 
         ctx.fillStyle =
             'black';
-
 
         ctx.fillText(
             document.getElementById(
@@ -1906,7 +2481,6 @@ document
             176
         );
 
-
         ctx.fillText(
             document.getElementById(
                 'usina'
@@ -1915,7 +2489,6 @@ document
             204
         );
 
-
         ctx.fillText(
             document.getElementById(
                 'serie'
@@ -1923,7 +2496,6 @@ document
             165,
             231
         );
-
 
         ctx.fillText(
             'UGD- ' +
@@ -1936,7 +2508,6 @@ document
             262
         );
 
-
         ctx.fillText(
             document.getElementById(
                 'os'
@@ -1945,12 +2516,10 @@ document
             262
         );
 
-
         const dataVal =
             document.getElementById(
                 'data'
             ).value;
-
 
         if(dataVal){
 
@@ -1966,7 +2535,6 @@ document
 
         }
 
-
         ctx.fillText(
             document.getElementById(
                 'horimetro'
@@ -1975,12 +2543,8 @@ document
             231
         );
 
-
-        /* MEDIÇÕES */
-
         const limiteMaximo =
             67.50;
-
 
         const campos = [
 
@@ -2016,7 +2580,6 @@ document
 
         ];
 
-
         campos.forEach(
             ([id,x,y]) => {
 
@@ -2024,7 +2587,6 @@ document
                     document.getElementById(
                         id
                     )?.value || '';
-
 
                 const valNum =
                     parseFloat(
@@ -2034,24 +2596,21 @@ document
                         )
                     );
 
-
                 ctx.fillStyle =
                     (
                         !isNaN(valNum) &&
                         valNum >= limiteMaximo
                     )
-                        ? 'red'
-                        : 'black';
-
+                    ? 'red'
+                    : 'black';
 
                 ctx.font =
                     (
                         !isNaN(valNum) &&
                         valNum >= limiteMaximo
                     )
-                        ? 'bold 18px Arial'
-                        : '18px Arial';
-
+                    ? 'bold 18px Arial'
+                    : '18px Arial';
 
                 ctx.fillText(
                     valRaw,
@@ -2062,14 +2621,10 @@ document
             }
         );
 
-
-        /* OBSERVAÇÕES */
-
         const obs =
             document.getElementById(
                 'observacoes'
             ).value;
-
 
         const maxWidth =
             950;
@@ -2086,7 +2641,6 @@ document
         let y =
             1237;
 
-
         words.forEach(
             word => {
 
@@ -2095,12 +2649,10 @@ document
                     word +
                     ' ';
 
-
                 const metrics =
                     ctx.measureText(
                         testLine
                     );
-
 
                 if(
                     metrics.width >
@@ -2113,11 +2665,9 @@ document
                         y
                     );
 
-
                     line =
                         word +
                         ' ';
-
 
                     y +=
                         lineHeight;
@@ -2133,19 +2683,14 @@ document
             }
         );
 
-
         ctx.fillText(
             line,
             183,
             y
         );
 
-
-        /* ASSINATURA */
-
         ctx.font =
             '40px "Brush Script MT", cursive';
-
 
         ctx.fillText(
             document.getElementById(
@@ -2155,13 +2700,11 @@ document
             1538
         );
 
-
         const imgData =
             canvas.toDataURL(
                 'image/jpeg',
                 1.0
             );
-
 
         pdf.addImage(
             imgData,
@@ -2172,7 +2715,6 @@ document
             pdf.internal.pageSize.getHeight()
         );
 
-
         pdf.save(
             'MEDICAO_VALVULAS.pdf'
         );
@@ -2180,182 +2722,104 @@ document
     }
 );
 
+/* =====================================================
+   LIMPAR
+   ===================================================== */
 
-/* ========================================= */
-/* LIMPAR                                    */
-/* ========================================= */
-
-document
-.getElementById(
+document.getElementById(
     'clearBtn'
-)
-.addEventListener(
+).addEventListener(
     'click',
     function(){
 
+        if(
+            !confirm(
+                'Deseja limpar todos os dados?'
+            )
+        ){
+
+            return;
+
+        }
+
         document
-        .querySelectorAll(
-            'input[type="text"], input[type="date"], textarea'
-        )
-        .forEach(
-            input =>
-                input.value=''
-        );
+            .querySelectorAll(
+                'input[type="text"], input[type="date"], textarea'
+            )
+            .forEach(
+                input => {
 
+                    input.value =
+                        '';
+
+                }
+            );
 
         document
-        .querySelectorAll(
-            '.photo-box'
-        )
-        .forEach(
-            box => {
+            .querySelectorAll(
+                '.photo-box'
+            )
+            .forEach(
+                box => {
 
-                box.style.backgroundImage =
-                    '';
-
-
-                box.textContent =
-                    '📷 FOTO';
-
-
-                const label =
-                    document.createElement(
-                        'div'
-                    );
-
-
-                label.className =
-                    'photo-label';
-
-
-                const id =
-                    box.id.replace(
-                        'photo',
-                        ''
-                    );
-
-
-                const nome =
-                    id.includes(
-                        'exaustao'
-                    )
-                        ? 'EXAUSTÃO'
-                        : 'ADMISSÃO';
-
-
-                const numero =
-                    id.split('_')[1];
-
-
-                label.textContent =
-                    nome +
-                    ' ' +
-                    numero;
-
-
-                box.appendChild(
-                    label
-                );
-
-
-                const input =
-                    document.createElement(
-                        'input'
-                    );
-
-
-                input.type =
-                    'file';
-
-                input.accept =
-                    'image/*';
-
-                input.capture =
-                    'environment';
-
-                input.onchange =
-                    event =>
-                        loadPhoto(
-                            event,
-                            id
+                    const id =
+                        box.id.replace(
+                            'photo',
+                            ''
                         );
 
+                    removePhoto(
+                        id
+                    );
 
-                box.appendChild(
-                    input
-                );
+                }
+            );
 
-            }
+        cilindroAtual =
+            1;
+
+        mostrarCilindro(
+            1
         );
-
-
-        mostrarCilindro(1);
 
     }
 );
 
+/* =====================================================
+   EVENTO MEDIÇÕES
+   ===================================================== */
 
-/* ========================================= */
-/* DESTAQUE AUTOMÁTICO                       */
-/* ========================================= */
+document.addEventListener(
+    'input',
+    function(event){
 
-function atualizarDestaque(
-    input
-){
-
-    const valor =
-        parseFloat(
-            input.value.replace(
-                ',',
-                '.'
+        if(
+            event.target.matches(
+                '.measurement input'
             )
-        );
+        ){
 
+            atualizarDestaque(
+                event.target
+            );
 
-    if(
-        !isNaN(valor) &&
-        valor >= 67.50
-    ){
-
-        input.style.color =
-            'red';
-
-        input.style.fontWeight =
-            'bold';
+        }
 
     }
-    else{
+);
 
-        input.style.color =
-            'black';
+/* =====================================================
+   INICIAR
+   ===================================================== */
 
-        input.style.fontWeight =
-            'normal';
+criarCilindros();
 
-    }
-
-}
-
-
-document
-.querySelectorAll(
-    'input[type="text"]'
-)
-.forEach(
-    input => {
-
-        input.addEventListener(
-            'input',
-            () =>
-                atualizarDestaque(
-                    input
-                )
-        );
-
-    }
+mostrarCilindro(
+    1
 );
 
 </script>
 
 </body>
+
 </html>

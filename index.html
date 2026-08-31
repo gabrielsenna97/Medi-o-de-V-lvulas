@@ -5,16 +5,22 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
 <title>Medição de Válvulas - Scania 550</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+</script>
 
 <style>
 
 /* =========================================================
-   BASE
+   CONFIGURAÇÃO GERAL
 ========================================================= */
 
 *{
@@ -22,42 +28,82 @@
 }
 
 body{
+
     margin:0;
-    padding:12px;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#eef1f3;
+
+    padding:10px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2f3,
+            #dfe5e7
+        );
+
     color:#222;
+
 }
+
 
 /* =========================================================
    CABEÇALHO
 ========================================================= */
 
 .header{
-    background:linear-gradient(145deg,#257500,#145000);
+
+    background:
+        linear-gradient(
+            145deg,
+            #2d8704,
+            #176000
+        );
+
     color:white;
+
     border-radius:14px;
+
     padding:16px 12px;
+
     text-align:center;
+
     margin-bottom:12px;
 
     box-shadow:
-        0 5px 0 #0d3b00,
-        0 8px 18px rgba(0,0,0,.20);
+
+        0 4px 0 #0d3b00,
+
+        0 7px 16px
+        rgba(0,0,0,.20);
+
 }
 
 .header h1{
+
     margin:0;
+
     font-size:20px;
-    letter-spacing:.4px;
+
+    letter-spacing:.5px;
+
 }
 
 .header span{
+
     display:block;
+
     margin-top:4px;
-    font-size:12px;
+
+    font-size:11px;
+
     opacity:.85;
+
 }
+
 
 /* =========================================================
    CARTÃO DE INFORMAÇÕES
@@ -74,27 +120,40 @@ body{
     margin-bottom:12px;
 
     box-shadow:
-        0 3px 8px rgba(0,0,0,.12),
-        inset 0 1px 0 rgba(255,255,255,.8);
+
+        0 4px 10px
+        rgba(0,0,0,.12),
+
+        inset 0 1px 0
+        rgba(255,255,255,.9);
+
 }
+
 
 .info-grid{
 
     display:grid;
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap:9px;
+
 }
 
+
 .campo{
+
     display:flex;
+
     flex-direction:column;
+
 }
+
 
 .campo label{
 
-    font-size:11px;
+    font-size:10px;
 
     font-weight:bold;
 
@@ -103,7 +162,9 @@ body{
     margin-bottom:4px;
 
     text-transform:uppercase;
+
 }
+
 
 .campo input{
 
@@ -111,61 +172,87 @@ body{
 
     padding:10px;
 
-    border:1px solid #d0d0d0;
+    border:
+
+        1px solid
+        #d0d0d0;
 
     border-radius:8px;
 
-    background:#f8f9fa;
+    background:#f7f8f8;
 
     font-size:15px;
 
     outline:none;
 
     box-shadow:
-        inset 0 2px 4px rgba(0,0,0,.06);
+
+        inset 0 2px 4px
+        rgba(0,0,0,.05);
+
 }
+
 
 .campo input:focus{
 
     border-color:#257500;
 
-    background:white;
+    background:#fff;
 
     box-shadow:
-        0 0 0 2px rgba(37,117,0,.12);
+
+        0 0 0 2px
+        rgba(37,117,0,.12);
+
 }
 
+
 /* =========================================================
-   AVISO TÉCNICO
+   LIMITE DE MEDIÇÃO
 ========================================================= */
 
 .limite{
 
     background:#fff;
 
-    border-left:5px solid #257500;
+    border-left:
+        5px solid
+        #257500;
 
     border-radius:10px;
 
-    padding:10px 12px;
+    padding:10px;
 
     margin-bottom:12px;
 
-    box-shadow:0 3px 8px rgba(0,0,0,.10);
-
-    font-size:13px;
+    box-shadow:
+        0 3px 8px
+        rgba(0,0,0,.10);
 
     text-align:center;
+
+    font-size:12px;
+
+    line-height:1.7;
+
 }
+
 
 .limite strong{
+
     color:#257500;
+
 }
 
+
 .limite .critico{
+
     color:#d00000;
+
     font-weight:bold;
+
 }
+
 
 /* =========================================================
    NAVEGAÇÃO
@@ -175,24 +262,28 @@ body{
 
     display:grid;
 
-    grid-template-columns:1fr auto 1fr;
+    grid-template-columns:
+        1fr auto 1fr;
 
     gap:7px;
 
     align-items:center;
 
     margin-bottom:12px;
+
 }
+
 
 .nav-btn{
 
     border:none;
 
-    background:linear-gradient(
-        145deg,
-        #2d8704,
-        #176000
-    );
+    background:
+        linear-gradient(
+            145deg,
+            #2d8704,
+            #176000
+        );
 
     color:white;
 
@@ -204,20 +295,28 @@ body{
 
     font-weight:bold;
 
-    box-shadow:
-        0 3px 0 #0d3b00,
-        0 5px 10px rgba(0,0,0,.15);
-
     cursor:pointer;
+
+    box-shadow:
+
+        0 3px 0 #0d3b00,
+
+        0 5px 10px
+        rgba(0,0,0,.15);
+
 }
+
 
 .nav-btn:active{
 
-    transform:translateY(2px);
+    transform:
+        translateY(2px);
 
     box-shadow:
         0 1px 0 #0d3b00;
+
 }
+
 
 .nav-btn:disabled{
 
@@ -226,13 +325,17 @@ body{
     box-shadow:none;
 
     cursor:not-allowed;
+
 }
+
 
 .indicador{
 
     background:#fff;
 
-    border:2px solid #257500;
+    border:
+        2px solid
+        #257500;
 
     color:#257500;
 
@@ -246,11 +349,15 @@ body{
 
     white-space:nowrap;
 
-    box-shadow:0 2px 5px rgba(0,0,0,.10);
+    box-shadow:
+        0 2px 5px
+        rgba(0,0,0,.10);
+
 }
 
+
 /* =========================================================
-   CILINDRO
+   CARTÃO DO CILINDRO
 ========================================================= */
 
 .valve-section{
@@ -264,11 +371,11 @@ body{
     margin-bottom:12px;
 
     box-shadow:
-        0 5px 12px rgba(0,0,0,.14);
+        0 5px 13px
+        rgba(0,0,0,.14);
 
 }
 
-/* título discreto */
 
 .cilindro-label{
 
@@ -283,20 +390,25 @@ body{
     margin:3px 0 10px;
 
     letter-spacing:.5px;
+
 }
 
+
 /* =========================================================
-   GRID DAS VÁLVULAS
+   GRID 2 x 2
 ========================================================= */
 
 .layout-cilindro{
 
     display:grid;
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap:9px;
+
 }
+
 
 /* =========================================================
    BLOCO DA VÁLVULA
@@ -304,9 +416,16 @@ body{
 
 .valvula-bloco{
 
-    background:#f7f8f8;
+    background:
+        linear-gradient(
+            145deg,
+            #fafafa,
+            #f0f1f1
+        );
 
-    border:1px solid #ddd;
+    border:
+        1px solid
+        #d7d7d7;
 
     border-radius:11px;
 
@@ -315,17 +434,23 @@ body{
     text-align:center;
 
     box-shadow:
-        0 3px 6px rgba(0,0,0,.08),
+
+        0 3px 6px
+        rgba(0,0,0,.08),
+
         inset 0 1px 0 white;
+
 }
+
 
 .valvula-titulo{
 
-    background:linear-gradient(
-        145deg,
-        #2d8704,
-        #196000
-    );
+    background:
+        linear-gradient(
+            145deg,
+            #2d8704,
+            #196000
+        );
 
     color:white;
 
@@ -339,7 +464,9 @@ body{
 
     box-shadow:
         0 2px 0 #0d3b00;
+
 }
+
 
 /* =========================================================
    FOTO
@@ -349,11 +476,13 @@ body{
 
     width:100%;
 
-    aspect-ratio:1/1;
+    aspect-ratio:1 / 1;
 
     margin:8px auto;
 
-    border:2px dashed #aaa;
+    border:
+        2px dashed
+        #aaa;
 
     border-radius:9px;
 
@@ -367,7 +496,12 @@ body{
 
     overflow:hidden;
 
-    background:#e9ecef;
+    background:
+        linear-gradient(
+            145deg,
+            #f0f1f1,
+            #e2e5e6
+        );
 
     background-size:cover;
 
@@ -380,12 +514,18 @@ body{
     text-align:center;
 
     cursor:pointer;
+
 }
+
 
 .photo-box.has-photo{
 
-    border:2px solid #257500;
+    border:
+        2px solid
+        #257500;
+
 }
+
 
 .photo-box input[type="file"]{
 
@@ -400,7 +540,9 @@ body{
     opacity:0;
 
     cursor:pointer;
+
 }
+
 
 .photo-label{
 
@@ -414,14 +556,17 @@ body{
 
     padding:4px;
 
-    background:rgba(0,0,0,.65);
+    background:
+        rgba(0,0,0,.65);
 
     color:white;
 
     font-size:10px;
 
     font-weight:bold;
+
 }
+
 
 /* =========================================================
    MEDIÇÃO
@@ -430,7 +575,9 @@ body{
 .measurement{
 
     margin-top:5px;
+
 }
+
 
 .measurement input{
 
@@ -444,22 +591,29 @@ body{
 
     font-weight:bold;
 
-    border:2px solid #ddd;
+    border:
+        2px solid
+        #ddd;
 
     border-radius:8px;
 
-    background:white;
+    background:#fff;
 
     outline:none;
+
 }
+
 
 .measurement input:focus{
 
     border-color:#257500;
 
     box-shadow:
-        0 0 0 2px rgba(37,117,0,.12);
+        0 0 0 2px
+        rgba(37,117,0,.12);
+
 }
+
 
 .measurement input.alerta{
 
@@ -468,10 +622,12 @@ body{
     border-color:#d00000;
 
     background:#fff5f5;
+
 }
 
+
 /* =========================================================
-   REMOVER FOTO
+   BOTÃO REMOVER FOTO
 ========================================================= */
 
 .remove-photo{
@@ -495,7 +651,61 @@ body{
     font-weight:bold;
 
     cursor:pointer;
+
 }
+
+
+/* =========================================================
+   BOTÃO JPG
+========================================================= */
+
+.btn-jpg{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:11px;
+
+    border:none;
+
+    border-radius:9px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #2d8704,
+            #176000
+        );
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+
+        0 3px 0 #0d3b00,
+
+        0 4px 9px
+        rgba(0,0,0,.15);
+
+}
+
+
+.btn-jpg:active{
+
+    transform:
+        translateY(2px);
+
+    box-shadow:
+        0 1px 0 #0d3b00;
+
+}
+
 
 /* =========================================================
    OBSERVAÇÕES
@@ -503,7 +713,7 @@ body{
 
 .obs-card{
 
-    background:white;
+    background:#fff;
 
     padding:12px;
 
@@ -511,21 +721,27 @@ body{
 
     margin-top:12px;
 
-    box-shadow:0 3px 9px rgba(0,0,0,.12);
+    box-shadow:
+        0 3px 9px
+        rgba(0,0,0,.12);
+
 }
+
 
 .obs-card label{
 
     display:block;
 
-    font-size:12px;
+    font-size:11px;
 
     font-weight:bold;
 
     color:#555;
 
     margin-bottom:5px;
+
 }
+
 
 textarea{
 
@@ -537,19 +753,25 @@ textarea{
 
     padding:10px;
 
-    border:1px solid #ccc;
+    border:
+        1px solid
+        #ccc;
 
     border-radius:8px;
 
     font-size:14px;
 
     outline:none;
+
 }
+
 
 textarea:focus{
 
     border-color:#257500;
+
 }
+
 
 /* =========================================================
    ASSINATURA
@@ -557,7 +779,7 @@ textarea:focus{
 
 .assinatura-card{
 
-    background:white;
+    background:#fff;
 
     padding:12px;
 
@@ -565,21 +787,27 @@ textarea:focus{
 
     margin-top:12px;
 
-    box-shadow:0 3px 9px rgba(0,0,0,.12);
+    box-shadow:
+        0 3px 9px
+        rgba(0,0,0,.12);
+
 }
+
 
 .assinatura-card label{
 
     display:block;
 
-    font-size:12px;
+    font-size:11px;
 
     font-weight:bold;
 
     color:#555;
 
     margin-bottom:5px;
+
 }
+
 
 #assinatura{
 
@@ -587,18 +815,24 @@ textarea:focus{
 
     padding:10px;
 
-    border:1px solid #ccc;
+    border:
+        1px solid
+        #ccc;
 
     border-radius:8px;
 
     font-size:18px;
 
-    font-family:"Brush Script MT",cursive;
+    font-family:
+        "Brush Script MT",
+        cursive;
 
     color:#257500;
 
     text-align:center;
+
 }
+
 
 /* =========================================================
    BOTÕES FINAIS
@@ -608,14 +842,17 @@ textarea:focus{
 
     display:grid;
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap:9px;
 
     margin-top:12px;
 
     margin-bottom:20px;
+
 }
+
 
 .btn-principal{
 
@@ -625,11 +862,12 @@ textarea:focus{
 
     border-radius:9px;
 
-    background:linear-gradient(
-        145deg,
-        #2d8704,
-        #176000
-    );
+    background:
+        linear-gradient(
+            145deg,
+            #2d8704,
+            #176000
+        );
 
     color:white;
 
@@ -637,25 +875,44 @@ textarea:focus{
 
     font-weight:bold;
 
-    box-shadow:
-        0 3px 0 #0d3b00,
-        0 5px 10px rgba(0,0,0,.15);
-
     cursor:pointer;
+
+    box-shadow:
+
+        0 3px 0 #0d3b00,
+
+        0 5px 10px
+        rgba(0,0,0,.15);
+
 }
+
+
+.btn-principal:active{
+
+    transform:
+        translateY(2px);
+
+}
+
 
 .btn-limpar{
 
-    background:linear-gradient(
-        145deg,
-        #e84c3d,
-        #b9281d
-    );
+    background:
+        linear-gradient(
+            145deg,
+            #e84c3d,
+            #b9281d
+        );
 
     box-shadow:
+
         0 3px 0 #851c15,
-        0 5px 10px rgba(0,0,0,.15);
+
+        0 5px 10px
+        rgba(0,0,0,.15);
+
 }
+
 
 /* =========================================================
    MENSAGEM
@@ -669,7 +926,8 @@ textarea:focus{
 
     bottom:20px;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     background:#257500;
 
@@ -683,14 +941,18 @@ textarea:focus{
 
     font-weight:bold;
 
-    box-shadow:0 5px 18px rgba(0,0,0,.25);
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,.25);
 
     display:none;
 
     z-index:9999;
 
     text-align:center;
+
 }
+
 
 /* =========================================================
    DESKTOP
@@ -699,24 +961,38 @@ textarea:focus{
 @media(min-width:700px){
 
     body{
+
         max-width:900px;
+
         margin:auto;
+
         padding:25px;
+
     }
+
 
     .header h1{
+
         font-size:25px;
+
     }
+
 
     .layout-cilindro{
+
         gap:14px;
+
     }
 
+
     .valvula-bloco{
+
         padding:10px;
+
     }
 
 }
+
 
 /* =========================================================
    CELULARES PEQUENOS
@@ -725,29 +1001,48 @@ textarea:focus{
 @media(max-width:380px){
 
     body{
+
         padding:7px;
+
     }
+
 
     .info-grid{
+
         gap:6px;
+
     }
+
 
     .campo input{
+
         font-size:13px;
+
         padding:8px;
+
     }
+
 
     .valvula-titulo{
+
         font-size:10px;
+
     }
+
 
     .indicador{
+
         font-size:10px;
+
         padding:8px 6px;
+
     }
 
+
     .nav-btn{
+
         font-size:10px;
+
     }
 
 }
@@ -756,7 +1051,9 @@ textarea:focus{
 
 </head>
 
+
 <body>
+
 
 <!-- ======================================================
      CABEÇALHO
@@ -764,9 +1061,13 @@ textarea:focus{
 
 <div class="header">
 
-    <h1>MEDIÇÃO DAS VÁLVULAS</h1>
+    <h1>
+        MEDIÇÃO DAS VÁLVULAS
+    </h1>
 
-    <span>SCANIA 550 • FORMULÁRIO DE INSPEÇÃO</span>
+    <span>
+        SCANIA 550 • FORMULÁRIO DE INSPEÇÃO
+    </span>
 
 </div>
 
@@ -779,9 +1080,12 @@ textarea:focus{
 
     <div class="info-grid">
 
+
         <div class="campo">
 
-            <label>Mecânico</label>
+            <label>
+                Mecânico
+            </label>
 
             <input
                 type="text"
@@ -790,9 +1094,12 @@ textarea:focus{
 
         </div>
 
+
         <div class="campo">
 
-            <label>Data</label>
+            <label>
+                Data
+            </label>
 
             <input
                 type="date"
@@ -801,9 +1108,12 @@ textarea:focus{
 
         </div>
 
+
         <div class="campo">
 
-            <label>Usina</label>
+            <label>
+                Usina
+            </label>
 
             <input
                 type="text"
@@ -812,9 +1122,12 @@ textarea:focus{
 
         </div>
 
+
         <div class="campo">
 
-            <label>Horímetro</label>
+            <label>
+                Horímetro
+            </label>
 
             <input
                 type="text"
@@ -823,9 +1136,12 @@ textarea:focus{
 
         </div>
 
+
         <div class="campo">
 
-            <label>Série</label>
+            <label>
+                Série
+            </label>
 
             <input
                 type="text"
@@ -834,9 +1150,12 @@ textarea:focus{
 
         </div>
 
+
         <div class="campo">
 
-            <label>OS</label>
+            <label>
+                OS
+            </label>
 
             <input
                 type="text"
@@ -845,9 +1164,12 @@ textarea:focus{
 
         </div>
 
+
         <div class="campo">
 
-            <label>UGD</label>
+            <label>
+                UGD
+            </label>
 
             <input
                 type="text"
@@ -856,6 +1178,7 @@ textarea:focus{
             >
 
         </div>
+
 
     </div>
 
@@ -868,13 +1191,18 @@ textarea:focus{
 
 <div class="limite">
 
-    <strong>FAIXA ACEITÁVEL:</strong>
+    <strong>
+        FAIXA ACEITÁVEL:
+    </strong>
+
     64,00 mm a 67,50 mm
 
     <br>
 
     <span class="critico">
+
         ≥ 67,50 mm → CONSIDERAR SUBSTITUIÇÃO
+
     </span>
 
 </div>
@@ -886,28 +1214,38 @@ textarea:focus{
 
 <div class="navegacao">
 
+
     <button
         class="nav-btn"
         id="btnAnterior"
         onclick="cilindroAnterior()"
     >
+
         ← ANTERIOR
+
     </button>
+
 
     <div
         class="indicador"
         id="indicadorCilindro"
     >
+
         CILINDRO 1 / 6
+
     </div>
+
 
     <button
         class="nav-btn"
         id="btnProximo"
         onclick="proximoCilindro()"
     >
+
         PRÓXIMO →
+
     </button>
+
 
 </div>
 
@@ -925,7 +1263,9 @@ textarea:focus{
 
 <div class="obs-card">
 
-    <label>OBSERVAÇÕES</label>
+    <label>
+        OBSERVAÇÕES
+    </label>
 
     <textarea
         id="observacoes"
@@ -941,7 +1281,9 @@ textarea:focus{
 
 <div class="assinatura-card">
 
-    <label>ASSINATURA DO MECÂNICO</label>
+    <label>
+        ASSINATURA DO MECÂNICO
+    </label>
 
     <input
         type="text"
@@ -958,19 +1300,26 @@ textarea:focus{
 
 <div class="acoes">
 
+
     <button
         class="btn-principal"
         id="generatePdf"
     >
+
         📄 GERAR PDF
+
     </button>
+
 
     <button
         class="btn-principal btn-limpar"
         id="clearBtn"
     >
+
         LIMPAR
+
     </button>
+
 
 </div>
 
@@ -985,19 +1334,17 @@ textarea:focus{
 <script>
 
 /* =========================================================
-   PDF
-========================================================= */
-
-const { jsPDF } = window.jspdf;
-
-
-/* =========================================================
    CONFIGURAÇÃO
 ========================================================= */
 
-const LIMITE = 67.50;
+const { jsPDF } =
+    window.jspdf;
 
-let cilindroAtual = 1;
+const LIMITE =
+    67.50;
+
+let cilindroAtual =
+    1;
 
 
 /* =========================================================
@@ -1005,50 +1352,88 @@ let cilindroAtual = 1;
 ========================================================= */
 
 const container =
-    document.getElementById("valveContainer");
+    document.getElementById(
+        "valveContainer"
+    );
 
 
-for(let i = 1; i <= 6; i++){
+for(
+    let i = 1;
+    i <= 6;
+    i++
+){
 
     const section =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     section.className =
         "valve-section";
 
+
     section.id =
         "cilindro-" + i;
 
+
     section.style.display =
-        i === 1 ? "block" : "none";
+        i === 1
+        ? "block"
+        : "none";
 
 
     section.innerHTML = `
 
         <div class="cilindro-label">
+
             CILINDRO ${i}
+
         </div>
 
         <div class="layout-cilindro">
 
-            ${criarValvula("EXAUSTÃO",2,i)}
-            ${criarValvula("ADMISSÃO",2,i)}
-            ${criarValvula("EXAUSTÃO",1,i)}
-            ${criarValvula("ADMISSÃO",1,i)}
+            ${criarValvula(
+                "EXAUSTÃO",
+                2,
+                i
+            )}
+
+            ${criarValvula(
+                "ADMISSÃO",
+                2,
+                i
+            )}
+
+            ${criarValvula(
+                "EXAUSTÃO",
+                1,
+                i
+            )}
+
+            ${criarValvula(
+                "ADMISSÃO",
+                1,
+                i
+            )}
 
         </div>
 
         <button
-            class="btn-principal"
-            style="width:100%;margin-top:10px;"
+            class="btn-jpg"
             onclick="gerarJpgCilindro(${i})"
         >
+
             📷 GERAR FOTO DO CILINDRO ${i}
+
         </button>
 
     `;
 
-    container.appendChild(section);
+
+    container.appendChild(
+        section
+    );
 
 }
 
@@ -1057,18 +1442,29 @@ for(let i = 1; i <= 6; i++){
    CRIAR VÁLVULA
 ========================================================= */
 
-function criarValvula(tipo,j,i){
+function criarValvula(
+    tipo,
+    j,
+    i
+){
 
     const tipoId =
         tipo === "EXAUSTÃO"
         ? "exaustao"
         : "admissao";
 
+
     const id =
-        tipoId + i + "_" + j;
+        tipoId +
+        i +
+        "_" +
+        j;
+
 
     const photo =
-        "photo" + id;
+        "photo" +
+        id;
+
 
     return `
 
@@ -1080,27 +1476,38 @@ function criarValvula(tipo,j,i){
 
             </div>
 
+
             <div
                 class="photo-box"
                 id="${photo}"
             >
 
                 📷<br>
+
                 TOQUE PARA<br>
+
                 ADICIONAR FOTO
 
+
                 <div class="photo-label">
+
                     ${tipo} ${j}
+
                 </div>
+
 
                 <input
                     type="file"
                     accept="image/*"
                     capture="environment"
-                    onchange="loadPhoto(event,'${id}')"
+                    onchange="loadPhoto(
+                        event,
+                        '${id}'
+                    )"
                 >
 
             </div>
+
 
             <div class="measurement">
 
@@ -1113,30 +1520,43 @@ function criarValvula(tipo,j,i){
 
             </div>
 
+
             <button
                 class="remove-photo"
-                onclick="removePhoto('${id}')"
+                onclick="removePhoto(
+                    '${id}'
+                )"
             >
+
                 REMOVER FOTO
+
             </button>
 
         </div>
 
     `;
+
 }
 
 
 /* =========================================================
-   FOTO
+   CARREGAR FOTO
 ========================================================= */
 
-function loadPhoto(event,id){
+function loadPhoto(
+    event,
+    id
+){
 
     const box =
-        document.getElementById("photo" + id);
+        document.getElementById(
+            "photo" + id
+        );
+
 
     const file =
         event.target.files[0];
+
 
     if(!file)
         return;
@@ -1152,21 +1572,33 @@ function loadPhoto(event,id){
             box.style.backgroundImage =
                 `url("${e.target.result}")`;
 
-            box.classList.add("has-photo");
+
+            box.classList.add(
+                "has-photo"
+            );
+
 
             box.innerHTML = `
 
                 <div class="photo-label">
-                    ${id.includes("exaustao")
-                    ? "EXAUSTÃO"
-                    : "ADMISSÃO"}
+
+                    ${
+                        id.includes("exaustao")
+                        ? "EXAUSTÃO"
+                        : "ADMISSÃO"
+                    }
+
                 </div>
+
 
                 <input
                     type="file"
                     accept="image/*"
                     capture="environment"
-                    onchange="loadPhoto(event,'${id}')"
+                    onchange="loadPhoto(
+                        event,
+                        '${id}'
+                    )"
                 >
 
             `;
@@ -1174,7 +1606,9 @@ function loadPhoto(event,id){
         };
 
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(
+        file
+    );
 
 }
 
@@ -1183,18 +1617,27 @@ function loadPhoto(event,id){
    REMOVER FOTO
 ========================================================= */
 
-function removePhoto(id){
+function removePhoto(
+    id
+){
 
     const box =
-        document.getElementById("photo" + id);
+        document.getElementById(
+            "photo" + id
+        );
+
 
     if(!box)
         return;
 
 
-    box.style.backgroundImage = "";
+    box.style.backgroundImage =
+        "";
 
-    box.classList.remove("has-photo");
+
+    box.classList.remove(
+        "has-photo"
+    );
 
 
     const tipo =
@@ -1210,18 +1653,27 @@ function removePhoto(id){
     box.innerHTML = `
 
         📷<br>
+
         TOQUE PARA<br>
+
         ADICIONAR FOTO
 
+
         <div class="photo-label">
+
             ${tipo} ${numero}
+
         </div>
+
 
         <input
             type="file"
             accept="image/*"
             capture="environment"
-            onchange="loadPhoto(event,'${id}')"
+            onchange="loadPhoto(
+                event,
+                '${id}'
+            )"
         >
 
     `;
@@ -1235,12 +1687,17 @@ function removePhoto(id){
 
 function atualizarCilindro(){
 
-    for(let i=1;i<=6;i++){
+    for(
+        let i = 1;
+        i <= 6;
+        i++
+    ){
 
         const el =
             document.getElementById(
                 "cilindro-" + i
             );
+
 
         if(el){
 
@@ -1273,8 +1730,11 @@ function atualizarCilindro(){
 
 
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
 
 }
@@ -1282,7 +1742,9 @@ function atualizarCilindro(){
 
 function proximoCilindro(){
 
-    if(cilindroAtual < 6){
+    if(
+        cilindroAtual < 6
+    ){
 
         cilindroAtual++;
 
@@ -1295,7 +1757,9 @@ function proximoCilindro(){
 
 function cilindroAnterior(){
 
-    if(cilindroAtual > 1){
+    if(
+        cilindroAtual > 1
+    ){
 
         cilindroAtual--;
 
@@ -1325,7 +1789,7 @@ document.addEventListener(
         const valor =
             parseFloat(
                 event.target.value
-                .replace(",",".")
+                .replace(",", ".")
             );
 
 
@@ -1368,15 +1832,18 @@ function roundRect(
 
     ctx.beginPath();
 
+
     ctx.moveTo(
         x + radius,
         y
     );
 
+
     ctx.lineTo(
         x + width - radius,
         y
     );
+
 
     ctx.quadraticCurveTo(
         x + width,
@@ -1385,10 +1852,12 @@ function roundRect(
         y + radius
     );
 
+
     ctx.lineTo(
         x + width,
         y + height - radius
     );
+
 
     ctx.quadraticCurveTo(
         x + width,
@@ -1397,10 +1866,12 @@ function roundRect(
         y + height
     );
 
+
     ctx.lineTo(
         x + radius,
         y + height
     );
+
 
     ctx.quadraticCurveTo(
         x,
@@ -1409,10 +1880,12 @@ function roundRect(
         y + height - radius
     );
 
+
     ctx.lineTo(
         x,
         y + radius
     );
+
 
     ctx.quadraticCurveTo(
         x,
@@ -1420,11 +1893,14 @@ function roundRect(
         x + radius,
         y
     );
+
 
     ctx.closePath();
 
+
     if(fill)
         ctx.fill();
+
 
     if(stroke)
         ctx.stroke();
@@ -1433,30 +1909,45 @@ function roundRect(
 
 
 /* =========================================================
-   GERAR JPG
+   GERAR JPG DO CILINDRO
+   ORGANIZAÇÃO 2 x 2
 ========================================================= */
 
 async function gerarJpgCilindro(i){
 
-    const W = 1280;
+    const W =
+        1280;
 
-    const H = 1900;
+    const H =
+        1900;
 
 
     const canvas =
-        document.createElement("canvas");
+        document.createElement(
+            "canvas"
+        );
 
 
-    canvas.width = W;
+    canvas.width =
+        W;
 
-    canvas.height = H;
+    canvas.height =
+        H;
 
 
     const ctx =
-        canvas.getContext("2d");
+        canvas.getContext(
+            "2d"
+        );
 
 
-    ctx.fillStyle = "#ffffff";
+    /* =====================================================
+       FUNDO
+    ===================================================== */
+
+    ctx.fillStyle =
+        "#ffffff";
+
 
     ctx.fillRect(
         0,
@@ -1466,212 +1957,767 @@ async function gerarJpgCilindro(i){
     );
 
 
+    /* =====================================================
+       TÍTULO DISCRETO
+    ===================================================== */
+
+    ctx.textAlign =
+        "center";
+
+
+    ctx.textBaseline =
+        "middle";
+
+
+    ctx.font =
+        "bold 42px Arial";
+
+
+    ctx.fillStyle =
+        "#257500";
+
+
+    ctx.fillText(
+        `CILINDRO ${i}`,
+        W / 2,
+        45
+    );
+
+
+    /* linha */
+
+    ctx.strokeStyle =
+        "#d8d8d8";
+
+
+    ctx.lineWidth =
+        2;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+        80,
+        82
+    );
+
+
+    ctx.lineTo(
+        W - 80,
+        82
+    );
+
+
+    ctx.stroke();
+
+
+    /* =====================================================
+       DIMENSÕES DAS FOTOS
+    ===================================================== */
+
+    const margem =
+        25;
+
+
+    const espacamento =
+        15;
+
+
+    const topo =
+        105;
+
+
+    const larguraFoto =
+        (
+            W -
+            margem * 2 -
+            espacamento
+        ) / 2;
+
+
+    const alturaFoto =
+        (
+            H -
+            topo -
+            margem -
+            espacamento
+        ) / 2;
+
+
+    /* =====================================================
+       POSIÇÕES
+    ===================================================== */
+
     const fotos = [
 
-        `photoexaustao${i}_2`,
-        `photoadmissao${i}_2`,
-        `photoexaustao${i}_1`,
-        `photoadmissao${i}_1`
+        {
 
-    ];
+            id:
+                `photoexaustao${i}_2`,
+
+            nome:
+                "EXAUSTÃO 2",
+
+            x:
+                margem,
+
+            y:
+                topo
+
+        },
 
 
-    const legendas = [
+        {
 
-        "EXAUSTÃO 2",
-        "ADMISSÃO 2",
-        "EXAUSTÃO 1",
-        "ADMISSÃO 1"
+            id:
+                `photoadmissao${i}_2`,
 
-    ];
+            nome:
+                "ADMISSÃO 2",
+
+            x:
+                margem +
+                larguraFoto +
+                espacamento,
+
+            y:
+                topo
+
+        },
 
 
-    const pos = [
+        {
 
-        [0,120],
-        [W/2,120],
-        [0,H/2],
-        [W/2,H/2]
+            id:
+                `photoexaustao${i}_1`,
+
+            nome:
+                "EXAUSTÃO 1",
+
+            x:
+                margem,
+
+            y:
+                topo +
+                alturaFoto +
+                espacamento
+
+        },
+
+
+        {
+
+            id:
+                `photoadmissao${i}_1`,
+
+            nome:
+                "ADMISSÃO 1",
+
+            x:
+                margem +
+                larguraFoto +
+                espacamento,
+
+            y:
+                topo +
+                alturaFoto +
+                espacamento
+
+        }
 
     ];
 
 
     /* =====================================================
-       TÍTULO DISCRETO E CENTRALIZADO
+       PROCESSAR FOTOS
     ===================================================== */
 
-    ctx.textAlign = "center";
+    for(
+        let j = 0;
+        j < fotos.length;
+        j++
+    ){
 
-    ctx.textBaseline = "middle";
+        const item =
+            fotos[j];
 
-    ctx.font = "bold 38px Arial";
-
-    ctx.fillStyle = "#257500";
-
-    ctx.fillText(
-        `CILINDRO ${i}`,
-        W/2,
-        55
-    );
-
-
-    for(let j=0;j<4;j++){
 
         const box =
             document.getElementById(
-                fotos[j]
+                item.id
             );
 
+
+        /* =================================================
+           SEM FOTO
+        ================================================= */
 
         if(
             !box ||
             !box.style.backgroundImage
-        )
+        ){
+
+            ctx.fillStyle =
+                "#f3f3f3";
+
+
+            ctx.fillRect(
+                item.x,
+                item.y,
+                larguraFoto,
+                alturaFoto
+            );
+
+
+            ctx.strokeStyle =
+                "#cccccc";
+
+
+            ctx.lineWidth =
+                2;
+
+
+            ctx.strokeRect(
+                item.x,
+                item.y,
+                larguraFoto,
+                alturaFoto
+            );
+
+
+            ctx.fillStyle =
+                "#999999";
+
+
+            ctx.font =
+                "bold 24px Arial";
+
+
+            ctx.textAlign =
+                "center";
+
+
+            ctx.fillText(
+                item.nome,
+                item.x +
+                    larguraFoto / 2,
+                item.y +
+                    alturaFoto / 2
+            );
+
+
             continue;
 
+        }
 
-        const id =
-            fotos[j].replace(
+
+        /* =================================================
+           PEGAR MEDIÇÃO
+        ================================================= */
+
+        const inputId =
+            item.id.replace(
                 "photo",
                 ""
             );
 
 
         const input =
-            document.getElementById(id);
+            document.getElementById(
+                inputId
+            );
 
 
         const valor =
             input
             ? parseFloat(
-                input.value.replace(",",".")
+                input.value
+                    .replace(",", ".")
             )
             : NaN;
 
 
+        /* =================================================
+           PEGAR IMAGEM
+        ================================================= */
+
         let src =
             box.style.backgroundImage
-            .replace(/^url\(["']?/,"")
-            .replace(/["']?\)$/,"");
+            .replace(
+                /^url\(["']?/,
+                ""
+            )
+            .replace(
+                /["']?\)$/,
+                ""
+            );
 
 
         const img =
             new Image();
 
 
-        img.src = src;
+        img.src =
+            src;
 
 
-        await new Promise(resolve => {
+        await new Promise(
+            resolve => {
 
-            img.onload = resolve;
+                img.onload =
+                    resolve;
 
-        });
-
-
-        const x =
-            pos[j][0];
-
-        const y =
-            pos[j][1];
+            }
+        );
 
 
-        const cw =
-            W/2;
+        /* =================================================
+           AJUSTAR FOTO SEM DISTORCER
+        ================================================= */
 
-        const ch =
-            H/2 - 120;
+        const proporcaoImg =
+            img.width /
+            img.height;
+
+
+        const proporcaoBox =
+            larguraFoto /
+            alturaFoto;
+
+
+        let drawW;
+
+        let drawH;
+
+        let drawX;
+
+        let drawY;
+
+
+        if(
+            proporcaoImg >
+            proporcaoBox
+        ){
+
+            drawH =
+                alturaFoto;
+
+
+            drawW =
+                alturaFoto *
+                proporcaoImg;
+
+
+            drawX =
+                item.x +
+                (
+                    larguraFoto -
+                    drawW
+                ) / 2;
+
+
+            drawY =
+                item.y;
+
+        }
+        else{
+
+            drawW =
+                larguraFoto;
+
+
+            drawH =
+                larguraFoto /
+                proporcaoImg;
+
+
+            drawX =
+                item.x;
+
+
+            drawY =
+                item.y +
+                (
+                    alturaFoto -
+                    drawH
+                ) / 2;
+
+        }
+
+
+        /* fundo */
+
+        ctx.fillStyle =
+            "#eeeeee";
+
+
+        ctx.fillRect(
+            item.x,
+            item.y,
+            larguraFoto,
+            alturaFoto
+        );
+
+
+        /* =================================================
+           RECORTE DA FOTO
+        ================================================= */
+
+        ctx.save();
+
+
+        ctx.beginPath();
+
+
+        ctx.rect(
+            item.x,
+            item.y,
+            larguraFoto,
+            alturaFoto
+        );
+
+
+        ctx.clip();
 
 
         ctx.drawImage(
             img,
-            x,
-            y,
-            cw,
-            ch
+            drawX,
+            drawY,
+            drawW,
+            drawH
         );
 
 
-        /* legenda */
+        ctx.restore();
+
+
+        /* =================================================
+           BORDA
+        ================================================= */
+
+        ctx.strokeStyle =
+            "#cccccc";
+
+
+        ctx.lineWidth =
+            2;
+
+
+        ctx.strokeRect(
+            item.x,
+            item.y,
+            larguraFoto,
+            alturaFoto
+        );
+
+
+        /* =================================================
+           NOME DA VÁLVULA
+        ================================================= */
+
+        const faixaH =
+            58;
+
 
         ctx.fillStyle =
-            "rgba(0,0,0,.70)";
+            "rgba(0,0,0,.68)";
 
 
         ctx.fillRect(
-            x,
-            y + ch - 55,
-            cw,
-            55
+
+            item.x,
+
+            item.y +
+                alturaFoto -
+                faixaH,
+
+            larguraFoto,
+
+            faixaH
+
         );
 
 
         ctx.fillStyle =
-            "white";
+            "#ffffff";
 
 
         ctx.font =
-            "bold 28px Arial";
+            "bold 29px Arial";
 
 
         ctx.textAlign =
             "center";
 
 
+        ctx.textBaseline =
+            "middle";
+
+
         ctx.fillText(
-            legendas[j],
-            x + cw/2,
-            y + ch - 27
+
+            item.nome,
+
+            item.x +
+                larguraFoto / 2,
+
+            item.y +
+                alturaFoto -
+                faixaH / 2
+
         );
 
 
-        /* valor crítico */
+        /* =================================================
+           MEDIÇÃO
+        ================================================= */
 
         if(
-            !isNaN(valor) &&
-            valor >= LIMITE
+            !isNaN(valor)
         ){
 
+            const valorTexto =
+                valor
+                .toFixed(2)
+                .replace(
+                    ".",
+                    ","
+                );
+
+
+            const caixaW =
+                190;
+
+
+            const caixaH =
+                54;
+
+
+            const caixaX =
+                item.x +
+                15;
+
+
+            const caixaY =
+                item.y +
+                15;
+
+
             ctx.fillStyle =
-                "rgba(255,255,255,.92)";
+                "rgba(255,255,255,.94)";
 
 
-            ctx.fillRect(
-                x + 20,
-                y + 20,
-                300,
-                55
+            ctx.strokeStyle =
+                valor >= LIMITE
+                ? "#d00000"
+                : "#257500";
+
+
+            ctx.lineWidth =
+                3;
+
+
+            roundRect(
+
+                ctx,
+
+                caixaX,
+                caixaY,
+
+                caixaW,
+                caixaH,
+
+                10,
+
+                true,
+                true
+
             );
 
 
             ctx.fillStyle =
-                "#d00000";
+                valor >= LIMITE
+                ? "#d00000"
+                : "#257500";
 
 
             ctx.font =
-                "bold 26px Arial";
+                "bold 27px Arial";
+
+
+            ctx.textAlign =
+                "center";
+
+
+            ctx.textBaseline =
+                "middle";
 
 
             ctx.fillText(
-                `AFUNDAMENTO: ${valor
-                    .toFixed(2)
-                    .replace(".",",")} mm`,
-                x + 170,
-                y + 48
+
+                `${valorTexto} mm`,
+
+                caixaX +
+                    caixaW / 2,
+
+                caixaY +
+                    caixaH / 2
+
             );
+
+
+            /* =================================================
+               ALERTA
+            ================================================= */
+
+            if(
+                valor >= LIMITE
+            ){
+
+                const alertaW =
+                    290;
+
+
+                const alertaH =
+                    48;
+
+
+                const alertaX =
+                    item.x +
+                    larguraFoto -
+                    alertaW -
+                    15;
+
+
+                const alertaY =
+                    item.y +
+                    18;
+
+
+                ctx.fillStyle =
+                    "rgba(255,255,255,.95)";
+
+
+                ctx.strokeStyle =
+                    "#d00000";
+
+
+                ctx.lineWidth =
+                    3;
+
+
+                roundRect(
+
+                    ctx,
+
+                    alertaX,
+                    alertaY,
+
+                    alertaW,
+                    alertaH,
+
+                    9,
+
+                    true,
+                    true
+
+                );
+
+
+                ctx.fillStyle =
+                    "#d00000";
+
+
+                ctx.font =
+                    "bold 23px Arial";
+
+
+                ctx.fillText(
+
+                    "SUBSTITUIÇÃO",
+
+                    alertaX +
+                        alertaW / 2,
+
+                    alertaY +
+                        alertaH / 2
+
+                );
+
+            }
 
         }
 
     }
 
 
+    /* =====================================================
+       RODAPÉ
+    ===================================================== */
+
+    ctx.strokeStyle =
+        "#dddddd";
+
+
+    ctx.lineWidth =
+        1;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+        80,
+        H - 35
+    );
+
+
+    ctx.lineTo(
+        W - 80,
+        H - 35
+    );
+
+
+    ctx.stroke();
+
+
+    ctx.fillStyle =
+        "#777777";
+
+
+    ctx.font =
+        "16px Arial";
+
+
+    ctx.textAlign =
+        "center";
+
+
+    ctx.fillText(
+
+        "Medição das válvulas • Scania 550",
+
+        W / 2,
+
+        H - 15
+
+    );
+
+
+    /* =====================================================
+       DOWNLOAD
+    ===================================================== */
+
     canvas.toBlob(
+
         function(blob){
 
             if(!blob){
 
                 alert(
-                    "Não foi possível gerar a imagem."
+                    "Não foi possível gerar o JPG."
                 );
 
                 return;
@@ -1680,29 +2726,46 @@ async function gerarJpgCilindro(i){
 
 
             const url =
-                URL.createObjectURL(blob);
+                URL.createObjectURL(
+                    blob
+                );
 
 
             const link =
-                document.createElement("a");
+                document.createElement(
+                    "a"
+                );
 
 
-            link.href = url;
+            link.href =
+                url;
+
 
             link.download =
                 `CILINDRO_${i}.jpg`;
 
 
-            document.body.appendChild(link);
+            document.body.appendChild(
+                link
+            );
+
 
             link.click();
 
-            link.remove();
+
+            document.body.removeChild(
+                link
+            );
 
 
             setTimeout(
-                () =>
-                URL.revokeObjectURL(url),
+                function(){
+
+                    URL.revokeObjectURL(
+                        url
+                    );
+
+                },
                 3000
             );
 
@@ -1712,18 +2775,23 @@ async function gerarJpgCilindro(i){
             );
 
         },
+
         "image/jpeg",
-        .95
+
+        0.95
+
     );
 
 }
 
 
 /* =========================================================
-   MENSAGEM
+   MENSAGEM DE DOWNLOAD
 ========================================================= */
 
-function mostrarMensagemDownload(nome){
+function mostrarMensagemDownload(
+    nome
+){
 
     const msg =
         document.getElementById(
@@ -1740,8 +2808,12 @@ function mostrarMensagemDownload(nome){
 
 
     setTimeout(
-        () =>
-        msg.style.display = "none",
+        function(){
+
+            msg.style.display =
+                "none";
+
+        },
         2500
     );
 
@@ -1753,7 +2825,9 @@ function mostrarMensagemDownload(nome){
 ========================================================= */
 
 document
-.getElementById("generatePdf")
+.getElementById(
+    "generatePdf"
+)
 .addEventListener(
     "click",
     async function(){
@@ -1762,8 +2836,11 @@ document
 
             const pdf =
                 new jsPDF({
+
                     unit:"mm",
+
                     format:"a4"
+
                 });
 
 
@@ -1780,7 +2857,10 @@ document
 
 
             await new Promise(
-                (resolve,reject)=>{
+                function(
+                    resolve,
+                    reject
+                ){
 
                     img.onload =
                         resolve;
@@ -1793,18 +2873,23 @@ document
 
 
             const canvas =
-                document.createElement("canvas");
+                document.createElement(
+                    "canvas"
+                );
 
 
             canvas.width =
                 img.width;
+
 
             canvas.height =
                 img.height;
 
 
             const ctx =
-                canvas.getContext("2d");
+                canvas.getContext(
+                    "2d"
+                );
 
 
             ctx.drawImage(
@@ -1814,6 +2899,10 @@ document
             );
 
 
+            /* =================================================
+               DADOS
+            ================================================= */
+
             ctx.fillStyle =
                 "black";
 
@@ -1822,24 +2911,46 @@ document
                 "bold 18px Arial";
 
 
-            function texto(id,x,y){
+            function texto(
+                id,
+                x,
+                y
+            ){
 
                 ctx.fillText(
+
                     document
                     .getElementById(id)
                     ?.value || "",
+
                     x,
                     y
+
                 );
 
             }
 
 
-            texto("mecanico",208,176);
+            texto(
+                "mecanico",
+                208,
+                176
+            );
 
-            texto("usina",165,204);
 
-            texto("serie",165,231);
+            texto(
+                "usina",
+                165,
+                204
+            );
+
+
+            texto(
+                "serie",
+                165,
+                231
+            );
+
 
             texto(
                 "ugd",
@@ -1847,11 +2958,13 @@ document
                 262
             );
 
+
             texto(
                 "os",
                 292,
                 262
             );
+
 
             texto(
                 "horimetro",
@@ -1873,45 +2986,57 @@ document
 
 
                 ctx.fillText(
+
                     `${partes[2]}/${partes[1]}/${partes[0]}`,
+
                     888,
+
                     204
+
                 );
 
             }
 
 
-            /* MEDIÇÕES */
+            /* =================================================
+               MEDIÇÕES
+            ================================================= */
 
             const campos = [
 
                 ["exaustao1_1",105,616],
                 ["exaustao1_2",105,576],
+
                 ["admissao1_1",345,628],
                 ["admissao1_2",345,589],
 
                 ["exaustao2_1",450,1064],
                 ["exaustao2_2",450,1024],
+
                 ["admissao2_1",689,1075],
                 ["admissao2_2",689,1038],
 
                 ["exaustao3_1",792,617],
                 ["exaustao3_2",792,576],
+
                 ["admissao3_1",1032,628],
                 ["admissao3_2",1032,589],
 
                 ["exaustao4_1",793,1064],
                 ["exaustao4_2",793,1024],
+
                 ["admissao4_1",1033,1075],
                 ["admissao4_2",1033,1038],
 
                 ["exaustao5_1",450,617],
                 ["exaustao5_2",450,576],
+
                 ["admissao5_1",689,628],
                 ["admissao5_2",689,589],
 
                 ["exaustao6_1",105,1064],
                 ["exaustao6_2",105,1024],
+
                 ["admissao6_1",345,1075],
                 ["admissao6_2",345,1038]
 
@@ -1919,7 +3044,9 @@ document
 
 
             campos.forEach(
-                ([id,x,y])=>{
+                function(
+                    [id,x,y]
+                ){
 
                     const raw =
                         document
@@ -1929,30 +3056,28 @@ document
 
                     const valor =
                         parseFloat(
-                            raw.replace(",",".")
+                            raw.replace(
+                                ",",
+                                "."
+                            )
                         );
 
 
-                    ctx.font =
-                        "18px Arial";
+                    const critico =
+                        !isNaN(valor) &&
+                        valor >= LIMITE;
 
 
                     ctx.fillStyle =
-                        !isNaN(valor) &&
-                        valor >= LIMITE
+                        critico
                         ? "red"
                         : "black";
 
 
-                    if(
-                        !isNaN(valor) &&
-                        valor >= LIMITE
-                    ){
-
-                        ctx.font =
-                            "bold 18px Arial";
-
-                    }
+                    ctx.font =
+                        critico
+                        ? "bold 18px Arial"
+                        : "18px Arial";
 
 
                     ctx.fillText(
@@ -1965,7 +3090,9 @@ document
             );
 
 
-            /* OBSERVAÇÕES */
+            /* =================================================
+               OBSERVAÇÕES
+            ================================================= */
 
             const obs =
                 document
@@ -1987,15 +3114,22 @@ document
                 obs.split(/\s+/);
 
 
-            let linha = "";
+            let linha =
+                "";
 
-            let y = 1237;
 
-            const largura = 950;
+            let y =
+                1237;
+
+
+            const largura =
+                950;
 
 
             palavras.forEach(
-                palavra=>{
+                function(
+                    palavra
+                ){
 
                     const teste =
                         linha +
@@ -2004,8 +3138,10 @@ document
 
 
                     if(
-                        ctx.measureText(teste)
-                        .width > largura
+                        ctx.measureText(
+                            teste
+                        ).width >
+                        largura
                     ){
 
                         ctx.fillText(
@@ -2014,8 +3150,11 @@ document
                             y
                         );
 
+
                         linha =
-                            palavra + " ";
+                            palavra +
+                            " ";
+
 
                         y += 26;
 
@@ -2038,7 +3177,9 @@ document
             );
 
 
-            /* ASSINATURA */
+            /* =================================================
+               ASSINATURA
+            ================================================= */
 
             ctx.font =
                 '40px "Brush Script MT", cursive';
@@ -2049,15 +3190,22 @@ document
 
 
             ctx.fillText(
+
                 document
                 .getElementById(
                     "assinatura"
                 )
                 .value || "",
+
                 760,
                 1538
+
             );
 
+
+            /* =================================================
+               PDF
+            ================================================= */
 
             const imgData =
                 canvas.toDataURL(
@@ -2067,12 +3215,18 @@ document
 
 
             pdf.addImage(
+
                 imgData,
+
                 "JPEG",
+
                 0,
                 0,
+
                 pdf.internal.pageSize.getWidth(),
+
                 pdf.internal.pageSize.getHeight()
+
             );
 
 
@@ -2083,7 +3237,10 @@ document
         }
         catch(error){
 
-            console.error(error);
+            console.error(
+                error
+            );
+
 
             alert(
                 "Não foi possível gerar o PDF."
@@ -2100,7 +3257,9 @@ document
 ========================================================= */
 
 document
-.getElementById("clearBtn")
+.getElementById(
+    "clearBtn"
+)
 .addEventListener(
     "click",
     function(){
@@ -2118,8 +3277,11 @@ document
             'input[type="text"], input[type="date"], textarea'
         )
         .forEach(
-            input=>{
-                input.value="";
+            function(input){
+
+                input.value =
+                    "";
+
             }
         );
 
@@ -2129,10 +3291,12 @@ document
             ".measurement input"
         )
         .forEach(
-            input=>{
+            function(input){
+
                 input.classList.remove(
                     "alerta"
                 );
+
             }
         );
 
@@ -2142,7 +3306,7 @@ document
             ".photo-box"
         )
         .forEach(
-            box=>{
+            function(box){
 
                 const id =
                     box.id.replace(
@@ -2150,13 +3314,18 @@ document
                         ""
                     );
 
-                removePhoto(id);
+
+                removePhoto(
+                    id
+                );
 
             }
         );
 
 
-        cilindroAtual = 1;
+        cilindroAtual =
+            1;
+
 
         atualizarCilindro();
 
@@ -2173,5 +3342,6 @@ atualizarCilindro();
 </script>
 
 </body>
+
 </html>
 ```

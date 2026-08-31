@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -16,328 +15,163 @@ content="width=device-width, initial-scale=1.0">
 <style>
 
 /* =========================================================
-   CONFIGURAÇÃO GERAL
+   BASE
 ========================================================= */
 
-:root{
-
-    --verde:#087a3b;
-    --verde-escuro:#04552a;
-    --verde-claro:#10a957;
-
-    --laranja:#f28c00;
-    --laranja-claro:#fff4df;
-
-    --vermelho:#d71920;
-
-    --fundo:#eef2ef;
-    --branco:#ffffff;
-
-    --texto:#1d2923;
-    --cinza:#68736d;
-
-    --sombra:
-        0 10px 25px rgba(0,0,0,.10);
-
-    --sombra-forte:
-        0 15px 35px rgba(0,0,0,.16);
-
-    --raio:16px;
-
+*{
+    box-sizing:border-box;
 }
 
-*{
-
-    box-sizing:border-box;
-
+:root{
+    --verde:#08783b;
+    --verde-escuro:#045b2c;
+    --verde-claro:#0ca957;
+    --laranja:#f28c00;
+    --vermelho:#d71920;
+    --cinza:#f2f4f5;
+    --cinza2:#dfe4e7;
+    --texto:#17211b;
+    --branco:#fff;
 }
 
 body{
-
     margin:0;
-
     padding:12px;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+    font-family:Arial,Helvetica,sans-serif;
     background:
-
-        radial-gradient(
-            circle at top,
-            #ffffff 0%,
-            #eef3ef 45%,
-            #e4e9e5 100%
-        );
-
+        radial-gradient(circle at top,#eef7f1 0%,#dfe9e3 45%,#d4ded8 100%);
     color:var(--texto);
-
-    min-height:100vh;
-
 }
 
 /* =========================================================
-   CONTAINER
+   CONTAINER PRINCIPAL
 ========================================================= */
 
 .app{
-
     width:100%;
-
-    max-width:850px;
-
+    max-width:900px;
     margin:auto;
-
 }
 
 /* =========================================================
-   CABEÇALHO
+   CABEÇALHO 3D
 ========================================================= */
 
-.topo{
-
+.header{
     background:
         linear-gradient(
             145deg,
-            #0b8d47,
-            #05632f
+            #0b9b4b,
+            #08783b 55%,
+            #045b2c
         );
 
     color:white;
-
-    border-radius:20px;
-
+    border-radius:18px;
     padding:18px 16px;
+    text-align:center;
 
     box-shadow:
-
-        0 8px 0 #03451f,
-
-        0 15px 30px rgba(0,0,0,.18);
+        0 8px 0 #034b25,
+        0 15px 30px rgba(0,0,0,.20);
 
     margin-bottom:16px;
-
-    position:relative;
-
-    overflow:hidden;
-
 }
 
-.topo::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-
-    height:180px;
-
-    right:-70px;
-
-    top:-90px;
-
-    background:rgba(255,255,255,.08);
-
-    border-radius:50%;
-
-}
-
-.topo::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:120px;
-
-    height:120px;
-
-    left:-60px;
-
-    bottom:-70px;
-
-    background:rgba(255,255,255,.05);
-
-    border-radius:50%;
-
-}
-
-.topo h1{
-
+.header h1{
     margin:0;
-
-    text-align:center;
-
-    font-size:22px;
-
-    letter-spacing:.3px;
-
-    position:relative;
-
-    z-index:2;
-
+    font-size:21px;
+    letter-spacing:.4px;
 }
 
-.topo p{
-
-    margin:6px 0 0;
-
-    text-align:center;
-
+.header p{
+    margin:5px 0 0;
     font-size:12px;
-
-    opacity:.85;
-
-    position:relative;
-
-    z-index:2;
-
+    opacity:.9;
 }
 
 /* =========================================================
-   CARD DE INFORMAÇÕES
+   CARTÃO DE DADOS
 ========================================================= */
 
-.info-card{
-
-    background:white;
-
+.card{
+    background:rgba(255,255,255,.96);
     border-radius:18px;
-
-    padding:14px;
-
+    padding:15px;
     margin-bottom:15px;
 
-    box-shadow:var(--sombra);
+    box-shadow:
+        0 5px 0 rgba(0,0,0,.08),
+        0 10px 25px rgba(0,0,0,.12);
+}
 
-    border:1px solid #e1e6e2;
-
+.card-title{
+    font-size:14px;
+    font-weight:bold;
+    color:var(--verde);
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:7px;
 }
 
 .info-grid{
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:10px;
-
 }
 
-.campo{
-
+.field{
     display:flex;
-
     flex-direction:column;
-
-    gap:5px;
-
+    gap:4px;
 }
 
-.campo label{
-
+.field label{
     font-size:11px;
-
     font-weight:bold;
-
-    color:#526058;
-
-    text-transform:uppercase;
-
+    color:#66706a;
 }
 
-.campo input{
-
+.field input{
     width:100%;
-
-    height:44px;
-
-    border:1.5px solid #d5ddd8;
-
+    height:42px;
+    border:2px solid #d9dfdc;
     border-radius:10px;
-
     padding:8px 10px;
-
     font-size:15px;
-
-    text-align:center;
-
     outline:none;
-
-    background:#fafcfb;
-
+    background:#f9fbfa;
     transition:.2s;
-
 }
 
-.campo input:focus{
-
+.field input:focus{
     border-color:var(--verde);
-
     background:white;
-
-    box-shadow:
-        0 0 0 3px rgba(8,122,59,.10);
-
+    box-shadow:0 0 0 3px rgba(8,120,59,.10);
 }
 
 /* =========================================================
-   LIMITE
+   AVISO
 ========================================================= */
 
 .limite{
-
-    background:#f8faf9;
-
-    border:1px solid #dce4df;
-
-    border-radius:13px;
-
-    padding:12px;
-
-    margin-top:12px;
-
+    background:linear-gradient(135deg,#fffdf1,#fff7d5);
+    border:1px solid #f0d47a;
+    border-left:5px solid var(--laranja);
+    border-radius:12px;
+    padding:10px 12px;
+    margin-bottom:15px;
     text-align:center;
-
 }
 
-.limite-titulo{
-
-    font-size:11px;
-
-    font-weight:bold;
-
-    color:#66716b;
-
-    text-transform:uppercase;
-
-    margin-bottom:5px;
-
+.limite strong{
+    font-size:13px;
 }
 
-.limite-valor{
-
-    font-size:17px;
-
-    font-weight:800;
-
-    color:var(--verde);
-
-}
-
-.limite-alerta{
-
-    margin-top:4px;
-
-    font-size:11px;
-
+.limite span{
     color:var(--vermelho);
-
     font-weight:bold;
-
 }
 
 /* =========================================================
@@ -345,94 +179,61 @@ body{
 ========================================================= */
 
 .navegacao{
-
     display:grid;
-
     grid-template-columns:1fr auto 1fr;
-
-    gap:8px;
-
     align-items:center;
-
+    gap:8px;
     margin-bottom:14px;
-
 }
 
 .btn-nav{
-
-    height:44px;
-
-    border:0;
-
+    border:none;
+    min-height:45px;
     border-radius:12px;
 
     background:
         linear-gradient(
             145deg,
-            #0a9148,
-            #05642f
+            var(--verde-claro),
+            var(--verde)
         );
 
     color:white;
-
-    font-size:12px;
-
     font-weight:bold;
-
+    font-size:12px;
     cursor:pointer;
 
     box-shadow:
-        0 4px 0 #034b24,
-        0 7px 14px rgba(0,0,0,.12);
+        0 4px 0 var(--verde-escuro),
+        0 7px 12px rgba(0,0,0,.15);
 
     transition:.15s;
-
 }
 
 .btn-nav:active{
-
     transform:translateY(3px);
-
     box-shadow:
-        0 1px 0 #034b24,
-        0 3px 7px rgba(0,0,0,.12);
-
+        0 1px 0 var(--verde-escuro),
+        0 3px 7px rgba(0,0,0,.15);
 }
 
 .btn-nav:disabled{
-
-    background:#b7bfba;
-
-    box-shadow:none;
-
+    background:#aeb6b1;
+    box-shadow:0 3px 0 #858d89;
     cursor:not-allowed;
-
 }
 
 .indicador{
-
-    min-width:105px;
-
-    height:44px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:white;
-
-    border:1px solid #dce3df;
-
+    background:#ffffff;
+    border:2px solid var(--verde);
+    color:var(--verde);
+    min-width:85px;
+    text-align:center;
+    padding:11px 8px;
     border-radius:12px;
-
-    font-weight:bold;
-
     font-size:12px;
-
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
-
+    font-weight:bold;
+    box-shadow:0 4px 10px rgba(0,0,0,.10);
 }
 
 /* =========================================================
@@ -440,57 +241,34 @@ body{
 ========================================================= */
 
 .valve-section{
-
-    background:white;
-
-    border-radius:20px;
-
+    background:#fff;
+    border-radius:18px;
     padding:12px;
-
-    margin-bottom:15px;
-
-    border:1px solid #dde5df;
-
-    box-shadow:var(--sombra-forte);
-
-    overflow:hidden;
-
+    box-shadow:
+        0 5px 0 rgba(0,0,0,.08),
+        0 10px 25px rgba(0,0,0,.13);
 }
 
-.cilindro-header{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    height:48px;
-
-    margin-bottom:12px;
-
-    border-radius:13px;
-
+.cilindro-label{
+    text-align:center;
     color:white;
-
-    font-size:18px;
-
-    font-weight:800;
-
-    letter-spacing:.5px;
 
     background:
         linear-gradient(
             145deg,
-            #0a9148,
-            #05632f
+            #0a9849,
+            #08783b
         );
 
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.2),
-        0 5px 0 #034b24,
-        0 8px 16px rgba(0,0,0,.12);
+    border-radius:12px;
+    padding:10px;
+    margin-bottom:12px;
 
+    font-size:17px;
+    font-weight:bold;
+
+    box-shadow:
+        0 4px 0 #045b2c;
 }
 
 /* =========================================================
@@ -498,74 +276,43 @@ body{
 ========================================================= */
 
 .layout-cilindro{
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
-    gap:10px;
-
+    gap:9px;
 }
 
 /* =========================================================
-   CARD DA VÁLVULA
+   BLOCO DE CADA VÁLVULA
 ========================================================= */
 
 .valvula-bloco{
-
     background:
         linear-gradient(
             145deg,
             #ffffff,
-            #f3f6f4
+            #f1f4f2
         );
 
-    border:1px solid #dfe6e1;
-
-    border-radius:15px;
-
-    padding:8px;
+    border:1px solid #d9dfdc;
+    border-radius:13px;
+    padding:7px;
 
     box-shadow:
+        0 3px 7px rgba(0,0,0,.10);
 
-        0 5px 12px rgba(0,0,0,.08),
-
-        inset 0 1px 0 white;
-
-    transition:.2s;
-
-}
-
-.valvula-bloco:active{
-
-    transform:scale(.985);
-
+    text-align:center;
 }
 
 .valvula-titulo{
-
-    background:
-        linear-gradient(
-            145deg,
-            #0b8b45,
-            #06632f
-        );
-
+    background:#08783b;
     color:white;
-
-    text-align:center;
-
+    border-radius:8px;
+    padding:7px 3px;
+    font-size:11px;
     font-weight:bold;
 
-    font-size:12px;
-
-    padding:8px 4px;
-
-    border-radius:9px;
-
     box-shadow:
-        0 3px 0 #034b24;
-
+        0 3px 0 #045b2c;
 }
 
 /* =========================================================
@@ -573,81 +320,54 @@ body{
 ========================================================= */
 
 .photo-box{
-
     width:100%;
+    aspect-ratio:1 / 1;
 
-    aspect-ratio:1/1;
-
-    min-height:100px;
-
+    max-width:145px;
     margin:9px auto;
 
-    border:2px dashed #e1a14a;
-
-    border-radius:12px;
+    border:2px dashed #f0a03a;
+    border-radius:10px;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
     text-align:center;
-
     font-size:10px;
-
-    color:#7b827e;
+    color:#737b76;
 
     position:relative;
 
-    background-color:#fafbf9;
-
+    background-color:#fafafa;
     background-size:cover;
-
     background-position:center;
 
     overflow:hidden;
-
-    cursor:pointer;
-
 }
 
-.photo-box input[type="file"]{
-
+.photo-box input[type=file]{
     position:absolute;
-
     inset:0;
-
     width:100%;
-
     height:100%;
-
     opacity:0;
-
     cursor:pointer;
-
 }
 
 .photo-label{
-
     position:absolute;
-
     left:0;
-
     bottom:0;
-
     width:100%;
 
-    padding:5px 2px;
+    padding:4px 2px;
 
-    background:rgba(4,75,36,.88);
-
+    background:rgba(8,120,59,.92);
     color:white;
 
-    font-size:10px;
-
+    font-size:9px;
     font-weight:bold;
-
 }
 
 /* =========================================================
@@ -655,107 +375,34 @@ body{
 ========================================================= */
 
 .measurement{
-
-    background:
-        linear-gradient(
-            145deg,
-            #fff9ec,
-            #fff1d2
-        );
-
-    border:1px solid #f0d49f;
-
-    border-radius:10px;
-
-    padding:7px;
-
-    margin-top:7px;
-
-}
-
-.measurement-label{
-
-    font-size:9px;
-
-    color:#79633e;
-
-    font-weight:bold;
-
-    text-transform:uppercase;
-
-    text-align:center;
-
-    margin-bottom:4px;
-
+    margin:5px 0;
 }
 
 .measurement input{
-
     width:100%;
+    height:40px;
 
-    height:42px;
-
-    border:2px solid #ef9b25;
-
+    border:2px solid #f0a03a;
     border-radius:9px;
 
-    background:white;
-
-    font-size:17px;
-
-    font-weight:bold;
+    background:#fffdf1;
 
     text-align:center;
+    font-size:16px;
+    font-weight:bold;
 
     outline:none;
-
 }
 
 .measurement input:focus{
-
-    box-shadow:
-        0 0 0 3px rgba(242,140,0,.14);
-
+    border-color:var(--verde);
+    box-shadow:0 0 0 3px rgba(8,120,59,.10);
 }
 
 .measurement input.afundamento{
-
     color:var(--vermelho);
-
     border-color:var(--vermelho);
-
-    background:#fff4f4;
-
-}
-
-/* =========================================================
-   STATUS DA MEDIÇÃO
-========================================================= */
-
-.status-medicao{
-
-    text-align:center;
-
-    font-size:9px;
-
-    font-weight:bold;
-
-    margin-top:4px;
-
-    min-height:11px;
-
-}
-
-.status-normal{
-
-    color:var(--verde);
-
-}
-
-.status-afundamento{
-
-    color:var(--vermelho);
-
+    background:#fff1f1;
 }
 
 /* =========================================================
@@ -763,25 +410,18 @@ body{
 ========================================================= */
 
 .remove-photo{
+    border:none;
+    background:#e85a45;
+    color:white;
 
-    width:100%;
+    padding:6px 7px;
 
-    height:30px;
-
-    border:0;
-
-    border-radius:8px;
-
-    background:#ecefed;
-
-    color:#737b76;
+    border-radius:7px;
 
     font-size:9px;
-
     font-weight:bold;
 
     cursor:pointer;
-
 }
 
 /* =========================================================
@@ -789,233 +429,148 @@ body{
 ========================================================= */
 
 .btn-jpg{
-
     width:100%;
+    margin-top:13px;
 
-    height:44px;
-
-    margin-top:12px;
-
-    border:0;
-
+    border:none;
     border-radius:11px;
+
+    padding:12px;
 
     background:
         linear-gradient(
             145deg,
-            #0b8c46,
-            #05632f
+            #148f4d,
+            #08783b
         );
 
     color:white;
-
-    font-size:12px;
-
     font-weight:bold;
-
-    cursor:pointer;
+    font-size:13px;
 
     box-shadow:
-        0 4px 0 #034b24,
-        0 7px 13px rgba(0,0,0,.10);
+        0 4px 0 #045b2c,
+        0 6px 12px rgba(0,0,0,.15);
 
+    cursor:pointer;
 }
 
 .btn-jpg:active{
-
     transform:translateY(3px);
-
     box-shadow:
-        0 1px 0 #034b24;
-
+        0 1px 0 #045b2c;
 }
 
 /* =========================================================
    OBSERVAÇÕES
 ========================================================= */
 
-.obs-card{
-
-    background:white;
-
-    border-radius:17px;
-
-    padding:13px;
-
-    margin-bottom:15px;
-
-    box-shadow:var(--sombra);
-
-}
-
-.obs-title{
-
-    font-size:12px;
-
-    font-weight:bold;
-
-    color:#56615b;
-
-    margin-bottom:7px;
-
-}
-
 textarea{
-
     width:100%;
-
     min-height:100px;
 
     resize:vertical;
 
-    border:1.5px solid #d7dfda;
-
+    border:2px solid #d9dfdc;
     border-radius:11px;
 
     padding:10px;
 
-    font-family:Arial,sans-serif;
-
+    font-family:Arial;
     font-size:14px;
 
     outline:none;
-
 }
 
 textarea:focus{
-
     border-color:var(--verde);
-
-    box-shadow:
-        0 0 0 3px rgba(8,122,59,.08);
-
-}
-
-/* =========================================================
-   ASSINATURA
-========================================================= */
-
-.assinatura-card{
-
-    background:white;
-
-    border-radius:17px;
-
-    padding:14px;
-
-    margin-bottom:15px;
-
-    box-shadow:var(--sombra);
-
-}
-
-.assinatura-titulo{
-
-    font-size:11px;
-
-    font-weight:bold;
-
-    color:#59645e;
-
-    text-align:center;
-
-    margin-bottom:10px;
-
-}
-
-#assinatura{
-
-    width:100%;
-
-    height:45px;
-
-    border:0;
-
-    border-bottom:2px solid #59645e;
-
-    background:transparent;
-
-    outline:none;
-
-    text-align:center;
-
-    font-size:25px;
-
-    font-family:
-        "Brush Script MT",
-        cursive;
-
-    color:var(--verde);
-
 }
 
 /* =========================================================
    BOTÕES FINAIS
 ========================================================= */
 
-.acoes{
-
+.button-container{
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:10px;
-
-    margin-bottom:20px;
-
+    margin:15px 0;
 }
 
 .btn-final{
+    border:none;
+    min-height:48px;
+    border-radius:12px;
 
-    height:50px;
-
-    border:0;
-
-    border-radius:13px;
-
-    font-size:13px;
-
+    color:white;
     font-weight:bold;
+    font-size:13px;
 
     cursor:pointer;
 
-    color:white;
-
     box-shadow:
-        0 5px 0 rgba(0,0,0,.18),
-        0 9px 18px rgba(0,0,0,.10);
-
+        0 4px 0 #045b2c,
+        0 7px 12px rgba(0,0,0,.15);
 }
 
 .btn-pdf{
-
     background:
         linear-gradient(
             145deg,
-            #0b9148,
-            #05632f
+            #0b984b,
+            #08783b
         );
-
 }
 
 .btn-limpar{
-
     background:
         linear-gradient(
             145deg,
-            #e34a4a,
-            #b9161d
+            #f05c45,
+            #d83c2a
         );
 
+    box-shadow:
+        0 4px 0 #a6291d,
+        0 7px 12px rgba(0,0,0,.15);
 }
 
-.btn-final:active{
+/* =========================================================
+   ASSINATURA
+========================================================= */
 
-    transform:translateY(3px);
+.signature{
+    background:white;
+    border-radius:15px;
+    padding:14px;
+    margin-bottom:20px;
 
     box-shadow:
-        0 2px 0 rgba(0,0,0,.18);
+        0 5px 15px rgba(0,0,0,.10);
+}
 
+.signature-title{
+    font-size:11px;
+    color:#68736d;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+#assinatura{
+    width:100%;
+    border:none;
+    border-bottom:2px solid #555;
+
+    height:45px;
+
+    font-family:
+        "Brush Script MT",
+        cursive;
+
+    font-size:25px;
+    text-align:center;
+
+    outline:none;
 }
 
 /* =========================================================
@@ -1023,32 +578,20 @@ textarea:focus{
 ========================================================= */
 
 .download-mensagem{
-
     position:fixed;
-
     left:50%;
+    bottom:20px;
 
-    bottom:18px;
+    transform:translateX(-50%);
 
-    transform:
-        translateX(-50%)
-        translateY(20px);
-
-    background:
-        linear-gradient(
-            145deg,
-            #0a8c46,
-            #05632f
-        );
-
+    background:#08783b;
     color:white;
 
-    padding:12px 20px;
+    padding:12px 18px;
 
     border-radius:12px;
 
-    font-size:12px;
-
+    font-size:13px;
     font-weight:bold;
 
     z-index:99999;
@@ -1058,7 +601,6 @@ textarea:focus{
     display:none;
 
     text-align:center;
-
 }
 
 /* =========================================================
@@ -1068,147 +610,81 @@ textarea:focus{
 @media(max-width:600px){
 
     body{
-
-        padding:8px;
-
+        padding:7px;
     }
 
-    .topo{
-
-        padding:15px 12px;
-
-        border-radius:17px;
-
+    .header{
+        padding:15px 10px;
+        border-radius:15px;
     }
 
-    .topo h1{
-
+    .header h1{
         font-size:18px;
-
     }
 
     .info-grid{
-
-        gap:8px;
-
-    }
-
-    .campo input{
-
-        height:42px;
-
-        font-size:14px;
-
-    }
-
-    .layout-cilindro{
-
         gap:7px;
-
     }
 
-    .valvula-bloco{
-
-        padding:6px;
-
-        border-radius:12px;
-
-    }
-
-    .photo-box{
-
-        min-height:90px;
-
-    }
-
-    .cilindro-header{
-
-        height:44px;
-
-        font-size:16px;
-
-    }
-
-    .btn-nav{
-
-        font-size:10px;
-
-    }
-
-}
-
-@media(max-width:380px){
-
-    .info-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .layout-cilindro{
-
-        gap:5px;
-
-    }
-
-    .valvula-titulo{
-
-        font-size:10px;
-
-    }
-
-    .measurement input{
-
-        height:38px;
-
-        font-size:15px;
-
-    }
-
-    .btn-nav{
-
-        padding:0 4px;
-
-    }
-
-}
-
-/* =========================================================
-   DESKTOP
-========================================================= */
-
-@media(min-width:900px){
-
-    body{
-
-        padding:25px;
-
+    .field input{
+        height:40px;
+        font-size:14px;
     }
 
     .valve-section{
+        padding:9px;
+    }
 
-        padding:18px;
-
+    .valvula-bloco{
+        padding:5px;
     }
 
     .photo-box{
+        max-width:120px;
+    }
 
-        min-height:180px;
+    .remove-photo{
+        font-size:8px;
+        padding:5px;
+    }
 
+    .btn-nav{
+        font-size:10px;
+        padding:5px;
+    }
+
+    .indicador{
+        min-width:70px;
+        font-size:10px;
     }
 
 }
 
 /* =========================================================
-   IMPRESSÃO
+   CELULAR PEQUENO
 ========================================================= */
 
-@media print{
+@media(max-width:380px){
 
-    body{
+    .header h1{
+        font-size:16px;
+    }
 
-        background:white;
+    .field input{
+        font-size:13px;
+    }
 
+    .valvula-titulo{
+        font-size:10px;
+    }
+
+    .photo-box{
+        max-width:100px;
+    }
+
+    .measurement input{
+        height:37px;
+        font-size:14px;
     }
 
 }
@@ -1221,124 +697,68 @@ textarea:focus{
 
 <div class="app">
 
-<!-- ======================================================
+<!-- =====================================================
      CABEÇALHO
-====================================================== -->
+===================================================== -->
 
-<div class="topo">
+<div class="header">
 
     <h1>
         MEDIÇÃO DAS VÁLVULAS
     </h1>
 
     <p>
-        SCANIA 550 • INSPEÇÃO TÉCNICA
+        SCANIA 550 • INSPEÇÃO DE VÁLVULAS
     </p>
 
 </div>
 
 
-<!-- ======================================================
-     INFORMAÇÕES
-====================================================== -->
+<!-- =====================================================
+     DADOS
+===================================================== -->
 
-<div class="info-card">
+<div class="card">
+
+    <div class="card-title">
+        📋 DADOS DA INSPEÇÃO
+    </div>
 
     <div class="info-grid">
 
-        <div class="campo">
-
-            <label>Mecânico</label>
-
-            <input
-                type="text"
-                id="mecanico"
-            >
-
+        <div class="field">
+            <label>MECÂNICO</label>
+            <input type="text" id="mecanico">
         </div>
 
-        <div class="campo">
-
-            <label>Data</label>
-
-            <input
-                type="date"
-                id="data"
-            >
-
+        <div class="field">
+            <label>DATA</label>
+            <input type="date" id="data">
         </div>
 
-        <div class="campo">
-
-            <label>Usina</label>
-
-            <input
-                type="text"
-                id="usina"
-            >
-
+        <div class="field">
+            <label>USINA</label>
+            <input type="text" id="usina">
         </div>
 
-        <div class="campo">
-
-            <label>Horímetro</label>
-
-            <input
-                type="text"
-                id="horimetro"
-            >
-
+        <div class="field">
+            <label>HORÍMETRO</label>
+            <input type="text" id="horimetro">
         </div>
 
-        <div class="campo">
-
-            <label>Série</label>
-
-            <input
-                type="text"
-                id="serie"
-            >
-
+        <div class="field">
+            <label>SÉRIE</label>
+            <input type="text" id="serie">
         </div>
 
-        <div class="campo">
-
+        <div class="field">
             <label>OS</label>
-
-            <input
-                type="text"
-                id="os"
-            >
-
+            <input type="text" id="os">
         </div>
 
-        <div class="campo">
-
+        <div class="field">
             <label>UGD</label>
-
-            <input
-                type="text"
-                id="ugd"
-                placeholder="Ex.: 01"
-            >
-
-        </div>
-
-    </div>
-
-
-    <div class="limite">
-
-        <div class="limite-titulo">
-            Faixa de medição
-        </div>
-
-        <div class="limite-valor">
-            64,00 mm até 67,49 mm
-        </div>
-
-        <div class="limite-alerta">
-            ≥ 67,50 mm = AFUNDAMENTO / SUBSTITUIÇÃO
+            <input type="text" id="ugd" placeholder="Ex.: 01">
         </div>
 
     </div>
@@ -1346,9 +766,34 @@ textarea:focus{
 </div>
 
 
-<!-- ======================================================
+<!-- =====================================================
+     LIMITE
+===================================================== -->
+
+<div class="limite">
+
+    <strong>
+        LIMITE DE MEDIÇÃO:
+    </strong>
+
+    64,00 mm a
+
+    <span>
+        67,50 mm
+    </span>
+
+    <br>
+
+    <strong>
+        ≥ 67,50 mm = SUBSTITUIÇÃO
+    </strong>
+
+</div>
+
+
+<!-- =====================================================
      NAVEGAÇÃO
-====================================================== -->
+===================================================== -->
 
 <div class="navegacao">
 
@@ -1364,7 +809,7 @@ textarea:focus{
         class="indicador"
         id="indicadorCilindro"
     >
-        CILINDRO 1 / 6
+        1 / 6
     </div>
 
     <button
@@ -1378,24 +823,21 @@ textarea:focus{
 </div>
 
 
-<!-- ======================================================
+<!-- =====================================================
      CILINDROS
-====================================================== -->
+===================================================== -->
 
-<div
-    class="valve-container"
-    id="valveContainer"
-></div>
+<div id="valveContainer"></div>
 
 
-<!-- ======================================================
+<!-- =====================================================
      OBSERVAÇÕES
-====================================================== -->
+===================================================== -->
 
-<div class="obs-card">
+<div class="card">
 
-    <div class="obs-title">
-        OBSERVAÇÕES
+    <div class="card-title">
+        📝 OBSERVAÇÕES
     </div>
 
     <textarea
@@ -1406,13 +848,36 @@ textarea:focus{
 </div>
 
 
-<!-- ======================================================
+<!-- =====================================================
+     BOTÕES
+===================================================== -->
+
+<div class="button-container">
+
+    <button
+        class="btn-final btn-pdf"
+        id="generatePdf"
+    >
+        📄 GERAR PDF
+    </button>
+
+    <button
+        class="btn-final btn-limpar"
+        id="clearBtn"
+    >
+        🗑 LIMPAR
+    </button>
+
+</div>
+
+
+<!-- =====================================================
      ASSINATURA
-====================================================== -->
+===================================================== -->
 
-<div class="assinatura-card">
+<div class="signature">
 
-    <div class="assinatura-titulo">
+    <div class="signature-title">
         ASSINATURA DO MECÂNICO
     </div>
 
@@ -1424,27 +889,6 @@ textarea:focus{
 
 </div>
 
-
-<!-- ======================================================
-     AÇÕES
-====================================================== -->
-
-<div class="acoes">
-
-    <button
-        class="btn-final btn-pdf"
-        id="generatePdf"
-    >
-        GERAR PDF
-    </button>
-
-    <button
-        class="btn-final btn-limpar"
-        id="clearBtn"
-    >
-        LIMPAR
-    </button>
-
 </div>
 
 
@@ -1453,21 +897,17 @@ textarea:focus{
     id="downloadMensagem"
 ></div>
 
-</div>
-
 
 <script>
-
-/* =========================================================
-   PDF
-========================================================= */
 
 const { jsPDF } = window.jspdf;
 
 
 /* =========================================================
-   CILINDRO ATUAL
+   CONFIGURAÇÃO
 ========================================================= */
+
+const LIMITE_AFUNDAMENTO = 67.50;
 
 let cilindroAtual = 1;
 
@@ -1477,33 +917,29 @@ let cilindroAtual = 1;
 ========================================================= */
 
 const container =
-document.getElementById(
-    "valveContainer"
-);
-
-
-for(let i=1;i<=6;i++){
-
-    const section =
-    document.createElement(
-        "div"
+    document.getElementById(
+        "valveContainer"
     );
 
+
+for(let i = 1; i <= 6; i++){
+
+    const section =
+        document.createElement("div");
+
     section.className =
-    "valve-section";
+        "valve-section";
 
     section.id =
-    "cilindro-" + i;
+        "cilindro-" + i;
 
     section.style.display =
-    i === 1
-    ? "block"
-    : "none";
+        i === 1 ? "block" : "none";
 
 
     section.innerHTML = `
 
-        <div class="cilindro-header">
+        <div class="cilindro-label">
 
             CILINDRO ${i}
 
@@ -1513,12 +949,10 @@ for(let i=1;i<=6;i++){
 
 
     const layout =
-    document.createElement(
-        "div"
-    );
+        document.createElement("div");
 
     layout.className =
-    "layout-cilindro";
+        "layout-cilindro";
 
 
     const posicoes = [
@@ -1550,29 +984,23 @@ for(let i=1;i<=6;i++){
         ({tipo,j}) => {
 
             const nome =
-            tipo === "exaustao"
-            ? "EXAUSTÃO"
-            : "ADMISSÃO";
+                tipo === "exaustao"
+                ? "EXAUSTÃO"
+                : "ADMISSÃO";
 
 
             const id =
-            tipo + i + "_" + j;
+                tipo + i + "_" + j;
 
 
-            const photoId =
-            "photo" + id;
+            const box =
+                document.createElement("div");
+
+            box.className =
+                "valvula-bloco";
 
 
-            const bloco =
-            document.createElement(
-                "div"
-            );
-
-            bloco.className =
-            "valvula-bloco";
-
-
-            bloco.innerHTML = `
+            box.innerHTML = `
 
                 <div class="valvula-titulo">
 
@@ -1583,10 +1011,10 @@ for(let i=1;i<=6;i++){
 
                 <div
                     class="photo-box"
-                    id="${photoId}"
+                    id="photo${id}"
                 >
 
-                    Toque para adicionar foto
+                    Clique para adicionar foto
 
                     <div class="photo-label">
 
@@ -1606,23 +1034,13 @@ for(let i=1;i<=6;i++){
 
                 <div class="measurement">
 
-                    <div class="measurement-label">
-
-                        Medição (mm)
-
-                    </div>
-
                     <input
                         type="text"
                         id="${id}"
                         inputmode="decimal"
-                        placeholder="00,00"
+                        placeholder="mm"
+                        oninput="atualizarDestaque(this)"
                     >
-
-                    <div
-                        class="status-medicao"
-                        id="status-${id}"
-                    ></div>
 
                 </div>
 
@@ -1637,45 +1055,32 @@ for(let i=1;i<=6;i++){
             `;
 
 
-            layout.appendChild(
-                bloco
-            );
+            layout.appendChild(box);
 
         }
     );
 
 
-    section.appendChild(
-        layout
-    );
+    section.appendChild(layout);
 
 
-    const btnJpg =
-    document.createElement(
-        "button"
-    );
+    const btn =
+        document.createElement("button");
+
+    btn.className =
+        "btn-jpg";
+
+    btn.textContent =
+        `📷 GERAR IMAGEM DO CILINDRO ${i}`;
+
+    btn.onclick =
+        () => gerarJpgCilindro(i);
 
 
-    btnJpg.className =
-    "btn-jpg";
+    section.appendChild(btn);
 
 
-    btnJpg.textContent =
-    "GERAR JPG DO CILINDRO " + i;
-
-
-    btnJpg.onclick =
-    () => gerarJpgCilindro(i);
-
-
-    section.appendChild(
-        btnJpg
-    );
-
-
-    container.appendChild(
-        section
-    );
+    container.appendChild(section);
 
 }
 
@@ -1688,17 +1093,17 @@ function atualizarCilindro(){
 
     for(let i=1;i<=6;i++){
 
-        const elemento =
-        document.getElementById(
-            "cilindro-" + i
-        );
+        const el =
+            document.getElementById(
+                "cilindro-" + i
+            );
 
-        if(elemento){
+        if(el){
 
-            elemento.style.display =
-            i === cilindroAtual
-            ? "block"
-            : "none";
+            el.style.display =
+                i === cilindroAtual
+                ? "block"
+                : "none";
 
         }
 
@@ -1708,27 +1113,24 @@ function atualizarCilindro(){
     document.getElementById(
         "indicadorCilindro"
     ).textContent =
-    `CILINDRO ${cilindroAtual} / 6`;
+        `${cilindroAtual} / 6`;
 
 
     document.getElementById(
         "btnAnterior"
     ).disabled =
-    cilindroAtual === 1;
+        cilindroAtual === 1;
 
 
     document.getElementById(
         "btnProximo"
     ).disabled =
-    cilindroAtual === 6;
+        cilindroAtual === 6;
 
 
     window.scrollTo({
-
         top:0,
-
         behavior:"smooth"
-
     });
 
 }
@@ -1766,37 +1168,30 @@ function cilindroAnterior(){
 
 function loadPhoto(event,id){
 
-    const box =
-    document.getElementById(
-        "photo" + id
-    );
-
-
     const file =
-    event.target.files[0];
-
+        event.target.files[0];
 
     if(!file)
         return;
 
 
+    const box =
+        document.getElementById(
+            "photo" + id
+        );
+
+
     const reader =
-    new FileReader();
+        new FileReader();
 
 
     reader.onload =
-    function(e){
+        function(e){
 
-        box.style.backgroundImage =
-        `url("${e.target.result}")`;
+            box.style.backgroundImage =
+                `url("${e.target.result}")`;
 
-        box.style.borderStyle =
-        "solid";
-
-        box.style.borderColor =
-        "#087a3b";
-
-    };
+        };
 
 
     reader.readAsDataURL(file);
@@ -1811,43 +1206,27 @@ function loadPhoto(event,id){
 function removePhoto(id){
 
     const box =
-    document.getElementById(
-        "photo" + id
-    );
-
-
-    const tipo =
-    id.includes("exaustao")
-    ? "EXAUSTÃO"
-    : "ADMISSÃO";
-
-
-    const numero =
-    id.substring(
-        id.length - 1
-    );
+        document.getElementById(
+            "photo" + id
+        );
 
 
     box.style.backgroundImage =
-    "";
+        "";
 
 
-    box.style.borderStyle =
-    "dashed";
-
-
-    box.style.borderColor =
-    "#e1a14a";
+    const nome =
+        id.includes("exaustao")
+        ? "EXAUSTÃO"
+        : "ADMISSÃO";
 
 
     box.innerHTML = `
 
-        Toque para adicionar foto
+        Clique para adicionar foto
 
         <div class="photo-label">
-
-            ${tipo} ${numero}
-
+            ${nome}
         </div>
 
         <input
@@ -1868,58 +1247,21 @@ function removePhoto(id){
 
 function atualizarDestaque(input){
 
-    let valor =
-    parseFloat(
-        input.value
-        .replace(",", ".")
-    );
-
-
-    const status =
-    document.getElementById(
-        "status-" + input.id
-    );
+    const valor =
+        parseFloat(
+            input.value
+            .replace(",",".")
+        );
 
 
     if(
         !isNaN(valor) &&
-        valor >= 67.50
+        valor >= LIMITE_AFUNDAMENTO
     ){
 
         input.classList.add(
             "afundamento"
         );
-
-
-        input.style.color =
-        "#d71920";
-
-
-        status.textContent =
-        "AFUNDAMENTO";
-
-
-        status.className =
-        "status-medicao status-afundamento";
-
-    }
-    else if(!isNaN(valor)){
-
-        input.classList.remove(
-            "afundamento"
-        );
-
-
-        input.style.color =
-        "#087a3b";
-
-
-        status.textContent =
-        "NORMAL";
-
-
-        status.className =
-        "status-medicao status-normal";
 
     }
     else{
@@ -1928,51 +1270,13 @@ function atualizarDestaque(input){
             "afundamento"
         );
 
-
-        input.style.color =
-        "";
-
-
-        status.textContent =
-        "";
-
-
-        status.className =
-        "status-medicao";
-
     }
 
 }
 
 
 /* =========================================================
-   ATIVAR CAMPOS
-========================================================= */
-
-document
-.querySelectorAll(
-    ".measurement input"
-)
-.forEach(
-    input => {
-
-        input.addEventListener(
-            "input",
-            function(){
-
-                atualizarDestaque(
-                    this
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================================
-   RETÂNGULO
+   ARREDONDAMENTO CANVAS
 ========================================================= */
 
 function roundRect(
@@ -2043,6 +1347,7 @@ function roundRect(
 
     ctx.closePath();
 
+
     if(fill)
         ctx.fill();
 
@@ -2053,7 +1358,7 @@ function roundRect(
 
 
 /* =========================================================
-   CARREGAR IMAGEM COM SEGURANÇA
+   CARREGAR IMAGEM
 ========================================================= */
 
 function carregarImagem(url){
@@ -2062,13 +1367,13 @@ function carregarImagem(url){
         (resolve,reject)=>{
 
             const img =
-            new Image();
+                new Image();
 
             img.onload =
-            () => resolve(img);
+                () => resolve(img);
 
             img.onerror =
-            () => reject();
+                () => reject();
 
             img.src = url;
 
@@ -2080,40 +1385,44 @@ function carregarImagem(url){
 
 /* =========================================================
    GERAR JPG
+   ESTRUTURA ORGANIZADA
 ========================================================= */
 
 async function gerarJpgCilindro(i){
 
-    const largura =
-    1280;
+    const largura = 1280;
 
-    const altura =
-    1900;
+    const altura = 1500;
+
+    const metadeW =
+        largura / 2;
+
+    const metadeH =
+        altura / 2;
 
 
     const canvas =
-    document.createElement(
-        "canvas"
-    );
-
+        document.createElement(
+            "canvas"
+        );
 
     canvas.width =
-    largura;
+        largura;
 
     canvas.height =
-    altura;
+        altura;
 
 
     const ctx =
-    canvas.getContext(
-        "2d"
-    );
+        canvas.getContext(
+            "2d"
+        );
 
 
     /* FUNDO */
 
     ctx.fillStyle =
-    "#ffffff";
+        "#ffffff";
 
     ctx.fillRect(
         0,
@@ -2123,60 +1432,54 @@ async function gerarJpgCilindro(i){
     );
 
 
-    /* POSIÇÃO DAS 4 FOTOS */
+    /* =====================================================
+       CONFIGURAÇÃO DAS FOTOS
+    ===================================================== */
 
     const fotos = [
 
-        {
-            id:`photoexaustao${i}_2`,
-            med:`exaustao${i}_2`,
-            nome:"EXAUSTÃO 2",
-            x:0,
-            y:0
-        },
-
-        {
-            id:`photoadmissao${i}_2`,
-            med:`admissao${i}_2`,
-            nome:"ADMISSÃO 2",
-            x:largura/2,
-            y:0
-        },
-
-        {
-            id:`photoexaustao${i}_1`,
-            med:`exaustao${i}_1`,
-            nome:"EXAUSTÃO 1",
-            x:0,
-            y:altura/2
-        },
-
-        {
-            id:`photoadmissao${i}_1`,
-            med:`admissao${i}_1`,
-            nome:"ADMISSÃO 1",
-            x:largura/2,
-            y:altura/2
-        }
+        `photoexaustao${i}_2`,
+        `photoadmissao${i}_2`,
+        `photoexaustao${i}_1`,
+        `photoadmissao${i}_1`
 
     ];
 
 
-    const larguraFoto =
-    largura/2;
+    const legendas = [
 
-    const alturaFoto =
-    altura/2;
+        "EXAUSTÃO 2",
+        "ADMISSÃO 2",
+        "EXAUSTÃO 1",
+        "ADMISSÃO 1"
 
+    ];
+
+
+    const posicoes = [
+
+        [0,0],
+        [metadeW,0],
+        [0,metadeH],
+        [metadeW,metadeH]
+
+    ];
+
+
+    /* =====================================================
+       FOTOS
+    ===================================================== */
 
     for(
-        const item of fotos
+        let j=0;
+        j<4;
+        j++
     ){
 
         const box =
-        document.getElementById(
-            item.id
-        );
+            document.getElementById(
+                fotos[j]
+            );
 
 
         if(
@@ -2190,209 +1493,266 @@ async function gerarJpgCilindro(i){
 
 
         let url =
-        box.style.backgroundImage;
-
-
-        url =
-        url
-        .replace(/^url\(["']?/,"")
-        .replace(/["']?\)$/,"");
+            box.style.backgroundImage
+                .replace(
+                    /^url\(["']?/,
+                    ""
+                )
+                .replace(
+                    /["']?\)$/,
+                    ""
+                );
 
 
         try{
 
             const img =
-            await carregarImagem(
-                url
-            );
+                await carregarImagem(url);
 
 
-            /* FOTO */
+            const x =
+                posicoes[j][0];
 
-            ctx.drawImage(
-
-                img,
-
-                item.x,
-                item.y,
-
-                larguraFoto,
-                alturaFoto
-
-            );
+            const y =
+                posicoes[j][1];
 
 
-            /* IDENTIFICAÇÃO DISCRETA */
+            /* =================================================
+               DESENHAR FOTO MANTENDO PROPORÇÃO
+            ================================================= */
 
-            ctx.fillStyle =
-            "rgba(0,0,0,.65)";
-
-
-            ctx.fillRect(
-
-                item.x,
-                item.y +
-                alturaFoto -
-                48,
-
-                larguraFoto,
-                48
-
-            );
-
-
-            ctx.fillStyle =
-            "#ffffff";
-
-
-            ctx.font =
-            "bold 28px Arial";
-
-
-            ctx.textAlign =
-            "center";
-
-
-            ctx.textBaseline =
-            "middle";
-
-
-            ctx.fillText(
-
-                item.nome,
-
-                item.x +
-                larguraFoto/2,
-
-                item.y +
-                alturaFoto -
-                24
-
-            );
-
-
-            /* ==========================================
-               SOMENTE SE HOUVER AFUNDAMENTO
-            ========================================== */
-
-            const input =
-            document.getElementById(
-                item.med
-            );
-
-
-            if(input){
-
-                const valor =
-                parseFloat(
-                    input.value
-                    .replace(",",".")
+            const escala =
+                Math.max(
+                    metadeW / img.width,
+                    metadeH / img.height
                 );
 
 
-                if(
-                    !isNaN(valor) &&
-                    valor >= 67.50
-                ){
+            const nw =
+                img.width * escala;
 
-                    const texto =
-                    `AFUNDAMENTO - ${
-                        valor
-                        .toFixed(2)
-                        .replace(".",",")
-                    } mm`;
+            const nh =
+                img.height * escala;
 
 
-                    ctx.font =
-                    "bold 28px Arial";
+            const dx =
+                x +
+                (metadeW - nw) / 2;
+
+            const dy =
+                y +
+                (metadeH - nh) / 2;
 
 
-                    const medida =
-                    ctx.measureText(
-                        texto
-                    ).width;
+            ctx.save();
+
+            ctx.beginPath();
+
+            ctx.rect(
+                x,
+                y,
+                metadeW,
+                metadeH
+            );
+
+            ctx.clip();
 
 
-                    const padding =
-                    18;
+            ctx.drawImage(
+                img,
+                dx,
+                dy,
+                nw,
+                nh
+            );
 
 
-                    const boxW =
-                    medida +
-                    padding * 2;
+            ctx.restore();
 
-
-                    const boxH =
-                    50;
-
-
-                    const boxX =
-                    item.x +
-                    (larguraFoto-boxW)/2;
-
-
-                    const boxY =
-                    item.y +
-                    alturaFoto -
-                    105;
-
-
-                    ctx.fillStyle =
-                    "rgba(255,255,255,.96)";
-
-
-                    ctx.strokeStyle =
-                    "#d71920";
-
-
-                    ctx.lineWidth =
-                    3;
-
-
-                    roundRect(
-
-                        ctx,
-
-                        boxX,
-                        boxY,
-
-                        boxW,
-                        boxH,
-
-                        10,
-
-                        true,
-                        true
-
-                    );
-
-
-                    ctx.fillStyle =
-                    "#d71920";
-
-
-                    ctx.fillText(
-
-                        texto,
-
-                        item.x +
-                        larguraFoto/2,
-
-                        boxY +
-                        boxH/2
-
-                    );
-
-                }
-
-            }
 
         }
         catch(e){
 
             console.log(
-                "Erro ao carregar imagem:",
-                item.id
+                "Erro ao carregar imagem",
+                e
+            );
+
+        }
+
+
+        /* =================================================
+           LEGENDA DISCRETA
+        ================================================= */
+
+        ctx.fillStyle =
+            "rgba(255,255,255,.90)";
+
+
+        ctx.strokeStyle =
+            "rgba(0,0,0,.35)";
+
+
+        ctx.lineWidth =
+            2;
+
+
+        const legendaH =
+            42;
+
+
+        const legendaY =
+            posicoes[j][1] +
+            metadeH -
+            legendaH;
+
+
+        roundRect(
+            ctx,
+            posicoes[j][0] + 15,
+            legendaY - 5,
+            metadeW - 30,
+            legendaH,
+            8,
+            true,
+            true
+        );
+
+
+        ctx.fillStyle =
+            "#222";
+
+
+        ctx.font =
+            "bold 24px Arial";
+
+
+        ctx.textAlign =
+            "center";
+
+        ctx.textBaseline =
+            "middle";
+
+
+        ctx.fillText(
+            legendas[j],
+            posicoes[j][0] + metadeW/2,
+            legendaY + legendaH/2 - 5
+        );
+
+
+        /* =================================================
+           MEDIÇÃO
+        ================================================= */
+
+        const input =
+            document.getElementById(
+                fotos[j].replace(
+                    "photo",
+                    ""
+                )
+            );
+
+
+        const valorTexto =
+            input
+            ? input.value.trim()
+            : "";
+
+
+        const valor =
+            parseFloat(
+                valorTexto.replace(
+                    ",",
+                    "."
+                )
+            );
+
+
+        /* =================================================
+           MOSTRAR AFUNDAMENTO
+           SOMENTE SE ≥ 67,50
+        ================================================= */
+
+        if(
+            !isNaN(valor) &&
+            valor >= LIMITE_AFUNDAMENTO
+        ){
+
+            const texto =
+                `AFUNDAMENTO (${valor.toFixed(2).replace(".",",")} mm)`;
+
+
+            ctx.font =
+                "bold 25px Arial";
+
+
+            const medida =
+                ctx.measureText(
+                    texto
+                );
+
+
+            const paddingX =
+                15;
+
+            const boxW =
+                medida.width +
+                paddingX * 2;
+
+            const boxH =
+                42;
+
+
+            const boxX =
+                posicoes[j][0] +
+                (metadeW - boxW) / 2;
+
+
+            const boxY =
+                posicoes[j][1] +
+                15;
+
+
+            ctx.fillStyle =
+                "rgba(255,255,255,.95)";
+
+
+            ctx.strokeStyle =
+                "#d71920";
+
+
+            ctx.lineWidth =
+                3;
+
+
+            roundRect(
+                ctx,
+                boxX,
+                boxY,
+                boxW,
+                boxH,
+                8,
+                true,
+                true
+            );
+
+
+            ctx.fillStyle =
+                "#d71920";
+
+
+            ctx.textAlign =
+                "center";
+
+            ctx.textBaseline =
+                "middle";
+
+
+            ctx.fillText(
+                texto,
+                boxX + boxW/2,
+                boxY + boxH/2
             );
 
         }
@@ -2401,17 +1761,100 @@ async function gerarJpgCilindro(i){
 
 
     /* =====================================================
-       GERAR DOWNLOAD
+       TÍTULO DO CILINDRO
+       DISCRETO E CENTRALIZADO
+    ===================================================== */
+
+    const titulo =
+        `CILINDRO ${i}`;
+
+
+    ctx.font =
+        "bold 30px Arial";
+
+
+    ctx.textAlign =
+        "center";
+
+    ctx.textBaseline =
+        "middle";
+
+
+    const tituloWidth =
+        ctx.measureText(
+            titulo
+        ).width;
+
+
+    const tituloPadding =
+        16;
+
+
+    const tituloHeight =
+        42;
+
+
+    const tituloBoxWidth =
+        tituloWidth +
+        tituloPadding * 2;
+
+
+    const tituloX =
+        (largura - tituloBoxWidth) / 2;
+
+
+    const tituloY =
+        14;
+
+
+    /* FUNDO DISCRETO */
+
+    ctx.fillStyle =
+        "rgba(255,255,255,.94)";
+
+
+    ctx.strokeStyle =
+        "rgba(0,0,0,.35)";
+
+
+    ctx.lineWidth =
+        2;
+
+
+    roundRect(
+        ctx,
+        tituloX,
+        tituloY,
+        tituloBoxWidth,
+        tituloHeight,
+        10,
+        true,
+        true
+    );
+
+
+    ctx.fillStyle =
+        "#222";
+
+
+    ctx.fillText(
+        titulo,
+        largura / 2,
+        tituloY + tituloHeight/2
+    );
+
+
+    /* =====================================================
+       DOWNLOAD
     ===================================================== */
 
     canvas.toBlob(
-
         function(blob){
 
             if(!blob){
 
                 alert(
-                    "Não foi possível gerar o JPG."
+                    "Não foi possível gerar a imagem."
                 );
 
                 return;
@@ -2419,25 +1862,27 @@ async function gerarJpgCilindro(i){
             }
 
 
+            const nome =
+                `CILINDRO_${i}.jpg`;
+
+
             const url =
-            URL.createObjectURL(
-                blob
-            );
+                URL.createObjectURL(
+                    blob
+                );
 
 
             const link =
-            document.createElement(
-                "a"
-            );
+                document.createElement(
+                    "a"
+                );
 
 
             link.href =
-            url;
-
+                url;
 
             link.download =
-            `CILINDRO_${i}.jpg`;
-
+                nome;
 
             document.body.appendChild(
                 link
@@ -2453,66 +1898,53 @@ async function gerarJpgCilindro(i){
 
 
             setTimeout(
-
-                () => {
-
+                ()=>{
                     URL.revokeObjectURL(
                         url
                     );
-
                 },
-
                 3000
-
             );
 
 
             mostrarMensagemDownload(
-                `CILINDRO ${i}.jpg`
+                nome
             );
 
         },
-
         "image/jpeg",
-
         .95
-
     );
 
 }
 
 
 /* =========================================================
-   MENSAGEM DE DOWNLOAD
+   MENSAGEM DOWNLOAD
 ========================================================= */
 
 function mostrarMensagemDownload(nome){
 
-    const mensagem =
-    document.getElementById(
-        "downloadMensagem"
-    );
+    const el =
+        document.getElementById(
+            "downloadMensagem"
+        );
 
 
-    mensagem.innerHTML =
-    `✓ ${nome}<br>Download iniciado`;
+    el.innerHTML =
+        `⬇️ ${nome}<br>Download iniciado`;
 
 
-    mensagem.style.display =
-    "block";
+    el.style.display =
+        "block";
 
 
     setTimeout(
-
-        () => {
-
-            mensagem.style.display =
-            "none";
-
+        ()=>{
+            el.style.display =
+                "none";
         },
-
         3000
-
     );
 
 }
@@ -2523,71 +1955,62 @@ function mostrarMensagemDownload(nome){
 ========================================================= */
 
 document
-.getElementById(
-    "generatePdf"
-)
+.getElementById("generatePdf")
 .addEventListener(
-
     "click",
-
     async function(){
 
         try{
 
             const pdf =
-            new jsPDF({
-
-                unit:"mm",
-
-                format:"a4"
-
-            });
+                new jsPDF({
+                    unit:"mm",
+                    format:"a4"
+                });
 
 
             const img =
-            new Image();
+                new Image();
 
 
             img.crossOrigin =
-            "anonymous";
+                "anonymous";
 
 
             img.src =
-            "https://raw.githubusercontent.com/gabrielsenna97/tema/main/FORM_194_MEDICAO_DAS_VALVULAS_UTE550_REV0_O_M_2.jpg";
+                "https://raw.githubusercontent.com/gabrielsenna97/tema/main/FORM_194_MEDICAO_DAS_VALVULAS_UTE550_REV0_O_M_2.jpg";
 
 
             await new Promise(
-
                 (resolve,reject)=>{
 
                     img.onload =
-                    resolve;
+                        resolve;
 
                     img.onerror =
-                    reject;
+                        reject;
 
                 }
-
             );
 
 
             const canvas =
-            document.createElement(
-                "canvas"
-            );
+                document.createElement(
+                    "canvas"
+                );
 
 
             canvas.width =
-            img.width;
+                img.width;
 
             canvas.height =
-            img.height;
+                img.height;
 
 
             const ctx =
-            canvas.getContext(
-                "2d"
-            );
+                canvas.getContext(
+                    "2d"
+                );
 
 
             ctx.drawImage(
@@ -2597,127 +2020,90 @@ document
             );
 
 
-            /* ==========================================
+            /* =================================================
                DADOS
-            ========================================== */
+            ================================================= */
 
             ctx.font =
-            "bold 18px Arial";
+                "bold 18px Arial";
 
             ctx.fillStyle =
-            "black";
+                "black";
 
 
             ctx.fillText(
-
-                document.getElementById(
-                    "mecanico"
-                ).value || "",
-
+                document.getElementById("mecanico").value || "",
                 208,
                 176
-
             );
 
 
             ctx.fillText(
-
-                document.getElementById(
-                    "usina"
-                ).value || "",
-
+                document.getElementById("usina").value || "",
                 165,
                 204
-
             );
 
 
             ctx.fillText(
-
-                document.getElementById(
-                    "serie"
-                ).value || "",
-
+                document.getElementById("serie").value || "",
                 165,
                 231
-
             );
 
 
             ctx.fillText(
-
                 "UGD- " +
                 (
-                    document.getElementById(
-                        "ugd"
-                    ).value || ""
+                    document.getElementById("ugd").value || ""
                 ),
-
                 590,
                 262
-
             );
 
 
             ctx.fillText(
-
-                document.getElementById(
-                    "os"
-                ).value || "",
-
+                document.getElementById("os").value || "",
                 292,
                 262
-
             );
 
 
             const dataVal =
-            document.getElementById(
-                "data"
-            ).value;
+                document.getElementById(
+                    "data"
+                ).value;
 
 
             if(dataVal){
 
                 const partes =
-                dataVal.split("-");
+                    dataVal.split("-");
 
 
                 const dataBR =
-                `${partes[2]}/${partes[1]}/${partes[0]}`;
+                    `${partes[2]}/${partes[1]}/${partes[0]}`;
 
 
                 ctx.fillText(
-
                     dataBR,
-
                     888,
                     204
-
                 );
 
             }
 
 
             ctx.fillText(
-
-                document.getElementById(
-                    "horimetro"
-                ).value || "",
-
+                document.getElementById("horimetro").value || "",
                 798,
                 231
-
             );
 
 
-            /* ==========================================
+            /* =================================================
                MEDIÇÕES
-            ========================================== */
-
-            const limite =
-            67.50;
-
+            ================================================= */
 
             const campos = [
 
@@ -2755,90 +2141,98 @@ document
 
 
             campos.forEach(
-
                 ([id,x,y])=>{
 
-                    const raw =
-                    document.getElementById(
-                        id
-                    )?.value || "";
-
-
                     const valor =
-                    parseFloat(
-                        raw.replace(
-                            ",",
-                            "."
-                        )
-                    );
+                        document.getElementById(
+                            id
+                        )?.value || "";
 
 
-                    const alerta =
-                    !isNaN(valor) &&
-                    valor >= limite;
+                    const numero =
+                        parseFloat(
+                            valor.replace(
+                                ",",
+                                "."
+                            )
+                        );
 
 
-                    ctx.fillStyle =
-                    alerta
-                    ? "red"
-                    : "black";
+                    if(
+                        !isNaN(numero) &&
+                        numero >= LIMITE_AFUNDAMENTO
+                    ){
 
+                        ctx.fillStyle =
+                            "red";
 
-                    ctx.font =
-                    alerta
-                    ? "bold 18px Arial"
-                    : "18px Arial";
+                        ctx.font =
+                            "bold 18px Arial";
+
+                    }
+                    else{
+
+                        ctx.fillStyle =
+                            "black";
+
+                        ctx.font =
+                            "18px Arial";
+
+                    }
 
 
                     ctx.fillText(
-                        raw,
+                        valor,
                         x,
                         y
                     );
 
                 }
-
             );
 
 
-            /* ==========================================
+            /* =================================================
                OBSERVAÇÕES
-            ========================================== */
+            ================================================= */
 
             const obs =
-            document.getElementById(
-                "observacoes"
-            ).value;
+                document.getElementById(
+                    "observacoes"
+                ).value;
+
+
+            ctx.fillStyle =
+                "black";
+
+            ctx.font =
+                "18px Arial";
 
 
             const maxWidth =
-            950;
-
+                950;
 
             const lineHeight =
-            26;
+                26;
 
 
-            const words =
-            obs.split(/\s+/);
+            const palavras =
+                obs.split(/\s+/);
 
 
-            let line =
-            "";
-
+            let linha =
+                "";
 
             let y =
-            1237;
+                1237;
 
 
-            words.forEach(
-
-                word=>{
+            palavras.forEach(
+                palavra=>{
 
                     const teste =
-                    line +
-                    word +
-                    " ";
+                        linha +
+                        palavra +
+                        " ";
 
 
                     if(
@@ -2849,78 +2243,81 @@ document
                     ){
 
                         ctx.fillText(
-                            line,
+                            linha,
                             183,
                             y
                         );
 
 
-                        line =
-                        word +
-                        " ";
+                        linha =
+                            palavra + " ";
 
 
                         y +=
-                        lineHeight;
+                            lineHeight;
 
                     }
                     else{
 
-                        line =
-                        teste;
+                        linha =
+                            teste;
 
                     }
 
                 }
-
             );
 
 
-            ctx.fillText(
-                line,
-                183,
-                y
-            );
+            if(linha){
+
+                ctx.fillText(
+                    linha,
+                    183,
+                    y
+                );
+
+            }
 
 
-            /* ==========================================
+            /* =================================================
                ASSINATURA
-            ========================================== */
+            ================================================= */
 
             ctx.font =
-            '40px "Brush Script MT", cursive';
+                '40px "Brush Script MT", cursive';
+
+
+            ctx.fillStyle =
+                "#08783b";
 
 
             ctx.fillText(
-
                 document.getElementById(
                     "assinatura"
                 ).value || "",
-
                 760,
                 1538
-
             );
 
+
+            /* =================================================
+               PDF
+            ================================================= */
 
             const imgData =
-            canvas.toDataURL(
-                "image/jpeg",
-                1.0
-            );
+                canvas.toDataURL(
+                    "image/jpeg",
+                    1
+                );
 
 
             pdf.addImage(
-
                 imgData,
                 "JPEG",
                 0,
                 0,
-
                 pdf.internal.pageSize.getWidth(),
-
                 pdf.internal.pageSize.getHeight()
-
             );
 
 
@@ -2940,7 +2337,6 @@ document
         }
 
     }
-
 );
 
 
@@ -2949,18 +2345,14 @@ document
 ========================================================= */
 
 document
-.getElementById(
-    "clearBtn"
-)
+.getElementById("clearBtn")
 .addEventListener(
-
     "click",
-
     function(){
 
         if(
             !confirm(
-                "Deseja realmente limpar toda a inspeção?"
+                "Deseja realmente limpar todos os dados?"
             )
         ){
 
@@ -2974,13 +2366,9 @@ document
             'input[type="text"], input[type="date"], textarea'
         )
         .forEach(
-
-            input=>{
-
-                input.value = "";
-
+            el=>{
+                el.value = "";
             }
-
         );
 
 
@@ -2989,37 +2377,11 @@ document
             ".measurement input"
         )
         .forEach(
-
-            input=>{
-
-                input.classList.remove(
+            el=>{
+                el.classList.remove(
                     "afundamento"
                 );
-
-                input.style.color =
-                "";
-
             }
-
-        );
-
-
-        document
-        .querySelectorAll(
-            ".status-medicao"
-        )
-        .forEach(
-
-            status=>{
-
-                status.textContent =
-                "";
-
-                status.className =
-                "status-medicao";
-
-            }
-
         );
 
 
@@ -3028,44 +2390,66 @@ document
             ".photo-box"
         )
         .forEach(
-
             box=>{
 
                 const id =
-                box.id.replace(
-                    "photo",
-                    ""
-                );
+                    box.id.replace(
+                        "photo",
+                        ""
+                    );
 
 
-                removePhoto(id);
+                const nome =
+                    id.includes("exaustao")
+                    ? "EXAUSTÃO"
+                    : "ADMISSÃO";
+
+
+                box.style.backgroundImage =
+                    "";
+
+
+                box.innerHTML = `
+
+                    Clique para adicionar foto
+
+                    <div class="photo-label">
+                        ${nome}
+                    </div>
+
+                    <input
+                        type="file"
+                        accept="image/*"
+                        capture="environment"
+                        onchange="loadPhoto(event,'${id}')"
+                    >
+
+                `;
 
             }
-
         );
 
 
         cilindroAtual =
-        1;
+            1;
 
 
         atualizarCilindro();
 
     }
-
 );
 
 
 /* =========================================================
-   DATA ATUAL
+   DATA AUTOMÁTICA
 ========================================================= */
 
 document.getElementById(
     "data"
 ).value =
-new Date()
-.toISOString()
-.split("T")[0];
+    new Date()
+    .toISOString()
+    .split("T")[0];
 
 
 /* =========================================================
@@ -3077,6 +2461,4 @@ atualizarCilindro();
 </script>
 
 </body>
-
 </html>
-```

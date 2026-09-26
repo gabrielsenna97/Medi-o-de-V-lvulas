@@ -1220,6 +1220,210 @@ textarea::placeholder{
 
 
 /* =========================================================
+   PRÉVIA DO JPG
+========================================================= */
+
+.preview-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:100000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:10px;
+
+    background:
+        rgba(0,0,0,.88);
+
+    backdrop-filter:
+        blur(5px);
+}
+
+.preview-overlay.ativo{
+
+    display:flex;
+}
+
+.preview-window{
+
+    width:100%;
+
+    max-width:700px;
+
+    max-height:96vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    border:1px solid #485456;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #252e30,
+            #101516
+        );
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.75),
+        inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.preview-header{
+
+    flex:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:8px;
+
+    padding:10px 12px;
+
+    border-bottom:1px solid #394547;
+}
+
+.preview-title{
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    letter-spacing:.6px;
+}
+
+.preview-close{
+
+    width:32px;
+
+    height:32px;
+
+    border:1px solid #5a6567;
+
+    border-radius:8px;
+
+    background:#1b2224;
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:bold;
+}
+
+.preview-content{
+
+    flex:1;
+
+    min-height:0;
+
+    overflow:auto;
+
+    padding:8px;
+
+    background:#080b0c;
+}
+
+#previewImage{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    max-height:calc(96vh - 145px);
+
+    object-fit:contain;
+
+    margin:0 auto;
+
+    border:1px solid #394547;
+
+    border-radius:7px;
+
+    background:#111;
+}
+
+.preview-actions{
+
+    flex:none;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:7px;
+
+    padding:9px;
+
+    border-top:1px solid #394547;
+
+    background:#171d1f;
+}
+
+.preview-btn{
+
+    height:42px;
+
+    border-radius:9px;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    color:#fff;
+}
+
+.preview-download{
+
+    border:1px solid #16bd62;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0aaa53,
+            #056b35
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.15),
+        0 4px 10px rgba(0,0,0,.35);
+}
+
+.preview-cancel{
+
+    border:1px solid #5a4541;
+
+    background:
+        linear-gradient(
+            145deg,
+            #4d302c,
+            #2e1e1b
+        );
+
+    color:#ffc1ba;
+}
+
+
+/* =========================================================
    MOBILE PEQUENO
 ========================================================= */
 
@@ -1664,11 +1868,78 @@ textarea::placeholder{
 </div>
 
 
+<!-- =====================================================
+     MENSAGEM
+===================================================== -->
+
 <div
     class="download-mensagem"
     id="downloadMensagem"
 ></div>
 
+
+<!-- =====================================================
+     PRÉVIA JPG
+===================================================== -->
+
+<div
+    class="preview-overlay"
+    id="previewOverlay"
+>
+
+    <div class="preview-window">
+
+        <div class="preview-header">
+
+            <div
+                class="preview-title"
+                id="previewTitle"
+            >
+                PRÉVIA — CILINDRO 01
+            </div>
+
+            <button
+                class="preview-close"
+                onclick="fecharPreview()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="preview-content">
+
+            <img
+                id="previewImage"
+                alt="Prévia do cilindro"
+            >
+
+        </div>
+
+
+        <div class="preview-actions">
+
+            <button
+                class="preview-btn preview-download"
+                id="previewDownload"
+            >
+                ⬇ BAIXAR JPG
+            </button>
+
+
+            <button
+                class="preview-btn preview-cancel"
+                onclick="fecharPreview()"
+            >
+                FECHAR
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 
 <script>
@@ -1682,6 +1953,12 @@ const { jsPDF } = window.jspdf;
 const LIMITE_AFUNDAMENTO = 67.50;
 
 let cilindroAtual = 1;
+
+let previewBlob = null;
+
+let previewUrl = null;
+
+let previewNome = "";
 
 const container =
     document.getElementById(
@@ -1930,6 +2207,90 @@ function atualizarCilindro(){
 
 
 /* =========================================================
+   LIMPAR FOTOS DE UM CILINDRO
+   NÃO APAGA AS MEDIÇÕES
+========================================================= */
+
+function limparFotosCilindro(i){
+
+    const ids = [
+
+        `exaustao${i}_2`,
+        `admissao${i}_2`,
+        `exaustao${i}_1`,
+        `admissao${i}_1`
+
+    ];
+
+
+    ids.forEach(
+        id=>{
+
+            const box =
+                document.getElementById(
+                    "photo" + id
+                );
+
+
+            if(!box)
+                return;
+
+
+            const input =
+                box.querySelector(
+                    'input[type="file"]'
+                );
+
+
+            if(input){
+
+                input.value = "";
+
+            }
+
+
+            box.style.backgroundImage =
+                "";
+
+
+            const nome =
+                id.includes("exaustao")
+                ? "EXAUSTÃO"
+                : "ADMISSÃO";
+
+
+            const numero =
+                id.endsWith("_1")
+                ? "1"
+                : "2";
+
+
+            box.innerHTML = `
+
+                TOQUE PARA FOTO
+
+                <div class="photo-label">
+
+                    ${nome} ${numero}
+
+                </div>
+
+                <input
+                    type="file"
+                    accept="image/*"
+                    capture="environment"
+                    onchange="loadPhoto(event,'${id}')"
+                >
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =========================================================
    PRÓXIMO
 ========================================================= */
 
@@ -1939,9 +2300,21 @@ function proximoCilindro(){
         cilindroAtual < 6
     ){
 
+        /*
+         * Antes de sair do cilindro atual,
+         * elimina as fotos dele para não acumular
+         * imagens pesadas na memória.
+         */
+        limparFotosCilindro(
+            cilindroAtual
+        );
+
+
         cilindroAtual++;
 
+
         atualizarCilindro();
+
 
         window.scrollTo({
             top:0,
@@ -1965,7 +2338,9 @@ function cilindroAnterior(){
 
         cilindroAtual--;
 
+
         atualizarCilindro();
+
 
         window.scrollTo({
             top:0,
@@ -2030,6 +2405,23 @@ function removePhoto(id){
         );
 
 
+    if(!box)
+        return;
+
+
+    const input =
+        box.querySelector(
+            'input[type="file"]'
+        );
+
+
+    if(input){
+
+        input.value = "";
+
+    }
+
+
     box.style.backgroundImage =
         "";
 
@@ -2040,13 +2432,19 @@ function removePhoto(id){
         : "ADMISSÃO";
 
 
+    const numero =
+        id.endsWith("_1")
+        ? "1"
+        : "2";
+
+
     box.innerHTML = `
 
         TOQUE PARA FOTO
 
         <div class="photo-label">
 
-            ${nome}
+            ${nome} ${numero}
 
         </div>
 
@@ -2220,23 +2618,119 @@ function carregarImagem(url){
 
 
 /* =========================================================
+   DESENHAR FOTO
+   PRESERVA PROPORÇÃO
+========================================================= */
+
+function desenharFotoCentralizada(
+    ctx,
+    img,
+    x,
+    y,
+    largura,
+    altura
+){
+
+    /*
+     * Fundo neutro.
+     * Serve para fotos claras e escuras.
+     */
+    ctx.fillStyle =
+        "#d8dcda";
+
+
+    ctx.fillRect(
+        x,
+        y,
+        largura,
+        altura
+    );
+
+
+    /*
+     * Mantém exatamente a proporção
+     * original da foto.
+     */
+    const escala =
+        Math.min(
+            largura / img.width,
+            altura / img.height
+        );
+
+
+    const imgW =
+        img.width * escala;
+
+
+    const imgH =
+        img.height * escala;
+
+
+    const imgX =
+        x +
+        (largura - imgW) / 2;
+
+
+    const imgY =
+        y +
+        (altura - imgH) / 2;
+
+
+    ctx.drawImage(
+        img,
+        imgX,
+        imgY,
+        imgW,
+        imgH
+    );
+
+
+    /*
+     * Borda discreta.
+     */
+    ctx.strokeStyle =
+        "#7b8582";
+
+
+    ctx.lineWidth =
+        3;
+
+
+    ctx.strokeRect(
+        x,
+        y,
+        largura,
+        altura
+    );
+
+}
+
+
+/* =========================================================
    GERAR JPG DO CILINDRO
-   VERSÃO TÉCNICA
+   FORMATO ORIGINAL 1600 x 1200
+   SOMENTE 4 FOTOS + CILINDRO CENTRALIZADO
 ========================================================= */
 
 async function gerarJpgCilindro(i){
 
-    const largura = 1600;
+    const largura =
+        1600;
 
-    const altura = 1200;
+
+    const altura =
+        1200;
 
 
     const canvas =
-        document.createElement("canvas");
+        document.createElement(
+            "canvas"
+        );
 
 
     canvas.width =
         largura;
+
 
     canvas.height =
         altura;
@@ -2246,12 +2740,32 @@ async function gerarJpgCilindro(i){
         canvas.getContext("2d");
 
 
-    /* =====================================================
-       FUNDO
-    ===================================================== */
+    /*
+     * FUNDO GERAL
+     */
+    const fundo =
+        ctx.createLinearGradient(
+            0,
+            0,
+            0,
+            altura
+        );
+
+
+    fundo.addColorStop(
+        0,
+        "#eef1ef"
+    );
+
+
+    fundo.addColorStop(
+        1,
+        "#d8ddda"
+    );
+
 
     ctx.fillStyle =
-        "#101516";
+        fundo;
 
 
     ctx.fillRect(
@@ -2262,225 +2776,76 @@ async function gerarJpgCilindro(i){
     );
 
 
-    /* =====================================================
-       CABEÇALHO
-    ===================================================== */
-
-    const gradiente =
-        ctx.createLinearGradient(
-            0,
-            0,
-            largura,
-            0
-        );
-
-
-    gradiente.addColorStop(
-        0,
-        "#0a7d3c"
-    );
-
-
-    gradiente.addColorStop(
-        .5,
-        "#075f30"
-    );
-
-
-    gradiente.addColorStop(
-        1,
-        "#064b27"
-    );
-
-
+    /*
+     * CABEÇALHO COM CONTRASTE
+     */
     ctx.fillStyle =
-        gradiente;
+        "#202729";
 
 
     ctx.fillRect(
         0,
         0,
         largura,
-        110
+        150
     );
 
 
+    /*
+     * LINHA VERDE
+     */
+    ctx.fillStyle =
+        "#00a651";
+
+
+    ctx.fillRect(
+        0,
+        146,
+        largura,
+        4
+    );
+
+
+    /*
+     * NÚMERO DO CILINDRO
+     * CENTRALIZADO
+     */
     ctx.fillStyle =
         "#ffffff";
 
 
     ctx.textAlign =
-        "left";
+        "center";
+
+
+    ctx.textBaseline =
+        "middle";
 
 
     ctx.font =
-        "bold 34px Arial";
+        "900 62px Arial";
 
 
     ctx.fillText(
-        "MEDIÇÃO DE VÁLVULAS",
-        45,
-        48
+        `CILINDRO ${String(i).padStart(2,"0")}`,
+        largura / 2,
+        75
     );
 
 
-    ctx.font =
-        "bold 22px Arial";
-
-
-    ctx.fillStyle =
-        "#d7f4e2";
-
-
-    ctx.fillText(
-        `SCANIA 550  •  CILINDRO ${String(i).padStart(2,"0")}`,
-        45,
-        83
-    );
-
-
-    /* =====================================================
-       INFORMAÇÕES
-    ===================================================== */
-
-    const infoY = 110;
-
-
-    ctx.fillStyle =
-        "#181f21";
-
-
-    ctx.fillRect(
-        0,
-        infoY,
-        largura,
-        80
-    );
-
-
-    const dados = [
-
-        [
-            "UGD",
-            document.getElementById("ugd")?.value || "-"
-        ],
-
-        [
-            "OS",
-            document.getElementById("os")?.value || "-"
-        ],
-
-        [
-            "SÉRIE",
-            document.getElementById("serie")?.value || "-"
-        ],
-
-        [
-            "HORÍMETRO",
-            document.getElementById("horimetro")?.value || "-"
-        ],
-
-        [
-            "DATA",
-            document.getElementById("data")?.value || "-"
-        ]
-
-    ];
-
-
-    const larguraInfo =
-        largura /
-        dados.length;
-
-
-    dados.forEach(
-        (item,index)=>{
-
-            const x =
-                index *
-                larguraInfo;
-
-
-            ctx.fillStyle =
-                "#6f7c79";
-
-
-            ctx.font =
-                "bold 14px Arial";
-
-
-            ctx.fillText(
-                item[0],
-                x + 25,
-                137
-            );
-
-
-            ctx.fillStyle =
-                "#ffffff";
-
-
-            ctx.font =
-                "bold 20px Arial";
-
-
-            ctx.fillText(
-                item[1],
-                x + 25,
-                168
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       VÁLVULAS
-    ===================================================== */
-
-    const valves = [
-
-        {
-            tipo:"EXAUSTÃO",
-            numero:"2",
-            id:`exaustao${i}_2`,
-            photo:`photoexaustao${i}_2`
-        },
-
-        {
-            tipo:"ADMISSÃO",
-            numero:"2",
-            id:`admissao${i}_2`,
-            photo:`photoadmissao${i}_2`
-        },
-
-        {
-            tipo:"EXAUSTÃO",
-            numero:"1",
-            id:`exaustao${i}_1`,
-            photo:`photoexaustao${i}_1`
-        },
-
-        {
-            tipo:"ADMISSÃO",
-            numero:"1",
-            id:`admissao${i}_1`,
-            photo:`photoadmissao${i}_1`
-        }
-
-    ];
-
-
+    /*
+     * ÁREA DAS 4 FOTOS
+     */
     const margem =
-        28;
-
-
-    const topoFotos =
-        215;
+        30;
 
 
     const espacamento =
-        18;
+        20;
+
+
+    const topo =
+        180;
 
 
     const larguraFoto =
@@ -2492,21 +2857,34 @@ async function gerarJpgCilindro(i){
 
 
     const alturaFoto =
-        400;
+        (
+            altura -
+            topo -
+            margem -
+            espacamento
+        ) / 2;
 
 
-    /* =====================================================
-       PROCESSAR CADA VÁLVULA
-    ===================================================== */
+    const fotos = [
+
+        `photoexaustao${i}_2`,
+        `photoadmissao${i}_2`,
+        `photoexaustao${i}_1`,
+        `photoadmissao${i}_1`
+
+    ];
+
 
     for(
         let index = 0;
-        index < valves.length;
+        index < fotos.length;
         index++
     ){
 
-        const valve =
-            valves[index];
+        const photoBox =
+            document.getElementById(
+                fotos[index]
+            );
 
 
         const coluna =
@@ -2527,24 +2905,23 @@ async function gerarJpgCilindro(i){
 
 
         const y =
-            topoFotos +
+            topo +
             linha *
             (
                 alturaFoto +
-                25
+                espacamento
             );
 
 
-        /* =================================================
-           CARD
-        ================================================= */
-
+        /*
+         * CARD EXTERNO
+         */
         ctx.fillStyle =
-            "#1b2325";
+            "#ffffff";
 
 
         ctx.strokeStyle =
-            "#354244";
+            "#aeb7b4";
 
 
         ctx.lineWidth =
@@ -2557,79 +2934,24 @@ async function gerarJpgCilindro(i){
             y,
             larguraFoto,
             alturaFoto,
-            12,
+            10,
             true,
             true
         );
 
 
-        /* =================================================
-           CABEÇALHO DO CARD
-        ================================================= */
-
-        ctx.fillStyle =
-            "#242e30";
-
-
-        roundRect(
-            ctx,
-            x,
-            y,
-            larguraFoto,
-            58,
-            12,
-            true,
-            false
-        );
-
-
-        ctx.fillStyle =
-            "#00b85a";
-
-
-        ctx.fillRect(
-            x,
-            y + 54,
-            larguraFoto,
-            4
-        );
-
-
-        ctx.fillStyle =
-            "#ffffff";
-
-
-        ctx.font =
-            "bold 20px Arial";
-
-
-        ctx.textAlign =
-            "left";
-
-
-        ctx.fillText(
-            `${valve.tipo} ${valve.numero}`,
-            x + 20,
-            y + 36
-        );
-
-
-        /* =================================================
-           FOTO
-        ================================================= */
-
-        const photoBox =
-            document.getElementById(
-                valve.photo
-            );
-
-
-        const possuiFoto =
+        /*
+         * Tenta pegar a imagem atual.
+         */
+        let possuiFoto =
             photoBox &&
             photoBox.style.backgroundImage;
 
 
-        if(possuiFoto){
+        if(
+            possuiFoto &&
+            possuiFoto !== "none"
+        ){
 
             let url =
                 photoBox.style.backgroundImage
@@ -2646,103 +2968,48 @@ async function gerarJpgCilindro(i){
             try{
 
                 const img =
-                    await carregarImagem(url);
-
-
-                const areaX =
-                    x + 12;
-
-
-                const areaY =
-                    y + 68;
-
-
-                const areaW =
-                    larguraFoto - 24;
-
-
-                const areaH =
-                    275;
-
-
-                /* Fundo */
-
-                ctx.fillStyle =
-                    "#080b0c";
-
-
-                ctx.fillRect(
-                    areaX,
-                    areaY,
-                    areaW,
-                    areaH
-                );
-
-
-                /*
-                 * CONTÉM A FOTO.
-                 * Não deforma.
-                 */
-
-                const escala =
-                    Math.min(
-                        areaW / img.width,
-                        areaH / img.height
+                    await carregarImagem(
+                        url
                     );
 
 
-                const imgW =
-                    img.width *
-                    escala;
+                /*
+                 * Pequena margem interna.
+                 */
+                const fotoX =
+                    x + 8;
 
 
-                const imgH =
-                    img.height *
-                    escala;
+                const fotoY =
+                    y + 8;
 
 
-                const imgX =
-                    areaX +
-                    (areaW - imgW) / 2;
+                const fotoW =
+                    larguraFoto - 16;
 
 
-                const imgY =
-                    areaY +
-                    (areaH - imgH) / 2;
+                const fotoH =
+                    alturaFoto - 16;
 
 
-                ctx.drawImage(
+                desenharFotoCentralizada(
+                    ctx,
                     img,
-                    imgX,
-                    imgY,
-                    imgW,
-                    imgH
-                );
-
-
-                ctx.strokeStyle =
-                    "#455154";
-
-
-                ctx.lineWidth =
-                    2;
-
-
-                ctx.strokeRect(
-                    areaX,
-                    areaY,
-                    areaW,
-                    areaH
+                    fotoX,
+                    fotoY,
+                    fotoW,
+                    fotoH
                 );
 
             }
             catch(error){
 
-                desenharSemFoto(
+                desenharSemFotoJpg(
                     ctx,
                     x,
                     y,
-                    larguraFoto
+                    larguraFoto,
+                    alturaFoto
                 );
 
             }
@@ -2750,223 +3017,12 @@ async function gerarJpgCilindro(i){
         }
         else{
 
-            desenharSemFoto(
+            desenharSemFotoJpg(
                 ctx,
                 x,
                 y,
-                larguraFoto
-            );
-
-        }
-
-
-        /* =================================================
-           MEDIÇÃO
-        ================================================= */
-
-        const input =
-            document.getElementById(
-                valve.id
-            );
-
-
-        const valorTexto =
-            input?.value || "";
-
-
-        const valor =
-            parseFloat(
-                valorTexto.replace(",",".")
-            );
-
-
-        const medY =
-            y + 365;
-
-
-        ctx.fillStyle =
-            "#0c1112";
-
-
-        roundRect(
-            ctx,
-            x + 12,
-            medY - 32,
-            larguraFoto - 24,
-            48,
-            7,
-            true,
-            false
-        );
-
-
-        ctx.fillStyle =
-            "#7f8c88";
-
-
-        ctx.font =
-            "bold 12px Arial";
-
-
-        ctx.textAlign =
-            "left";
-
-
-        ctx.fillText(
-            "MEDIÇÃO",
-            x + 25,
-            medY - 8
-        );
-
-
-        /* =================================================
-           MEDIÇÃO NORMAL
-        ================================================= */
-
-        if(
-            !isNaN(valor) &&
-            valor < LIMITE_AFUNDAMENTO
-        ){
-
-            ctx.fillStyle =
-                "#62e49a";
-
-
-            ctx.font =
-                "bold 23px Arial";
-
-
-            ctx.fillText(
-                `${valor.toFixed(2).replace(".",",")} mm`,
-                x + 125,
-                medY - 8
-            );
-
-
-            ctx.fillStyle =
-                "#075d31";
-
-
-            roundRect(
-                ctx,
-                x + larguraFoto - 120,
-                medY - 25,
-                95,
-                30,
-                5,
-                true,
-                false
-            );
-
-
-            ctx.fillStyle =
-                "#ffffff";
-
-
-            ctx.font =
-                "bold 11px Arial";
-
-
-            ctx.textAlign =
-                "center";
-
-
-            ctx.fillText(
-                "NORMAL",
-                x + larguraFoto - 72,
-                medY - 6
-            );
-
-        }
-
-
-        /* =================================================
-           MEDIÇÃO CRÍTICA
-        ================================================= */
-
-        else if(
-            !isNaN(valor) &&
-            valor >= LIMITE_AFUNDAMENTO
-        ){
-
-            ctx.fillStyle =
-                "#ff4141";
-
-
-            ctx.font =
-                "bold 23px Arial";
-
-
-            ctx.textAlign =
-                "left";
-
-
-            ctx.fillText(
-                `${valor.toFixed(2).replace(".",",")} mm`,
-                x + 125,
-                medY - 8
-            );
-
-
-            ctx.fillStyle =
-                "#6f1717";
-
-
-            roundRect(
-                ctx,
-                x + larguraFoto - 120,
-                medY - 25,
-                95,
-                30,
-                5,
-                true,
-                false
-            );
-
-
-            ctx.fillStyle =
-                "#ffffff";
-
-
-            ctx.font =
-                "bold 11px Arial";
-
-
-            ctx.textAlign =
-                "center";
-
-
-            ctx.fillText(
-                "ATENÇÃO",
-                x + larguraFoto - 72,
-                medY - 6
-            );
-
-        }
-
-
-        /* =================================================
-           SEM MEDIÇÃO
-        ================================================= */
-
-        else{
-
-            ctx.fillStyle =
-                "#65716e";
-
-
-            ctx.font =
-                "bold 18px Arial";
-
-
-            ctx.textAlign =
-                "left";
-
-
-            ctx.fillText(
-                "-- mm",
-                x + 125,
-                medY - 8
+                larguraFoto,
+                alturaFoto
             );
 
         }
@@ -2974,157 +3030,135 @@ async function gerarJpgCilindro(i){
     }
 
 
-    /* =====================================================
-       RODAPÉ
-    ===================================================== */
+    /*
+     * GERA BLOB
+     */
+    const blob =
+        await new Promise(
+            resolve =>
+                canvas.toBlob(
+                    resolve,
+                    "image/jpeg",
+                    0.96
+                )
+        );
 
-    ctx.fillStyle =
-        "#0b1011";
+
+    if(!blob){
+
+        alert(
+            "Não foi possível gerar a imagem."
+        );
+
+        return;
+
+    }
 
 
-    ctx.fillRect(
-        0,
-        altura - 55,
-        largura,
-        55
+    /*
+     * GUARDA PARA A PRÉVIA
+     */
+    if(previewUrl){
+
+        URL.revokeObjectURL(
+            previewUrl
+        );
+
+    }
+
+
+    previewBlob =
+        blob;
+
+
+    previewNome =
+        `CILINDRO_${String(i).padStart(2,"0")}.jpg`;
+
+
+    previewUrl =
+        URL.createObjectURL(
+            blob
+        );
+
+
+    /*
+     * MOSTRA PRÉVIA
+     */
+    const imagem =
+        document.getElementById(
+            "previewImage"
+        );
+
+
+    imagem.src =
+        previewUrl;
+
+
+    document.getElementById(
+        "previewTitle"
+    ).textContent =
+        `PRÉVIA — CILINDRO ${String(i).padStart(2,"0")}`;
+
+
+    document.getElementById(
+        "previewOverlay"
+    ).classList.add(
+        "ativo"
     );
 
 
-    ctx.fillStyle =
-        "#6d7976";
-
-
-    ctx.font =
-        "12px Arial";
-
-
-    ctx.textAlign =
-        "center";
-
-
-    ctx.fillText(
-        "REGISTRO DE INSPEÇÃO • MEDIÇÃO DE VÁLVULAS",
-        largura / 2,
-        altura - 22
-    );
-
-
-    /* =====================================================
-       DOWNLOAD
-    ===================================================== */
-
-    canvas.toBlob(
-        function(blob){
-
-            if(!blob){
-
-                alert(
-                    "Não foi possível gerar a imagem."
-                );
-
-                return;
-
-            }
-
-
-            const nome =
-                `CILINDRO_${i}.jpg`;
-
-
-            const url =
-                URL.createObjectURL(
-                    blob
-                );
-
-
-            const link =
-                document.createElement("a");
-
-
-            link.href =
-                url;
-
-
-            link.download =
-                nome;
-
-
-            document.body.appendChild(
-                link
-            );
-
-
-            link.click();
-
-
-            document.body.removeChild(
-                link
-            );
-
-
-            setTimeout(
-                ()=>{
-                    URL.revokeObjectURL(
-                        url
-                    );
-                },
-                3000
-            );
-
-
-            mostrarMensagemDownload(
-                nome
-            );
-
-        },
-        "image/jpeg",
-        0.96
-    );
+    /*
+     * Vai para o topo da prévia.
+     */
+    document.querySelector(
+        ".preview-content"
+    ).scrollTop = 0;
 
 }
 
 
 /* =========================================================
-   SEM FOTO
+   SEM FOTO NO JPG
 ========================================================= */
 
-function desenharSemFoto(
+function desenharSemFotoJpg(
     ctx,
     x,
     y,
-    largura
+    largura,
+    altura
 ){
 
-    const areaX =
-        x + 12;
+    const internoX =
+        x + 8;
 
 
-    const areaY =
-        y + 68;
+    const internoY =
+        y + 8;
 
 
-    const areaW =
-        largura - 24;
+    const internoW =
+        largura - 16;
 
 
-    const areaH =
-        275;
+    const internoH =
+        altura - 16;
 
 
     ctx.fillStyle =
-        "#0b1011";
+        "#c9cfcc";
 
 
     ctx.fillRect(
-        areaX,
-        areaY,
-        areaW,
-        areaH
+        internoX,
+        internoY,
+        internoW,
+        internoH
     );
 
 
     ctx.strokeStyle =
-        "#303a3c";
+        "#9ba5a2";
 
 
     ctx.lineWidth =
@@ -3132,32 +3166,161 @@ function desenharSemFoto(
 
 
     ctx.strokeRect(
-        areaX,
-        areaY,
-        areaW,
-        areaH
+        internoX,
+        internoY,
+        internoW,
+        internoH
     );
 
 
     ctx.fillStyle =
-        "#596562";
+        "#68736f";
 
 
     ctx.font =
-        "bold 16px Arial";
+        "bold 24px Arial";
 
 
     ctx.textAlign =
         "center";
 
 
+    ctx.textBaseline =
+        "middle";
+
+
     ctx.fillText(
         "SEM FOTO",
         x + largura / 2,
-        areaY + areaH / 2
+        y + altura / 2
     );
 
 }
+
+
+/* =========================================================
+   FECHAR PRÉVIA
+========================================================= */
+
+function fecharPreview(){
+
+    document.getElementById(
+        "previewOverlay"
+    ).classList.remove(
+        "ativo"
+    );
+
+
+    const imagem =
+        document.getElementById(
+            "previewImage"
+        );
+
+
+    imagem.src = "";
+
+
+    if(previewUrl){
+
+        URL.revokeObjectURL(
+            previewUrl
+        );
+
+        previewUrl =
+            null;
+
+    }
+
+
+    previewBlob =
+        null;
+
+}
+
+
+/* =========================================================
+   BAIXAR JPG DA PRÉVIA
+========================================================= */
+
+document
+.getElementById("previewDownload")
+.addEventListener(
+    "click",
+    function(){
+
+        if(!previewBlob)
+            return;
+
+
+        const url =
+            URL.createObjectURL(
+                previewBlob
+            );
+
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+
+        link.href =
+            url;
+
+
+        link.download =
+            previewNome;
+
+
+        document.body.appendChild(
+            link
+        );
+
+
+        link.click();
+
+
+        document.body.removeChild(
+            link
+        );
+
+
+        setTimeout(
+            ()=>{
+                URL.revokeObjectURL(
+                    url
+                );
+            },
+            3000
+        );
+
+
+        mostrarMensagemDownload(
+            previewNome
+        );
+
+    }
+);
+
+
+/* =========================================================
+   FECHAR COM ESC
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape"
+        ){
+
+            fecharPreview();
+
+        }
+
+    }
+);
 
 
 /* =========================================================
@@ -3173,7 +3336,7 @@ function mostrarMensagemDownload(nome){
 
 
     el.innerHTML =
-        `⬇ ${nome}<br>Download iniciado`;
+        `⬇ ${nome}<br>Download realizado`;
 
 
     el.style.display =
@@ -3182,8 +3345,10 @@ function mostrarMensagemDownload(nome){
 
     setTimeout(
         ()=>{
+
             el.style.display =
                 "none";
+
         },
         3000
     );
@@ -3647,53 +3812,15 @@ document
         );
 
 
-        document
-        .querySelectorAll(
-            ".photo-box"
-        )
-        .forEach(
-            box=>{
+        for(
+            let i = 1;
+            i <= 6;
+            i++
+        ){
 
-                const id =
-                    box.id.replace(
-                        "photo",
-                        ""
-                    );
+            limparFotosCilindro(i);
 
-
-                const nome =
-                    id.includes(
-                        "exaustao"
-                    )
-                    ? "EXAUSTÃO"
-                    : "ADMISSÃO";
-
-
-                box.style.backgroundImage =
-                    "";
-
-
-                box.innerHTML = `
-
-                    TOQUE PARA FOTO
-
-                    <div class="photo-label">
-
-                        ${nome}
-
-                    </div>
-
-                    <input
-                        type="file"
-                        accept="image/*"
-                        capture="environment"
-                        onchange="loadPhoto(event,'${id}')"
-                    >
-
-                `;
-
-            }
-        );
+        }
 
 
         cilindroAtual =

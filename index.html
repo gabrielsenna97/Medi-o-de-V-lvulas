@@ -1628,10 +1628,6 @@ button{
 
 </div>
 
-<!-- =====================================================
-     PREVIEW JPG
-===================================================== -->
-
 <div
     class="preview-overlay"
     id="previewOverlay"
@@ -1667,10 +1663,6 @@ button{
     </div>
 
 </div>
-
-<!-- =====================================================
-     PREVIEW PDF
-===================================================== -->
 
 <div
     class="pdf-preview-overlay"
@@ -2361,7 +2353,6 @@ function abrirFinalizacao(){
 
 /* =========================================================
    CARREGAR IMAGEM
-   CORREÇÃO CORS
 ========================================================= */
 
 function carregarImagem(url){
@@ -2372,22 +2363,14 @@ function carregarImagem(url){
             const img =
                 new Image();
 
-            /*
-             * ESSENCIAL PARA USAR A IMAGEM
-             * NO CANVAS E GERAR O PDF.
-             */
             img.crossOrigin =
                 "anonymous";
 
             img.onload =
-                () => {
-
-                    resolve(img);
-
-                };
+                () => resolve(img);
 
             img.onerror =
-                (erro) => {
+                erro => {
 
                     console.error(
                         "Erro ao carregar imagem:",
@@ -2419,29 +2402,51 @@ function carregarImagem(url){
 
 
 /* =========================================================
-   JPG
+   CONVERTER DATA URL EM IMAGEM
 ========================================================= */
 
-function desenharSemFotoJpg(
-    ctx,
-    x,
-    y,
-    w,
-    h
-){
+function carregarDataUrlImagem(dataUrl){
 
-    ctx.fillStyle =
-        "#ffffff";
+    return new Promise(
+        (resolve,reject) => {
 
-    ctx.fillRect(
-        x,
-        y,
-        w,
-        h
+            if(!dataUrl){
+
+                reject(
+                    new Error(
+                        "Imagem vazia."
+                    )
+                );
+
+                return;
+
+            }
+
+            const img =
+                new Image();
+
+            img.onload =
+                () => resolve(img);
+
+            img.onerror =
+                () => reject(
+                    new Error(
+                        "Não foi possível carregar a foto."
+                    )
+                );
+
+            img.src =
+                dataUrl;
+
+        }
     );
 
 }
 
+
+/* =========================================================
+   JPG DO CILINDRO
+========================================================= */
 
 async function gerarJpgCilindro(i){
 
@@ -2512,7 +2517,7 @@ async function gerarJpgCilindro(i){
                 try{
 
                     const img =
-                        await carregarImagem(
+                        await carregarDataUrlImagem(
                             url
                         );
 
@@ -2526,8 +2531,10 @@ async function gerarJpgCilindro(i){
 
                 }catch(e){
 
-                    desenharSemFotoJpg(
-                        ctx,
+                    ctx.fillStyle =
+                        "#ffffff";
+
+                    ctx.fillRect(
                         item.x,
                         item.y,
                         640,
@@ -2535,16 +2542,6 @@ async function gerarJpgCilindro(i){
                     );
 
                 }
-
-            }else{
-
-                desenharSemFotoJpg(
-                    ctx,
-                    item.x,
-                    item.y,
-                    640,
-                    850
-                );
 
             }
 
@@ -2687,8 +2684,118 @@ function fecharPreview(){
 
 
 /* =========================================================
+   FUNÇÃO PARA DESENHAR FOTO NO PDF
+========================================================= */
+
+async function desenharFotoPDF(
+    pdf,
+    dataUrl,
+    x,
+    y,
+    largura,
+    altura,
+    nome
+){
+
+    try{
+
+        if(!dataUrl)
+            return false;
+
+        const img =
+            await carregarDataUrlImagem(
+                dataUrl
+            );
+
+        const iw =
+            img.naturalWidth ||
+            img.width;
+
+        const ih =
+            img.naturalHeight ||
+            img.height;
+
+        if(!iw || !ih)
+            return false;
+
+        const proporcao =
+            Math.min(
+                largura / iw,
+                altura / ih
+            );
+
+        const w =
+            iw * proporcao;
+
+        const h =
+            ih * proporcao;
+
+        const px =
+            x +
+            (largura - w) / 2;
+
+        const py =
+            y +
+            (altura - h) / 2;
+
+        pdf.setFillColor(
+            255,
+            255,
+            255
+        );
+
+        pdf.rect(
+            x,
+            y,
+            largura,
+            altura,
+            "F"
+        );
+
+        pdf.addImage(
+            img,
+            "JPEG",
+            px,
+            py,
+            w,
+            h,
+            undefined,
+            "FAST"
+        );
+
+        pdf.setDrawColor(
+            100,
+            100,
+            100
+        );
+
+        pdf.rect(
+            x,
+            y,
+            largura,
+            altura
+        );
+
+        return true;
+
+    }catch(error){
+
+        console.error(
+            "Erro ao inserir foto:",
+            nome,
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================================
    GERAR PDF
-   FORMULÁRIO ORIGINAL COMO FUNDO
+   FORMULÁRIO + MEDIÇÕES + FOTOS
 ========================================================= */
 
 async function gerarPDF(){
@@ -2696,7 +2803,7 @@ async function gerarPDF(){
     try{
 
         mostrarToast(
-            "Carregando formulário..."
+            "Gerando relatório..."
         );
 
         if(
@@ -2717,27 +2824,23 @@ async function gerarPDF(){
             new jsPDF({
                 orientation:"portrait",
                 unit:"mm",
-                format:"a4"
+                format:"a4",
+                compress:true
             });
 
 
-        /* -------------------------------------------------
+        /* =================================================
            FORMULÁRIO ORIGINAL
-        ------------------------------------------------- */
+        ================================================= */
 
         const imagemFundo =
             "https://raw.githubusercontent.com/gabrielsenna97/tema/main/FORM_194_MEDICAO_DAS_VALVULAS_UTE550_REV0_O_M_2.jpg";
-
 
         const img =
             await carregarImagem(
                 imagemFundo
             );
 
-
-        /* -------------------------------------------------
-           CANVAS
-        ------------------------------------------------- */
 
         const canvas =
             document.createElement(
@@ -2752,25 +2855,10 @@ async function gerarPDF(){
             img.naturalHeight ||
             img.height;
 
-
         const ctx =
             canvas.getContext(
                 "2d"
             );
-
-
-        if(!ctx){
-
-            throw new Error(
-                "Não foi possível criar o Canvas."
-            );
-
-        }
-
-
-        /* -------------------------------------------------
-           FUNDO ORIGINAL
-        ------------------------------------------------- */
 
         ctx.drawImage(
             img,
@@ -2847,13 +2935,11 @@ async function gerarPDF(){
         ctx.textBaseline =
             "alphabetic";
 
-
         ctx.fillText(
             mecanico,
             208,
             176
         );
-
 
         ctx.fillText(
             usina,
@@ -2861,13 +2947,11 @@ async function gerarPDF(){
             204
         );
 
-
         ctx.fillText(
             serie,
             165,
             231
         );
-
 
         ctx.fillText(
             ugd,
@@ -2875,13 +2959,11 @@ async function gerarPDF(){
             262
         );
 
-
         ctx.fillText(
             os,
             292,
             262
         );
-
 
         ctx.fillText(
             horimetro,
@@ -2890,18 +2972,12 @@ async function gerarPDF(){
         );
 
 
-        /* =================================================
-           DATA
-        ================================================= */
-
         if(dataVal){
 
             const partes =
                 dataVal.split("-");
 
-            if(
-                partes.length === 3
-            ){
+            if(partes.length === 3){
 
                 const dataBR =
                     `${partes[2]}/${partes[1]}/${partes[0]}`;
@@ -2951,7 +3027,6 @@ async function gerarPDF(){
                 y:589
             },
 
-
             {
                 cilindro:2,
                 tipo:"exaustao1",
@@ -2979,7 +3054,6 @@ async function gerarPDF(){
                 x:689,
                 y:1038
             },
-
 
             {
                 cilindro:3,
@@ -3009,7 +3083,6 @@ async function gerarPDF(){
                 y:589
             },
 
-
             {
                 cilindro:4,
                 tipo:"exaustao1",
@@ -3038,7 +3111,6 @@ async function gerarPDF(){
                 y:1038
             },
 
-
             {
                 cilindro:5,
                 tipo:"exaustao1",
@@ -3066,7 +3138,6 @@ async function gerarPDF(){
                 x:689,
                 y:589
             },
-
 
             {
                 cilindro:6,
@@ -3118,27 +3189,17 @@ async function gerarPDF(){
                             .replace(",",".")
                     );
 
-                if(
+                ctx.fillStyle =
                     !isNaN(numero) &&
-                    numero >=
-                    LIMITE_AFUNDAMENTO
-                ){
+                    numero >= LIMITE_AFUNDAMENTO
+                        ? "#ff0000"
+                        : "#000000";
 
-                    ctx.fillStyle =
-                        "#ff0000";
-
-                    ctx.font =
-                        "bold 18px Arial";
-
-                }else{
-
-                    ctx.fillStyle =
-                        "#000000";
-
-                    ctx.font =
-                        "18px Arial";
-
-                }
+                ctx.font =
+                    !isNaN(numero) &&
+                    numero >= LIMITE_AFUNDAMENTO
+                        ? "bold 18px Arial"
+                        : "18px Arial";
 
                 ctx.fillText(
                     valor,
@@ -3171,11 +3232,11 @@ async function gerarPDF(){
                 .split(/\s+/)
                 .filter(Boolean);
 
-        let linha = "";
+        let linha =
+            "";
 
         let yObs =
             1237;
-
 
         palavras.forEach(
             palavra => {
@@ -3215,7 +3276,6 @@ async function gerarPDF(){
             }
         );
 
-
         if(linha){
 
             ctx.fillText(
@@ -3245,32 +3305,291 @@ async function gerarPDF(){
 
 
         /* =================================================
-           CANVAS → JPG
+           FORMULÁRIO → PDF
         ================================================= */
 
         const imgData =
             canvas.toDataURL(
                 "image/jpeg",
-                0.95
+                .95
             );
 
+        const pageWidth =
+            pdf.internal.pageSize.getWidth();
 
-        /* =================================================
-           JPG → PDF
-        ================================================= */
+        const pageHeight =
+            pdf.internal.pageSize.getHeight();
 
         pdf.addImage(
             imgData,
             "JPEG",
             0,
             0,
-            pdf.internal.pageSize.getWidth(),
-            pdf.internal.pageSize.getHeight()
+            pageWidth,
+            pageHeight,
+            undefined,
+            "FAST"
         );
 
 
         /* =================================================
-           BLOB
+           FOTOS
+           PÁGINAS ADICIONAIS
+        ================================================= */
+
+        const fotosExistentes = [];
+
+        for(let c=1;c<=6;c++){
+
+            for(
+                const valvula
+                of valvulas
+            ){
+
+                const foto =
+                    cilindros[c]
+                        ?.fotos[
+                            valvula.id
+                        ];
+
+                if(foto){
+
+                    fotosExistentes.push({
+
+                        cilindro:c,
+
+                        tipo:valvula.id,
+
+                        nome:valvula.nome,
+
+                        numero:valvula.numero,
+
+                        foto:foto,
+
+                        medida:
+                            cilindros[c]
+                                ?.medidas[
+                                    valvula.id
+                                ] || ""
+
+                    });
+
+                }
+
+            }
+
+        }
+
+
+        /*
+         * Cada página comporta até 4 fotos.
+         * Assim todas as fotos tiradas aparecem
+         * no PDF e também na visualização.
+         */
+
+        if(
+            fotosExistentes.length > 0
+        ){
+
+            for(
+                let inicio=0;
+                inicio<fotosExistentes.length;
+                inicio+=4
+            ){
+
+                pdf.addPage();
+
+                const grupo =
+                    fotosExistentes.slice(
+                        inicio,
+                        inicio+4
+                    );
+
+
+                /* -----------------------------------------
+                   TÍTULO
+                ----------------------------------------- */
+
+                pdf.setFillColor(
+                    8,
+                    18,
+                    13
+                );
+
+                pdf.rect(
+                    0,
+                    0,
+                    pageWidth,
+                    20,
+                    "F"
+                );
+
+                pdf.setTextColor(
+                    0,
+                    255,
+                    136
+                );
+
+                pdf.setFont(
+                    "helvetica",
+                    "bold"
+                );
+
+                pdf.setFontSize(
+                    12
+                );
+
+                pdf.text(
+                    "REGISTRO FOTOGRÁFICO — MEDIÇÃO DAS VÁLVULAS",
+                    10,
+                    12
+                );
+
+
+                /* -----------------------------------------
+                   4 FOTOS
+                ----------------------------------------- */
+
+                const margem =
+                    10;
+
+                const espaco =
+                    6;
+
+                const larguraFoto =
+                    (
+                        pageWidth -
+                        margem * 2 -
+                        espaco
+                    ) / 2;
+
+                const alturaFoto =
+                    112;
+
+                const yInicial =
+                    28;
+
+                const colunas = [
+                    margem,
+                    margem +
+                    larguraFoto +
+                    espaco
+                ];
+
+                const linhas = [
+                    yInicial,
+                    yInicial +
+                    alturaFoto +
+                    18
+                ];
+
+
+                for(
+                    let j=0;
+                    j<grupo.length;
+                    j++
+                ){
+
+                    const item =
+                        grupo[j];
+
+                    const coluna =
+                        j % 2;
+
+                    const linha =
+                        Math.floor(
+                            j / 2
+                        );
+
+                    const x =
+                        colunas[coluna];
+
+                    const y =
+                        linhas[linha];
+
+
+                    /* -------------------------------------
+                       TÍTULO DA FOTO
+                    ------------------------------------- */
+
+                    pdf.setTextColor(
+                        20,
+                        20,
+                        20
+                    );
+
+                    pdf.setFont(
+                        "helvetica",
+                        "bold"
+                    );
+
+                    pdf.setFontSize(
+                        9
+                    );
+
+                    pdf.text(
+                        `CILINDRO ${String(item.cilindro).padStart(2,"0")} — ${item.nome}`,
+                        x,
+                        y + 7
+                    );
+
+
+                    /* -------------------------------------
+                       ÁREA DA FOTO
+                    ------------------------------------- */
+
+                    await desenharFotoPDF(
+                        pdf,
+                        item.foto,
+                        x,
+                        y + 10,
+                        larguraFoto,
+                        alturaFoto - 10,
+                        `C${item.cilindro}-${item.nome}`
+                    );
+
+
+                    /* -------------------------------------
+                       MEDIÇÃO
+                    ------------------------------------- */
+
+                    pdf.setFont(
+                        "helvetica",
+                        "normal"
+                    );
+
+                    pdf.setFontSize(
+                        8
+                    );
+
+                    pdf.setTextColor(
+                        70,
+                        70,
+                        70
+                    );
+
+                    const medidaTexto =
+                        item.medida
+                            ? `Medição: ${item.medida} mm`
+                            : "Medição: não informada";
+
+                    pdf.text(
+                        medidaTexto,
+                        x,
+                        y +
+                        alturaFoto +
+                        5
+                    );
+
+                }
+
+            }
+
+        }
+
+
+        /* =================================================
+           FINAL
         ================================================= */
 
         pdfBlobAtual =
@@ -3294,10 +3613,6 @@ async function gerarPDF(){
             );
 
 
-        /* =================================================
-           PRÉVIA
-        ================================================= */
-
         document.getElementById(
             "pdfFrame"
         ).src =
@@ -3311,9 +3626,21 @@ async function gerarPDF(){
         );
 
 
-        mostrarToast(
-            "Prévia do PDF pronta."
-        );
+        if(
+            fotosExistentes.length > 0
+        ){
+
+            mostrarToast(
+                `${fotosExistentes.length} foto(s) incluída(s) no PDF.`
+            );
+
+        }else{
+
+            mostrarToast(
+                "PDF gerado sem fotos."
+            );
+
+        }
 
 
     }catch(error){

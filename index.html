@@ -2056,7 +2056,7 @@ for(
                         class="alerta-afundamento"
                         id="alerta-${id}"
                     >
-                        ⚠ AFUNDAMENTO — SUBSTITUIR
+                        AFUNDAMENTO — SUBSTITUIR
                     </div>
 
                 </div>
@@ -2412,18 +2412,10 @@ function atualizarDestaque(input){
         valor >= LIMITE_AFUNDAMENTO
     ){
 
-        /*
-         * Campo vermelho.
-         */
-
         input.classList.add(
             "afundamento"
         );
 
-
-        /*
-         * Mostra a descrição.
-         */
 
         if(alerta){
 
@@ -2591,10 +2583,6 @@ function desenharFotoCentralizada(
     altura
 ){
 
-    /*
-     * Fundo neutro.
-     */
-
     ctx.fillStyle =
         "#aeb5b2";
 
@@ -2606,11 +2594,6 @@ function desenharFotoCentralizada(
         altura
     );
 
-
-    /*
-     * Mantém a proporção original.
-     * NÃO estica e NÃO achata a fotografia.
-     */
 
     const escala =
         Math.min(
@@ -2649,30 +2632,165 @@ function desenharFotoCentralizada(
 
 
 /* =========================================================
+   VERIFICAR AFUNDAMENTO DO CILINDRO
+========================================================= */
+
+function cilindroTemAfundamento(i){
+
+    const ids = [
+
+        `exaustao${i}_2`,
+        `admissao${i}_2`,
+        `exaustao${i}_1`,
+        `admissao${i}_1`
+
+    ];
+
+
+    return ids.some(
+        id=>{
+
+            const input =
+                document.getElementById(id);
+
+
+            if(!input)
+                return false;
+
+
+            const valor =
+                parseFloat(
+                    input.value
+                    .replace(",",".")
+                    .trim()
+                );
+
+
+            return (
+                !isNaN(valor) &&
+                valor >= LIMITE_AFUNDAMENTO
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DESENHAR FAIXA DE AFUNDAMENTO
+   SEM SÍMBOLO
+========================================================= */
+
+function desenharFaixaAfundamento(
+    ctx,
+    largura
+){
+
+    const faixaLargura =
+        360;
+
+
+    const faixaAltura =
+        44;
+
+
+    const faixaX =
+        (largura - faixaLargura) / 2;
+
+
+    const faixaY =
+        74;
+
+
+    /*
+     * Fundo marrom.
+     */
+
+    ctx.fillStyle =
+        "#5A321F";
+
+
+    /*
+     * Borda marrom clara.
+     */
+
+    ctx.strokeStyle =
+        "#8B5A3C";
+
+
+    ctx.lineWidth =
+        2;
+
+
+    /*
+     * Borda levemente arredondada.
+     */
+
+    roundRect(
+        ctx,
+        faixaX,
+        faixaY,
+        faixaLargura,
+        faixaAltura,
+        8,
+        true,
+        true
+    );
+
+
+    /*
+     * Texto vermelho.
+     */
+
+    ctx.fillStyle =
+        "#FF3B30";
+
+
+    ctx.font =
+        "900 24px Arial";
+
+
+    ctx.textAlign =
+        "center";
+
+
+    ctx.textBaseline =
+        "middle";
+
+
+    ctx.fillText(
+        "AFUNDAMENTO (67,50)",
+        largura / 2,
+        faixaY + faixaAltura / 2
+    );
+
+}
+
+
+/* =========================================================
    GERAR JPG DO CILINDRO
-   A4 HORIZONTAL
-   1600 x 1131
+   1092 x 1080
 ========================================================= */
 
 async function gerarJpgCilindro(i){
 
     /*
-     * A4 horizontal:
+     * NOVO FORMATO SOLICITADO:
      *
-     * 297 / 210 = 1.414
+     * LARGURA = 1092 px
+     * ALTURA  = 1080 px
      *
-     * 1600 / 1131 = 1.414
-     *
-     * Portanto a imagem mantém
-     * exatamente a proporção A4 horizontal.
+     * A imagem fica praticamente quadrada,
+     * porém as quatro fotos continuam retangulares.
      */
 
     const largura =
-        1600;
+        1092;
 
 
     const altura =
-        1131;
+        1080;
 
 
     const canvas =
@@ -2733,11 +2851,11 @@ async function gerarJpgCilindro(i){
 
 
     /* =====================================================
-       CABEÇALHO A4
+       CABEÇALHO
     ===================================================== */
 
     const alturaCabecalho =
-        82;
+        64;
 
 
     const headerGradient =
@@ -2773,7 +2891,9 @@ async function gerarJpgCilindro(i){
     );
 
 
-    /* Linha verde */
+    /*
+     * Linha verde inferior.
+     */
 
     ctx.fillStyle =
         "#00a651";
@@ -2788,7 +2908,7 @@ async function gerarJpgCilindro(i){
 
 
     /* =====================================================
-       CILINDRO
+       NÚMERO DO CILINDRO
     ===================================================== */
 
     ctx.fillStyle =
@@ -2804,38 +2924,70 @@ async function gerarJpgCilindro(i){
 
 
     ctx.font =
-        "900 38px Arial";
+        "900 30px Arial";
 
 
     ctx.fillText(
         `CILINDRO ${String(i).padStart(2,"0")}`,
         largura / 2,
-        39
+        31
     );
 
 
     /* =====================================================
-       ÁREA DAS FOTOS
-       2 x 2
-       RETANGULAR
+       VERIFICAR AFUNDAMENTO
     ===================================================== */
 
-    const margem =
-        16;
+    const temAfundamento =
+        cilindroTemAfundamento(i);
 
 
     /*
-     * Espaço muito pequeno entre as fotos,
-     * para aproveitar praticamente toda a folha.
+     * Se existir qualquer medição >= 67,50,
+     * aparece a faixa no JPG.
+     *
+     * SEM símbolo.
      */
+
+    if(temAfundamento){
+
+        desenharFaixaAfundamento(
+            ctx,
+            largura
+        );
+
+    }
+
+
+    /* =====================================================
+       ÁREA DAS FOTOS
+    ===================================================== */
+
+    const margem =
+        14;
+
 
     const espacamento =
         8;
 
 
-    const topo =
-        98;
+    /*
+     * Sem faixa:
+     * fotos começam logo abaixo do cabeçalho.
+     *
+     * Com faixa:
+     * reservamos espaço para a faixa.
+     */
 
+    const topoFotos =
+        temAfundamento
+        ? 132
+        : 80;
+
+
+    /*
+     * Largura de cada fotografia.
+     */
 
     const larguraFoto =
         (
@@ -2845,9 +2997,14 @@ async function gerarJpgCilindro(i){
         ) / 2;
 
 
+    /*
+     * Altura calculada para manter
+     * as fotos claramente retangulares.
+     */
+
     const alturaDisponivel =
         altura -
-        topo -
+        topoFotos -
         margem;
 
 
@@ -2859,13 +3016,10 @@ async function gerarJpgCilindro(i){
 
 
     /*
-     * Resultado aproximado:
+     * As quatro posições:
      *
-     * 775 x 499 px por foto.
-     *
-     * Ou seja:
-     * RETANGULAR,
-     * não quadrado.
+     * 01 | 02
+     * 03 | 04
      */
 
     const fotos = [
@@ -2912,7 +3066,7 @@ async function gerarJpgCilindro(i){
 
 
         const y =
-            topo +
+            topoFotos +
             linha *
             (
                 alturaFoto +
@@ -2921,7 +3075,7 @@ async function gerarJpgCilindro(i){
 
 
         /*
-         * Fundo da área.
+         * Fundo da fotografia.
          */
 
         ctx.fillStyle =
@@ -2967,8 +3121,7 @@ async function gerarJpgCilindro(i){
 
 
                 /*
-                 * Apenas 3 px de margem.
-                 * Aproveita quase toda a área.
+                 * Pequena margem interna.
                  */
 
                 const fotoX =
@@ -2987,6 +3140,12 @@ async function gerarJpgCilindro(i){
                     alturaFoto - 6;
 
 
+                /*
+                 * Mantém a proporção da foto.
+                 * NÃO estica.
+                 * NÃO achata.
+                 */
+
                 desenharFotoCentralizada(
                     ctx,
                     img,
@@ -2998,7 +3157,7 @@ async function gerarJpgCilindro(i){
 
 
                 /*
-                 * Borda discreta.
+                 * Borda da fotografia.
                  */
 
                 ctx.strokeStyle =
@@ -3046,7 +3205,7 @@ async function gerarJpgCilindro(i){
 
 
     /* =====================================================
-       GERAR BLOB
+       GERAR BLOB JPG
     ===================================================== */
 
     const blob =
@@ -3583,10 +3742,6 @@ document
                         numero >= LIMITE_AFUNDAMENTO
                     ){
 
-                        /*
-                         * Valor em vermelho.
-                         */
-
                         ctx.fillStyle =
                             "red";
 
@@ -3601,10 +3756,6 @@ document
                             y
                         );
 
-
-                        /*
-                         * Descrição de afundamento.
-                         */
 
                         ctx.font =
                             "bold 12px Arial";

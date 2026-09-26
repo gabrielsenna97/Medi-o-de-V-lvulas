@@ -81,6 +81,10 @@ button{
     padding:12px 10px 40px;
 }
 
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
 .header{
     position:relative;
     overflow:hidden;
@@ -243,6 +247,10 @@ button{
     font-size:9px;
 }
 
+/* =========================================================
+   STATUS
+========================================================= */
+
 .quick-status{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -286,6 +294,35 @@ button{
     letter-spacing:.7px;
     font-weight:bold;
 }
+
+.limit-bar{
+    border-radius:15px;
+    padding:12px;
+    margin-bottom:15px;
+    background:
+        linear-gradient(145deg,#161e1a,#080b09);
+    border:1px solid #2b3831;
+    box-shadow:
+        0 6px 0 #020403,
+        0 10px 18px rgba(0,0,0,.4);
+    text-align:center;
+}
+
+.limit-bar strong{
+    color:var(--verde);
+    font-size:15px;
+}
+
+.limit-bar span{
+    display:block;
+    color:#7c8982;
+    font-size:9px;
+    margin-top:4px;
+}
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
 
 .navigation-panel{
     border-radius:20px;
@@ -394,6 +431,10 @@ button{
     background:var(--verde);
     box-shadow:0 0 8px rgba(0,255,136,.45);
 }
+
+/* =========================================================
+   CILINDRO
+========================================================= */
 
 .cylinder-section{
     position:relative;
@@ -682,10 +723,6 @@ button{
         0 0 10px rgba(255,49,49,.12);
 }
 
-.measurement.danger ~ .alerta-afundamento{
-    display:block;
-}
-
 .measurement.danger + .alerta-afundamento{
     display:block;
 }
@@ -743,30 +780,9 @@ button{
         inset 0 1px 0 rgba(255,255,255,.2);
 }
 
-.limit-bar{
-    border-radius:15px;
-    padding:12px;
-    margin-bottom:15px;
-    background:
-        linear-gradient(145deg,#161e1a,#080b09);
-    border:1px solid #2b3831;
-    box-shadow:
-        0 6px 0 #020403,
-        0 10px 18px rgba(0,0,0,.4);
-    text-align:center;
-}
-
-.limit-bar strong{
-    color:var(--verde);
-    font-size:15px;
-}
-
-.limit-bar span{
-    display:block;
-    color:#7c8982;
-    font-size:9px;
-    margin-top:4px;
-}
+/* =========================================================
+   FINALIZAÇÃO
+========================================================= */
 
 .final-wrapper{
     margin-top:26px;
@@ -962,9 +978,6 @@ button{
 .field input:focus,
 .field textarea:focus{
     border-color:var(--verde);
-    box-shadow:
-        inset 0 0 13px rgba(0,0,0,.7),
-        0 0 10px rgba(0,255,136,.08);
 }
 
 .signature-box{
@@ -994,10 +1007,6 @@ button{
     padding:0 11px;
     outline:none;
     font-size:13px;
-}
-
-.signature-box input:focus{
-    border-color:var(--verde);
 }
 
 .final-actions{
@@ -1058,6 +1067,10 @@ button{
     vertical-align:middle;
     margin:0 7px;
 }
+
+/* =========================================================
+   PREVIEW JPG
+========================================================= */
 
 .preview-overlay{
     position:fixed;
@@ -1120,6 +1133,10 @@ button{
     color:#fff;
 }
 
+/* =========================================================
+   PREVIEW PDF
+========================================================= */
+
 .pdf-preview-overlay{
     position:fixed;
     inset:0;
@@ -1175,11 +1192,6 @@ button{
         0 4px 0 #00552f;
 }
 
-.pdf-download:active{
-    transform:translateY(3px);
-    box-shadow:0 1px 0 #00552f;
-}
-
 .pdf-close{
     width:43px;
     height:43px;
@@ -1196,6 +1208,10 @@ button{
     border:0;
     background:#4b4b4b;
 }
+
+/* =========================================================
+   TOAST
+========================================================= */
 
 .toast{
     position:fixed;
@@ -1277,6 +1293,7 @@ button{
     .field.full{
         grid-column:auto;
     }
+
 }
 
 </style>
@@ -1358,7 +1375,9 @@ button{
 
         <span>NAVEGAÇÃO DA INSPEÇÃO</span>
 
-        <span id="navStatus">CILINDRO 01 / 06</span>
+        <span id="navStatus">
+            CILINDRO 01 / 06
+        </span>
 
     </div>
 
@@ -1609,6 +1628,10 @@ button{
 
 </div>
 
+<!-- =====================================================
+     PREVIEW JPG
+===================================================== -->
+
 <div
     class="preview-overlay"
     id="previewOverlay"
@@ -1644,6 +1667,10 @@ button{
     </div>
 
 </div>
+
+<!-- =====================================================
+     PREVIEW PDF
+===================================================== -->
 
 <div
     class="pdf-preview-overlay"
@@ -1715,7 +1742,7 @@ let cilindros = {};
 
 
 /* =========================================================
-   ESTRUTURA DAS VÁLVULAS
+   VÁLVULAS
 ========================================================= */
 
 const valvulas = [
@@ -1748,17 +1775,19 @@ const valvulas = [
 
 
 /* =========================================================
-   CRIA CILINDROS
+   CRIAR CILINDROS
 ========================================================= */
 
 function criarCilindros(){
 
     const container =
-        document.getElementById("valveContainer");
+        document.getElementById(
+            "valveContainer"
+        );
 
     container.innerHTML = "";
 
-    for(let i = 1; i <= 6; i++){
+    for(let i=1;i<=6;i++){
 
         cilindros[i] = {
 
@@ -1786,8 +1815,6 @@ function criarCilindros(){
 
         section.id =
             `cilindro-${i}`;
-
-        section.dataset.cilindro = i;
 
         let html = `
 
@@ -1818,6 +1845,7 @@ function criarCilindros(){
             </div>
 
             <div class="valve-grid">
+
         `;
 
         valvulas.forEach(valvula => {
@@ -1910,6 +1938,7 @@ function criarCilindros(){
         });
 
         html += `
+
             </div>
 
             <button
@@ -1919,9 +1948,10 @@ function criarCilindros(){
             >
                 📷 GERAR IMAGEM DO CILINDRO ${String(i).padStart(2,"0")}
             </button>
+
         `;
 
-        if(i === 6){
+        if(i===6){
 
             html += `
 
@@ -1943,9 +1973,12 @@ function criarCilindros(){
 
         }
 
-        section.innerHTML = html;
+        section.innerHTML =
+            html;
 
-        container.appendChild(section);
+        container.appendChild(
+            section
+        );
 
     }
 
@@ -1957,21 +1990,21 @@ function criarCilindros(){
 
 
 /* =========================================================
-   EFEITOS 3D DE TOQUE
+   EFEITOS
 ========================================================= */
 
 function ativarEfeitos(){
 
     document
-        .querySelectorAll(".pressable, .cylinder-section")
+        .querySelectorAll(
+            ".pressable, .cylinder-section"
+        )
         .forEach(el => {
 
             el.addEventListener(
                 "pointerdown",
                 () => {
-
                     el.classList.add("pressed");
-
                 },
                 {passive:true}
             );
@@ -1998,49 +2031,58 @@ function ativarEfeitos(){
    FOTO
 ========================================================= */
 
-function carregarFoto(event, cilindro, tipo){
+function carregarFoto(
+    event,
+    cilindro,
+    tipo
+){
 
     const file =
         event.target.files &&
         event.target.files[0];
 
-    if(!file) return;
+    if(!file)
+        return;
 
     const reader =
         new FileReader();
 
-    reader.onload = function(e){
+    reader.onload =
+        function(e){
 
-        cilindros[cilindro].fotos[tipo] =
-            e.target.result;
+            cilindros[cilindro]
+                .fotos[tipo] =
+                e.target.result;
 
-        const box =
-            document.getElementById(
-                `photo-${cilindro}-${tipo}`
+            const box =
+                document.getElementById(
+                    `photo-${cilindro}-${tipo}`
+                );
+
+            box.style.backgroundImage =
+                `url("${e.target.result}")`;
+
+            box.style.backgroundSize =
+                "cover";
+
+            box.style.backgroundPosition =
+                "center";
+
+            box.classList.add(
+                "has-photo"
             );
 
-        box.style.backgroundImage =
-            `url("${e.target.result}")`;
+            const hint =
+                box.querySelector(
+                    ".photo-hint"
+                );
 
-        box.style.backgroundSize =
-            "cover";
+            if(hint){
+                hint.style.display =
+                    "none";
+            }
 
-        box.style.backgroundPosition =
-            "center";
-
-        box.classList.add("has-photo");
-
-        const hint =
-            box.querySelector(".photo-hint");
-
-        if(hint){
-
-            hint.style.display =
-                "none";
-
-        }
-
-    };
+        };
 
     reader.readAsDataURL(file);
 
@@ -2051,10 +2093,13 @@ function carregarFoto(event, cilindro, tipo){
    REMOVER FOTO
 ========================================================= */
 
-function removerFoto(cilindro, tipo){
+function removerFoto(
+    cilindro,
+    tipo
+){
 
-    cilindros[cilindro].fotos[tipo] =
-        null;
+    cilindros[cilindro]
+        .fotos[tipo] = null;
 
     const box =
         document.getElementById(
@@ -2064,25 +2109,25 @@ function removerFoto(cilindro, tipo){
     box.style.backgroundImage =
         "";
 
-    box.classList.remove("has-photo");
+    box.classList.remove(
+        "has-photo"
+    );
 
     const hint =
-        box.querySelector(".photo-hint");
+        box.querySelector(
+            ".photo-hint"
+        );
 
     if(hint){
-
         hint.style.display =
             "flex";
-
     }
 
     const input =
         box.querySelector("input");
 
     if(input){
-
         input.value = "";
-
     }
 
 }
@@ -2092,9 +2137,14 @@ function removerFoto(cilindro, tipo){
    MEDIÇÃO
 ========================================================= */
 
-function atualizarMedida(cilindro, tipo, valor){
+function atualizarMedida(
+    cilindro,
+    tipo,
+    valor
+){
 
-    cilindros[cilindro].medidas[tipo] =
+    cilindros[cilindro]
+        .medidas[tipo] =
         valor;
 
     const input =
@@ -2107,18 +2157,25 @@ function atualizarMedida(cilindro, tipo, valor){
             `alerta-${cilindro}-${tipo}`
         );
 
-    const bloco =
-        input.closest(".valve-block");
-
     const medida =
-        input.closest(".measurement");
+        input.closest(
+            ".measurement"
+        );
+
+    const bloco =
+        input.closest(
+            ".valve-block"
+        );
 
     const luz =
-        bloco.querySelector(".valve-light");
+        bloco.querySelector(
+            ".valve-light"
+        );
 
     const numero =
         parseFloat(
-            String(valor).replace(",",".")
+            String(valor)
+                .replace(",",".")
         );
 
     if(
@@ -2126,7 +2183,9 @@ function atualizarMedida(cilindro, tipo, valor){
         numero >= LIMITE_AFUNDAMENTO
     ){
 
-        medida.classList.add("danger");
+        medida.classList.add(
+            "danger"
+        );
 
         alerta.style.display =
             "block";
@@ -2139,7 +2198,9 @@ function atualizarMedida(cilindro, tipo, valor){
 
     }else{
 
-        medida.classList.remove("danger");
+        medida.classList.remove(
+            "danger"
+        );
 
         alerta.style.display =
             "none";
@@ -2166,15 +2227,19 @@ function atualizarMedida(cilindro, tipo, valor){
 function atualizarCilindro(){
 
     document
-        .querySelectorAll(".cylinder-section")
-        .forEach((section,index) => {
+        .querySelectorAll(
+            ".cylinder-section"
+        )
+        .forEach(
+            (section,index) => {
 
-            section.style.display =
-                index + 1 === cilindroAtual
-                    ? "block"
-                    : "none";
+                section.style.display =
+                    index + 1 === cilindroAtual
+                        ? "block"
+                        : "none";
 
-        });
+            }
+        );
 
     document.getElementById(
         "cilindroAtualTexto"
@@ -2198,15 +2263,14 @@ function atualizarCilindro(){
 
     for(let i=1;i<=6;i++){
 
-        const p =
-            document.getElementById(
+        document
+            .getElementById(
                 `progress${i}`
+            )
+            .classList.toggle(
+                "active",
+                i <= cilindroAtual
             );
-
-        p.classList.toggle(
-            "active",
-            i <= cilindroAtual
-        );
 
     }
 
@@ -2258,12 +2322,13 @@ function cilindroAnterior(){
 
 function toggleFinalizacao(){
 
-    const wrapper =
-        document.getElementById(
+    document
+        .getElementById(
             "finalizacaoWrapper"
+        )
+        .classList.toggle(
+            "open"
         );
-
-    wrapper.classList.toggle("open");
 
 }
 
@@ -2275,22 +2340,28 @@ function abrirFinalizacao(){
             "finalizacaoWrapper"
         );
 
-    wrapper.classList.add("open");
+    wrapper.classList.add(
+        "open"
+    );
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        wrapper.scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-        });
+            wrapper.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
 
-    },100);
+        },
+        100
+    );
 
 }
 
 
 /* =========================================================
    CARREGAR IMAGEM
+   CORREÇÃO CORS
 ========================================================= */
 
 function carregarImagem(url){
@@ -2301,14 +2372,45 @@ function carregarImagem(url){
             const img =
                 new Image();
 
+            /*
+             * ESSENCIAL PARA USAR A IMAGEM
+             * NO CANVAS E GERAR O PDF.
+             */
+            img.crossOrigin =
+                "anonymous";
+
             img.onload =
-                () => resolve(img);
+                () => {
+
+                    resolve(img);
+
+                };
 
             img.onerror =
-                reject;
+                (erro) => {
+
+                    console.error(
+                        "Erro ao carregar imagem:",
+                        erro
+                    );
+
+                    reject(
+                        new Error(
+                            "Não foi possível carregar a imagem."
+                        )
+                    );
+
+                };
 
             img.src =
-                url;
+                url +
+                (
+                    url.includes("?")
+                        ? "&"
+                        : "?"
+                ) +
+                "v=" +
+                Date.now();
 
         }
     );
@@ -2317,7 +2419,7 @@ function carregarImagem(url){
 
 
 /* =========================================================
-   DESENHAR SEM FOTO
+   JPG
 ========================================================= */
 
 function desenharSemFotoJpg(
@@ -2327,8 +2429,6 @@ function desenharSemFotoJpg(
     w,
     h
 ){
-
-    ctx.save();
 
     ctx.fillStyle =
         "#ffffff";
@@ -2340,86 +2440,103 @@ function desenharSemFotoJpg(
         h
     );
 
-    ctx.restore();
-
 }
 
 
-/* =========================================================
-   GERAR JPG DO CILINDRO
-========================================================= */
-
 async function gerarJpgCilindro(i){
 
-    const canvas =
-        document.createElement("canvas");
+    try{
 
-    canvas.width = 1280;
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
 
-    canvas.height = 1700;
+        canvas.width =
+            1280;
 
-    const ctx =
-        canvas.getContext("2d");
+        canvas.height =
+            1700;
 
-    ctx.fillStyle =
-        "#ffffff";
+        const ctx =
+            canvas.getContext("2d");
 
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+        ctx.fillStyle =
+            "#ffffff";
 
-    const ordem = [
+        ctx.fillRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
 
-        {
-            tipo:"exaustao2",
-            x:0,
-            y:0
-        },
+        const ordem = [
 
-        {
-            tipo:"admissao2",
-            x:640,
-            y:0
-        },
+            {
+                tipo:"exaustao2",
+                x:0,
+                y:0
+            },
 
-        {
-            tipo:"exaustao1",
-            x:0,
-            y:850
-        },
+            {
+                tipo:"admissao2",
+                x:640,
+                y:0
+            },
 
-        {
-            tipo:"admissao1",
-            x:640,
-            y:850
-        }
+            {
+                tipo:"exaustao1",
+                x:0,
+                y:850
+            },
 
-    ];
+            {
+                tipo:"admissao1",
+                x:640,
+                y:850
+            }
 
-    for(const item of ordem){
+        ];
 
-        const url =
-            cilindros[i].fotos[item.tipo];
+        for(
+            const item of ordem
+        ){
 
-        if(url){
+            const url =
+                cilindros[i]
+                    .fotos[item.tipo];
 
-            try{
+            if(url){
 
-                const img =
-                    await carregarImagem(url);
+                try{
 
-                ctx.drawImage(
-                    img,
-                    item.x,
-                    item.y,
-                    640,
-                    850
-                );
+                    const img =
+                        await carregarImagem(
+                            url
+                        );
 
-            }catch(e){
+                    ctx.drawImage(
+                        img,
+                        item.x,
+                        item.y,
+                        640,
+                        850
+                    );
+
+                }catch(e){
+
+                    desenharSemFotoJpg(
+                        ctx,
+                        item.x,
+                        item.y,
+                        640,
+                        850
+                    );
+
+                }
+
+            }else{
 
                 desenharSemFotoJpg(
                     ctx,
@@ -2431,119 +2548,36 @@ async function gerarJpgCilindro(i){
 
             }
 
-        }else{
-
-            desenharSemFotoJpg(
-                ctx,
-                item.x,
-                item.y,
-                640,
-                850
-            );
-
         }
-
-    }
-
-    ctx.fillStyle =
-        "#ffffff";
-
-    ctx.fillRect(
-        0,
-        5,
-        1280,
-        60
-    );
-
-    ctx.strokeStyle =
-        "#000000";
-
-    ctx.lineWidth =
-        3;
-
-    ctx.strokeRect(
-        0,
-        5,
-        1280,
-        60
-    );
-
-    ctx.fillStyle =
-        "#000000";
-
-    ctx.font =
-        "bold 50px Arial";
-
-    ctx.textAlign =
-        "center";
-
-    ctx.textBaseline =
-        "middle";
-
-    ctx.fillText(
-        `CILINDRO ${i}`,
-        640,
-        35
-    );
-
-    const labels = [
-
-        {
-            text:"EXAUSTÃO 2",
-            x:0,
-            y:810
-        },
-
-        {
-            text:"ADMISSÃO 2",
-            x:640,
-            y:810
-        },
-
-        {
-            text:"EXAUSTÃO 1",
-            x:0,
-            y:1660
-        },
-
-        {
-            text:"ADMISSÃO 1",
-            x:640,
-            y:1660
-        }
-
-    ];
-
-    labels.forEach((item,index) => {
 
         ctx.fillStyle =
             "#ffffff";
 
         ctx.fillRect(
-            item.x,
-            item.y,
-            640,
-            40
+            0,
+            5,
+            1280,
+            60
         );
 
         ctx.strokeStyle =
             "#000000";
 
         ctx.lineWidth =
-            2;
+            3;
 
         ctx.strokeRect(
-            item.x,
-            item.y,
-            640,
-            40
+            0,
+            5,
+            1280,
+            60
         );
 
         ctx.fillStyle =
             "#000000";
 
         ctx.font =
-            "bold 30px Arial";
+            "bold 50px Arial";
 
         ctx.textAlign =
             "center";
@@ -2552,101 +2586,58 @@ async function gerarJpgCilindro(i){
             "middle";
 
         ctx.fillText(
-            item.text,
-            item.x + 320,
-            item.y + 20
+            `CILINDRO ${i}`,
+            640,
+            35
         );
 
-        const tipo =
-            ordem[index].tipo;
+        canvas.toBlob(
+            blob => {
 
-        const valor =
-            parseFloat(
-                String(
-                    cilindros[i].medidas[tipo] || ""
-                ).replace(",",".")
-            );
+                if(!blob)
+                    return;
 
-        if(
-            !isNaN(valor) &&
-            valor >= LIMITE_AFUNDAMENTO
-        ){
+                if(jpgUrlAtual){
 
-            const yAlerta =
-                item.y - 50;
+                    URL.revokeObjectURL(
+                        jpgUrlAtual
+                    );
 
-            ctx.fillStyle =
-                "#ffffff";
+                }
 
-            ctx.fillRect(
-                item.x,
-                yAlerta,
-                640,
-                40
-            );
+                jpgUrlAtual =
+                    URL.createObjectURL(
+                        blob
+                    );
 
-            ctx.strokeStyle =
-                "#ff0000";
+                jpgNomeAtual =
+                    `CILINDRO_${String(i).padStart(2,"0")}.jpg`;
 
-            ctx.lineWidth =
-                3;
+                document.getElementById(
+                    "previewImage"
+                ).src =
+                    jpgUrlAtual;
 
-            ctx.strokeRect(
-                item.x,
-                yAlerta,
-                640,
-                40
-            );
-
-            ctx.fillStyle =
-                "#ff0000";
-
-            ctx.font =
-                "bold 25px Arial";
-
-            ctx.fillText(
-                `AFUNDAMENTO (${valor.toFixed(2).replace(".",",")}mm)`,
-                item.x + 320,
-                yAlerta + 20
-            );
-
-        }
-
-    });
-
-    canvas.toBlob(
-        blob => {
-
-            if(!blob)
-                return;
-
-            if(jpgUrlAtual){
-
-                URL.revokeObjectURL(
-                    jpgUrlAtual
+                document.getElementById(
+                    "previewOverlay"
+                ).classList.add(
+                    "show"
                 );
 
-            }
+            },
+            "image/jpeg",
+            .95
+        );
 
-            jpgUrlAtual =
-                URL.createObjectURL(blob);
+    }catch(error){
 
-            jpgNomeAtual =
-                `CILINDRO_${String(i).padStart(2,"0")}.jpg`;
+        console.error(error);
 
-            document.getElementById(
-                "previewImage"
-            ).src =
-                jpgUrlAtual;
+        mostrarToast(
+            "Erro ao gerar imagem."
+        );
 
-            document.getElementById(
-                "previewOverlay"
-            ).classList.add("show");
-
-        },
-        "image/jpeg",
-        0.95
-    );
+    }
 
 }
 
@@ -2679,20 +2670,24 @@ function baixarPreviewJpg(){
 
 
 /* =========================================================
-   FECHAR PREVIEW JPG
+   FECHAR JPG
 ========================================================= */
 
 function fecharPreview(){
 
     document
-        .getElementById("previewOverlay")
-        .classList.remove("show");
+        .getElementById(
+            "previewOverlay"
+        )
+        .classList.remove(
+            "show"
+        );
 
 }
 
 
 /* =========================================================
-   PDF
+   GERAR PDF
    FORMULÁRIO ORIGINAL COMO FUNDO
 ========================================================= */
 
@@ -2701,10 +2696,21 @@ async function gerarPDF(){
     try{
 
         mostrarToast(
-            "Gerando relatório preenchido..."
+            "Carregando formulário..."
         );
 
-        const { jsPDF } =
+        if(
+            !window.jspdf ||
+            !window.jspdf.jsPDF
+        ){
+
+            throw new Error(
+                "Biblioteca jsPDF não carregada."
+            );
+
+        }
+
+        const {jsPDF} =
             window.jspdf;
 
         const pdf =
@@ -2724,7 +2730,9 @@ async function gerarPDF(){
 
 
         const img =
-            await carregarImagem(imagemFundo);
+            await carregarImagem(
+                imagemFundo
+            );
 
 
         /* -------------------------------------------------
@@ -2732,21 +2740,36 @@ async function gerarPDF(){
         ------------------------------------------------- */
 
         const canvas =
-            document.createElement("canvas");
+            document.createElement(
+                "canvas"
+            );
 
         canvas.width =
+            img.naturalWidth ||
             img.width;
 
         canvas.height =
+            img.naturalHeight ||
             img.height;
 
 
         const ctx =
-            canvas.getContext("2d");
+            canvas.getContext(
+                "2d"
+            );
+
+
+        if(!ctx){
+
+            throw new Error(
+                "Não foi possível criar o Canvas."
+            );
+
+        }
 
 
         /* -------------------------------------------------
-           DESENHAR FORMULÁRIO ORIGINAL
+           FUNDO ORIGINAL
         ------------------------------------------------- */
 
         ctx.drawImage(
@@ -2758,9 +2781,59 @@ async function gerarPDF(){
         );
 
 
-        /* -------------------------------------------------
-           CONFIGURAÇÃO DE TEXTO
-        ------------------------------------------------- */
+        /* =================================================
+           DADOS
+        ================================================= */
+
+        const mecanico =
+            document.getElementById(
+                "mecanico"
+            )?.value || "";
+
+        const usina =
+            document.getElementById(
+                "usina"
+            )?.value || "";
+
+        const serie =
+            document.getElementById(
+                "serie"
+            )?.value || "";
+
+        const ugd =
+            document.getElementById(
+                "ugd"
+            )?.value || "";
+
+        const os =
+            document.getElementById(
+                "os"
+            )?.value || "";
+
+        const horimetro =
+            document.getElementById(
+                "horimetro"
+            )?.value || "";
+
+        const dataVal =
+            document.getElementById(
+                "data"
+            )?.value || "";
+
+        const observacoes =
+            document.getElementById(
+                "observacoes"
+            )?.value || "";
+
+        const assinatura =
+            document.getElementById(
+                "assinatura"
+            )?.value || "";
+
+
+        /* =================================================
+           CABEÇALHO
+        ================================================= */
 
         ctx.fillStyle =
             "#000000";
@@ -2768,37 +2841,12 @@ async function gerarPDF(){
         ctx.font =
             "bold 18px Arial";
 
+        ctx.textAlign =
+            "left";
+
         ctx.textBaseline =
             "alphabetic";
 
-
-        /* =================================================
-           DADOS DO CABEÇALHO
-        ================================================= */
-
-        const mecanico =
-            document.getElementById("mecanico")?.value || "";
-
-        const usina =
-            document.getElementById("usina")?.value || "";
-
-        const serie =
-            document.getElementById("serie")?.value || "";
-
-        const ugd =
-            document.getElementById("ugd")?.value || "";
-
-        const os =
-            document.getElementById("os")?.value || "";
-
-        const horimetro =
-            document.getElementById("horimetro")?.value || "";
-
-        const dataVal =
-            document.getElementById("data")?.value || "";
-
-
-        /* MECÂNICO */
 
         ctx.fillText(
             mecanico,
@@ -2807,16 +2855,12 @@ async function gerarPDF(){
         );
 
 
-        /* USINA */
-
         ctx.fillText(
             usina,
             165,
             204
         );
 
-
-        /* SÉRIE */
 
         ctx.fillText(
             serie,
@@ -2825,16 +2869,12 @@ async function gerarPDF(){
         );
 
 
-        /* UGD */
-
         ctx.fillText(
-            "UGD- " + ugd,
+            ugd,
             590,
             262
         );
 
-
-        /* OS */
 
         ctx.fillText(
             os,
@@ -2843,14 +2883,25 @@ async function gerarPDF(){
         );
 
 
-        /* DATA */
+        ctx.fillText(
+            horimetro,
+            798,
+            231
+        );
+
+
+        /* =================================================
+           DATA
+        ================================================= */
 
         if(dataVal){
 
             const partes =
                 dataVal.split("-");
 
-            if(partes.length === 3){
+            if(
+                partes.length === 3
+            ){
 
                 const dataBR =
                     `${partes[2]}/${partes[1]}/${partes[0]}`;
@@ -2866,33 +2917,9 @@ async function gerarPDF(){
         }
 
 
-        /* HORÍMETRO */
-
-        ctx.fillText(
-            horimetro,
-            798,
-            231
-        );
-
-
         /* =================================================
            MEDIÇÕES
         ================================================= */
-
-        /*
-           IMPORTANTE:
-
-           O seu sistema NÃO possui elementos com IDs
-           exaustao1_1 etc.
-
-           As medições ficam armazenadas em:
-
-           cilindros[1].medidas
-           cilindros[2].medidas
-           ...
-           cilindros[6].medidas
-        */
-
 
         const campos = [
 
@@ -3072,21 +3099,18 @@ async function gerarPDF(){
         ];
 
 
-        /* -------------------------------------------------
-           ESCREVER AS 24 MEDIÇÕES
-        ------------------------------------------------- */
-
         campos.forEach(
             campo => {
 
                 const valor =
-                    cilindros[campo.cilindro]
-                        ?.medidas[campo.tipo] || "";
-
+                    cilindros[
+                        campo.cilindro
+                    ]?.medidas[
+                        campo.tipo
+                    ] || "";
 
                 if(!valor)
                     return;
-
 
                 const numero =
                     parseFloat(
@@ -3094,10 +3118,10 @@ async function gerarPDF(){
                             .replace(",",".")
                     );
 
-
                 if(
                     !isNaN(numero) &&
-                    numero >= LIMITE_AFUNDAMENTO
+                    numero >=
+                    LIMITE_AFUNDAMENTO
                 ){
 
                     ctx.fillStyle =
@@ -3116,7 +3140,6 @@ async function gerarPDF(){
 
                 }
 
-
                 ctx.fillText(
                     valor,
                     campo.x,
@@ -3131,18 +3154,11 @@ async function gerarPDF(){
            OBSERVAÇÕES
         ================================================= */
 
-        const observacoes =
-            document.getElementById(
-                "observacoes"
-            )?.value || "";
-
-
         ctx.fillStyle =
             "#000000";
 
         ctx.font =
             "18px Arial";
-
 
         const maxWidth =
             950;
@@ -3150,12 +3166,10 @@ async function gerarPDF(){
         const lineHeight =
             26;
 
-
         const palavras =
             observacoes
                 .split(/\s+/)
                 .filter(Boolean);
-
 
         let linha = "";
 
@@ -3171,9 +3185,10 @@ async function gerarPDF(){
                     palavra +
                     " ";
 
-
                 if(
-                    ctx.measureText(teste).width >
+                    ctx.measureText(
+                        teste
+                    ).width >
                     maxWidth
                 ){
 
@@ -3183,11 +3198,9 @@ async function gerarPDF(){
                         yObs
                     );
 
-
                     linha =
                         palavra +
                         " ";
-
 
                     yObs +=
                         lineHeight;
@@ -3218,18 +3231,11 @@ async function gerarPDF(){
            ASSINATURA
         ================================================= */
 
-        const assinatura =
-            document.getElementById(
-                "assinatura"
-            )?.value || "";
-
-
         ctx.font =
             '40px "Brush Script MT", cursive';
 
         ctx.fillStyle =
             "#08783b";
-
 
         ctx.fillText(
             assinatura,
@@ -3239,18 +3245,18 @@ async function gerarPDF(){
 
 
         /* =================================================
-           TRANSFORMAR FORMULÁRIO EM IMAGEM
+           CANVAS → JPG
         ================================================= */
 
         const imgData =
             canvas.toDataURL(
                 "image/jpeg",
-                1
+                0.95
             );
 
 
         /* =================================================
-           COLOCAR NO PDF
+           JPG → PDF
         ================================================= */
 
         pdf.addImage(
@@ -3268,7 +3274,9 @@ async function gerarPDF(){
         ================================================= */
 
         pdfBlobAtual =
-            pdf.output("blob");
+            pdf.output(
+                "blob"
+            );
 
 
         if(pdfUrlAtual){
@@ -3310,7 +3318,15 @@ async function gerarPDF(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "ERRO COMPLETO AO GERAR PDF:",
+            error
+        );
+
+        console.error(
+            "Mensagem:",
+            error?.message
+        );
 
         mostrarToast(
             "Erro ao gerar o PDF."
@@ -3327,8 +3343,15 @@ async function gerarPDF(){
 
 function baixarPDF(){
 
-    if(!pdfBlobAtual)
+    if(!pdfBlobAtual){
+
+        mostrarToast(
+            "Gere o PDF primeiro."
+        );
+
         return;
+
+    }
 
     const url =
         URL.createObjectURL(
@@ -3336,7 +3359,9 @@ function baixarPDF(){
         );
 
     const a =
-        document.createElement("a");
+        document.createElement(
+            "a"
+        );
 
     a.href =
         url;
@@ -3344,14 +3369,22 @@ function baixarPDF(){
     a.download =
         "MEDICAO_VALVULAS_SCANIA_550.pdf";
 
-    document.body.appendChild(a);
+    document.body.appendChild(
+        a
+    );
 
     a.click();
 
     a.remove();
 
     setTimeout(
-        () => URL.revokeObjectURL(url),
+        () => {
+
+            URL.revokeObjectURL(
+                url
+            );
+
+        },
         1000
     );
 
@@ -3363,7 +3396,7 @@ function baixarPDF(){
 
 
 /* =========================================================
-   FECHAR PREVIEW PDF
+   FECHAR PDF
 ========================================================= */
 
 function fecharPreviewPDF(){
@@ -3372,13 +3405,15 @@ function fecharPreviewPDF(){
         .getElementById(
             "pdfPreviewOverlay"
         )
-        .classList.remove("show");
+        .classList.remove(
+            "show"
+        );
 
 }
 
 
 /* =========================================================
-   LIMPAR TUDO
+   LIMPAR
 ========================================================= */
 
 function limparTudo(){
@@ -3397,7 +3432,8 @@ function limparTudo(){
 
     document.getElementById(
         "data"
-    ).value = dataHoje();
+    ).value =
+        dataHoje();
 
     document.getElementById(
         "usina"
@@ -3427,18 +3463,22 @@ function limparTudo(){
         "assinatura"
     ).value = "";
 
+
     for(let i=1;i<=6;i++){
 
         valvulas.forEach(
             valvula => {
 
-                cilindros[i].fotos[
-                    valvula.id
-                ] = null;
+                cilindros[i]
+                    .fotos[
+                        valvula.id
+                    ] = null;
 
-                cilindros[i].medidas[
-                    valvula.id
-                ] = "";
+                cilindros[i]
+                    .medidas[
+                        valvula.id
+                    ] = "";
+
 
                 const input =
                     document.getElementById(
@@ -3447,9 +3487,11 @@ function limparTudo(){
 
                 if(input){
 
-                    input.value = "";
+                    input.value =
+                        "";
 
                 }
+
 
                 const box =
                     document.getElementById(
@@ -3491,6 +3533,7 @@ function limparTudo(){
 
                 }
 
+
                 const alerta =
                     document.getElementById(
                         `alerta-${i}-${valvula.id}`
@@ -3503,18 +3546,21 @@ function limparTudo(){
 
                 }
 
-                const medida =
-                    input
-                        ? input.closest(
+
+                if(input){
+
+                    const medida =
+                        input.closest(
                             ".measurement"
-                        )
-                        : null;
+                        );
 
-                if(medida){
+                    if(medida){
 
-                    medida.classList.remove(
-                        "danger"
-                    );
+                        medida.classList.remove(
+                            "danger"
+                        );
+
+                    }
 
                 }
 
@@ -3523,7 +3569,9 @@ function limparTudo(){
 
     }
 
-    cilindroAtual = 1;
+
+    cilindroAtual =
+        1;
 
     atualizarCilindro();
 
@@ -3547,7 +3595,7 @@ function limparTudo(){
 
 
 /* =========================================================
-   DATA ATUAL
+   DATA
 ========================================================= */
 
 function dataHoje(){
@@ -3561,12 +3609,18 @@ function dataHoje(){
     const mes =
         String(
             agora.getMonth()+1
-        ).padStart(2,"0");
+        ).padStart(
+            2,
+            "0"
+        );
 
     const dia =
         String(
             agora.getDate()
-        ).padStart(2,"0");
+        ).padStart(
+            2,
+            "0"
+        );
 
     return `${ano}-${mes}-${dia}`;
 
@@ -3579,7 +3633,9 @@ function dataHoje(){
 
 let toastTimer;
 
-function mostrarToast(texto){
+function mostrarToast(
+    texto
+){
 
     const toast =
         document.getElementById(
@@ -3620,7 +3676,9 @@ document.addEventListener(
     "keydown",
     event => {
 
-        if(event.key === "Escape"){
+        if(
+            event.key === "Escape"
+        ){
 
             fecharPreview();
 

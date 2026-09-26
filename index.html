@@ -795,6 +795,11 @@ body{
    MEDIÇÃO
 ========================================================= */
 
+.measurement{
+
+    position:relative;
+}
+
 .measurement input{
 
     width:100%;
@@ -863,6 +868,52 @@ body{
     box-shadow:
         inset 0 2px 6px rgba(0,0,0,.6),
         0 0 8px rgba(239,52,52,.18);
+}
+
+
+/* =========================================================
+   ALERTA DE AFUNDAMENTO
+========================================================= */
+
+.alerta-afundamento{
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    width:100%;
+
+    min-height:24px;
+
+    margin-top:4px;
+    padding:4px 5px;
+
+    border:1px solid #a92828;
+    border-radius:5px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #401414,
+            #250b0b
+        );
+
+    color:#ff6565;
+
+    font-size:8px;
+    font-weight:900;
+
+    text-align:center;
+
+    letter-spacing:.3px;
+
+    box-shadow:
+        0 0 7px rgba(239,52,52,.12);
+}
+
+.alerta-afundamento.ativo{
+    display:flex;
 }
 
 
@@ -1158,7 +1209,7 @@ textarea::placeholder{
 .preview-window{
 
     width:100%;
-    max-width:700px;
+    max-width:900px;
     max-height:96vh;
 
     display:flex;
@@ -1355,6 +1406,10 @@ textarea::placeholder{
     .measurement input{
         height:35px;
         font-size:14px;
+    }
+
+    .alerta-afundamento{
+        font-size:7px;
     }
 
 }
@@ -1997,6 +2052,13 @@ for(
                         oninput="atualizarDestaque(this)"
                     >
 
+                    <div
+                        class="alerta-afundamento"
+                        id="alerta-${id}"
+                    >
+                        ⚠ AFUNDAMENTO — SUBSTITUIR
+                    </div>
+
                 </div>
 
 
@@ -2125,19 +2187,6 @@ function limparFotosCilindro(i){
                 return;
 
 
-            const input =
-                box.querySelector(
-                    'input[type="file"]'
-                );
-
-
-            if(input){
-
-                input.value = "";
-
-            }
-
-
             box.style.backgroundImage =
                 "";
 
@@ -2188,6 +2237,12 @@ function proximoCilindro(){
     if(
         cilindroAtual < 6
     ){
+
+        /*
+         * Ao avançar:
+         * as fotos do cilindro atual são apagadas,
+         * mas as medições permanecem.
+         */
 
         limparFotosCilindro(
             cilindroAtual
@@ -2293,19 +2348,6 @@ function removePhoto(id){
         return;
 
 
-    const input =
-        box.querySelector(
-            'input[type="file"]'
-        );
-
-
-    if(input){
-
-        input.value = "";
-
-    }
-
-
     box.style.backgroundImage =
         "";
 
@@ -2353,7 +2395,15 @@ function atualizarDestaque(input){
 
     const valor =
         parseFloat(
-            input.value.replace(",",".")
+            input.value
+            .replace(",",".")
+            .trim()
+        );
+
+
+    const alerta =
+        document.getElementById(
+            "alerta-" + input.id
         );
 
 
@@ -2362,9 +2412,26 @@ function atualizarDestaque(input){
         valor >= LIMITE_AFUNDAMENTO
     ){
 
+        /*
+         * Campo vermelho.
+         */
+
         input.classList.add(
             "afundamento"
         );
+
+
+        /*
+         * Mostra a descrição.
+         */
+
+        if(alerta){
+
+            alerta.classList.add(
+                "ativo"
+            );
+
+        }
 
     }
     else{
@@ -2372,6 +2439,15 @@ function atualizarDestaque(input){
         input.classList.remove(
             "afundamento"
         );
+
+
+        if(alerta){
+
+            alerta.classList.remove(
+                "ativo"
+            );
+
+        }
 
     }
 
@@ -2532,8 +2608,8 @@ function desenharFotoCentralizada(
 
 
     /*
-     * Mantém exatamente a proporção
-     * original da foto.
+     * Mantém a proporção original.
+     * NÃO estica e NÃO achata a fotografia.
      */
 
     const escala =
@@ -2574,16 +2650,21 @@ function desenharFotoCentralizada(
 
 /* =========================================================
    GERAR JPG DO CILINDRO
-   FORMATO 1600 x 1500
-   MAIS PRÓXIMO DO QUADRADO
-   4 FOTOS GRANDES
+   A4 HORIZONTAL
+   1600 x 1131
 ========================================================= */
 
 async function gerarJpgCilindro(i){
 
     /*
-     * Formato escolhido para não deixar
-     * as fotos excessivamente verticais.
+     * A4 horizontal:
+     *
+     * 297 / 210 = 1.414
+     *
+     * 1600 / 1131 = 1.414
+     *
+     * Portanto a imagem mantém
+     * exatamente a proporção A4 horizontal.
      */
 
     const largura =
@@ -2591,7 +2672,7 @@ async function gerarJpgCilindro(i){
 
 
     const altura =
-        1500;
+        1131;
 
 
     const canvas =
@@ -2609,7 +2690,9 @@ async function gerarJpgCilindro(i){
 
 
     const ctx =
-        canvas.getContext("2d");
+        canvas.getContext(
+            "2d"
+        );
 
 
     /* =====================================================
@@ -2650,11 +2733,11 @@ async function gerarJpgCilindro(i){
 
 
     /* =====================================================
-       CABEÇALHO
+       CABEÇALHO A4
     ===================================================== */
 
     const alturaCabecalho =
-        105;
+        82;
 
 
     const headerGradient =
@@ -2698,14 +2781,14 @@ async function gerarJpgCilindro(i){
 
     ctx.fillRect(
         0,
-        alturaCabecalho - 4,
+        alturaCabecalho - 3,
         largura,
-        4
+        3
     );
 
 
     /* =====================================================
-       CILINDRO CENTRALIZADO
+       CILINDRO
     ===================================================== */
 
     ctx.fillStyle =
@@ -2721,43 +2804,37 @@ async function gerarJpgCilindro(i){
 
 
     ctx.font =
-        "900 48px Arial";
+        "900 38px Arial";
 
 
     ctx.fillText(
         `CILINDRO ${String(i).padStart(2,"0")}`,
         largura / 2,
-        51
+        39
     );
 
 
     /* =====================================================
        ÁREA DAS FOTOS
+       2 x 2
+       RETANGULAR
     ===================================================== */
 
-    /*
-     * Margem externa pequena.
-     */
-
     const margem =
-        18;
+        16;
 
 
     /*
-     * Fotos praticamente encostadas.
+     * Espaço muito pequeno entre as fotos,
+     * para aproveitar praticamente toda a folha.
      */
 
     const espacamento =
         8;
 
 
-    /*
-     * Pequena faixa superior
-     * somente para o número.
-     */
-
     const topo =
-        123;
+        98;
 
 
     const larguraFoto =
@@ -2782,7 +2859,13 @@ async function gerarJpgCilindro(i){
 
 
     /*
-     * Ordem das quatro fotos.
+     * Resultado aproximado:
+     *
+     * 775 x 499 px por foto.
+     *
+     * Ou seja:
+     * RETANGULAR,
+     * não quadrado.
      */
 
     const fotos = [
@@ -2796,7 +2879,7 @@ async function gerarJpgCilindro(i){
 
 
     /* =====================================================
-       DESENHAR FOTOS
+       DESENHAR AS 4 FOTOS
     ===================================================== */
 
     for(
@@ -2837,9 +2920,9 @@ async function gerarJpgCilindro(i){
             );
 
 
-        /* =================================================
-           FUNDO DA FOTO
-        ================================================= */
+        /*
+         * Fundo da área.
+         */
 
         ctx.fillStyle =
             "#303638";
@@ -2852,10 +2935,6 @@ async function gerarJpgCilindro(i){
             alturaFoto
         );
 
-
-        /* =================================================
-           FOTO
-        ================================================= */
 
         let possuiFoto =
             photoBox &&
@@ -2888,8 +2967,8 @@ async function gerarJpgCilindro(i){
 
 
                 /*
-                 * Somente 3 pixels de margem.
-                 * Assim a imagem fica muito maior.
+                 * Apenas 3 px de margem.
+                 * Aproveita quase toda a área.
                  */
 
                 const fotoX =
@@ -2919,7 +2998,7 @@ async function gerarJpgCilindro(i){
 
 
                 /*
-                 * Borda discreta sobre a foto.
+                 * Borda discreta.
                  */
 
                 ctx.strokeStyle =
@@ -3493,7 +3572,9 @@ document
 
                     const numero =
                         parseFloat(
-                            valor.replace(",",".")
+                            valor
+                            .replace(",",".")
+                            .trim()
                         );
 
 
@@ -3502,12 +3583,38 @@ document
                         numero >= LIMITE_AFUNDAMENTO
                     ){
 
+                        /*
+                         * Valor em vermelho.
+                         */
+
                         ctx.fillStyle =
                             "red";
 
 
                         ctx.font =
                             "bold 18px Arial";
+
+
+                        ctx.fillText(
+                            valor,
+                            x,
+                            y
+                        );
+
+
+                        /*
+                         * Descrição de afundamento.
+                         */
+
+                        ctx.font =
+                            "bold 12px Arial";
+
+
+                        ctx.fillText(
+                            "AFUNDAMENTO - SUBSTITUIR",
+                            x,
+                            y + 17
+                        );
 
                     }
                     else{
@@ -3519,14 +3626,14 @@ document
                         ctx.font =
                             "18px Arial";
 
+
+                        ctx.fillText(
+                            valor,
+                            x,
+                            y
+                        );
+
                     }
-
-
-                    ctx.fillText(
-                        valor,
-                        x,
-                        y
-                    );
 
                 }
             );
@@ -3728,6 +3835,21 @@ document
 
                 el.classList.remove(
                     "afundamento"
+                );
+
+            }
+        );
+
+
+        document
+        .querySelectorAll(
+            ".alerta-afundamento"
+        )
+        .forEach(
+            el=>{
+
+                el.classList.remove(
+                    "ativo"
                 );
 
             }

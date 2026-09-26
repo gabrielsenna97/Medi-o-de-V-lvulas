@@ -20,16 +20,13 @@
     --verde:#00ff88;
     --verde2:#00c96b;
     --verde3:#063d28;
-
     --fundo:#050807;
     --fundo2:#09100d;
     --painel:#0d1512;
     --painel2:#111b17;
-
     --metal:#26312d;
     --metal2:#17201d;
     --metal3:#35423d;
-
     --texto:#f4f7f5;
     --texto2:#aab7b1;
     --vermelho:#ff3131;
@@ -57,8 +54,17 @@ html{
 body{
     margin:0;
     background:
-        radial-gradient(circle at 50% -10%, rgba(0,255,136,.12), transparent 35%),
-        linear-gradient(145deg,#030504,#08100c 45%,#020403);
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(0,255,136,.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #030504,
+            #08100c 45%,
+            #020403
+        );
     color:var(--texto);
     font-family:Arial,Helvetica,sans-serif;
     min-height:100vh;
@@ -92,7 +98,11 @@ button{
     border:1px solid #29362f;
     border-radius:24px;
     background:
-        linear-gradient(145deg,#111a16,#060a08 65%);
+        linear-gradient(
+            145deg,
+            #111a16,
+            #060a08 65%
+        );
     box-shadow:var(--sombra3d);
     padding:20px;
     margin-bottom:15px;
@@ -145,7 +155,13 @@ button{
     justify-content:center;
     border-radius:50%;
     background:
-        radial-gradient(circle,#18231e 0 30%,#07100c 31% 48%,#26332d 49% 54%,#070b09 55%);
+        radial-gradient(
+            circle,
+            #18231e 0 30%,
+            #07100c 31% 48%,
+            #26332d 49% 54%,
+            #070b09 55%
+        );
     border:2px solid #34423b;
     box-shadow:
         0 8px 0 #020403,
@@ -263,7 +279,11 @@ button{
     border:1px solid #26342d;
     border-radius:15px;
     background:
-        linear-gradient(145deg,#141d19,#080c0a);
+        linear-gradient(
+            145deg,
+            #141d19,
+            #080c0a
+        );
     box-shadow:
         0 7px 0 #020403,
         0 12px 20px rgba(0,0,0,.45),
@@ -300,7 +320,11 @@ button{
     padding:12px;
     margin-bottom:15px;
     background:
-        linear-gradient(145deg,#161e1a,#080b09);
+        linear-gradient(
+            145deg,
+            #161e1a,
+            #080b09
+        );
     border:1px solid #2b3831;
     box-shadow:
         0 6px 0 #020403,
@@ -327,7 +351,11 @@ button{
 .navigation-panel{
     border-radius:20px;
     background:
-        linear-gradient(145deg,#131d18,#070b09);
+        linear-gradient(
+            145deg,
+            #131d18,
+            #070b09
+        );
     border:1px solid #2b3a32;
     box-shadow:var(--sombra3d);
     padding:14px;
@@ -365,7 +393,11 @@ button{
     border:1px solid #33443b;
     border-radius:13px;
     background:
-        linear-gradient(145deg,#1d2923,#0a0f0c);
+        linear-gradient(
+            145deg,
+            #1d2923,
+            #0a0f0c
+        );
     color:var(--verde);
     font-size:22px;
     font-weight:bold;
@@ -442,7 +474,11 @@ button{
     border:1px solid #2c3a33;
     border-radius:23px;
     background:
-        linear-gradient(145deg,#121b17,#070b09);
+        linear-gradient(
+            145deg,
+            #121b17,
+            #070b09
+        );
     box-shadow:var(--sombra3d);
     padding:13px;
     margin-bottom:18px;
@@ -460,12 +496,13 @@ button{
     left:0;
     right:0;
     height:3px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        var(--verde),
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--verde),
+            transparent
+        );
     opacity:.7;
 }
 
@@ -557,7 +594,11 @@ button{
     border:1px solid #29372f;
     border-radius:16px;
     background:
-        linear-gradient(145deg,#18231e,#080c0a);
+        linear-gradient(
+            145deg,
+            #18231e,
+            #080c0a
+        );
     box-shadow:
         0 7px 0 #020403,
         0 10px 17px rgba(0,0,0,.5),
@@ -573,6 +614,7 @@ button{
         translateY(3px)
         rotateX(1deg)
         scale(.995);
+
     box-shadow:
         0 3px 0 #020403,
         0 7px 10px rgba(0,0,0,.55);
@@ -590,7 +632,6 @@ button{
     height:7px;
     border-radius:50%;
     background:#65726c;
-    box-shadow:0 0 5px rgba(255,255,255,.08);
 }
 
 .valve-title strong{
@@ -612,7 +653,11 @@ button{
     overflow:hidden;
     border:1px solid #34443b;
     background:
-        radial-gradient(circle at center,#17211d,#050806);
+        radial-gradient(
+            circle at center,
+            #17211d,
+            #050806
+        );
     box-shadow:
         inset 0 0 18px rgba(0,0,0,.9),
         0 2px 0 #020403;
@@ -690,9 +735,6 @@ button{
 
 .measurement input:focus{
     border-color:var(--verde);
-    box-shadow:
-        inset 0 0 12px rgba(0,0,0,.65),
-        0 0 10px rgba(0,255,136,.1);
 }
 
 .measurement-unit{
@@ -723,10 +765,6 @@ button{
         0 0 10px rgba(255,49,49,.12);
 }
 
-.measurement.danger + .alerta-afundamento{
-    display:block;
-}
-
 .photo-tools{
     display:flex;
     gap:6px;
@@ -742,11 +780,6 @@ button{
     color:#7d8a83;
     font-size:8px;
     font-weight:bold;
-    letter-spacing:.5px;
-}
-
-.photo-tool:active{
-    transform:translateY(2px);
 }
 
 .photo-tool.remove{
@@ -761,7 +794,11 @@ button{
     border:none;
     border-radius:12px;
     background:
-        linear-gradient(145deg,#00e87d,#009b54);
+        linear-gradient(
+            145deg,
+            #00e87d,
+            #009b54
+        );
     color:#00170d;
     font-size:11px;
     font-weight:900;
@@ -770,14 +807,10 @@ button{
         0 6px 0 #004c2b,
         0 10px 18px rgba(0,0,0,.45),
         inset 0 1px 0 rgba(255,255,255,.35);
-    transition:.12s ease;
 }
 
 .btn-jpg:active{
     transform:translateY(5px);
-    box-shadow:
-        0 1px 0 #004c2b,
-        inset 0 1px 0 rgba(255,255,255,.2);
 }
 
 /* =========================================================
@@ -800,22 +833,18 @@ button{
     border:1px solid #33443a;
     border-radius:18px;
     background:
-        linear-gradient(145deg,#17221c,#070b09);
+        linear-gradient(
+            145deg,
+            #17221c,
+            #070b09
+        );
     color:#fff;
     padding:12px 14px;
     box-shadow:
         0 8px 0 #020403,
         0 15px 25px rgba(0,0,0,.55),
         inset 0 1px 0 rgba(255,255,255,.06);
-    transition:.2s ease;
     text-align:left;
-}
-
-.final-toggle:active{
-    transform:translateY(5px) scale(.995);
-    box-shadow:
-        0 3px 0 #020403,
-        0 8px 15px rgba(0,0,0,.55);
 }
 
 .final-icon{
@@ -830,9 +859,6 @@ button{
     border:1px solid #2c4939;
     color:var(--verde);
     font-size:20px;
-    box-shadow:
-        inset 0 0 12px rgba(0,0,0,.7),
-        0 0 10px rgba(0,255,136,.04);
 }
 
 .final-title{
@@ -868,32 +894,20 @@ button{
 
 .final-wrapper.open .final-arrow{
     transform:rotate(180deg);
-    background:#0b2116;
-    box-shadow:0 0 12px rgba(0,255,136,.1);
 }
 
 .final-panel{
     max-height:0;
     overflow:hidden;
     opacity:0;
-    transform:
-        perspective(900px)
-        rotateX(-7deg)
-        translateY(-10px);
-    transform-origin:top;
     transition:
         max-height .55s ease,
-        opacity .35s ease,
-        transform .45s ease;
+        opacity .35s ease;
 }
 
 .final-wrapper.open .final-panel{
     max-height:1400px;
     opacity:1;
-    transform:
-        perspective(900px)
-        rotateX(0)
-        translateY(0);
     margin-top:12px;
 }
 
@@ -901,12 +915,15 @@ button{
     border:1px solid #304139;
     border-radius:20px;
     background:
-        linear-gradient(145deg,#111a16,#060a08);
+        linear-gradient(
+            145deg,
+            #111a16,
+            #060a08
+        );
     padding:13px;
     box-shadow:
         0 8px 0 #020403,
-        0 16px 30px rgba(0,0,0,.55),
-        inset 0 1px 0 rgba(255,255,255,.05);
+        0 16px 30px rgba(0,0,0,.55);
 }
 
 .final-heading{
@@ -932,10 +949,6 @@ button{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:9px;
-}
-
-.field{
-    position:relative;
 }
 
 .field.full{
@@ -1023,30 +1036,27 @@ button{
     font-size:10px;
     font-weight:900;
     letter-spacing:.7px;
-    transition:.12s ease;
-}
-
-.action-btn:active{
-    transform:translateY(4px);
 }
 
 .action-btn.pdf{
     background:
-        linear-gradient(145deg,#00e87d,#009d57);
+        linear-gradient(
+            145deg,
+            #00e87d,
+            #009d57
+        );
     color:#00180d;
     border-color:#00b965;
-    box-shadow:
-        0 5px 0 #00552f,
-        0 10px 15px rgba(0,0,0,.45);
 }
 
 .action-btn.clear{
     background:
-        linear-gradient(145deg,#202a25,#0b100d);
+        linear-gradient(
+            145deg,
+            #202a25,
+            #0b100d
+        );
     color:#ff6b6b;
-    box-shadow:
-        0 5px 0 #020403,
-        0 10px 15px rgba(0,0,0,.45);
 }
 
 .inspection-finished{
@@ -1055,17 +1065,6 @@ button{
     color:#58665f;
     font-size:8px;
     letter-spacing:2px;
-}
-
-.inspection-finished::before,
-.inspection-finished::after{
-    content:"";
-    display:inline-block;
-    width:25px;
-    height:1px;
-    background:#26342c;
-    vertical-align:middle;
-    margin:0 7px;
 }
 
 /* =========================================================
@@ -1096,9 +1095,6 @@ button{
     border-radius:20px;
     background:#080d0a;
     padding:10px;
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.8),
-        inset 0 1px 0 rgba(255,255,255,.06);
 }
 
 .preview-box img{
@@ -1134,7 +1130,7 @@ button{
 }
 
 /* =========================================================
-   PREVIEW PDF
+   PDF
 ========================================================= */
 
 .pdf-preview-overlay{
@@ -1159,8 +1155,11 @@ button{
     gap:8px;
     border-bottom:1px solid #26352d;
     background:
-        linear-gradient(145deg,#111a16,#060a08);
-    box-shadow:0 5px 15px rgba(0,0,0,.5);
+        linear-gradient(
+            145deg,
+            #111a16,
+            #060a08
+        );
 }
 
 .pdf-preview-title{
@@ -1184,12 +1183,15 @@ button{
     padding:0 13px;
     border:1px solid #00bf69;
     border-radius:10px;
-    background:linear-gradient(145deg,#00ef83,#00a95c);
+    background:
+        linear-gradient(
+            145deg,
+            #00ef83,
+            #00a95c
+        );
     color:#00160c;
     font-size:9px;
     font-weight:900;
-    box-shadow:
-        0 4px 0 #00552f;
 }
 
 .pdf-close{
@@ -1312,11 +1314,17 @@ button{
 
         <div class="header-title">
 
-            <small>ENGINE CONTROL • DIGITAL INSPECTION</small>
+            <small>
+                ENGINE CONTROL • DIGITAL INSPECTION
+            </small>
 
-            <h1>SCANIA 550</h1>
+            <h1>
+                SCANIA 550
+            </h1>
 
-            <p>MEDIÇÃO DAS VÁLVULAS</p>
+            <p>
+                MEDIÇÃO DAS VÁLVULAS
+            </p>
 
         </div>
 
@@ -1340,6 +1348,7 @@ button{
 
 </header>
 
+
 <div class="quick-status">
 
     <div class="quick-card">
@@ -1359,9 +1368,12 @@ button{
 
 </div>
 
+
 <div class="limit-bar">
 
-    <strong>⚠ LIMITE DE AFUNDAMENTO: 67,50 mm</strong>
+    <strong>
+        ⚠ LIMITE DE AFUNDAMENTO: 67,50 mm
+    </strong>
 
     <span>
         Valores iguais ou superiores ao limite serão indicados como SUBSTITUIR.
@@ -1369,11 +1381,14 @@ button{
 
 </div>
 
+
 <div class="navigation-panel">
 
     <div class="navigation-title">
 
-        <span>NAVEGAÇÃO DA INSPEÇÃO</span>
+        <span>
+            NAVEGAÇÃO DA INSPEÇÃO
+        </span>
 
         <span id="navStatus">
             CILINDRO 01 / 06
@@ -1394,7 +1409,9 @@ button{
 
         <div class="cylinder-display">
 
-            <small>CILINDRO ATUAL</small>
+            <small>
+                CILINDRO ATUAL
+            </small>
 
             <strong id="cilindroAtualTexto">
                 01 / 06
@@ -1426,11 +1443,14 @@ button{
 
 </div>
 
+
 <div id="valveContainer"></div>
+
 
 <div class="inspection-finished">
     06 CILINDROS • INSPEÇÃO MECÂNICA
 </div>
+
 
 <section
     class="final-wrapper"
@@ -1449,7 +1469,9 @@ button{
 
         <div class="final-title">
 
-            <strong>FINALIZAÇÃO DA INSPEÇÃO</strong>
+            <strong>
+                FINALIZAÇÃO DA INSPEÇÃO
+            </strong>
 
             <span>
                 DADOS • OBSERVAÇÕES • ASSINATURA • RELATÓRIO PDF
@@ -1463,6 +1485,7 @@ button{
 
     </button>
 
+
     <div class="final-panel">
 
         <div class="final-inner">
@@ -1471,17 +1494,22 @@ button{
 
                 <div class="line"></div>
 
-                <strong>DADOS DA INSPEÇÃO</strong>
+                <strong>
+                    DADOS DA INSPEÇÃO
+                </strong>
 
                 <div class="line"></div>
 
             </div>
 
+
             <div class="info-grid">
 
                 <div class="field">
 
-                    <label>MECÂNICO</label>
+                    <label>
+                        MECÂNICO
+                    </label>
 
                     <input
                         id="mecanico"
@@ -1491,9 +1519,12 @@ button{
 
                 </div>
 
+
                 <div class="field">
 
-                    <label>DATA</label>
+                    <label>
+                        DATA
+                    </label>
 
                     <input
                         id="data"
@@ -1502,9 +1533,12 @@ button{
 
                 </div>
 
+
                 <div class="field">
 
-                    <label>USINA</label>
+                    <label>
+                        USINA
+                    </label>
 
                     <input
                         id="usina"
@@ -1514,9 +1548,12 @@ button{
 
                 </div>
 
+
                 <div class="field">
 
-                    <label>HORÍMETRO</label>
+                    <label>
+                        HORÍMETRO
+                    </label>
 
                     <input
                         id="horimetro"
@@ -1526,9 +1563,12 @@ button{
 
                 </div>
 
+
                 <div class="field">
 
-                    <label>SÉRIE</label>
+                    <label>
+                        SÉRIE
+                    </label>
 
                     <input
                         id="serie"
@@ -1538,9 +1578,12 @@ button{
 
                 </div>
 
+
                 <div class="field">
 
-                    <label>OS</label>
+                    <label>
+                        OS
+                    </label>
 
                     <input
                         id="os"
@@ -1550,9 +1593,12 @@ button{
 
                 </div>
 
+
                 <div class="field full">
 
-                    <label>UGD</label>
+                    <label>
+                        UGD
+                    </label>
 
                     <input
                         id="ugd"
@@ -1564,6 +1610,7 @@ button{
 
             </div>
 
+
             <div
                 class="final-heading"
                 style="margin-top:20px;"
@@ -1571,11 +1618,14 @@ button{
 
                 <div class="line"></div>
 
-                <strong>OBSERVAÇÕES TÉCNICAS</strong>
+                <strong>
+                    OBSERVAÇÕES TÉCNICAS
+                </strong>
 
                 <div class="line"></div>
 
             </div>
+
 
             <div class="field">
 
@@ -1585,6 +1635,7 @@ button{
                 ></textarea>
 
             </div>
+
 
             <div class="signature-box">
 
@@ -1599,6 +1650,7 @@ button{
                 >
 
             </div>
+
 
             <div class="final-actions">
 
@@ -1627,6 +1679,11 @@ button{
 </section>
 
 </div>
+
+
+<!-- =====================================================
+     PREVIEW JPG
+===================================================== -->
 
 <div
     class="preview-overlay"
@@ -1664,6 +1721,11 @@ button{
 
 </div>
 
+
+<!-- =====================================================
+     PREVIEW PDF
+===================================================== -->
+
 <div
     class="pdf-preview-overlay"
     id="pdfPreviewOverlay"
@@ -1681,7 +1743,9 @@ button{
 
         <div class="pdf-preview-title">
 
-            <strong>PRÉVIA DO RELATÓRIO</strong>
+            <strong>
+                PRÉVIA DO RELATÓRIO
+            </strong>
 
             <span>
                 MEDIÇÃO DAS VÁLVULAS • SCANIA 550
@@ -1707,15 +1771,17 @@ button{
 
 </div>
 
+
 <div
     class="toast"
     id="toast"
 ></div>
 
+
 <script>
 
 /* =========================================================
-   CONFIGURAÇÕES
+   CONFIGURAÇÃO
 ========================================================= */
 
 const LIMITE_AFUNDAMENTO = 67.50;
@@ -1799,14 +1865,18 @@ function criarCilindros(){
 
         };
 
+
         const section =
-            document.createElement("section");
+            document.createElement(
+                "section"
+            );
 
         section.className =
             "cylinder-section";
 
         section.id =
             `cilindro-${i}`;
+
 
         let html = `
 
@@ -1840,94 +1910,104 @@ function criarCilindros(){
 
         `;
 
-        valvulas.forEach(valvula => {
 
-            html += `
+        valvulas.forEach(
+            valvula => {
 
-                <div
-                    class="valve-block pressable"
-                    data-valvula="${valvula.id}"
-                >
-
-                    <div class="valve-title">
-
-                        <span class="valve-light"></span>
-
-                        <strong>
-                            ${valvula.nome}
-                        </strong>
-
-                        <span>
-                            ${valvula.numero}
-                        </span>
-
-                    </div>
+                html += `
 
                     <div
-                        class="photo-box"
-                        id="photo-${i}-${valvula.id}"
+                        class="valve-block pressable"
+                        data-valvula="${valvula.id}"
                     >
 
-                        <div class="photo-hint">
+                        <div class="valve-title">
 
-                            <strong>＋</strong>
+                            <span class="valve-light"></span>
+
+                            <strong>
+                                ${valvula.nome}
+                            </strong>
 
                             <span>
-                                TOCAR PARA FOTO
+                                ${valvula.numero}
                             </span>
 
                         </div>
 
-                        <input
-                            type="file"
-                            accept="image/*"
-                            capture="environment"
-                            onchange="carregarFoto(event, ${i}, '${valvula.id}')"
+
+                        <div
+                            class="photo-box"
+                            id="photo-${i}-${valvula.id}"
                         >
 
-                    </div>
+                            <div class="photo-hint">
 
-                    <div class="measurement">
+                                <strong>
+                                    ＋
+                                </strong>
 
-                        <input
-                            type="number"
-                            step="0.01"
-                            inputmode="decimal"
-                            id="medida-${i}-${valvula.id}"
-                            placeholder="MEDIÇÃO"
-                            oninput="atualizarMedida(${i}, '${valvula.id}', this.value)"
+                                <span>
+                                    TOCAR PARA FOTO
+                                </span>
+
+                            </div>
+
+                            <input
+                                type="file"
+                                accept="image/*"
+                                capture="environment"
+                                onchange="carregarFoto(event, ${i}, '${valvula.id}')"
+                            >
+
+                        </div>
+
+
+                        <div class="measurement">
+
+                            <input
+                                type="number"
+                                step="0.01"
+                                inputmode="decimal"
+                                id="medida-${i}-${valvula.id}"
+                                placeholder="MEDIÇÃO"
+                                oninput="atualizarMedida(${i}, '${valvula.id}', this.value)"
+                            >
+
+                            <span class="measurement-unit">
+                                mm
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="alerta-afundamento"
+                            id="alerta-${i}-${valvula.id}"
                         >
+                            ⚠ AFUNDAMENTO — SUBSTITUIR
+                        </div>
 
-                        <span class="measurement-unit">
-                            mm
-                        </span>
 
-                    </div>
+                        <div class="photo-tools">
 
-                    <div
-                        class="alerta-afundamento"
-                        id="alerta-${i}-${valvula.id}"
-                    >
-                        ⚠ AFUNDAMENTO — SUBSTITUIR
-                    </div>
+                            <button
+                                type="button"
+                                class="photo-tool remove"
+                                onclick="removerFoto(${i}, '${valvula.id}')"
+                            >
+                                REMOVER FOTO
+                            </button>
 
-                    <div class="photo-tools">
-
-                        <button
-                            type="button"
-                            class="photo-tool remove"
-                            onclick="removerFoto(${i}, '${valvula.id}')"
-                        >
-                            REMOVER FOTO
-                        </button>
+                        </div>
 
                     </div>
 
-                </div>
+                `;
 
-            `;
+            }
+        );
 
-        });
 
         html += `
 
@@ -1943,7 +2023,8 @@ function criarCilindros(){
 
         `;
 
-        if(i===6){
+
+        if(i === 6){
 
             html += `
 
@@ -1965,6 +2046,7 @@ function criarCilindros(){
 
         }
 
+
         section.innerHTML =
             html;
 
@@ -1973,6 +2055,7 @@ function criarCilindros(){
         );
 
     }
+
 
     ativarEfeitos();
 
@@ -1989,32 +2072,45 @@ function ativarEfeitos(){
 
     document
         .querySelectorAll(
-            ".pressable, .cylinder-section"
+            ".pressable,.cylinder-section"
         )
-        .forEach(el => {
-
-            el.addEventListener(
-                "pointerdown",
-                () => {
-                    el.classList.add("pressed");
-                },
-                {passive:true}
-            );
-
-            ["pointerup","pointercancel","pointerleave"]
-            .forEach(evento => {
+        .forEach(
+            el => {
 
                 el.addEventListener(
-                    evento,
+                    "pointerdown",
                     () => {
-                        el.classList.remove("pressed");
+                        el.classList.add(
+                            "pressed"
+                        );
                     },
                     {passive:true}
                 );
 
-            });
+                [
+                    "pointerup",
+                    "pointercancel",
+                    "pointerleave"
+                ].forEach(
+                    evento => {
 
-        });
+                        el.addEventListener(
+                            evento,
+                            () => {
+
+                                el.classList.remove(
+                                    "pressed"
+                                );
+
+                            },
+                            {passive:true}
+                        );
+
+                    }
+                );
+
+            }
+        );
 
 }
 
@@ -2036,8 +2132,10 @@ function carregarFoto(
     if(!file)
         return;
 
+
     const reader =
         new FileReader();
+
 
     reader.onload =
         function(e){
@@ -2046,10 +2144,12 @@ function carregarFoto(
                 .fotos[tipo] =
                 e.target.result;
 
+
             const box =
                 document.getElementById(
                     `photo-${cilindro}-${tipo}`
                 );
+
 
             box.style.backgroundImage =
                 `url("${e.target.result}")`;
@@ -2064,19 +2164,25 @@ function carregarFoto(
                 "has-photo"
             );
 
+
             const hint =
                 box.querySelector(
                     ".photo-hint"
                 );
 
             if(hint){
+
                 hint.style.display =
                     "none";
+
             }
 
         };
 
-    reader.readAsDataURL(file);
+
+    reader.readAsDataURL(
+        file
+    );
 
 }
 
@@ -2093,10 +2199,12 @@ function removerFoto(
     cilindros[cilindro]
         .fotos[tipo] = null;
 
+
     const box =
         document.getElementById(
             `photo-${cilindro}-${tipo}`
         );
+
 
     box.style.backgroundImage =
         "";
@@ -2105,21 +2213,32 @@ function removerFoto(
         "has-photo"
     );
 
+
     const hint =
         box.querySelector(
             ".photo-hint"
         );
 
+
     if(hint){
+
         hint.style.display =
             "flex";
+
     }
 
+
     const input =
-        box.querySelector("input");
+        box.querySelector(
+            "input"
+        );
+
 
     if(input){
-        input.value = "";
+
+        input.value =
+            "";
+
     }
 
 }
@@ -2139,36 +2258,43 @@ function atualizarMedida(
         .medidas[tipo] =
         valor;
 
+
     const input =
         document.getElementById(
             `medida-${cilindro}-${tipo}`
         );
+
 
     const alerta =
         document.getElementById(
             `alerta-${cilindro}-${tipo}`
         );
 
+
     const medida =
         input.closest(
             ".measurement"
         );
+
 
     const bloco =
         input.closest(
             ".valve-block"
         );
 
+
     const luz =
         bloco.querySelector(
             ".valve-light"
         );
+
 
     const numero =
         parseFloat(
             String(valor)
                 .replace(",",".")
         );
+
 
     if(
         !isNaN(numero) &&
@@ -2233,25 +2359,30 @@ function atualizarCilindro(){
             }
         );
 
+
     document.getElementById(
         "cilindroAtualTexto"
     ).textContent =
         `${String(cilindroAtual).padStart(2,"0")} / 06`;
+
 
     document.getElementById(
         "navStatus"
     ).textContent =
         `CILINDRO ${String(cilindroAtual).padStart(2,"0")} / 06`;
 
+
     document.getElementById(
         "btnAnterior"
     ).disabled =
         cilindroAtual === 1;
 
+
     document.getElementById(
         "btnProximo"
     ).disabled =
         cilindroAtual === 6;
+
 
     for(let i=1;i<=6;i++){
 
@@ -2279,9 +2410,11 @@ function proximoCilindro(){
 
     }
 
+
     cilindroAtual++;
 
     atualizarCilindro();
+
 
     window.scrollTo({
         top:0,
@@ -2296,9 +2429,11 @@ function cilindroAnterior(){
     if(cilindroAtual <= 1)
         return;
 
+
     cilindroAtual--;
 
     atualizarCilindro();
+
 
     window.scrollTo({
         top:0,
@@ -2332,9 +2467,11 @@ function abrirFinalizacao(){
             "finalizacaoWrapper"
         );
 
+
     wrapper.classList.add(
         "open"
     );
+
 
     setTimeout(
         () => {
@@ -2352,7 +2489,7 @@ function abrirFinalizacao(){
 
 
 /* =========================================================
-   CARREGAR IMAGEM
+   CARREGAR IMAGEM EXTERNA
 ========================================================= */
 
 function carregarImagem(url){
@@ -2363,11 +2500,14 @@ function carregarImagem(url){
             const img =
                 new Image();
 
+
             img.crossOrigin =
                 "anonymous";
 
+
             img.onload =
                 () => resolve(img);
+
 
             img.onerror =
                 erro => {
@@ -2384,6 +2524,7 @@ function carregarImagem(url){
                     );
 
                 };
+
 
             img.src =
                 url +
@@ -2402,10 +2543,12 @@ function carregarImagem(url){
 
 
 /* =========================================================
-   CONVERTER DATA URL EM IMAGEM
+   CARREGAR FOTO BASE64
 ========================================================= */
 
-function carregarDataUrlImagem(dataUrl){
+function carregarDataUrlImagem(
+    dataUrl
+){
 
     return new Promise(
         (resolve,reject) => {
@@ -2422,11 +2565,14 @@ function carregarDataUrlImagem(dataUrl){
 
             }
 
+
             const img =
                 new Image();
 
+
             img.onload =
                 () => resolve(img);
+
 
             img.onerror =
                 () => reject(
@@ -2434,6 +2580,7 @@ function carregarDataUrlImagem(dataUrl){
                         "Não foi possível carregar a foto."
                     )
                 );
+
 
             img.src =
                 dataUrl;
@@ -2445,17 +2592,24 @@ function carregarDataUrlImagem(dataUrl){
 
 
 /* =========================================================
-   JPG DO CILINDRO
+   GERAR JPG DO CILINDRO
+   FOTO + MEDIÇÃO + AFUNDAMENTO
 ========================================================= */
 
 async function gerarJpgCilindro(i){
 
     try{
 
+        mostrarToast(
+            `Gerando imagem do cilindro ${String(i).padStart(2,"0")}...`
+        );
+
+
         const canvas =
             document.createElement(
                 "canvas"
             );
+
 
         canvas.width =
             1280;
@@ -2463,9 +2617,16 @@ async function gerarJpgCilindro(i){
         canvas.height =
             1700;
 
-        const ctx =
-            canvas.getContext("2d");
 
+        const ctx =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        /*
+         * FUNDO
+         */
         ctx.fillStyle =
             "#ffffff";
 
@@ -2476,105 +2637,15 @@ async function gerarJpgCilindro(i){
             canvas.height
         );
 
-        const ordem = [
 
-            {
-                tipo:"exaustao2",
-                x:0,
-                y:0
-            },
-
-            {
-                tipo:"admissao2",
-                x:640,
-                y:0
-            },
-
-            {
-                tipo:"exaustao1",
-                x:0,
-                y:850
-            },
-
-            {
-                tipo:"admissao1",
-                x:640,
-                y:850
-            }
-
-        ];
-
-        for(
-            const item of ordem
-        ){
-
-            const url =
-                cilindros[i]
-                    .fotos[item.tipo];
-
-            if(url){
-
-                try{
-
-                    const img =
-                        await carregarDataUrlImagem(
-                            url
-                        );
-
-                    ctx.drawImage(
-                        img,
-                        item.x,
-                        item.y,
-                        640,
-                        850
-                    );
-
-                }catch(e){
-
-                    ctx.fillStyle =
-                        "#ffffff";
-
-                    ctx.fillRect(
-                        item.x,
-                        item.y,
-                        640,
-                        850
-                    );
-
-                }
-
-            }
-
-        }
-
-        ctx.fillStyle =
-            "#ffffff";
-
-        ctx.fillRect(
-            0,
-            5,
-            1280,
-            60
-        );
-
-        ctx.strokeStyle =
-            "#000000";
-
-        ctx.lineWidth =
-            3;
-
-        ctx.strokeRect(
-            0,
-            5,
-            1280,
-            60
-        );
-
+        /*
+         * TÍTULO
+         */
         ctx.fillStyle =
             "#000000";
 
         ctx.font =
-            "bold 50px Arial";
+            "bold 42px Arial";
 
         ctx.textAlign =
             "center";
@@ -2583,16 +2654,457 @@ async function gerarJpgCilindro(i){
             "middle";
 
         ctx.fillText(
-            `CILINDRO ${i}`,
+            `CILINDRO ${String(i).padStart(2,"0")}`,
             640,
             35
         );
 
+
+        /*
+         * ÁREAS
+         */
+        const ordem = [
+
+            {
+                tipo:"exaustao2",
+                x:0,
+                y:80
+            },
+
+            {
+                tipo:"admissao2",
+                x:640,
+                y:80
+            },
+
+            {
+                tipo:"exaustao1",
+                x:0,
+                y:890
+            },
+
+            {
+                tipo:"admissao1",
+                x:640,
+                y:890
+            }
+
+        ];
+
+
+        /*
+         * CADA VÁLVULA
+         */
+        for(
+            const item of ordem
+        ){
+
+            const x =
+                item.x;
+
+            const y =
+                item.y;
+
+            const largura =
+                640;
+
+            const altura =
+                750;
+
+
+            /*
+             * FUNDO
+             */
+            ctx.fillStyle =
+                "#eeeeee";
+
+            ctx.fillRect(
+                x,
+                y,
+                largura,
+                altura
+            );
+
+
+            /*
+             * BORDA
+             */
+            ctx.strokeStyle =
+                "#333333";
+
+            ctx.lineWidth =
+                3;
+
+            ctx.strokeRect(
+                x,
+                y,
+                largura,
+                altura
+            );
+
+
+            /*
+             * FOTO
+             */
+            const foto =
+                cilindros[i]
+                    ?.fotos[
+                        item.tipo
+                    ];
+
+
+            if(foto){
+
+                try{
+
+                    const img =
+                        await carregarDataUrlImagem(
+                            foto
+                        );
+
+
+                    const iw =
+                        img.naturalWidth ||
+                        img.width;
+
+
+                    const ih =
+                        img.naturalHeight ||
+                        img.height;
+
+
+                    const escala =
+                        Math.min(
+                            largura / iw,
+                            altura / ih
+                        );
+
+
+                    const w =
+                        iw * escala;
+
+
+                    const h =
+                        ih * escala;
+
+
+                    const px =
+                        x +
+                        (largura - w) / 2;
+
+
+                    const py =
+                        y +
+                        (altura - h) / 2;
+
+
+                    ctx.drawImage(
+                        img,
+                        px,
+                        py,
+                        w,
+                        h
+                    );
+
+
+                }catch(erro){
+
+                    console.error(
+                        "Erro ao desenhar foto:",
+                        erro
+                    );
+
+                }
+
+            }else{
+
+                ctx.fillStyle =
+                    "#d8d8d8";
+
+                ctx.fillRect(
+                    x,
+                    y,
+                    largura,
+                    altura
+                );
+
+
+                ctx.fillStyle =
+                    "#777777";
+
+                ctx.font =
+                    "bold 24px Arial";
+
+                ctx.textAlign =
+                    "center";
+
+                ctx.textBaseline =
+                    "middle";
+
+                ctx.fillText(
+                    "SEM FOTO",
+                    x + largura / 2,
+                    y + altura / 2
+                );
+
+            }
+
+
+            /*
+             * NOME DA VÁLVULA
+             */
+            let nomeValvula = "";
+
+
+            if(
+                item.tipo === "exaustao2"
+            ){
+
+                nomeValvula =
+                    "EXAUSTÃO 2";
+
+            }
+
+
+            if(
+                item.tipo === "admissao2"
+            ){
+
+                nomeValvula =
+                    "ADMISSÃO 2";
+
+            }
+
+
+            if(
+                item.tipo === "exaustao1"
+            ){
+
+                nomeValvula =
+                    "EXAUSTÃO 1";
+
+            }
+
+
+            if(
+                item.tipo === "admissao1"
+            ){
+
+                nomeValvula =
+                    "ADMISSÃO 1";
+
+            }
+
+
+            /*
+             * BARRA
+             */
+            ctx.fillStyle =
+                "rgba(0,0,0,.82)";
+
+            ctx.fillRect(
+                x,
+                y + altura - 70,
+                largura,
+                70
+            );
+
+
+            /*
+             * NOME
+             */
+            ctx.fillStyle =
+                "#ffffff";
+
+            ctx.font =
+                "bold 25px Arial";
+
+            ctx.textAlign =
+                "left";
+
+            ctx.textBaseline =
+                "middle";
+
+            ctx.fillText(
+                nomeValvula,
+                x + 20,
+                y + altura - 45
+            );
+
+
+            /*
+             * MEDIÇÃO
+             */
+            const valor =
+                cilindros[i]
+                    ?.medidas[
+                        item.tipo
+                    ] || "";
+
+
+            const numero =
+                parseFloat(
+                    String(valor)
+                        .replace(",",".")
+                );
+
+
+            /*
+             * SEM MEDIÇÃO
+             */
+            if(!valor){
+
+                ctx.fillStyle =
+                    "#cccccc";
+
+                ctx.font =
+                    "bold 24px Arial";
+
+                ctx.textAlign =
+                    "right";
+
+                ctx.fillText(
+                    "SEM MEDIÇÃO",
+                    x + largura - 20,
+                    y + altura - 45
+                );
+
+            }else{
+
+                const afundamento =
+                    !isNaN(numero) &&
+                    numero >= LIMITE_AFUNDAMENTO;
+
+
+                /*
+                 * AFUNDAMENTO
+                 */
+                if(afundamento){
+
+                    ctx.fillStyle =
+                        "#ff1f1f";
+
+                    ctx.fillRect(
+                        x + largura - 300,
+                        y + altura - 62,
+                        280,
+                        54
+                    );
+
+
+                    ctx.fillStyle =
+                        "#ffffff";
+
+                    ctx.font =
+                        "bold 27px Arial";
+
+                    ctx.textAlign =
+                        "center";
+
+                    ctx.fillText(
+                        `${valor} mm`,
+                        x + largura - 160,
+                        y + altura - 43
+                    );
+
+
+                    ctx.font =
+                        "bold 16px Arial";
+
+                    ctx.fillText(
+                        "⚠ AFUNDAMENTO",
+                        x + largura - 160,
+                        y + altura - 18
+                    );
+
+
+                }else{
+
+                    /*
+                     * NORMAL
+                     */
+                    ctx.fillStyle =
+                        "#00b85a";
+
+                    ctx.fillRect(
+                        x + largura - 220,
+                        y + altura - 62,
+                        200,
+                        54
+                    );
+
+
+                    ctx.fillStyle =
+                        "#ffffff";
+
+                    ctx.font =
+                        "bold 27px Arial";
+
+                    ctx.textAlign =
+                        "center";
+
+                    ctx.fillText(
+                        `${valor} mm`,
+                        x + largura - 120,
+                        y + altura - 43
+                    );
+
+                }
+
+            }
+
+        }
+
+
+        /*
+         * RODAPÉ
+         */
+        ctx.fillStyle =
+            "#111111";
+
+        ctx.fillRect(
+            0,
+            1660,
+            1280,
+            40
+        );
+
+
+        ctx.fillStyle =
+            "#00ff88";
+
+        ctx.font =
+            "bold 18px Arial";
+
+        ctx.textAlign =
+            "center";
+
+        ctx.textBaseline =
+            "middle";
+
+        ctx.fillText(
+            "MEDIÇÃO DAS VÁLVULAS • SCANIA 550",
+            640,
+            1680
+        );
+
+
+        /*
+         * JPG
+         */
         canvas.toBlob(
             blob => {
 
-                if(!blob)
+                if(!blob){
+
+                    mostrarToast(
+                        "Erro ao criar imagem."
+                    );
+
                     return;
+
+                }
+
 
                 if(jpgUrlAtual){
 
@@ -2602,18 +3114,22 @@ async function gerarJpgCilindro(i){
 
                 }
 
+
                 jpgUrlAtual =
                     URL.createObjectURL(
                         blob
                     );
 
+
                 jpgNomeAtual =
                     `CILINDRO_${String(i).padStart(2,"0")}.jpg`;
+
 
                 document.getElementById(
                     "previewImage"
                 ).src =
                     jpgUrlAtual;
+
 
                 document.getElementById(
                     "previewOverlay"
@@ -2621,14 +3137,60 @@ async function gerarJpgCilindro(i){
                     "show"
                 );
 
+
+                const possuiAfundamento =
+                    valvulas.some(
+                        valvula => {
+
+                            const valor =
+                                cilindros[i]
+                                    ?.medidas[
+                                        valvula.id
+                                    ] || "";
+
+
+                            const numero =
+                                parseFloat(
+                                    String(valor)
+                                        .replace(",",".")
+                                );
+
+
+                            return (
+                                !isNaN(numero) &&
+                                numero >= LIMITE_AFUNDAMENTO
+                            );
+
+                        }
+                    );
+
+
+                if(possuiAfundamento){
+
+                    mostrarToast(
+                        "Imagem gerada com AFUNDAMENTO destacado."
+                    );
+
+                }else{
+
+                    mostrarToast(
+                        "Imagem gerada com sucesso."
+                    );
+
+                }
+
             },
             "image/jpeg",
             .95
         );
 
+
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "ERRO AO GERAR JPG:",
+            error
+        );
 
         mostrarToast(
             "Erro ao gerar imagem."
@@ -2645,21 +3207,38 @@ async function gerarJpgCilindro(i){
 
 function baixarPreviewJpg(){
 
-    if(!jpgUrlAtual)
+    if(!jpgUrlAtual){
+
+        mostrarToast(
+            "Nenhuma imagem disponível."
+        );
+
         return;
 
+    }
+
+
     const a =
-        document.createElement("a");
+        document.createElement(
+            "a"
+        );
+
 
     a.href =
         jpgUrlAtual;
 
+
     a.download =
         jpgNomeAtual;
 
-    document.body.appendChild(a);
+
+    document.body.appendChild(
+        a
+    );
+
 
     a.click();
+
 
     a.remove();
 
@@ -2684,7 +3263,7 @@ function fecharPreview(){
 
 
 /* =========================================================
-   FUNÇÃO PARA DESENHAR FOTO NO PDF
+   FOTO NO PDF
 ========================================================= */
 
 async function desenharFotoPDF(
@@ -2702,21 +3281,26 @@ async function desenharFotoPDF(
         if(!dataUrl)
             return false;
 
+
         const img =
             await carregarDataUrlImagem(
                 dataUrl
             );
 
+
         const iw =
             img.naturalWidth ||
             img.width;
+
 
         const ih =
             img.naturalHeight ||
             img.height;
 
+
         if(!iw || !ih)
             return false;
+
 
         const proporcao =
             Math.min(
@@ -2724,25 +3308,31 @@ async function desenharFotoPDF(
                 altura / ih
             );
 
+
         const w =
             iw * proporcao;
 
+
         const h =
             ih * proporcao;
+
 
         const px =
             x +
             (largura - w) / 2;
 
+
         const py =
             y +
             (altura - h) / 2;
+
 
         pdf.setFillColor(
             255,
             255,
             255
         );
+
 
         pdf.rect(
             x,
@@ -2751,6 +3341,7 @@ async function desenharFotoPDF(
             altura,
             "F"
         );
+
 
         pdf.addImage(
             img,
@@ -2763,11 +3354,13 @@ async function desenharFotoPDF(
             "FAST"
         );
 
+
         pdf.setDrawColor(
             100,
             100,
             100
         );
+
 
         pdf.rect(
             x,
@@ -2776,7 +3369,9 @@ async function desenharFotoPDF(
             altura
         );
 
+
         return true;
+
 
     }catch(error){
 
@@ -2795,7 +3390,6 @@ async function desenharFotoPDF(
 
 /* =========================================================
    GERAR PDF
-   FORMULÁRIO + MEDIÇÕES + FOTOS
 ========================================================= */
 
 async function gerarPDF(){
@@ -2805,6 +3399,7 @@ async function gerarPDF(){
         mostrarToast(
             "Gerando relatório..."
         );
+
 
         if(
             !window.jspdf ||
@@ -2817,8 +3412,12 @@ async function gerarPDF(){
 
         }
 
-        const {jsPDF} =
+
+        const {
+            jsPDF
+        } =
             window.jspdf;
+
 
         const pdf =
             new jsPDF({
@@ -2829,12 +3428,12 @@ async function gerarPDF(){
             });
 
 
-        /* =================================================
-           FORMULÁRIO ORIGINAL
-        ================================================= */
-
+        /*
+         * FUNDO ORIGINAL
+         */
         const imagemFundo =
             "https://raw.githubusercontent.com/gabrielsenna97/tema/main/FORM_194_MEDICAO_DAS_VALVULAS_UTE550_REV0_O_M_2.jpg";
+
 
         const img =
             await carregarImagem(
@@ -2847,18 +3446,22 @@ async function gerarPDF(){
                 "canvas"
             );
 
+
         canvas.width =
             img.naturalWidth ||
             img.width;
+
 
         canvas.height =
             img.naturalHeight ||
             img.height;
 
+
         const ctx =
             canvas.getContext(
                 "2d"
             );
+
 
         ctx.drawImage(
             img,
@@ -2869,49 +3472,56 @@ async function gerarPDF(){
         );
 
 
-        /* =================================================
-           DADOS
-        ================================================= */
-
+        /*
+         * DADOS
+         */
         const mecanico =
             document.getElementById(
                 "mecanico"
             )?.value || "";
+
 
         const usina =
             document.getElementById(
                 "usina"
             )?.value || "";
 
+
         const serie =
             document.getElementById(
                 "serie"
             )?.value || "";
+
 
         const ugd =
             document.getElementById(
                 "ugd"
             )?.value || "";
 
+
         const os =
             document.getElementById(
                 "os"
             )?.value || "";
+
 
         const horimetro =
             document.getElementById(
                 "horimetro"
             )?.value || "";
 
+
         const dataVal =
             document.getElementById(
                 "data"
             )?.value || "";
 
+
         const observacoes =
             document.getElementById(
                 "observacoes"
             )?.value || "";
+
 
         const assinatura =
             document.getElementById(
@@ -2919,21 +3529,24 @@ async function gerarPDF(){
             )?.value || "";
 
 
-        /* =================================================
-           CABEÇALHO
-        ================================================= */
-
+        /*
+         * CABEÇALHO
+         */
         ctx.fillStyle =
             "#000000";
+
 
         ctx.font =
             "bold 18px Arial";
 
+
         ctx.textAlign =
             "left";
 
+
         ctx.textBaseline =
             "alphabetic";
+
 
         ctx.fillText(
             mecanico,
@@ -2941,11 +3554,13 @@ async function gerarPDF(){
             176
         );
 
+
         ctx.fillText(
             usina,
             165,
             204
         );
+
 
         ctx.fillText(
             serie,
@@ -2953,17 +3568,20 @@ async function gerarPDF(){
             231
         );
 
+
         ctx.fillText(
             ugd,
             590,
             262
         );
 
+
         ctx.fillText(
             os,
             292,
             262
         );
+
 
         ctx.fillText(
             horimetro,
@@ -2977,10 +3595,12 @@ async function gerarPDF(){
             const partes =
                 dataVal.split("-");
 
+
             if(partes.length === 3){
 
                 const dataBR =
                     `${partes[2]}/${partes[1]}/${partes[0]}`;
+
 
                 ctx.fillText(
                     dataBR,
@@ -2993,179 +3613,40 @@ async function gerarPDF(){
         }
 
 
-        /* =================================================
-           MEDIÇÕES
-        ================================================= */
-
+        /*
+         * MEDIÇÕES NO FORMULÁRIO
+         */
         const campos = [
 
-            {
-                cilindro:1,
-                tipo:"exaustao1",
-                x:105,
-                y:616
-            },
+            ["exaustao1",1,105,616],
+            ["exaustao2",1,105,576],
+            ["admissao1",1,345,628],
+            ["admissao2",1,345,589],
 
-            {
-                cilindro:1,
-                tipo:"exaustao2",
-                x:105,
-                y:576
-            },
+            ["exaustao1",2,450,1064],
+            ["exaustao2",2,450,1024],
+            ["admissao1",2,689,1075],
+            ["admissao2",2,689,1038],
 
-            {
-                cilindro:1,
-                tipo:"admissao1",
-                x:345,
-                y:628
-            },
+            ["exaustao1",3,792,617],
+            ["exaustao2",3,792,576],
+            ["admissao1",3,1032,628],
+            ["admissao2",3,1032,589],
 
-            {
-                cilindro:1,
-                tipo:"admissao2",
-                x:345,
-                y:589
-            },
+            ["exaustao1",4,793,1064],
+            ["exaustao2",4,793,1024],
+            ["admissao1",4,1033,1075],
+            ["admissao2",4,1033,1038],
 
-            {
-                cilindro:2,
-                tipo:"exaustao1",
-                x:450,
-                y:1064
-            },
+            ["exaustao1",5,450,617],
+            ["exaustao2",5,450,576],
+            ["admissao1",5,689,628],
+            ["admissao2",5,689,589],
 
-            {
-                cilindro:2,
-                tipo:"exaustao2",
-                x:450,
-                y:1024
-            },
-
-            {
-                cilindro:2,
-                tipo:"admissao1",
-                x:689,
-                y:1075
-            },
-
-            {
-                cilindro:2,
-                tipo:"admissao2",
-                x:689,
-                y:1038
-            },
-
-            {
-                cilindro:3,
-                tipo:"exaustao1",
-                x:792,
-                y:617
-            },
-
-            {
-                cilindro:3,
-                tipo:"exaustao2",
-                x:792,
-                y:576
-            },
-
-            {
-                cilindro:3,
-                tipo:"admissao1",
-                x:1032,
-                y:628
-            },
-
-            {
-                cilindro:3,
-                tipo:"admissao2",
-                x:1032,
-                y:589
-            },
-
-            {
-                cilindro:4,
-                tipo:"exaustao1",
-                x:793,
-                y:1064
-            },
-
-            {
-                cilindro:4,
-                tipo:"exaustao2",
-                x:793,
-                y:1024
-            },
-
-            {
-                cilindro:4,
-                tipo:"admissao1",
-                x:1033,
-                y:1075
-            },
-
-            {
-                cilindro:4,
-                tipo:"admissao2",
-                x:1033,
-                y:1038
-            },
-
-            {
-                cilindro:5,
-                tipo:"exaustao1",
-                x:450,
-                y:617
-            },
-
-            {
-                cilindro:5,
-                tipo:"exaustao2",
-                x:450,
-                y:576
-            },
-
-            {
-                cilindro:5,
-                tipo:"admissao1",
-                x:689,
-                y:628
-            },
-
-            {
-                cilindro:5,
-                tipo:"admissao2",
-                x:689,
-                y:589
-            },
-
-            {
-                cilindro:6,
-                tipo:"exaustao1",
-                x:105,
-                y:1064
-            },
-
-            {
-                cilindro:6,
-                tipo:"exaustao2",
-                x:105,
-                y:1024
-            },
-
-            {
-                cilindro:6,
-                tipo:"admissao1",
-                x:345,
-                y:1075
-            },
-
-            {
-                cilindro:6,
-                tipo:"admissao2",
-                x:345,
-                y:1038
-            }
+            ["exaustao1",6,105,1064],
+            ["exaustao2",6,105,1024],
+            ["admissao1",6,345,1075],
+            ["admissao2",6,345,1038]
 
         ];
 
@@ -3173,15 +3654,30 @@ async function gerarPDF(){
         campos.forEach(
             campo => {
 
+                const tipo =
+                    campo[0];
+
+                const cilindro =
+                    campo[1];
+
+                const x =
+                    campo[2];
+
+                const y =
+                    campo[3];
+
+
                 const valor =
                     cilindros[
-                        campo.cilindro
+                        cilindro
                     ]?.medidas[
-                        campo.tipo
+                        tipo
                     ] || "";
+
 
                 if(!valor)
                     return;
+
 
                 const numero =
                     parseFloat(
@@ -3189,54 +3685,87 @@ async function gerarPDF(){
                             .replace(",",".")
                     );
 
-                ctx.fillStyle =
+
+                const afundamento =
                     !isNaN(numero) &&
-                    numero >= LIMITE_AFUNDAMENTO
+                    numero >= LIMITE_AFUNDAMENTO;
+
+
+                ctx.fillStyle =
+                    afundamento
                         ? "#ff0000"
                         : "#000000";
 
+
                 ctx.font =
-                    !isNaN(numero) &&
-                    numero >= LIMITE_AFUNDAMENTO
+                    afundamento
                         ? "bold 18px Arial"
                         : "18px Arial";
 
+
                 ctx.fillText(
                     valor,
-                    campo.x,
-                    campo.y
+                    x,
+                    y
                 );
+
+
+                /*
+                 * INDICAÇÃO VISUAL
+                 */
+                if(afundamento){
+
+                    ctx.fillStyle =
+                        "#ff0000";
+
+                    ctx.font =
+                        "bold 13px Arial";
+
+
+                    ctx.fillText(
+                        "AFUND.",
+                        x + 55,
+                        y
+                    );
+
+                }
 
             }
         );
 
 
-        /* =================================================
-           OBSERVAÇÕES
-        ================================================= */
-
+        /*
+         * OBSERVAÇÕES
+         */
         ctx.fillStyle =
             "#000000";
+
 
         ctx.font =
             "18px Arial";
 
+
         const maxWidth =
             950;
 
+
         const lineHeight =
             26;
+
 
         const palavras =
             observacoes
                 .split(/\s+/)
                 .filter(Boolean);
 
+
         let linha =
             "";
 
+
         let yObs =
             1237;
+
 
         palavras.forEach(
             palavra => {
@@ -3245,6 +3774,7 @@ async function gerarPDF(){
                     linha +
                     palavra +
                     " ";
+
 
                 if(
                     ctx.measureText(
@@ -3259,9 +3789,11 @@ async function gerarPDF(){
                         yObs
                     );
 
+
                     linha =
                         palavra +
                         " ";
+
 
                     yObs +=
                         lineHeight;
@@ -3276,6 +3808,7 @@ async function gerarPDF(){
             }
         );
 
+
         if(linha){
 
             ctx.fillText(
@@ -3287,15 +3820,16 @@ async function gerarPDF(){
         }
 
 
-        /* =================================================
-           ASSINATURA
-        ================================================= */
-
+        /*
+         * ASSINATURA
+         */
         ctx.font =
             '40px "Brush Script MT", cursive';
 
+
         ctx.fillStyle =
             "#08783b";
+
 
         ctx.fillText(
             assinatura,
@@ -3304,21 +3838,23 @@ async function gerarPDF(){
         );
 
 
-        /* =================================================
-           FORMULÁRIO → PDF
-        ================================================= */
-
+        /*
+         * TRANSFORMA FORMULÁRIO EM IMAGEM
+         */
         const imgData =
             canvas.toDataURL(
                 "image/jpeg",
                 .95
             );
 
+
         const pageWidth =
             pdf.internal.pageSize.getWidth();
 
+
         const pageHeight =
             pdf.internal.pageSize.getHeight();
+
 
         pdf.addImage(
             imgData,
@@ -3332,18 +3868,16 @@ async function gerarPDF(){
         );
 
 
-        /* =================================================
-           FOTOS
-           PÁGINAS ADICIONAIS
-        ================================================= */
-
+        /*
+         * LOCALIZA TODAS AS FOTOS
+         */
         const fotosExistentes = [];
+
 
         for(let c=1;c<=6;c++){
 
             for(
-                const valvula
-                of valvulas
+                const valvula of valvulas
             ){
 
                 const foto =
@@ -3351,6 +3885,7 @@ async function gerarPDF(){
                         ?.fotos[
                             valvula.id
                         ];
+
 
                 if(foto){
 
@@ -3382,11 +3917,8 @@ async function gerarPDF(){
 
 
         /*
-         * Cada página comporta até 4 fotos.
-         * Assim todas as fotos tiradas aparecem
-         * no PDF e também na visualização.
+         * PÁGINAS FOTOGRÁFICAS
          */
-
         if(
             fotosExistentes.length > 0
         ){
@@ -3399,22 +3931,16 @@ async function gerarPDF(){
 
                 pdf.addPage();
 
-                const grupo =
-                    fotosExistentes.slice(
-                        inicio,
-                        inicio+4
-                    );
 
-
-                /* -----------------------------------------
-                   TÍTULO
-                ----------------------------------------- */
-
+                /*
+                 * CABEÇALHO
+                 */
                 pdf.setFillColor(
                     8,
                     18,
                     13
                 );
+
 
                 pdf.rect(
                     0,
@@ -3424,20 +3950,24 @@ async function gerarPDF(){
                     "F"
                 );
 
+
                 pdf.setTextColor(
                     0,
                     255,
                     136
                 );
 
+
                 pdf.setFont(
                     "helvetica",
                     "bold"
                 );
 
+
                 pdf.setFontSize(
                     12
                 );
+
 
                 pdf.text(
                     "REGISTRO FOTOGRÁFICO — MEDIÇÃO DAS VÁLVULAS",
@@ -3446,15 +3976,20 @@ async function gerarPDF(){
                 );
 
 
-                /* -----------------------------------------
-                   4 FOTOS
-                ----------------------------------------- */
+                const grupo =
+                    fotosExistentes.slice(
+                        inicio,
+                        inicio + 4
+                    );
+
 
                 const margem =
                     10;
 
+
                 const espaco =
                     6;
+
 
                 const larguraFoto =
                     (
@@ -3463,24 +3998,34 @@ async function gerarPDF(){
                         espaco
                     ) / 2;
 
+
                 const alturaFoto =
                     112;
+
 
                 const yInicial =
                     28;
 
+
                 const colunas = [
+
                     margem,
+
                     margem +
                     larguraFoto +
                     espaco
+
                 ];
 
+
                 const linhas = [
+
                     yInicial,
+
                     yInicial +
                     alturaFoto +
                     18
+
                 ];
 
 
@@ -3493,39 +4038,49 @@ async function gerarPDF(){
                     const item =
                         grupo[j];
 
+
                     const coluna =
                         j % 2;
+
 
                     const linha =
                         Math.floor(
                             j / 2
                         );
 
+
                     const x =
-                        colunas[coluna];
+                        colunas[
+                            coluna
+                        ];
+
 
                     const y =
-                        linhas[linha];
+                        linhas[
+                            linha
+                        ];
 
 
-                    /* -------------------------------------
-                       TÍTULO DA FOTO
-                    ------------------------------------- */
-
+                    /*
+                     * IDENTIFICAÇÃO
+                     */
                     pdf.setTextColor(
                         20,
                         20,
                         20
                     );
 
+
                     pdf.setFont(
                         "helvetica",
                         "bold"
                     );
 
+
                     pdf.setFontSize(
                         9
                     );
+
 
                     pdf.text(
                         `CILINDRO ${String(item.cilindro).padStart(2,"0")} — ${item.nome}`,
@@ -3534,10 +4089,9 @@ async function gerarPDF(){
                     );
 
 
-                    /* -------------------------------------
-                       ÁREA DA FOTO
-                    ------------------------------------- */
-
+                    /*
+                     * FOTO
+                     */
                     await desenharFotoPDF(
                         pdf,
                         item.foto,
@@ -3549,37 +4103,76 @@ async function gerarPDF(){
                     );
 
 
-                    /* -------------------------------------
-                       MEDIÇÃO
-                    ------------------------------------- */
-
+                    /*
+                     * MEDIÇÃO
+                     */
                     pdf.setFont(
                         "helvetica",
                         "normal"
                     );
 
+
                     pdf.setFontSize(
                         8
                     );
 
-                    pdf.setTextColor(
-                        70,
-                        70,
-                        70
-                    );
 
-                    const medidaTexto =
+                    const medida =
                         item.medida
                             ? `Medição: ${item.medida} mm`
                             : "Medição: não informada";
 
-                    pdf.text(
-                        medidaTexto,
-                        x,
-                        y +
-                        alturaFoto +
-                        5
-                    );
+
+                    const numero =
+                        parseFloat(
+                            String(
+                                item.medida
+                            ).replace(",",".")
+                        );
+
+
+                    const afundamento =
+                        !isNaN(numero) &&
+                        numero >= LIMITE_AFUNDAMENTO;
+
+
+                    if(afundamento){
+
+                        pdf.setTextColor(
+                            220,
+                            0,
+                            0
+                        );
+
+
+                        pdf.setFont(
+                            "helvetica",
+                            "bold"
+                        );
+
+
+                        pdf.text(
+                            `${medida} — AFUNDAMENTO`,
+                            x,
+                            y + alturaFoto + 5
+                        );
+
+                    }else{
+
+                        pdf.setTextColor(
+                            70,
+                            70,
+                            70
+                        );
+
+
+                        pdf.text(
+                            medida,
+                            x,
+                            y + alturaFoto + 5
+                        );
+
+                    }
 
                 }
 
@@ -3588,16 +4181,18 @@ async function gerarPDF(){
         }
 
 
-        /* =================================================
-           FINAL
-        ================================================= */
-
+        /*
+         * GERAR BLOB
+         */
         pdfBlobAtual =
             pdf.output(
                 "blob"
             );
 
 
+        /*
+         * LIBERAR URL ANTERIOR
+         */
         if(pdfUrlAtual){
 
             URL.revokeObjectURL(
@@ -3613,6 +4208,9 @@ async function gerarPDF(){
             );
 
 
+        /*
+         * MOSTRAR PDF
+         */
         document.getElementById(
             "pdfFrame"
         ).src =
@@ -3637,7 +4235,7 @@ async function gerarPDF(){
         }else{
 
             mostrarToast(
-                "PDF gerado sem fotos."
+                "PDF gerado."
             );
 
         }
@@ -3650,10 +4248,6 @@ async function gerarPDF(){
             error
         );
 
-        console.error(
-            "Mensagem:",
-            error?.message
-        );
 
         mostrarToast(
             "Erro ao gerar o PDF."
@@ -3680,29 +4274,37 @@ function baixarPDF(){
 
     }
 
+
     const url =
         URL.createObjectURL(
             pdfBlobAtual
         );
+
 
     const a =
         document.createElement(
             "a"
         );
 
+
     a.href =
         url;
 
+
     a.download =
         "MEDICAO_VALVULAS_SCANIA_550.pdf";
+
 
     document.body.appendChild(
         a
     );
 
+
     a.click();
 
+
     a.remove();
+
 
     setTimeout(
         () => {
@@ -3714,6 +4316,7 @@ function baixarPDF(){
         },
         1000
     );
+
 
     mostrarToast(
         "PDF baixado com sucesso."
@@ -3750,41 +4353,51 @@ function limparTudo(){
             "Deseja realmente limpar toda a inspeção?"
         );
 
+
     if(!confirmar)
         return;
+
 
     document.getElementById(
         "mecanico"
     ).value = "";
+
 
     document.getElementById(
         "data"
     ).value =
         dataHoje();
 
+
     document.getElementById(
         "usina"
     ).value = "";
+
 
     document.getElementById(
         "horimetro"
     ).value = "";
 
+
     document.getElementById(
         "serie"
     ).value = "";
+
 
     document.getElementById(
         "os"
     ).value = "";
 
+
     document.getElementById(
         "ugd"
     ).value = "";
 
+
     document.getElementById(
         "observacoes"
     ).value = "";
+
 
     document.getElementById(
         "assinatura"
@@ -3801,6 +4414,7 @@ function limparTudo(){
                         valvula.id
                     ] = null;
 
+
                 cilindros[i]
                     .medidas[
                         valvula.id
@@ -3811,6 +4425,7 @@ function limparTudo(){
                     document.getElementById(
                         `medida-${i}-${valvula.id}`
                     );
+
 
                 if(input){
 
@@ -3825,6 +4440,7 @@ function limparTudo(){
                         `photo-${i}-${valvula.id}`
                     );
 
+
                 if(box){
 
                     box.style.backgroundImage =
@@ -3834,10 +4450,12 @@ function limparTudo(){
                         "has-photo"
                     );
 
+
                     const hint =
                         box.querySelector(
                             ".photo-hint"
                         );
+
 
                     if(hint){
 
@@ -3846,10 +4464,12 @@ function limparTudo(){
 
                     }
 
+
                     const fileInput =
                         box.querySelector(
                             "input"
                         );
+
 
                     if(fileInput){
 
@@ -3866,6 +4486,7 @@ function limparTudo(){
                         `alerta-${i}-${valvula.id}`
                     );
 
+
                 if(alerta){
 
                     alerta.style.display =
@@ -3880,6 +4501,7 @@ function limparTudo(){
                         input.closest(
                             ".measurement"
                         );
+
 
                     if(medida){
 
@@ -3900,7 +4522,9 @@ function limparTudo(){
     cilindroAtual =
         1;
 
+
     atualizarCilindro();
+
 
     document
         .getElementById(
@@ -3910,9 +4534,11 @@ function limparTudo(){
             "open"
         );
 
+
     fecharPreview();
 
     fecharPreviewPDF();
+
 
     mostrarToast(
         "Inspeção limpa."
@@ -3930,8 +4556,10 @@ function dataHoje(){
     const agora =
         new Date();
 
+
     const ano =
         agora.getFullYear();
+
 
     const mes =
         String(
@@ -3941,6 +4569,7 @@ function dataHoje(){
             "0"
         );
 
+
     const dia =
         String(
             agora.getDate()
@@ -3948,6 +4577,7 @@ function dataHoje(){
             2,
             "0"
         );
+
 
     return `${ano}-${mes}-${dia}`;
 
@@ -3960,6 +4590,7 @@ function dataHoje(){
 
 let toastTimer;
 
+
 function mostrarToast(
     texto
 ){
@@ -3969,16 +4600,20 @@ function mostrarToast(
             "toast"
         );
 
+
     toast.textContent =
         texto;
+
 
     toast.classList.add(
         "show"
     );
 
+
     clearTimeout(
         toastTimer
     );
+
 
     toastTimer =
         setTimeout(
@@ -4029,6 +4664,7 @@ document.addEventListener(
             "data"
         ).value =
             dataHoje();
+
 
         criarCilindros();
 

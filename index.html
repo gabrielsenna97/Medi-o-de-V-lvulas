@@ -2969,6 +2969,7 @@ async function gerarJpgCilindro(i){
                     y + altura - 45
                 );
 
+
             }else{
 
                 const afundamento =
@@ -2977,76 +2978,188 @@ async function gerarJpgCilindro(i){
 
 
                 /*
+                 * =================================================
                  * AFUNDAMENTO
+                 * =================================================
                  */
                 if(afundamento){
 
-                    ctx.fillStyle =
-                        "#ff1f1f";
+                    const texto =
+                        `AFUNDAMENTO (${numero.toFixed(2).replace(".",",")}mm)`;
 
-                    ctx.fillRect(
-                        x + largura - 300,
-                        y + altura - 62,
-                        280,
-                        54
-                    );
+
+                    ctx.font =
+                        "bold 24px Arial";
+
+
+                    const larguraTexto =
+                        ctx.measureText(
+                            texto
+                        ).width;
+
+
+                    const padding =
+                        18;
+
+
+                    const caixaLargura =
+                        larguraTexto +
+                        padding * 2;
+
+
+                    const caixaAltura =
+                        48;
+
+
+                    const caixaX =
+                        x +
+                        (largura - caixaLargura) / 2;
+
+
+                    const caixaY =
+                        y +
+                        altura -
+                        70 -
+                        caixaAltura -
+                        10;
 
 
                     ctx.fillStyle =
                         "#ffffff";
 
+                    ctx.fillRect(
+                        caixaX,
+                        caixaY,
+                        caixaLargura,
+                        caixaAltura
+                    );
+
+
+                    ctx.strokeStyle =
+                        "#000000";
+
+                    ctx.lineWidth =
+                        2;
+
+                    ctx.strokeRect(
+                        caixaX,
+                        caixaY,
+                        caixaLargura,
+                        caixaAltura
+                    );
+
+
+                    ctx.fillStyle =
+                        "#ff0000";
+
                     ctx.font =
-                        "bold 27px Arial";
+                        "bold 24px Arial";
 
                     ctx.textAlign =
                         "center";
 
+                    ctx.textBaseline =
+                        "middle";
+
                     ctx.fillText(
-                        `${valor} mm`,
-                        x + largura - 160,
-                        y + altura - 43
+                        texto,
+                        caixaX +
+                        caixaLargura / 2,
+                        caixaY +
+                        caixaAltura / 2
                     );
 
 
-                    ctx.font =
-                        "bold 16px Arial";
-
-                    ctx.fillText(
-                        "⚠ AFUNDAMENTO",
-                        x + largura - 160,
-                        y + altura - 18
-                    );
-
-
+                /*
+                 * =================================================
+                 * MEDIÇÃO NORMAL
+                 * =================================================
+                 */
                 }else{
 
-                    /*
-                     * NORMAL
-                     */
-                    ctx.fillStyle =
-                        "#00b85a";
+                    const texto =
+                        `${numero.toFixed(2).replace(".",",")}mm`;
 
-                    ctx.fillRect(
-                        x + largura - 220,
-                        y + altura - 62,
-                        200,
-                        54
-                    );
+
+                    ctx.font =
+                        "bold 24px Arial";
+
+
+                    const larguraTexto =
+                        ctx.measureText(
+                            texto
+                        ).width;
+
+
+                    const padding =
+                        18;
+
+
+                    const caixaLargura =
+                        larguraTexto +
+                        padding * 2;
+
+
+                    const caixaAltura =
+                        48;
+
+
+                    const caixaX =
+                        x +
+                        (largura - caixaLargura) / 2;
+
+
+                    const caixaY =
+                        y +
+                        altura -
+                        70 -
+                        caixaAltura -
+                        10;
 
 
                     ctx.fillStyle =
                         "#ffffff";
 
+                    ctx.fillRect(
+                        caixaX,
+                        caixaY,
+                        caixaLargura,
+                        caixaAltura
+                    );
+
+
+                    ctx.strokeStyle =
+                        "#000000";
+
+                    ctx.lineWidth =
+                        2;
+
+                    ctx.strokeRect(
+                        caixaX,
+                        caixaY,
+                        caixaLargura,
+                        caixaAltura
+                    );
+
+
+                    ctx.fillStyle =
+                        "#000000";
+
                     ctx.font =
-                        "bold 27px Arial";
+                        "bold 24px Arial";
 
                     ctx.textAlign =
                         "center";
 
+                    ctx.textBaseline =
+                        "middle";
+
                     ctx.fillText(
-                        `${valor} mm`,
-                        x + largura - 120,
-                        y + altura - 43
+                        texto,
+                        caixaX +
+                        caixaLargura / 2,
+                        caixaY +
+                        caixaAltura / 2
                     );
 
                 }
@@ -3191,6 +3304,7 @@ async function gerarJpgCilindro(i){
             "ERRO AO GERAR JPG:",
             error
         );
+
 
         mostrarToast(
             "Erro ao gerar imagem."

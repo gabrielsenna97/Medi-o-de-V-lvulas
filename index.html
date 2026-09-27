@@ -49,6 +49,7 @@
         inset 0 1px 0 rgba(255,255,255,.08);
 }
 
+
 /* =========================================================
    BASE
 ========================================================= */
@@ -64,11 +65,27 @@ html{
 
 body{
     margin:0;
+
     background:
-        radial-gradient(circle at 50% -10%, rgba(0,255,136,.12), transparent 35%),
-        linear-gradient(145deg,#030504,#08100c 45%,#020403);
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(0,255,136,.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #030504,
+            #08100c 45%,
+            #020403
+        );
+
     color:var(--texto);
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     min-height:100vh;
 }
 
@@ -82,6 +99,7 @@ button{
     cursor:pointer;
 }
 
+
 /* =========================================================
    CONTAINER
 ========================================================= */
@@ -93,32 +111,49 @@ button{
     padding:12px 10px 40px;
 }
 
+
 /* =========================================================
-   HEADER INDUSTRIAL
+   HEADER
 ========================================================= */
 
 .header{
     position:relative;
     overflow:hidden;
+
     min-height:190px;
+
     border:1px solid #29362f;
     border-radius:24px;
+
     background:
-        linear-gradient(145deg,#111a16,#060a08 65%);
+        linear-gradient(
+            145deg,
+            #111a16,
+            #060a08 65%
+        );
+
     box-shadow:var(--sombra3d);
+
     padding:20px;
+
     margin-bottom:15px;
 }
 
 .header::before{
     content:"";
+
     position:absolute;
+
     width:240px;
     height:240px;
+
     border-radius:50%;
+
     right:-95px;
     top:-100px;
+
     border:22px solid rgba(0,255,136,.05);
+
     box-shadow:
         0 0 0 15px rgba(0,255,136,.025),
         0 0 0 30px rgba(0,255,136,.015);
@@ -126,8 +161,11 @@ button{
 
 .header::after{
     content:"";
+
     position:absolute;
+
     inset:0;
+
     background:
         repeating-linear-gradient(
             135deg,
@@ -136,6 +174,7 @@ button{
             rgba(255,255,255,.012) 9px,
             transparent 10px
         );
+
     pointer-events:none;
 }
 
@@ -143,24 +182,41 @@ button{
     display:flex;
     align-items:center;
     gap:16px;
+
     position:relative;
     z-index:2;
 }
 
-/* Motor estilizado */
+
+/* =========================================================
+   MOTOR
+========================================================= */
 
 .engine-icon{
     width:82px;
     height:82px;
+
     flex:none;
+
     position:relative;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-radius:50%;
+
     background:
-        radial-gradient(circle,#18231e 0 30%,#07100c 31% 48%,#26332d 49% 54%,#070b09 55%);
+        radial-gradient(
+            circle,
+            #18231e 0 30%,
+            #07100c 31% 48%,
+            #26332d 49% 54%,
+            #070b09 55%
+        );
+
     border:2px solid #34423b;
+
     box-shadow:
         0 8px 0 #020403,
         0 12px 20px rgba(0,0,0,.7),
@@ -169,25 +225,36 @@ button{
 
 .engine-icon::before{
     content:"";
+
     width:35px;
     height:35px;
+
     border-radius:50%;
+
     border:6px dotted var(--verde);
+
     animation:girar 10s linear infinite;
 }
 
 .engine-icon::after{
     content:"⚙";
+
     position:absolute;
+
     font-size:26px;
+
     color:#d8e1dd;
-    text-shadow:0 0 8px rgba(0,255,136,.35);
+
+    text-shadow:
+        0 0 8px rgba(0,255,136,.35);
 }
 
 @keyframes girar{
+
     to{
         transform:rotate(360deg);
     }
+
 }
 
 .header-title{
@@ -196,99 +263,152 @@ button{
 
 .header-title small{
     display:block;
+
     color:var(--verde);
+
     font-size:10px;
+
     letter-spacing:2px;
+
     font-weight:bold;
+
     margin-bottom:4px;
 }
 
 .header-title h1{
     margin:0;
+
     font-size:25px;
+
     letter-spacing:1px;
+
     line-height:1.05;
 }
 
 .header-title p{
     margin:8px 0 0;
+
     color:var(--texto2);
+
     font-size:11px;
+
     letter-spacing:1px;
 }
 
 .system-status{
     margin-top:18px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     position:relative;
     z-index:2;
+
     padding:10px 12px;
+
     border-radius:12px;
+
     background:#050a07;
+
     border:1px solid #1c2923;
-    box-shadow:inset 0 0 15px rgba(0,0,0,.8);
+
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,.8);
 }
 
 .status-left{
     display:flex;
     align-items:center;
+
     gap:8px;
+
     font-size:10px;
+
     font-weight:bold;
+
     letter-spacing:1px;
 }
 
 .led{
     width:9px;
     height:9px;
+
     border-radius:50%;
+
     background:var(--verde);
-    box-shadow:0 0 10px var(--verde);
+
+    box-shadow:
+        0 0 10px var(--verde);
+
     animation:pulsar 1.8s infinite;
 }
 
 @keyframes pulsar{
+
     50%{
         opacity:.45;
-        box-shadow:0 0 3px var(--verde);
+
+        box-shadow:
+            0 0 3px var(--verde);
     }
+
 }
 
 .rev{
     color:#68766f;
+
     font-size:9px;
 }
 
+
 /* =========================================================
-   STATUS RÁPIDO
+   STATUS
 ========================================================= */
 
 .quick-status{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:8px;
+
     margin-bottom:15px;
 }
 
 .quick-card{
     min-height:72px;
+
     border:1px solid #26342d;
+
     border-radius:15px;
+
     background:
-        linear-gradient(145deg,#141d19,#080c0a);
+        linear-gradient(
+            145deg,
+            #141d19,
+            #080c0a
+        );
+
     box-shadow:
         0 7px 0 #020403,
         0 12px 20px rgba(0,0,0,.45),
         inset 0 1px 0 rgba(255,255,255,.05);
+
     padding:11px 8px;
+
     text-align:center;
+
     transition:.18s ease;
 }
 
 .quick-card:active{
-    transform:translateY(4px) scale(.98);
+
+    transform:
+        translateY(4px)
+        scale(.98);
+
     box-shadow:
         0 3px 0 #020403,
         0 7px 12px rgba(0,0,0,.5);
@@ -296,18 +416,26 @@ button{
 
 .quick-card strong{
     display:block;
+
     color:var(--verde);
+
     font-size:18px;
 }
 
 .quick-card span{
     display:block;
+
     margin-top:4px;
+
     color:#87958e;
+
     font-size:9px;
+
     letter-spacing:.7px;
+
     font-weight:bold;
 }
+
 
 /* =========================================================
    NAVEGAÇÃO
@@ -315,58 +443,96 @@ button{
 
 .navigation-panel{
     border-radius:20px;
+
     background:
-        linear-gradient(145deg,#131d18,#070b09);
+        linear-gradient(
+            145deg,
+            #131d18,
+            #070b09
+        );
+
     border:1px solid #2b3a32;
+
     box-shadow:var(--sombra3d);
+
     padding:14px;
+
     margin-bottom:15px;
 }
 
 .navigation-title{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     margin-bottom:12px;
 }
 
 .navigation-title span:first-child{
+
     font-size:10px;
+
     font-weight:bold;
+
     letter-spacing:1.5px;
+
     color:#8c9993;
 }
 
 .navigation-title span:last-child{
+
     font-size:9px;
+
     color:var(--verde);
 }
 
 .nav-main{
+
     display:grid;
-    grid-template-columns:55px 1fr 55px;
+
+    grid-template-columns:
+        55px 1fr 55px;
+
     gap:9px;
+
     align-items:center;
 }
 
 .nav-btn{
+
     height:52px;
+
     border:1px solid #33443b;
+
     border-radius:13px;
+
     background:
-        linear-gradient(145deg,#1d2923,#0a0f0c);
+        linear-gradient(
+            145deg,
+            #1d2923,
+            #0a0f0c
+        );
+
     color:var(--verde);
+
     font-size:22px;
+
     font-weight:bold;
+
     box-shadow:
         0 6px 0 #020403,
         0 10px 16px rgba(0,0,0,.5),
         inset 0 1px 0 rgba(255,255,255,.06);
+
     transition:.12s ease;
 }
 
 .nav-btn:active{
+
     transform:translateY(5px);
+
     box-shadow:
         0 1px 0 #020403,
         inset 0 1px 0 rgba(255,255,255,.03);
@@ -377,65 +543,107 @@ button{
 }
 
 .cylinder-display{
+
     height:52px;
+
     border:1px solid #3a4b42;
+
     border-radius:13px;
+
     background:#050806;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     flex-direction:column;
+
     box-shadow:
         inset 0 0 20px rgba(0,0,0,.8),
         0 0 15px rgba(0,255,136,.03);
 }
 
 .cylinder-display small{
+
     font-size:8px;
+
     color:#68756e;
+
     letter-spacing:2px;
 }
 
 .cylinder-display strong{
+
     font-size:21px;
+
     color:#f5f8f6;
+
     letter-spacing:1px;
 }
 
 .progress{
+
     display:grid;
-    grid-template-columns:repeat(6,1fr);
+
+    grid-template-columns:
+        repeat(6,1fr);
+
     gap:5px;
+
     margin-top:13px;
 }
 
 .progress span{
+
     height:5px;
+
     border-radius:10px;
+
     background:#1b2520;
+
     transition:.3s;
 }
 
 .progress span.active{
+
     background:var(--verde);
-    box-shadow:0 0 8px rgba(0,255,136,.45);
+
+    box-shadow:
+        0 0 8px rgba(0,255,136,.45);
 }
+
 
 /* =========================================================
    CILINDRO
 ========================================================= */
 
 .cylinder-section{
+
     position:relative;
+
     overflow:hidden;
+
     border:1px solid #2c3a33;
+
     border-radius:23px;
+
     background:
-        linear-gradient(145deg,#121b17,#070b09);
+        linear-gradient(
+            145deg,
+            #121b17,
+            #070b09
+        );
+
     box-shadow:var(--sombra3d);
+
     padding:13px;
+
     margin-bottom:18px;
+
     transform-style:preserve-3d;
+
     transition:
         transform .2s ease,
         box-shadow .2s ease,
@@ -443,41 +651,57 @@ button{
 }
 
 .cylinder-section::before{
+
     content:"";
+
     position:absolute;
+
     top:0;
     left:0;
     right:0;
+
     height:3px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        var(--verde),
-        transparent
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--verde),
+            transparent
+        );
+
     opacity:.7;
 }
 
 .cylinder-section::after{
+
     content:"";
+
     position:absolute;
+
     width:170px;
     height:170px;
+
     right:-100px;
     top:35px;
+
     border-radius:50%;
+
     border:18px solid rgba(255,255,255,.015);
+
     pointer-events:none;
 }
 
 .cylinder-section.pressed{
+
     transform:
         perspective(800px)
         translateY(3px)
         rotateX(1deg)
         scale(.997);
 
-    border-color:rgba(0,255,136,.5);
+    border-color:
+        rgba(0,255,136,.5);
 
     box-shadow:
         0 6px 0 #020403,
@@ -487,430 +711,685 @@ button{
 }
 
 .cylinder-head{
+
     position:relative;
     z-index:2;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     padding:10px 10px 13px;
+
     border-bottom:1px solid #27332e;
+
     margin-bottom:12px;
 }
 
 .cylinder-number{
+
     display:flex;
+
     align-items:center;
+
     gap:10px;
 }
 
 .cylinder-led{
+
     width:11px;
     height:11px;
+
     border-radius:50%;
+
     background:var(--verde);
-    box-shadow:0 0 12px var(--verde);
+
+    box-shadow:
+        0 0 12px var(--verde);
 }
 
 .cylinder-number strong{
+
     font-size:20px;
+
     letter-spacing:1px;
 }
 
 .cylinder-number small{
+
     display:block;
+
     color:#68766f;
+
     font-size:8px;
+
     letter-spacing:1px;
 }
 
 .cylinder-badge{
+
     border:1px solid #314039;
+
     border-radius:8px;
+
     padding:6px 8px;
+
     color:#8c9992;
+
     font-size:8px;
+
     font-weight:bold;
+
     letter-spacing:1px;
+
     background:#080d0a;
 }
+
 
 /* =========================================================
    VÁLVULAS
 ========================================================= */
 
 .valve-grid{
+
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:10px;
 }
 
 .valve-block{
+
     position:relative;
+
     min-width:0;
+
     border:1px solid #29372f;
+
     border-radius:16px;
+
     background:
-        linear-gradient(145deg,#18231e,#080c0a);
+        linear-gradient(
+            145deg,
+            #18231e,
+            #080c0a
+        );
+
     box-shadow:
         0 7px 0 #020403,
         0 10px 17px rgba(0,0,0,.5),
         inset 0 1px 0 rgba(255,255,255,.05);
+
     padding:9px;
+
     transition:.15s ease;
+
     transform-style:preserve-3d;
 }
 
 .valve-block:active{
+
     transform:
         perspective(600px)
         translateY(3px)
         rotateX(1deg)
         scale(.995);
+
     box-shadow:
         0 3px 0 #020403,
         0 7px 10px rgba(0,0,0,.55);
 }
 
 .valve-title{
+
     display:flex;
+
     align-items:center;
+
     gap:7px;
+
     margin-bottom:8px;
 }
 
 .valve-light{
+
     width:7px;
     height:7px;
+
     border-radius:50%;
+
     background:#65726c;
-    box-shadow:0 0 5px rgba(255,255,255,.08);
+
+    box-shadow:
+        0 0 5px rgba(255,255,255,.08);
 }
 
 .valve-title strong{
+
     font-size:10px;
+
     letter-spacing:.5px;
 }
 
 .valve-title span{
+
     margin-left:auto;
+
     color:#68766f;
+
     font-size:8px;
 }
 
 .photo-box{
+
     position:relative;
+
     width:100%;
+
     height:150px;
+
     border-radius:11px;
+
     overflow:hidden;
+
     border:1px solid #34443b;
+
     background:
-        radial-gradient(circle at center,#17211d,#050806);
+        radial-gradient(
+            circle at center,
+            #17211d,
+            #050806
+        );
+
     box-shadow:
         inset 0 0 18px rgba(0,0,0,.9),
         0 2px 0 #020403;
+
     margin-bottom:8px;
 }
 
 .photo-box.has-photo{
-    border-color:rgba(0,255,136,.55);
+
+    border-color:
+        rgba(0,255,136,.55);
+
     box-shadow:
         inset 0 0 18px rgba(0,0,0,.6),
         0 0 12px rgba(0,255,136,.08);
 }
 
 .photo-box::before{
+
     content:"PHOTO";
+
     position:absolute;
+
     left:8px;
     top:7px;
+
     z-index:2;
+
     color:rgba(255,255,255,.18);
+
     font-size:7px;
+
     letter-spacing:1.5px;
+
     pointer-events:none;
 }
 
 .photo-box input{
+
     position:absolute;
+
     inset:0;
+
     opacity:0;
+
     cursor:pointer;
+
     z-index:4;
 }
 
 .photo-hint{
+
     position:absolute;
+
     inset:0;
+
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
+
     justify-content:center;
+
     color:#637169;
+
     pointer-events:none;
 }
 
 .photo-hint strong{
+
     font-size:28px;
+
     margin-bottom:4px;
 }
 
 .photo-hint span{
+
     font-size:8px;
+
     letter-spacing:1px;
 }
 
 .measurement{
+
     display:flex;
+
     align-items:center;
+
     gap:6px;
 }
 
 .measurement input{
+
     width:100%;
+
     min-width:0;
+
     height:42px;
+
     border-radius:10px;
+
     border:1px solid #35453c;
+
     background:#050806;
+
     color:#fff;
+
     outline:none;
+
     padding:0 9px;
+
     font-size:15px;
+
     font-weight:bold;
-    box-shadow:inset 0 0 12px rgba(0,0,0,.65);
+
+    box-shadow:
+        inset 0 0 12px rgba(0,0,0,.65);
 }
 
 .measurement input:focus{
+
     border-color:var(--verde);
+
     box-shadow:
         inset 0 0 12px rgba(0,0,0,.65),
         0 0 10px rgba(0,255,136,.1);
 }
 
 .measurement-unit{
+
     color:#6d7b73;
+
     font-size:10px;
+
     font-weight:bold;
 }
 
 .alerta-afundamento{
+
     display:none;
+
     margin-top:7px;
+
     border-radius:8px;
+
     padding:7px;
-    background:rgba(255,49,49,.08);
-    border:1px solid rgba(255,49,49,.45);
+
+    background:
+        rgba(255,49,49,.08);
+
+    border:
+        1px solid rgba(255,49,49,.45);
+
     color:#ff5656;
+
     font-size:9px;
+
     line-height:1.25;
+
     font-weight:bold;
+
     text-align:center;
 }
 
 .measurement.danger input{
+
     border-color:var(--vermelho);
+
     color:#ff5656;
+
     box-shadow:
         inset 0 0 12px rgba(0,0,0,.65),
         0 0 10px rgba(255,49,49,.12);
 }
 
-.measurement.danger ~ .alerta-afundamento{
-    display:block;
-}
-
 .measurement.danger + .alerta-afundamento{
+
     display:block;
 }
 
 .photo-tools{
+
     display:flex;
+
     gap:6px;
+
     margin-top:7px;
 }
 
 .photo-tool{
+
     flex:1;
+
     min-height:35px;
+
     border-radius:8px;
+
     border:1px solid #304039;
+
     background:#0b110e;
+
     color:#7d8a83;
+
     font-size:8px;
+
     font-weight:bold;
+
     letter-spacing:.5px;
 }
 
 .photo-tool:active{
+
     transform:translateY(2px);
 }
 
 .photo-tool.remove{
+
     color:#ff6666;
+
     border-color:#4d2b2b;
 }
+
 
 /* =========================================================
    BOTÃO JPG
 ========================================================= */
 
 .btn-jpg{
+
     width:100%;
+
     min-height:48px;
+
     margin-top:13px;
+
     border:none;
+
     border-radius:12px;
+
     background:
-        linear-gradient(145deg,#00e87d,#009b54);
+        linear-gradient(
+            145deg,
+            #00e87d,
+            #009b54
+        );
+
     color:#00170d;
+
     font-size:11px;
+
     font-weight:900;
+
     letter-spacing:.7px;
+
     box-shadow:
         0 6px 0 #004c2b,
         0 10px 18px rgba(0,0,0,.45),
         inset 0 1px 0 rgba(255,255,255,.35);
+
     transition:.12s ease;
 }
 
 .btn-jpg:active{
+
     transform:translateY(5px);
+
     box-shadow:
         0 1px 0 #004c2b,
         inset 0 1px 0 rgba(255,255,255,.2);
 }
+
 
 /* =========================================================
    LIMITE
 ========================================================= */
 
 .limit-bar{
+
     border-radius:15px;
+
     padding:12px;
+
     margin-bottom:15px;
+
     background:
-        linear-gradient(145deg,#161e1a,#080b09);
+        linear-gradient(
+            145deg,
+            #161e1a,
+            #080b09
+        );
+
     border:1px solid #2b3831;
+
     box-shadow:
         0 6px 0 #020403,
         0 10px 18px rgba(0,0,0,.4);
+
     text-align:center;
 }
 
 .limit-bar strong{
+
     color:var(--verde);
+
     font-size:15px;
 }
 
 .limit-bar span{
+
     display:block;
+
     color:#7c8982;
+
     font-size:9px;
+
     margin-top:4px;
 }
 
+
 /* =========================================================
-   FINALIZAÇÃO RECOLHIDA
+   FINALIZAÇÃO
 ========================================================= */
 
 .final-wrapper{
+
     margin-top:26px;
+
     margin-bottom:20px;
+
     perspective:1000px;
 }
 
 .final-toggle{
+
     width:100%;
+
     min-height:76px;
+
     position:relative;
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
+
     border:1px solid #33443a;
+
     border-radius:18px;
+
     background:
-        linear-gradient(145deg,#17221c,#070b09);
+        linear-gradient(
+            145deg,
+            #17221c,
+            #070b09
+        );
+
     color:#fff;
+
     padding:12px 14px;
+
     box-shadow:
         0 8px 0 #020403,
         0 15px 25px rgba(0,0,0,.55),
         inset 0 1px 0 rgba(255,255,255,.06);
+
     transition:.2s ease;
+
     text-align:left;
 }
 
 .final-toggle:active{
-    transform:translateY(5px) scale(.995);
+
+    transform:
+        translateY(5px)
+        scale(.995);
+
     box-shadow:
         0 3px 0 #020403,
         0 8px 15px rgba(0,0,0,.55);
 }
 
 .final-icon{
+
     width:43px;
     height:43px;
+
     flex:none;
+
     border-radius:12px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     background:#07100b;
+
     border:1px solid #2c4939;
+
     color:var(--verde);
+
     font-size:20px;
+
     box-shadow:
         inset 0 0 12px rgba(0,0,0,.7),
         0 0 10px rgba(0,255,136,.04);
 }
 
 .final-title{
+
     flex:1;
 }
 
 .final-title strong{
+
     display:block;
+
     font-size:12px;
+
     letter-spacing:1px;
 }
 
 .final-title span{
+
     display:block;
+
     color:#718078;
+
     font-size:8px;
+
     margin-top:4px;
 }
 
 .final-arrow{
+
     width:35px;
     height:35px;
+
     border-radius:10px;
+
     border:1px solid #34453b;
+
     background:#080d0a;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     color:var(--verde);
+
     font-size:20px;
+
     transition:.3s ease;
 }
 
 .final-wrapper.open .final-arrow{
+
     transform:rotate(180deg);
+
     background:#0b2116;
-    box-shadow:0 0 12px rgba(0,255,136,.1);
+
+    box-shadow:
+        0 0 12px rgba(0,255,136,.1);
 }
 
 .final-panel{
+
     max-height:0;
+
     overflow:hidden;
+
     opacity:0;
+
     transform:
         perspective(900px)
         rotateX(-7deg)
         translateY(-10px);
+
     transform-origin:top;
+
     transition:
         max-height .55s ease,
         opacity .35s ease,
@@ -918,21 +1397,34 @@ button{
 }
 
 .final-wrapper.open .final-panel{
+
     max-height:1400px;
+
     opacity:1;
+
     transform:
         perspective(900px)
         rotateX(0)
         translateY(0);
+
     margin-top:12px;
 }
 
 .final-inner{
+
     border:1px solid #304139;
+
     border-radius:20px;
+
     background:
-        linear-gradient(145deg,#111a16,#060a08);
+        linear-gradient(
+            145deg,
+            #111a16,
+            #060a08
+        );
+
     padding:13px;
+
     box-shadow:
         0 8px 0 #020403,
         0 16px 30px rgba(0,0,0,.55),
@@ -940,361 +1432,586 @@ button{
 }
 
 .final-heading{
+
     display:flex;
+
     align-items:center;
+
     gap:9px;
+
     margin-bottom:13px;
 }
 
 .final-heading .line{
+
     flex:1;
+
     height:1px;
+
     background:#29372f;
 }
 
 .final-heading strong{
+
     color:var(--verde);
+
     font-size:10px;
+
     letter-spacing:1.2px;
 }
 
+
 /* =========================================================
-   DADOS
+   CAMPOS
 ========================================================= */
 
 .info-grid{
+
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:9px;
 }
 
 .field{
+
     position:relative;
 }
 
 .field.full{
-    grid-column:1 / -1;
+
+    grid-column:
+        1 / -1;
 }
 
 .field label{
+
     display:block;
+
     color:#75837b;
+
     font-size:8px;
+
     font-weight:bold;
+
     letter-spacing:.8px;
-    margin:0 0 5px 3px;
+
+    margin:
+        0 0 5px 3px;
 }
 
 .field input,
 .field textarea{
+
     width:100%;
+
     border:1px solid #304039;
+
     border-radius:10px;
+
     background:#050806;
+
     color:#fff;
+
     outline:none;
+
     padding:11px;
-    box-shadow:inset 0 0 13px rgba(0,0,0,.7);
+
+    box-shadow:
+        inset 0 0 13px rgba(0,0,0,.7);
 }
 
 .field input{
+
     height:43px;
+
     font-size:12px;
 }
 
 .field textarea{
+
     min-height:105px;
+
     resize:vertical;
+
     font-size:12px;
+
     line-height:1.4;
 }
 
 .field input:focus,
 .field textarea:focus{
+
     border-color:var(--verde);
+
     box-shadow:
         inset 0 0 13px rgba(0,0,0,.7),
         0 0 10px rgba(0,255,136,.08);
 }
+
 
 /* =========================================================
    ASSINATURA
 ========================================================= */
 
 .signature-box{
+
     margin-top:14px;
+
     border:1px solid #2e3e35;
+
     border-radius:14px;
+
     background:#080d0a;
+
     padding:11px;
 }
 
 .signature-box label{
+
     display:block;
+
     color:#75837b;
+
     font-size:8px;
+
     font-weight:bold;
+
     letter-spacing:.8px;
+
     margin-bottom:7px;
 }
 
 .signature-box input{
+
     width:100%;
+
     height:45px;
+
     border:1px solid #33443a;
+
     border-radius:10px;
+
     background:#050806;
+
     color:#fff;
+
     padding:0 11px;
+
     outline:none;
+
     font-size:13px;
 }
 
 .signature-box input:focus{
+
     border-color:var(--verde);
 }
+
 
 /* =========================================================
    BOTÕES FINAIS
 ========================================================= */
 
 .final-actions{
+
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:9px;
+
     margin-top:14px;
 }
 
 .action-btn{
+
     min-height:52px;
+
     border-radius:12px;
+
     border:1px solid #33453b;
+
     font-size:10px;
+
     font-weight:900;
+
     letter-spacing:.7px;
+
     transition:.12s ease;
 }
 
 .action-btn:active{
+
     transform:translateY(4px);
 }
 
 .action-btn.pdf{
+
     background:
-        linear-gradient(145deg,#00e87d,#009d57);
+        linear-gradient(
+            145deg,
+            #00e87d,
+            #009d57
+        );
+
     color:#00180d;
+
     border-color:#00b965;
+
     box-shadow:
         0 5px 0 #00552f,
         0 10px 15px rgba(0,0,0,.45);
 }
 
 .action-btn.clear{
+
     background:
-        linear-gradient(145deg,#202a25,#0b100d);
+        linear-gradient(
+            145deg,
+            #202a25,
+            #0b100d
+        );
+
     color:#ff6b6b;
+
     box-shadow:
         0 5px 0 #020403,
         0 10px 15px rgba(0,0,0,.45);
 }
 
+
 /* =========================================================
-   MARCADOR FINAL
+   FINAL
 ========================================================= */
 
 .inspection-finished{
+
     text-align:center;
-    margin:25px 0 12px;
+
+    margin:
+        25px 0 12px;
+
     color:#58665f;
+
     font-size:8px;
+
     letter-spacing:2px;
 }
 
 .inspection-finished::before,
 .inspection-finished::after{
+
     content:"";
+
     display:inline-block;
+
     width:25px;
+
     height:1px;
+
     background:#26342c;
+
     vertical-align:middle;
+
     margin:0 7px;
 }
+
 
 /* =========================================================
    PREVIEW JPG
 ========================================================= */
 
 .preview-overlay{
+
     position:fixed;
+
     inset:0;
+
     z-index:9999;
+
     display:none;
+
     align-items:center;
+
     justify-content:center;
-    background:rgba(0,0,0,.88);
+
+    background:
+        rgba(0,0,0,.88);
+
     backdrop-filter:blur(7px);
+
     padding:10px;
 }
 
 .preview-overlay.show{
+
     display:flex;
 }
 
 .preview-box{
+
     width:min(100%,700px);
+
     max-height:96vh;
+
     overflow:auto;
+
     border:1px solid #34463c;
+
     border-radius:20px;
+
     background:#080d0a;
+
     padding:10px;
+
     box-shadow:
         0 20px 60px rgba(0,0,0,.8),
         inset 0 1px 0 rgba(255,255,255,.06);
 }
 
 .preview-box img{
+
     display:block;
+
     width:100%;
+
     height:auto;
+
     border-radius:10px;
+
     background:white;
 }
 
 .preview-actions{
+
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:8px;
+
     margin-top:10px;
 }
 
 .preview-actions button{
+
     min-height:48px;
+
     border-radius:11px;
+
     border:1px solid #33453b;
+
     font-weight:bold;
 }
 
 .preview-download{
+
     background:var(--verde);
+
     color:#00160c;
 }
 
 .preview-close{
+
     background:#141c18;
+
     color:#fff;
 }
 
+
 /* =========================================================
-   PDF PREVIEW
+   PREVIEW PDF
 ========================================================= */
 
 .pdf-preview-overlay{
+
     position:fixed;
+
     inset:0;
+
     z-index:10000;
+
     display:none;
+
     flex-direction:column;
+
     background:#030504;
 }
 
 .pdf-preview-overlay.show{
+
     display:flex;
 }
 
 .pdf-preview-header{
+
     flex:none;
+
     min-height:65px;
+
     padding:9px 10px;
+
     display:flex;
+
     align-items:center;
+
     gap:8px;
+
     border-bottom:1px solid #26352d;
+
     background:
-        linear-gradient(145deg,#111a16,#060a08);
-    box-shadow:0 5px 15px rgba(0,0,0,.5);
+        linear-gradient(
+            145deg,
+            #111a16,
+            #060a08
+        );
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.5);
 }
 
 .pdf-preview-title{
+
     flex:1;
 }
 
 .pdf-preview-title strong{
+
     display:block;
+
     font-size:12px;
 }
 
 .pdf-preview-title span{
+
     display:block;
+
     color:#718078;
+
     font-size:8px;
+
     margin-top:3px;
 }
 
 .pdf-download{
+
     min-height:43px;
+
     padding:0 13px;
+
     border:1px solid #00bf69;
+
     border-radius:10px;
-    background:linear-gradient(145deg,#00ef83,#00a95c);
+
+    background:
+        linear-gradient(
+            145deg,
+            #00ef83,
+            #00a95c
+        );
+
     color:#00160c;
+
     font-size:9px;
+
     font-weight:900;
+
     box-shadow:
         0 4px 0 #00552f;
 }
 
 .pdf-download:active{
+
     transform:translateY(3px);
-    box-shadow:0 1px 0 #00552f;
+
+    box-shadow:
+        0 1px 0 #00552f;
 }
 
 .pdf-close{
+
     width:43px;
     height:43px;
+
     border:1px solid #34433b;
+
     border-radius:10px;
+
     background:#101713;
+
     color:#fff;
+
     font-size:20px;
 }
 
 .pdf-frame{
+
     flex:1;
+
     width:100%;
+
     border:0;
+
     background:#4b4b4b;
 }
+
 
 /* =========================================================
    TOAST
 ========================================================= */
 
 .toast{
+
     position:fixed;
+
     left:50%;
+
     bottom:18px;
+
     z-index:11000;
-    transform:translate(-50%,20px);
+
+    transform:
+        translate(-50%,20px);
+
     opacity:0;
+
     pointer-events:none;
+
     padding:12px 16px;
+
     border-radius:12px;
+
     border:1px solid #34503f;
+
     background:#08110c;
+
     color:#dce8e1;
+
     font-size:10px;
+
     font-weight:bold;
-    box-shadow:0 10px 25px rgba(0,0,0,.7);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.7);
+
     transition:.25s;
+
     white-space:nowrap;
 }
 
 .toast.show{
-    transform:translate(-50%,0);
+
+    transform:
+        translate(-50%,0);
+
     opacity:1;
 }
+
 
 /* =========================================================
    RESPONSIVO
@@ -1303,58 +2020,75 @@ button{
 @media(max-width:470px){
 
     .app{
-        padding:8px 7px 35px;
+
+        padding:
+            8px 7px 35px;
     }
 
     .header{
+
         min-height:175px;
+
         padding:16px;
     }
 
     .engine-icon{
+
         width:67px;
         height:67px;
     }
 
     .header-title h1{
+
         font-size:20px;
     }
 
     .header-title p{
+
         font-size:9px;
     }
 
     .quick-card{
+
         min-height:65px;
     }
 
     .quick-card strong{
+
         font-size:16px;
     }
 
     .valve-grid{
+
         gap:8px;
     }
 
     .photo-box{
+
         height:125px;
     }
 
     .valve-block{
+
         padding:7px;
     }
 
     .valve-title strong{
+
         font-size:9px;
     }
 
     .info-grid{
-        grid-template-columns:1fr;
+
+        grid-template-columns:
+            1fr;
     }
 
     .field.full{
+
         grid-column:auto;
     }
+
 }
 
 </style>
@@ -1366,383 +2100,445 @@ button{
 
 <div class="app">
 
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
 
-    <header class="header">
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-        <div class="header-top">
+<header class="header">
 
-            <div class="engine-icon"></div>
+    <div class="header-top">
 
-            <div class="header-title">
+        <div class="engine-icon"></div>
 
-                <small>ENGINE CONTROL • DIGITAL INSPECTION</small>
+        <div class="header-title">
 
-                <h1>SCANIA 550</h1>
+            <small>
+                ENGINE CONTROL • DIGITAL INSPECTION
+            </small>
 
-                <p>MEDIÇÃO DAS VÁLVULAS</p>
+            <h1>
+                SCANIA 550
+            </h1>
 
-            </div>
+            <p>
+                MEDIÇÃO DAS VÁLVULAS
+            </p>
 
-        </div>
-
-        <div class="system-status">
-
-            <div class="status-left">
-
-                <span class="led"></span>
-
-                SISTEMA PRONTO PARA INSPEÇÃO
-
-            </div>
-
-            <div class="rev">
-                REV. DIGITAL
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- =====================================================
-         STATUS
-    ====================================================== -->
-
-    <div class="quick-status">
-
-        <div class="quick-card">
-            <strong>06</strong>
-            <span>CILINDROS</span>
-        </div>
-
-        <div class="quick-card">
-            <strong>24</strong>
-            <span>VÁLVULAS</span>
-        </div>
-
-        <div class="quick-card">
-            <strong>67,50</strong>
-            <span>LIMITE mm</span>
         </div>
 
     </div>
 
 
-    <!-- =====================================================
-         LIMITE
-    ====================================================== -->
+    <div class="system-status">
 
-    <div class="limit-bar">
+        <div class="status-left">
 
-        <strong>⚠ LIMITE DE AFUNDAMENTO: 67,50 mm</strong>
+            <span class="led"></span>
+
+            SISTEMA PRONTO PARA INSPEÇÃO
+
+        </div>
+
+        <div class="rev">
+            REV. DIGITAL
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<div class="quick-status">
+
+    <div class="quick-card">
+
+        <strong>
+            06
+        </strong>
 
         <span>
-            Valores iguais ou superiores ao limite serão indicados como SUBSTITUIR.
+            CILINDROS
         </span>
 
     </div>
 
 
-    <!-- =====================================================
-         NAVEGAÇÃO
-    ====================================================== -->
+    <div class="quick-card">
 
-    <div class="navigation-panel">
+        <strong>
+            24
+        </strong>
 
-        <div class="navigation-title">
-
-            <span>NAVEGAÇÃO DA INSPEÇÃO</span>
-
-            <span id="navStatus">CILINDRO 01 / 06</span>
-
-        </div>
-
-        <div class="nav-main">
-
-            <button
-                type="button"
-                class="nav-btn"
-                id="btnAnterior"
-                onclick="cilindroAnterior()"
-            >
-                ‹
-            </button>
-
-            <div class="cylinder-display">
-
-                <small>CILINDRO ATUAL</small>
-
-                <strong id="cilindroAtualTexto">
-                    01 / 06
-                </strong>
-
-            </div>
-
-            <button
-                type="button"
-                class="nav-btn"
-                id="btnProximo"
-                onclick="proximoCilindro()"
-            >
-                ›
-            </button>
-
-        </div>
-
-        <div class="progress">
-
-            <span id="progress1"></span>
-            <span id="progress2"></span>
-            <span id="progress3"></span>
-            <span id="progress4"></span>
-            <span id="progress5"></span>
-            <span id="progress6"></span>
-
-        </div>
+        <span>
+            VÁLVULAS
+        </span>
 
     </div>
 
 
-    <!-- =====================================================
-         CILINDROS
-    ====================================================== -->
+    <div class="quick-card">
 
-    <div id="valveContainer"></div>
+        <strong>
+            67,50
+        </strong>
+
+        <span>
+            LIMITE mm
+        </span>
+
+    </div>
+
+</div>
 
 
-    <div class="inspection-finished">
-        06 CILINDROS • INSPEÇÃO MECÂNICA
+<!-- =====================================================
+     LIMITE
+===================================================== -->
+
+<div class="limit-bar">
+
+    <strong>
+        ⚠ LIMITE DE AFUNDAMENTO: 67,50 mm
+    </strong>
+
+    <span>
+        Valores iguais ou superiores ao limite serão indicados como SUBSTITUIR.
+    </span>
+
+</div>
+
+
+<!-- =====================================================
+     NAVEGAÇÃO
+===================================================== -->
+
+<div class="navigation-panel">
+
+    <div class="navigation-title">
+
+        <span>
+            NAVEGAÇÃO DA INSPEÇÃO
+        </span>
+
+        <span id="navStatus">
+            CILINDRO 01 / 06
+        </span>
+
     </div>
 
 
-    <!-- =====================================================
-         FINALIZAÇÃO RECOLHIDA
-    ====================================================== -->
-
-    <section
-        class="final-wrapper"
-        id="finalizacaoWrapper"
-    >
+    <div class="nav-main">
 
         <button
             type="button"
-            class="final-toggle"
-            onclick="toggleFinalizacao()"
+            class="nav-btn"
+            id="btnAnterior"
+            onclick="cilindroAnterior()"
         >
-
-            <div class="final-icon">
-                ✓
-            </div>
-
-            <div class="final-title">
-
-                <strong>FINALIZAÇÃO DA INSPEÇÃO</strong>
-
-                <span>
-                    DADOS • OBSERVAÇÕES • ASSINATURA • RELATÓRIO PDF
-                </span>
-
-            </div>
-
-            <div class="final-arrow">
-                ↓
-            </div>
-
+            ‹
         </button>
 
 
-        <div class="final-panel">
+        <div class="cylinder-display">
 
-            <div class="final-inner">
+            <small>
+                CILINDRO ATUAL
+            </small>
 
-                <div class="final-heading">
+            <strong id="cilindroAtualTexto">
+                01 / 06
+            </strong>
 
-                    <div class="line"></div>
-
-                    <strong>DADOS DA INSPEÇÃO</strong>
-
-                    <div class="line"></div>
-
-                </div>
+        </div>
 
 
-                <!-- DADOS -->
+        <button
+            type="button"
+            class="nav-btn"
+            id="btnProximo"
+            onclick="proximoCilindro()"
+        >
+            ›
+        </button>
 
-                <div class="info-grid">
-
-                    <div class="field">
-
-                        <label>MECÂNICO</label>
-
-                        <input
-                            id="mecanico"
-                            type="text"
-                            placeholder="Nome do mecânico"
-                        >
-
-                    </div>
+    </div>
 
 
-                    <div class="field">
+    <div class="progress">
 
-                        <label>DATA</label>
+        <span id="progress1"></span>
+        <span id="progress2"></span>
+        <span id="progress3"></span>
+        <span id="progress4"></span>
+        <span id="progress5"></span>
+        <span id="progress6"></span>
 
-                        <input
-                            id="data"
-                            type="date"
-                        >
+    </div>
 
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>USINA</label>
-
-                        <input
-                            id="usina"
-                            type="text"
-                            placeholder="UTE Maués"
-                        >
-
-                    </div>
+</div>
 
 
-                    <div class="field">
+<!-- =====================================================
+     CILINDROS
+===================================================== -->
 
-                        <label>HORÍMETRO</label>
-
-                        <input
-                            id="horimetro"
-                            type="text"
-                            placeholder="Ex.: 35.240 h"
-                        >
-
-                    </div>
+<div id="valveContainer"></div>
 
 
-                    <div class="field">
+<div class="inspection-finished">
 
-                        <label>SÉRIE</label>
+    06 CILINDROS • INSPEÇÃO MECÂNICA
 
-                        <input
-                            id="serie"
-                            type="text"
-                            placeholder="Número de série"
-                        >
-
-                    </div>
+</div>
 
 
-                    <div class="field">
+<!-- =====================================================
+     FINALIZAÇÃO
+===================================================== -->
 
-                        <label>OS</label>
+<section
+    class="final-wrapper"
+    id="finalizacaoWrapper"
+>
 
-                        <input
-                            id="os"
-                            type="text"
-                            placeholder="Número da OS"
-                        >
+    <button
+        type="button"
+        class="final-toggle"
+        onclick="toggleFinalizacao()"
+    >
 
-                    </div>
-
-
-                    <div class="field full">
-
-                        <label>UGD</label>
-
-                        <input
-                            id="ugd"
-                            type="text"
-                            placeholder="Ex.: UGD-05"
-                        >
-
-                    </div>
-
-                </div>
+        <div class="final-icon">
+            ✓
+        </div>
 
 
-                <!-- OBSERVAÇÕES -->
+        <div class="final-title">
 
-                <div
-                    class="final-heading"
-                    style="margin-top:20px;"
-                >
+            <strong>
+                FINALIZAÇÃO DA INSPEÇÃO
+            </strong>
 
-                    <div class="line"></div>
+            <span>
+                DADOS • OBSERVAÇÕES • ASSINATURA • RELATÓRIO PDF
+            </span>
 
-                    <strong>OBSERVAÇÕES TÉCNICAS</strong>
+        </div>
 
-                    <div class="line"></div>
+
+        <div class="final-arrow">
+            ↓
+        </div>
+
+    </button>
+
+
+    <div class="final-panel">
+
+        <div class="final-inner">
+
+
+            <div class="final-heading">
+
+                <div class="line"></div>
+
+                <strong>
+                    DADOS DA INSPEÇÃO
+                </strong>
+
+                <div class="line"></div>
+
+            </div>
+
+
+            <div class="info-grid">
+
+
+                <div class="field">
+
+                    <label>
+                        MECÂNICO
+                    </label>
+
+                    <input
+                        id="mecanico"
+                        type="text"
+                        placeholder="Nome do mecânico"
+                    >
 
                 </div>
 
 
                 <div class="field">
 
-                    <textarea
-                        id="observacoes"
-                        placeholder="Digite aqui as observações da inspeção..."
-                    ></textarea>
-
-                </div>
-
-
-                <!-- ASSINATURA -->
-
-                <div class="signature-box">
-
                     <label>
-                        ASSINATURA DO MECÂNICO
+                        DATA
                     </label>
 
                     <input
-                        id="assinatura"
-                        type="text"
-                        placeholder="Nome / assinatura"
+                        id="data"
+                        type="date"
                     >
 
                 </div>
 
 
-                <!-- AÇÕES -->
+                <div class="field">
 
-                <div class="final-actions">
+                    <label>
+                        USINA
+                    </label>
 
-                    <button
-                        type="button"
-                        class="action-btn pdf"
-                        onclick="gerarPDF()"
+                    <input
+                        id="usina"
+                        type="text"
+                        placeholder="UTE Maués"
                     >
-                        📄 GERAR PDF
-                    </button>
 
-                    <button
-                        type="button"
-                        class="action-btn clear"
-                        onclick="limparTudo()"
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        HORÍMETRO
+                    </label>
+
+                    <input
+                        id="horimetro"
+                        type="text"
+                        placeholder="Ex.: 35.240 h"
                     >
-                        🗑 LIMPAR
-                    </button>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        SÉRIE
+                    </label>
+
+                    <input
+                        id="serie"
+                        type="text"
+                        placeholder="Número de série"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        OS
+                    </label>
+
+                    <input
+                        id="os"
+                        type="text"
+                        placeholder="Número da OS"
+                    >
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>
+                        UGD
+                    </label>
+
+                    <input
+                        id="ugd"
+                        type="text"
+                        placeholder="Ex.: UGD-05"
+                    >
 
                 </div>
 
             </div>
 
+
+            <div
+                class="final-heading"
+                style="margin-top:20px;"
+            >
+
+                <div class="line"></div>
+
+                <strong>
+                    OBSERVAÇÕES TÉCNICAS
+                </strong>
+
+                <div class="line"></div>
+
+            </div>
+
+
+            <div class="field">
+
+                <textarea
+                    id="observacoes"
+                    placeholder="Digite aqui as observações da inspeção..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="signature-box">
+
+                <label>
+                    ASSINATURA DO MECÂNICO
+                </label>
+
+                <input
+                    id="assinatura"
+                    type="text"
+                    placeholder="Nome / assinatura"
+                >
+
+            </div>
+
+
+            <div class="final-actions">
+
+                <button
+                    type="button"
+                    class="action-btn pdf"
+                    onclick="gerarPDF()"
+                >
+                    📄 GERAR PDF
+                </button>
+
+
+                <button
+                    type="button"
+                    class="action-btn clear"
+                    onclick="limparTudo()"
+                >
+                    🗑 LIMPAR
+                </button>
+
+            </div>
+
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
 </div>
 
 
-<!-- =========================================================
+<!-- =====================================================
      PREVIEW JPG
-========================================================= -->
+===================================================== -->
 
 <div
     class="preview-overlay"
@@ -1756,6 +2552,7 @@ button{
             alt="Prévia do cilindro"
         >
 
+
         <div class="preview-actions">
 
             <button
@@ -1765,6 +2562,7 @@ button{
             >
                 ⬇ BAIXAR JPG
             </button>
+
 
             <button
                 type="button"
@@ -1781,9 +2579,9 @@ button{
 </div>
 
 
-<!-- =========================================================
+<!-- =====================================================
      PREVIEW PDF
-========================================================= -->
+===================================================== -->
 
 <div
     class="pdf-preview-overlay"
@@ -1791,6 +2589,7 @@ button{
 >
 
     <div class="pdf-preview-header">
+
 
         <button
             type="button"
@@ -1800,15 +2599,19 @@ button{
             ×
         </button>
 
+
         <div class="pdf-preview-title">
 
-            <strong>PRÉVIA DO RELATÓRIO</strong>
+            <strong>
+                PRÉVIA DO RELATÓRIO
+            </strong>
 
             <span>
                 MEDIÇÃO DAS VÁLVULAS • SCANIA 550
             </span>
 
         </div>
+
 
         <button
             type="button"
@@ -1820,6 +2623,7 @@ button{
 
     </div>
 
+
     <iframe
         id="pdfFrame"
         class="pdf-frame"
@@ -1829,9 +2633,9 @@ button{
 </div>
 
 
-<!-- =========================================================
+<!-- =====================================================
      TOAST
-========================================================= -->
+===================================================== -->
 
 <div
     class="toast"
@@ -1861,7 +2665,7 @@ let cilindros = {};
 
 
 /* =========================================================
-   ESTRUTURA DAS VÁLVULAS
+   VÁLVULAS
 ========================================================= */
 
 const valvulas = [
@@ -1894,15 +2698,18 @@ const valvulas = [
 
 
 /* =========================================================
-   CRIA CILINDROS
+   CRIAR CILINDROS
 ========================================================= */
 
 function criarCilindros(){
 
     const container =
-        document.getElementById("valveContainer");
+        document.getElementById(
+            "valveContainer"
+        );
 
     container.innerHTML = "";
+
 
     for(let i = 1; i <= 6; i++){
 
@@ -1926,15 +2733,21 @@ function criarCilindros(){
 
 
         const section =
-            document.createElement("section");
+            document.createElement(
+                "section"
+            );
+
 
         section.className =
             "cylinder-section";
 
+
         section.id =
             `cilindro-${i}`;
 
-        section.dataset.cilindro = i;
+
+        section.dataset.cilindro =
+            i;
 
 
         let html = `
@@ -1966,105 +2779,113 @@ function criarCilindros(){
             </div>
 
             <div class="valve-grid">
+
         `;
 
 
-        valvulas.forEach(valvula => {
+        valvulas.forEach(
+            valvula => {
 
-            html += `
-
-                <div
-                    class="valve-block pressable"
-                    data-valvula="${valvula.id}"
-                >
-
-                    <div class="valve-title">
-
-                        <span class="valve-light"></span>
-
-                        <strong>
-                            ${valvula.nome}
-                        </strong>
-
-                        <span>
-                            ${valvula.numero}
-                        </span>
-
-                    </div>
-
+                html += `
 
                     <div
-                        class="photo-box"
-                        id="photo-${i}-${valvula.id}"
+                        class="valve-block pressable"
+                        data-valvula="${valvula.id}"
                     >
 
-                        <div class="photo-hint">
+                        <div class="valve-title">
 
-                            <strong>＋</strong>
+                            <span class="valve-light"></span>
+
+                            <strong>
+                                ${valvula.nome}
+                            </strong>
 
                             <span>
-                                TOCAR PARA FOTO
+                                ${valvula.numero}
                             </span>
 
                         </div>
 
-                        <input
-                            type="file"
-                            accept="image/*"
-                            capture="environment"
-                            onchange="carregarFoto(event, ${i}, '${valvula.id}')"
+
+                        <div
+                            class="photo-box"
+                            id="photo-${i}-${valvula.id}"
                         >
 
-                    </div>
+                            <div class="photo-hint">
+
+                                <strong>
+                                    ＋
+                                </strong>
+
+                                <span>
+                                    TOCAR PARA FOTO
+                                </span>
+
+                            </div>
 
 
-                    <div class="measurement">
+                            <input
+                                type="file"
+                                accept="image/*"
+                                capture="environment"
+                                onchange="carregarFoto(event, ${i}, '${valvula.id}')"
+                            >
 
-                        <input
-                            type="number"
-                            step="0.01"
-                            inputmode="decimal"
-                            id="medida-${i}-${valvula.id}"
-                            placeholder="MEDIÇÃO"
-                            oninput="atualizarMedida(${i}, '${valvula.id}', this.value)"
+                        </div>
+
+
+                        <div class="measurement">
+
+                            <input
+                                type="number"
+                                step="0.01"
+                                inputmode="decimal"
+                                id="medida-${i}-${valvula.id}"
+                                placeholder="MEDIÇÃO"
+                                oninput="atualizarMedida(${i}, '${valvula.id}', this.value)"
+                            >
+
+                            <span class="measurement-unit">
+                                mm
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="alerta-afundamento"
+                            id="alerta-${i}-${valvula.id}"
                         >
-
-                        <span class="measurement-unit">
-                            mm
-                        </span>
-
-                    </div>
+                            ⚠ AFUNDAMENTO — SUBSTITUIR
+                        </div>
 
 
-                    <div
-                        class="alerta-afundamento"
-                        id="alerta-${i}-${valvula.id}"
-                    >
-                        ⚠ AFUNDAMENTO — SUBSTITUIR
-                    </div>
+                        <div class="photo-tools">
 
+                            <button
+                                type="button"
+                                class="photo-tool remove"
+                                onclick="removerFoto(${i}, '${valvula.id}')"
+                            >
+                                REMOVER FOTO
+                            </button>
 
-                    <div class="photo-tools">
-
-                        <button
-                            type="button"
-                            class="photo-tool remove"
-                            onclick="removerFoto(${i}, '${valvula.id}')"
-                        >
-                            REMOVER FOTO
-                        </button>
+                        </div>
 
                     </div>
 
-                </div>
+                `;
 
-            `;
-
-        });
+            }
+        );
 
 
         html += `
+
             </div>
+
 
             <button
                 type="button"
@@ -2073,6 +2894,7 @@ function criarCilindros(){
             >
                 📷 GERAR IMAGEM DO CILINDRO ${String(i).padStart(2,"0")}
             </button>
+
         `;
 
 
@@ -2099,11 +2921,16 @@ function criarCilindros(){
         }
 
 
-        section.innerHTML = html;
+        section.innerHTML =
+            html;
 
-        container.appendChild(section);
+
+        container.appendChild(
+            section
+        );
 
     }
+
 
     ativarEfeitos();
 
@@ -2113,40 +2940,55 @@ function criarCilindros(){
 
 
 /* =========================================================
-   EFEITOS 3D DE TOQUE
+   EFEITOS
 ========================================================= */
 
 function ativarEfeitos(){
 
     document
-        .querySelectorAll(".pressable, .cylinder-section")
-        .forEach(el => {
-
-            el.addEventListener(
-                "pointerdown",
-                () => {
-
-                    el.classList.add("pressed");
-
-                },
-                {passive:true}
-            );
-
-
-            ["pointerup","pointercancel","pointerleave"]
-            .forEach(evento => {
+        .querySelectorAll(
+            ".pressable, .cylinder-section"
+        )
+        .forEach(
+            el => {
 
                 el.addEventListener(
-                    evento,
+                    "pointerdown",
                     () => {
-                        el.classList.remove("pressed");
+
+                        el.classList.add(
+                            "pressed"
+                        );
+
                     },
                     {passive:true}
                 );
 
-            });
 
-        });
+                [
+                    "pointerup",
+                    "pointercancel",
+                    "pointerleave"
+                ].forEach(
+                    evento => {
+
+                        el.addEventListener(
+                            evento,
+                            () => {
+
+                                el.classList.remove(
+                                    "pressed"
+                                );
+
+                            },
+                            {passive:true}
+                        );
+
+                    }
+                );
+
+            }
+        );
 
 }
 
@@ -2155,57 +2997,75 @@ function ativarEfeitos(){
    FOTO
 ========================================================= */
 
-function carregarFoto(event, cilindro, tipo){
+function carregarFoto(
+    event,
+    cilindro,
+    tipo
+){
 
     const file =
         event.target.files &&
         event.target.files[0];
 
-    if(!file) return;
+
+    if(!file)
+        return;
 
 
     const reader =
         new FileReader();
 
 
-    reader.onload = function(e){
+    reader.onload =
+        function(e){
 
-        cilindros[cilindro].fotos[tipo] =
-            e.target.result;
+            cilindros[cilindro]
+                .fotos[tipo] =
+                e.target.result;
 
 
-        const box =
-            document.getElementById(
-                `photo-${cilindro}-${tipo}`
+            const box =
+                document.getElementById(
+                    `photo-${cilindro}-${tipo}`
+                );
+
+
+            box.style.backgroundImage =
+                `url("${e.target.result}")`;
+
+
+            box.style.backgroundSize =
+                "cover";
+
+
+            box.style.backgroundPosition =
+                "center";
+
+
+            box.classList.add(
+                "has-photo"
             );
 
 
-        box.style.backgroundImage =
-            `url("${e.target.result}")`;
-
-        box.style.backgroundSize =
-            "cover";
-
-        box.style.backgroundPosition =
-            "center";
-
-        box.classList.add("has-photo");
+            const hint =
+                box.querySelector(
+                    ".photo-hint"
+                );
 
 
-        const hint =
-            box.querySelector(".photo-hint");
+            if(hint){
 
-        if(hint){
+                hint.style.display =
+                    "none";
 
-            hint.style.display =
-                "none";
+            }
 
-        }
-
-    };
+        };
 
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(
+        file
+    );
 
 }
 
@@ -2214,9 +3074,13 @@ function carregarFoto(event, cilindro, tipo){
    REMOVER FOTO
 ========================================================= */
 
-function removerFoto(cilindro, tipo){
+function removerFoto(
+    cilindro,
+    tipo
+){
 
-    cilindros[cilindro].fotos[tipo] =
+    cilindros[cilindro]
+        .fotos[tipo] =
         null;
 
 
@@ -2229,11 +3093,17 @@ function removerFoto(cilindro, tipo){
     box.style.backgroundImage =
         "";
 
-    box.classList.remove("has-photo");
+
+    box.classList.remove(
+        "has-photo"
+    );
 
 
     const hint =
-        box.querySelector(".photo-hint");
+        box.querySelector(
+            ".photo-hint"
+        );
+
 
     if(hint){
 
@@ -2244,11 +3114,15 @@ function removerFoto(cilindro, tipo){
 
 
     const input =
-        box.querySelector("input");
+        box.querySelector(
+            "input"
+        );
+
 
     if(input){
 
-        input.value = "";
+        input.value =
+            "";
 
     }
 
@@ -2259,9 +3133,14 @@ function removerFoto(cilindro, tipo){
    MEDIÇÃO
 ========================================================= */
 
-function atualizarMedida(cilindro, tipo, valor){
+function atualizarMedida(
+    cilindro,
+    tipo,
+    valor
+){
 
-    cilindros[cilindro].medidas[tipo] =
+    cilindros[cilindro]
+        .medidas[tipo] =
         valor;
 
 
@@ -2278,20 +3157,27 @@ function atualizarMedida(cilindro, tipo, valor){
 
 
     const bloco =
-        input.closest(".valve-block");
+        input.closest(
+            ".valve-block"
+        );
 
 
     const medida =
-        input.closest(".measurement");
+        input.closest(
+            ".measurement"
+        );
 
 
     const luz =
-        bloco.querySelector(".valve-light");
+        bloco.querySelector(
+            ".valve-light"
+        );
 
 
     const numero =
         parseFloat(
-            String(valor).replace(",",".")
+            String(valor)
+                .replace(",",".")
         );
 
 
@@ -2300,28 +3186,38 @@ function atualizarMedida(cilindro, tipo, valor){
         numero >= LIMITE_AFUNDAMENTO
     ){
 
-        medida.classList.add("danger");
+        medida.classList.add(
+            "danger"
+        );
+
 
         alerta.style.display =
             "block";
 
+
         luz.style.background =
             "#ff3131";
+
 
         luz.style.boxShadow =
             "0 0 10px #ff3131";
 
     }else{
 
-        medida.classList.remove("danger");
+        medida.classList.remove(
+            "danger"
+        );
+
 
         alerta.style.display =
             "none";
+
 
         luz.style.background =
             valor
                 ? "#00ff88"
                 : "#65726c";
+
 
         luz.style.boxShadow =
             valor
@@ -2334,21 +3230,25 @@ function atualizarMedida(cilindro, tipo, valor){
 
 
 /* =========================================================
-   NAVEGAÇÃO
+   ATUALIZAR CILINDRO
 ========================================================= */
 
 function atualizarCilindro(){
 
     document
-        .querySelectorAll(".cylinder-section")
-        .forEach((section,index) => {
+        .querySelectorAll(
+            ".cylinder-section"
+        )
+        .forEach(
+            (section,index) => {
 
-            section.style.display =
-                index + 1 === cilindroAtual
-                    ? "block"
-                    : "none";
+                section.style.display =
+                    index + 1 === cilindroAtual
+                        ? "block"
+                        : "none";
 
-        });
+            }
+        );
 
 
     document.getElementById(
@@ -2382,6 +3282,7 @@ function atualizarCilindro(){
                 `progress${i}`
             );
 
+
         p.classList.toggle(
             "active",
             i <= cilindroAtual
@@ -2392,60 +3293,119 @@ function atualizarCilindro(){
 }
 
 
-function liberarFotosCilindro(cilindro){
+/* =========================================================
+   LIBERAR FOTOS
+========================================================= */
 
-    if(!cilindros[cilindro] || !cilindros[cilindro].fotos)
+function liberarFotosCilindro(
+    cilindro
+){
+
+    if(
+        !cilindros[cilindro] ||
+        !cilindros[cilindro].fotos
+    ){
+
         return;
-
-    valvulas.forEach(valvula => {
-
-        // Libera a imagem em base64 da memória.
-        cilindros[cilindro].fotos[valvula.id] = null;
-
-        // Remove a imagem visual do DOM.
-        const box =
-            document.getElementById(
-                `photo-${cilindro}-${valvula.id}`
-            );
-
-        if(box){
-
-            box.style.backgroundImage = "";
-            box.classList.remove("has-photo");
-
-            const hint =
-                box.querySelector(".photo-hint");
-
-            if(hint)
-                hint.style.display = "flex";
-
-            const input =
-                box.querySelector("input");
-
-            if(input)
-                input.value = "";
-
-        }
-
-    });
-
-    // Libera a prévia JPG temporária.
-    if(jpgUrlAtual){
-
-        URL.revokeObjectURL(jpgUrlAtual);
-        jpgUrlAtual = null;
-        jpgNomeAtual = "";
 
     }
 
-    const preview =
-        document.getElementById("previewImage");
 
-    if(preview)
-        preview.removeAttribute("src");
+    valvulas.forEach(
+        valvula => {
+
+            cilindros[cilindro]
+                .fotos[valvula.id] =
+                null;
+
+
+            const box =
+                document.getElementById(
+                    `photo-${cilindro}-${valvula.id}`
+                );
+
+
+            if(box){
+
+                box.style.backgroundImage =
+                    "";
+
+
+                box.classList.remove(
+                    "has-photo"
+                );
+
+
+                const hint =
+                    box.querySelector(
+                        ".photo-hint"
+                    );
+
+
+                if(hint){
+
+                    hint.style.display =
+                        "flex";
+
+                }
+
+
+                const input =
+                    box.querySelector(
+                        "input"
+                    );
+
+
+                if(input){
+
+                    input.value =
+                        "";
+
+                }
+
+            }
+
+        }
+    );
+
+
+    if(jpgUrlAtual){
+
+        URL.revokeObjectURL(
+            jpgUrlAtual
+        );
+
+
+        jpgUrlAtual =
+            null;
+
+
+        jpgNomeAtual =
+            "";
+
+    }
+
+
+    const preview =
+        document.getElementById(
+            "previewImage"
+        );
+
+
+    if(preview){
+
+        preview.removeAttribute(
+            "src"
+        );
+
+    }
 
 }
 
+
+/* =========================================================
+   PRÓXIMO
+========================================================= */
 
 function proximoCilindro(){
 
@@ -2454,36 +3414,54 @@ function proximoCilindro(){
         abrirFinalizacao();
 
         return;
+
     }
 
-    // Ao avançar, elimina definitivamente as fotos
-    // do cilindro que acabou de ser concluído.
-    liberarFotosCilindro(cilindroAtual);
+
+    liberarFotosCilindro(
+        cilindroAtual
+    );
+
 
     cilindroAtual++;
 
+
     atualizarCilindro();
 
+
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
 
 }
 
+
+/* =========================================================
+   ANTERIOR
+========================================================= */
 
 function cilindroAnterior(){
 
     if(cilindroAtual <= 1)
         return;
 
+
     cilindroAtual--;
+
 
     atualizarCilindro();
 
+
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
 
 }
@@ -2500,7 +3478,10 @@ function toggleFinalizacao(){
             "finalizacaoWrapper"
         );
 
-    wrapper.classList.toggle("open");
+
+    wrapper.classList.toggle(
+        "open"
+    );
 
 }
 
@@ -2512,17 +3493,26 @@ function abrirFinalizacao(){
             "finalizacaoWrapper"
         );
 
-    wrapper.classList.add("open");
+
+    wrapper.classList.add(
+        "open"
+    );
 
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        wrapper.scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-        });
+            wrapper.scrollIntoView({
 
-    },100);
+                behavior:"smooth",
+
+                block:"start"
+
+            });
+
+        },
+        100
+    );
 
 }
 
@@ -2531,7 +3521,9 @@ function abrirFinalizacao(){
    CARREGAR IMAGEM
 ========================================================= */
 
-function carregarImagem(url){
+function carregarImagem(
+    url
+){
 
     return new Promise(
         (resolve,reject) => {
@@ -2539,11 +3531,14 @@ function carregarImagem(url){
             const img =
                 new Image();
 
+
             img.onload =
                 () => resolve(img);
 
+
             img.onerror =
                 reject;
+
 
             img.src =
                 url;
@@ -2568,8 +3563,10 @@ function desenharSemFotoJpg(
 
     ctx.save();
 
+
     ctx.fillStyle =
         "#ffffff";
+
 
     ctx.fillRect(
         x,
@@ -2578,31 +3575,43 @@ function desenharSemFotoJpg(
         h
     );
 
+
     ctx.restore();
 
 }
 
 
 /* =========================================================
-   GERAR JPG DO CILINDRO
+   GERAR JPG
 ========================================================= */
 
-async function gerarJpgCilindro(i){
+async function gerarJpgCilindro(
+    i
+){
 
     const canvas =
-        document.createElement("canvas");
+        document.createElement(
+            "canvas"
+        );
 
-    canvas.width = 1280;
 
-    canvas.height = 1700;
+    canvas.width =
+        1280;
+
+
+    canvas.height =
+        1700;
 
 
     const ctx =
-        canvas.getContext("2d");
+        canvas.getContext(
+            "2d"
+        );
 
 
     ctx.fillStyle =
         "#ffffff";
+
 
     ctx.fillRect(
         0,
@@ -2641,10 +3650,13 @@ async function gerarJpgCilindro(i){
     ];
 
 
-    for(const item of ordem){
+    for(
+        const item of ordem
+    ){
 
         const url =
-            cilindros[i].fotos[item.tipo];
+            cilindros[i]
+                .fotos[item.tipo];
 
 
         if(url){
@@ -2652,7 +3664,9 @@ async function gerarJpgCilindro(i){
             try{
 
                 const img =
-                    await carregarImagem(url);
+                    await carregarImagem(
+                        url
+                    );
 
 
                 ctx.drawImage(
@@ -2690,12 +3704,11 @@ async function gerarJpgCilindro(i){
     }
 
 
-    /* -----------------------------------------------------
-       TÍTULO
-    ----------------------------------------------------- */
+    /* TÍTULO */
 
     ctx.fillStyle =
         "#ffffff";
+
 
     ctx.fillRect(
         0,
@@ -2708,8 +3721,10 @@ async function gerarJpgCilindro(i){
     ctx.strokeStyle =
         "#000000";
 
+
     ctx.lineWidth =
         3;
+
 
     ctx.strokeRect(
         0,
@@ -2722,14 +3737,18 @@ async function gerarJpgCilindro(i){
     ctx.fillStyle =
         "#000000";
 
+
     ctx.font =
         "bold 50px Arial";
+
 
     ctx.textAlign =
         "center";
 
+
     ctx.textBaseline =
         "middle";
+
 
     ctx.fillText(
         `CILINDRO ${i}`,
@@ -2738,9 +3757,7 @@ async function gerarJpgCilindro(i){
     );
 
 
-    /* -----------------------------------------------------
-       LABELS
-    ----------------------------------------------------- */
+    /* LABELS */
 
     const labels = [
 
@@ -2771,116 +3788,129 @@ async function gerarJpgCilindro(i){
     ];
 
 
-    labels.forEach((item,index) => {
-
-        ctx.fillStyle =
-            "#ffffff";
-
-        ctx.fillRect(
-            item.x,
-            item.y,
-            640,
-            40
-        );
-
-        ctx.strokeStyle =
-            "#000000";
-
-        ctx.lineWidth =
-            2;
-
-        ctx.strokeRect(
-            item.x,
-            item.y,
-            640,
-            40
-        );
-
-        ctx.fillStyle =
-            "#000000";
-
-        ctx.font =
-            "bold 30px Arial";
-
-        ctx.textAlign =
-            "center";
-
-        ctx.textBaseline =
-            "middle";
-
-        ctx.fillText(
-            item.text,
-            item.x + 320,
-            item.y + 20
-        );
-
-
-        const tipo =
-            ordem[index].tipo;
-
-
-        const valor =
-            parseFloat(
-                String(
-                    cilindros[i].medidas[tipo] || ""
-                ).replace(",",".")
-            );
-
-
-        if(
-            !isNaN(valor) &&
-            valor >= LIMITE_AFUNDAMENTO
-        ){
-
-            const yAlerta =
-                item.y - 50;
-
+    labels.forEach(
+        (item,index) => {
 
             ctx.fillStyle =
                 "#ffffff";
 
+
             ctx.fillRect(
                 item.x,
-                yAlerta,
+                item.y,
                 640,
                 40
             );
 
 
             ctx.strokeStyle =
-                "#ff0000";
+                "#000000";
+
 
             ctx.lineWidth =
-                3;
+                2;
+
 
             ctx.strokeRect(
                 item.x,
-                yAlerta,
+                item.y,
                 640,
                 40
             );
 
 
             ctx.fillStyle =
-                "#ff0000";
+                "#000000";
+
 
             ctx.font =
-                "bold 25px Arial";
+                "bold 30px Arial";
+
+
+            ctx.textAlign =
+                "center";
+
+
+            ctx.textBaseline =
+                "middle";
+
 
             ctx.fillText(
-                `AFUNDAMENTO (${valor.toFixed(2).replace(".",",")}mm)`,
+                item.text,
                 item.x + 320,
-                yAlerta + 20
+                item.y + 20
             );
 
+
+            const tipo =
+                ordem[index].tipo;
+
+
+            const valor =
+                parseFloat(
+                    String(
+                        cilindros[i]
+                            .medidas[tipo] || ""
+                    ).replace(",",".")
+                );
+
+
+            if(
+                !isNaN(valor) &&
+                valor >= LIMITE_AFUNDAMENTO
+            ){
+
+                const yAlerta =
+                    item.y - 50;
+
+
+                ctx.fillStyle =
+                    "#ffffff";
+
+
+                ctx.fillRect(
+                    item.x,
+                    yAlerta,
+                    640,
+                    40
+                );
+
+
+                ctx.strokeStyle =
+                    "#ff0000";
+
+
+                ctx.lineWidth =
+                    3;
+
+
+                ctx.strokeRect(
+                    item.x,
+                    yAlerta,
+                    640,
+                    40
+                );
+
+
+                ctx.fillStyle =
+                    "#ff0000";
+
+
+                ctx.font =
+                    "bold 25px Arial";
+
+
+                ctx.fillText(
+                    `AFUNDAMENTO (${valor.toFixed(2).replace(".",",")}mm)`,
+                    item.x + 320,
+                    yAlerta + 20
+                );
+
+            }
+
         }
+    );
 
-    });
-
-
-    /* -----------------------------------------------------
-       BLOB
-    ----------------------------------------------------- */
 
     canvas.toBlob(
         blob => {
@@ -2899,7 +3929,9 @@ async function gerarJpgCilindro(i){
 
 
             jpgUrlAtual =
-                URL.createObjectURL(blob);
+                URL.createObjectURL(
+                    blob
+                );
 
 
             jpgNomeAtual =
@@ -2914,7 +3946,9 @@ async function gerarJpgCilindro(i){
 
             document.getElementById(
                 "previewOverlay"
-            ).classList.add("show");
+            ).classList.add(
+                "show"
+            );
 
         },
         "image/jpeg",
@@ -2935,17 +3969,26 @@ function baixarPreviewJpg(){
 
 
     const a =
-        document.createElement("a");
+        document.createElement(
+            "a"
+        );
+
 
     a.href =
         jpgUrlAtual;
 
+
     a.download =
         jpgNomeAtual;
 
-    document.body.appendChild(a);
+
+    document.body.appendChild(
+        a
+    );
+
 
     a.click();
+
 
     a.remove();
 
@@ -2953,81 +3996,181 @@ function baixarPreviewJpg(){
 
 
 /* =========================================================
-   FECHAR PREVIEW JPG
+   FECHAR JPG
 ========================================================= */
 
 function fecharPreview(){
 
     document
-        .getElementById("previewOverlay")
-        .classList.remove("show");
+        .getElementById(
+            "previewOverlay"
+        )
+        .classList.remove(
+            "show"
+        );
 
 }
 
 
 /* =========================================================
-   PDF — FICHA FORM.194 COMO FUNDO
+   NOME DO FORMULÁRIO
 ========================================================= */
 
 const NOME_FUNDO_PDF =
     "FORM.194_MEDIÇÃO DAS VALVULAS_UTE550_REV0_O&M (2).jpg";
 
 
-function imagemParaDataURL(url){
+/* =========================================================
+   IMAGEM DO FORMULÁRIO
+========================================================= */
 
-    return new Promise((resolve,reject) => {
+function imagemParaDataURL(
+    url
+){
 
-        const img = new Image();
+    return new Promise(
+        (resolve,reject) => {
 
-        img.onload = () => {
+            const img =
+                new Image();
 
-            const canvas =
-                document.createElement("canvas");
 
-            canvas.width = img.naturalWidth || img.width;
-            canvas.height = img.naturalHeight || img.height;
+            img.onload =
+                () => {
 
-            const ctx =
-                canvas.getContext("2d");
+                    const canvas =
+                        document.createElement(
+                            "canvas"
+                        );
 
-            ctx.drawImage(
-                img,
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
 
-            resolve(
-                canvas.toDataURL(
-                    "image/jpeg",
-                    0.92
-                )
-            );
+                    canvas.width =
+                        img.naturalWidth ||
+                        img.width;
 
-        };
 
-        img.onerror = () => {
+                    canvas.height =
+                        img.naturalHeight ||
+                        img.height;
 
-            reject(
-                new Error(
-                    "Não foi possível carregar a ficha de fundo: " +
-                    NOME_FUNDO_PDF
-                )
-            );
 
-        };
+                    const ctx =
+                        canvas.getContext(
+                            "2d"
+                        );
 
-        img.src =
-            encodeURI(NOME_FUNDO_PDF);
 
-    });
+                    ctx.drawImage(
+                        img,
+                        0,
+                        0,
+                        canvas.width,
+                        canvas.height
+                    );
+
+
+                    resolve(
+                        canvas.toDataURL(
+                            "image/jpeg",
+                            0.95
+                        )
+                    );
+
+                };
+
+
+            img.onerror =
+                () => {
+
+                    reject(
+                        new Error(
+                            "Não foi possível carregar a ficha FORM.194."
+                        )
+                    );
+
+                };
+
+
+            img.src =
+                encodeURI(url);
+
+        }
+    );
 
 }
 
 
 /* =========================================================
-   PDF
+   ESCREVER SOMENTE SE PREENCHIDO
+========================================================= */
+
+function escreverSomenteSePreenchido(
+    pdf,
+    valor,
+    x,
+    y,
+    tamanho = 9,
+    alinhamento = "left"
+){
+
+    if(
+        valor === null ||
+        valor === undefined
+    ){
+
+        return;
+
+    }
+
+
+    valor =
+        String(valor).trim();
+
+
+    /*
+       CAMPO VAZIO:
+       NÃO ESCREVE NADA.
+    */
+
+    if(!valor){
+
+        return;
+
+    }
+
+
+    pdf.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    pdf.setFontSize(
+        tamanho
+    );
+
+
+    pdf.setTextColor(
+        0,
+        0,
+        0
+    );
+
+
+    pdf.text(
+        valor,
+        x,
+        y,
+        {
+            align:alinhamento
+        }
+    );
+
+}
+
+
+/* =========================================================
+   GERAR PDF
 ========================================================= */
 
 async function gerarPDF(){
@@ -3035,7 +4178,7 @@ async function gerarPDF(){
     try{
 
         mostrarToast(
-            "Gerando relatório preenchido..."
+            "Gerando relatório..."
         );
 
 
@@ -3045,25 +4188,26 @@ async function gerarPDF(){
 
         const pdf =
             new jsPDF({
+
                 orientation:"portrait",
+
                 unit:"mm",
+
                 format:"a4"
+
             });
 
 
-        /* -------------------------------------------------
-           FICHA ORIGINAL COMO FUNDO
-        ------------------------------------------------- */
+        /* =================================================
+           1 — FUNDO ORIGINAL
+        ================================================= */
 
         const fundoFicha =
             await imagemParaDataURL(
                 NOME_FUNDO_PDF
             );
 
-        /*
-           A ficha original ocupa toda a página A4.
-           Os dados do relatório são desenhados por cima dela.
-        */
+
         pdf.addImage(
             fundoFicha,
             "JPEG",
@@ -3074,71 +4218,489 @@ async function gerarPDF(){
         );
 
 
-        /* -------------------------------------------------
-           DADOS DA INSPEÇÃO
-        ------------------------------------------------- */
+        /*
+         * A PARTIR DAQUI NÃO É CRIADA NENHUMA TABELA.
+         *
+         * Não será criado:
+         *
+         * CILINDRO 01
+         * CILINDRO 02
+         * CILINDRO 03
+         *
+         * Nem:
+         *
+         * EXAUSTÃO 2
+         * ADMISSÃO 2
+         * EXAUSTÃO 1
+         * ADMISSÃO 1
+         *
+         * Nem:
+         *
+         * -
+         *
+         * A imagem original já contém essas informações.
+         *
+         * O sistema somente escreve os dados preenchidos.
+         */
 
-        let y = 43;
+
+        /* =================================================
+           2 — DADOS DIGITADOS
+        ================================================= */
+
+        const mecanico =
+            document.getElementById(
+                "mecanico"
+            ).value.trim();
 
 
-        pdf.setTextColor(
-            0,
-            0,
-            0
+        const data =
+            document.getElementById(
+                "data"
+            ).value.trim();
+
+
+        const usina =
+            document.getElementById(
+                "usina"
+            ).value.trim();
+
+
+        const horimetro =
+            document.getElementById(
+                "horimetro"
+            ).value.trim();
+
+
+        const serie =
+            document.getElementById(
+                "serie"
+            ).value.trim();
+
+
+        const os =
+            document.getElementById(
+                "os"
+            ).value.trim();
+
+
+        const ugd =
+            document.getElementById(
+                "ugd"
+            ).value.trim();
+
+
+        const observacoes =
+            document.getElementById(
+                "observacoes"
+            ).value.trim();
+
+
+        const assinatura =
+            document.getElementById(
+                "assinatura"
+            ).value.trim();
+
+
+        /* =================================================
+           3 — DADOS GERAIS
+        =================================================
+
+        ATENÇÃO:
+
+        As coordenadas abaixo são provisórias.
+
+        Elas servem para colocar somente o conteúdo
+        digitado sobre a imagem.
+
+        Depois podemos ajustar X/Y exatamente para
+        os campos reais da sua FORM.194.
+        ================================================= */
+
+
+        /*
+           MECÂNICO
+        */
+
+        escreverSomenteSePreenchido(
+            pdf,
+            mecanico,
+            32,
+            25,
+            8
         );
 
-        pdf.setFontSize(10);
 
-        pdf.setFont(
-            "helvetica",
-            "bold"
+        /*
+           DATA
+        */
+
+        if(data){
+
+            let dataFormatada =
+                data;
+
+
+            const partes =
+                data.split("-");
+
+
+            if(
+                partes.length === 3
+            ){
+
+                dataFormatada =
+                    `${partes[2]}/${partes[1]}/${partes[0]}`;
+
+            }
+
+
+            escreverSomenteSePreenchido(
+                pdf,
+                dataFormatada,
+                165,
+                25,
+                8
+            );
+
+        }
+
+
+        /*
+           USINA
+        */
+
+        escreverSomenteSePreenchido(
+            pdf,
+            usina,
+            32,
+            34,
+            8
         );
 
-        pdf.text(
-            "DADOS DA INSPEÇÃO",
-            15,
-            y
+
+        /*
+           HORÍMETRO
+        */
+
+        escreverSomenteSePreenchido(
+            pdf,
+            horimetro,
+            165,
+            34,
+            8
         );
 
 
-        y += 8;
+        /*
+           SÉRIE
+        */
 
-
-        pdf.setFont(
-            "helvetica",
-            "normal"
+        escreverSomenteSePreenchido(
+            pdf,
+            serie,
+            32,
+            43,
+            8
         );
 
-        pdf.setFontSize(9);
+
+        /*
+           OS
+        */
+
+        escreverSomenteSePreenchido(
+            pdf,
+            os,
+            165,
+            43,
+            8
+        );
 
 
-        function textoCampo(
-            label,
-            id,
-            x,
-            yPos,
-            largura
+        /*
+           UGD
+        */
+
+        escreverSomenteSePreenchido(
+            pdf,
+            ugd,
+            32,
+            52,
+            8
+        );
+
+
+        /* =================================================
+           4 — POSIÇÃO DAS MEDIÇÕES
+        =================================================
+
+        IMPORTANTE:
+
+        Não existe texto automático.
+
+        Só será colocado o número que estiver digitado.
+
+        Exemplo:
+
+        Se você digitar:
+
+        Cilindro 01
+        Exaustão 2 = 65.20
+
+        o PDF terá somente:
+
+        65.20
+
+        no campo correspondente.
+
+        Se Admissão 2 estiver vazia:
+
+        não aparece nada.
+        ================================================= */
+
+
+        const coordenadas = {
+
+            1: {
+
+                exaustao2:{
+                    x:42,
+                    y:93
+                },
+
+                admissao2:{
+                    x:82,
+                    y:93
+                },
+
+                exaustao1:{
+                    x:122,
+                    y:93
+                },
+
+                admissao1:{
+                    x:162,
+                    y:93
+                }
+
+            },
+
+
+            2: {
+
+                exaustao2:{
+                    x:42,
+                    y:103
+                },
+
+                admissao2:{
+                    x:82,
+                    y:103
+                },
+
+                exaustao1:{
+                    x:122,
+                    y:103
+                },
+
+                admissao1:{
+                    x:162,
+                    y:103
+                }
+
+            },
+
+
+            3: {
+
+                exaustao2:{
+                    x:42,
+                    y:113
+                },
+
+                admissao2:{
+                    x:82,
+                    y:113
+                },
+
+                exaustao1:{
+                    x:122,
+                    y:113
+                },
+
+                admissao1:{
+                    x:162,
+                    y:113
+                }
+
+            },
+
+
+            4: {
+
+                exaustao2:{
+                    x:42,
+                    y:123
+                },
+
+                admissao2:{
+                    x:82,
+                    y:123
+                },
+
+                exaustao1:{
+                    x:122,
+                    y:123
+                },
+
+                admissao1:{
+                    x:162,
+                    y:123
+                }
+
+            },
+
+
+            5: {
+
+                exaustao2:{
+                    x:42,
+                    y:133
+                },
+
+                admissao2:{
+                    x:82,
+                    y:133
+                },
+
+                exaustao1:{
+                    x:122,
+                    y:133
+                },
+
+                admissao1:{
+                    x:162,
+                    y:133
+                }
+
+            },
+
+
+            6: {
+
+                exaustao2:{
+                    x:42,
+                    y:143
+                },
+
+                admissao2:{
+                    x:82,
+                    y:143
+                },
+
+                exaustao1:{
+                    x:122,
+                    y:143
+                },
+
+                admissao1:{
+                    x:162,
+                    y:143
+                }
+
+            }
+
+        };
+
+
+        /* =================================================
+           5 — ESCREVER MEDIÇÕES
+        ================================================= */
+
+        for(
+            let i = 1;
+            i <= 6;
+            i++
         ){
 
-            const el =
-                document.getElementById(id);
-
-            const valor =
-                el
-                    ? el.value
-                    : "";
+            const medidas =
+                cilindros[i].medidas;
 
 
-            pdf.setFont(
-                "helvetica",
-                "bold"
+            const campos =
+                coordenadas[i];
+
+
+            /*
+               EXAUSTÃO 2
+            */
+
+            escreverSomenteSePreenchido(
+                pdf,
+                medidas.exaustao2,
+                campos.exaustao2.x,
+                campos.exaustao2.y,
+                8,
+                "center"
             );
 
-            pdf.text(
-                label,
-                x,
-                yPos
+
+            /*
+               ADMISSÃO 2
+            */
+
+            escreverSomenteSePreenchido(
+                pdf,
+                medidas.admissao2,
+                campos.admissao2.x,
+                campos.admissao2.y,
+                8,
+                "center"
             );
+
+
+            /*
+               EXAUSTÃO 1
+            */
+
+            escreverSomenteSePreenchido(
+                pdf,
+                medidas.exaustao1,
+                campos.exaustao1.x,
+                campos.exaustao1.y,
+                8,
+                "center"
+            );
+
+
+            /*
+               ADMISSÃO 1
+            */
+
+            escreverSomenteSePreenchido(
+                pdf,
+                medidas.admissao1,
+                campos.admissao1.x,
+                campos.admissao1.y,
+                8,
+                "center"
+            );
+
+        }
+
+
+        /* =================================================
+           6 — OBSERVAÇÕES
+        ================================================= */
+
+        if(observacoes){
+
+            const linhas =
+                pdf.splitTextToSize(
+                    observacoes,
+                    175
+                );
 
 
             pdf.setFont(
@@ -3146,196 +4708,9 @@ async function gerarPDF(){
                 "normal"
             );
 
-            const linhas =
-                pdf.splitTextToSize(
-                    valor || "-",
-                    largura
-                );
 
-
-            pdf.text(
-                linhas,
-                x,
-                yPos + 5
-            );
-
-        }
-
-
-        textoCampo(
-            "Mecânico:",
-            "mecanico",
-            15,
-            y,
-            80
-        );
-
-
-        textoCampo(
-            "Data:",
-            "data",
-            110,
-            y,
-            70
-        );
-
-
-        y += 18;
-
-
-        textoCampo(
-            "Usina:",
-            "usina",
-            15,
-            y,
-            80
-        );
-
-
-        textoCampo(
-            "Horímetro:",
-            "horimetro",
-            110,
-            y,
-            70
-        );
-
-
-        y += 18;
-
-
-        textoCampo(
-            "Série:",
-            "serie",
-            15,
-            y,
-            80
-        );
-
-
-        textoCampo(
-            "OS:",
-            "os",
-            110,
-            y,
-            70
-        );
-
-
-        y += 18;
-
-
-        textoCampo(
-            "UGD:",
-            "ugd",
-            15,
-            y,
-            170
-        );
-
-
-        y += 20;
-
-
-        /* -------------------------------------------------
-           TABELA DE MEDIÇÕES
-        ------------------------------------------------- */
-
-        pdf.setFont(
-            "helvetica",
-            "bold"
-        );
-
-        pdf.setFontSize(10);
-
-        pdf.text(
-            "RESULTADOS DAS MEDIÇÕES",
-            15,
-            y
-        );
-
-
-        y += 6;
-
-
-        pdf.setFillColor(
-            8,
-            25,
-            17
-        );
-
-        pdf.rect(
-            15,
-            y,
-            180,
-            8,
-            "F"
-        );
-
-
-        pdf.setTextColor(
-            255,
-            255,
-            255
-        );
-
-        pdf.setFontSize(8);
-
-        pdf.text(
-            "CILINDRO",
-            25,
-            y + 5
-        );
-
-        pdf.text(
-            "EXAUSTÃO 2",
-            62,
-            y + 5
-        );
-
-        pdf.text(
-            "ADMISSÃO 2",
-            98,
-            y + 5
-        );
-
-        pdf.text(
-            "EXAUSTÃO 1",
-            134,
-            y + 5
-        );
-
-        pdf.text(
-            "ADMISSÃO 1",
-            170,
-            y + 5
-        );
-
-
-        y += 8;
-
-
-        for(let i=1;i<=6;i++){
-
-            pdf.setFillColor(
-                i % 2 === 0
-                    ? 242
-                    : 250,
-                i % 2 === 0
-                    ? 246
-                    : 250,
-                i % 2 === 0
-                    ? 244
-                    : 250
-            );
-
-
-            pdf.rect(
-                15,
-                y,
-                180,
-                8,
-                "F"
+            pdf.setFontSize(
+                8
             );
 
 
@@ -3345,235 +4720,38 @@ async function gerarPDF(){
                 0
             );
 
-            pdf.setFontSize(8);
-
 
             pdf.text(
-                `CILINDRO ${String(i).padStart(2,"0")}`,
-                19,
-                y + 5
+                linhas.slice(0,8),
+                18,
+                225
             );
-
-
-            const valores = [
-
-                cilindros[i].medidas.exaustao2,
-
-                cilindros[i].medidas.admissao2,
-
-                cilindros[i].medidas.exaustao1,
-
-                cilindros[i].medidas.admissao1
-
-            ];
-
-
-            valores.forEach(
-                (valor,index) => {
-
-                    const n =
-                        parseFloat(
-                            String(
-                                valor || ""
-                            ).replace(",",".")
-                        );
-
-
-                    let texto =
-                        valor
-                            ? `${n.toFixed(2).replace(".",",")} mm`
-                            : "-";
-
-
-                    if(
-                        !isNaN(n) &&
-                        n >= LIMITE_AFUNDAMENTO
-                    ){
-
-                        pdf.setTextColor(
-                            210,
-                            0,
-                            0
-                        );
-
-                    }else{
-
-                        pdf.setTextColor(
-                            0,
-                            0,
-                            0
-                        );
-
-                    }
-
-
-                    pdf.text(
-                        texto,
-                        59 + index * 36,
-                        y + 5
-                    );
-
-                }
-            );
-
-
-            y += 8;
 
         }
 
 
-        /* -------------------------------------------------
-           OBSERVAÇÕES
-        ------------------------------------------------- */
+        /* =================================================
+           7 — ASSINATURA
+        ================================================= */
 
-        y += 10;
-
-
-        pdf.setTextColor(
-            0,
-            0,
-            0
-        );
-
-        pdf.setFont(
-            "helvetica",
-            "bold"
-        );
-
-        pdf.setFontSize(10);
-
-        pdf.text(
-            "OBSERVAÇÕES TÉCNICAS",
-            15,
-            y
+        escreverSomenteSePreenchido(
+            pdf,
+            assinatura,
+            55,
+            270,
+            8,
+            "center"
         );
 
 
-        y += 6;
-
-
-        pdf.setFont(
-            "helvetica",
-            "normal"
-        );
-
-        pdf.setFontSize(8);
-
-
-        const observacoes =
-            document.getElementById(
-                "observacoes"
-            ).value || "-";
-
-
-        const linhasObs =
-            pdf.splitTextToSize(
-                observacoes,
-                180
-            );
-
-
-        pdf.setDrawColor(
-            180,
-            180,
-            180
-        );
-
-        pdf.rect(
-            15,
-            y,
-            180,
-            32
-        );
-
-
-        pdf.text(
-            linhasObs.slice(0,8),
-            19,
-            y + 6
-        );
-
-
-        y += 43;
-
-
-        /* -------------------------------------------------
-           ASSINATURA
-        ------------------------------------------------- */
-
-        pdf.setFont(
-            "helvetica",
-            "bold"
-        );
-
-        pdf.setFontSize(9);
-
-        pdf.text(
-            "ASSINATURA DO MECÂNICO",
-            15,
-            y
-        );
-
-
-        pdf.setDrawColor(
-            100,
-            100,
-            100
-        );
-
-        pdf.line(
-            15,
-            y + 17,
-            100,
-            y + 17
-        );
-
-
-        pdf.setFont(
-            "helvetica",
-            "normal"
-        );
-
-        pdf.setFontSize(8);
-
-
-        pdf.text(
-            document.getElementById(
-                "assinatura"
-            ).value || "",
-            15,
-            y + 23
-        );
-
-
-        /* -------------------------------------------------
-           RODAPÉ
-        ------------------------------------------------- */
-
-        pdf.setFontSize(7);
-
-        pdf.setTextColor(
-            120,
-            120,
-            120
-        );
-
-        pdf.text(
-            "Documento gerado digitalmente pelo sistema de inspeção de válvulas.",
-            105,
-            285,
-            {
-                align:"center"
-            }
-        );
-
-
-        /* -------------------------------------------------
-           GERAR BLOB
-        ------------------------------------------------- */
+        /* =================================================
+           8 — BLOB
+        ================================================= */
 
         pdfBlobAtual =
-            pdf.output("blob");
+            pdf.output(
+                "blob"
+            );
 
 
         if(pdfUrlAtual){
@@ -3599,7 +4777,9 @@ async function gerarPDF(){
 
         document.getElementById(
             "pdfPreviewOverlay"
-        ).classList.add("show");
+        ).classList.add(
+            "show"
+        );
 
 
         mostrarToast(
@@ -3609,7 +4789,17 @@ async function gerarPDF(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "ERRO AO GERAR PDF:",
+            error
+        );
+
+
+        alert(
+            "Erro ao gerar o PDF.\n\n" +
+            error.message
+        );
+
 
         mostrarToast(
             "Erro ao gerar o PDF."
@@ -3626,8 +4816,15 @@ async function gerarPDF(){
 
 function baixarPDF(){
 
-    if(!pdfBlobAtual)
+    if(!pdfBlobAtual){
+
+        mostrarToast(
+            "Gere o PDF primeiro."
+        );
+
         return;
+
+    }
 
 
     const url =
@@ -3637,7 +4834,9 @@ function baixarPDF(){
 
 
     const a =
-        document.createElement("a");
+        document.createElement(
+            "a"
+        );
 
 
     a.href =
@@ -3648,15 +4847,25 @@ function baixarPDF(){
         "MEDICAO_VALVULAS_SCANIA_550.pdf";
 
 
-    document.body.appendChild(a);
+    document.body.appendChild(
+        a
+    );
+
 
     a.click();
+
 
     a.remove();
 
 
     setTimeout(
-        () => URL.revokeObjectURL(url),
+        () => {
+
+            URL.revokeObjectURL(
+                url
+            );
+
+        },
         1000
     );
 
@@ -3669,7 +4878,7 @@ function baixarPDF(){
 
 
 /* =========================================================
-   FECHAR PREVIEW PDF
+   FECHAR PDF
 ========================================================= */
 
 function fecharPreviewPDF(){
@@ -3678,7 +4887,9 @@ function fecharPreviewPDF(){
         .getElementById(
             "pdfPreviewOverlay"
         )
-        .classList.remove("show");
+        .classList.remove(
+            "show"
+        );
 
 }
 
@@ -3706,7 +4917,8 @@ function limparTudo(){
 
     document.getElementById(
         "data"
-    ).value = dataHoje();
+    ).value =
+        dataHoje();
 
 
     document.getElementById(
@@ -3744,19 +4956,23 @@ function limparTudo(){
     ).value = "";
 
 
-    for(let i=1;i<=6;i++){
+    for(
+        let i=1;
+        i<=6;
+        i++
+    ){
 
         valvulas.forEach(
             valvula => {
 
-                cilindros[i].fotos[
-                    valvula.id
-                ] = null;
+                cilindros[i]
+                    .fotos[valvula.id] =
+                    null;
 
 
-                cilindros[i].medidas[
-                    valvula.id
-                ] = "";
+                cilindros[i]
+                    .medidas[valvula.id] =
+                    "";
 
 
                 const input =
@@ -3767,7 +4983,8 @@ function limparTudo(){
 
                 if(input){
 
-                    input.value = "";
+                    input.value =
+                        "";
 
                 }
 
@@ -3783,6 +5000,7 @@ function limparTudo(){
                     box.style.backgroundImage =
                         "";
 
+
                     box.classList.remove(
                         "has-photo"
                     );
@@ -3792,6 +5010,7 @@ function limparTudo(){
                         box.querySelector(
                             ".photo-hint"
                         );
+
 
                     if(hint){
 
@@ -3805,6 +5024,7 @@ function limparTudo(){
                         box.querySelector(
                             "input"
                         );
+
 
                     if(fileInput){
 
@@ -3852,7 +5072,9 @@ function limparTudo(){
     }
 
 
-    cilindroAtual = 1;
+    cilindroAtual =
+        1;
+
 
     atualizarCilindro();
 
@@ -3895,13 +5117,19 @@ function dataHoje(){
     const mes =
         String(
             agora.getMonth()+1
-        ).padStart(2,"0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const dia =
         String(
             agora.getDate()
-        ).padStart(2,"0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     return `${ano}-${mes}-${dia}`;
@@ -3916,7 +5144,9 @@ function dataHoje(){
 let toastTimer;
 
 
-function mostrarToast(texto){
+function mostrarToast(
+    texto
+){
 
     const toast =
         document.getElementById(
@@ -3961,7 +5191,9 @@ document.addEventListener(
     "keydown",
     event => {
 
-        if(event.key === "Escape"){
+        if(
+            event.key === "Escape"
+        ){
 
             fecharPreview();
 

@@ -2392,6 +2392,61 @@ function atualizarCilindro(){
 }
 
 
+function liberarFotosCilindro(cilindro){
+
+    if(!cilindros[cilindro] || !cilindros[cilindro].fotos)
+        return;
+
+    valvulas.forEach(valvula => {
+
+        // Libera a imagem em base64 da memória.
+        cilindros[cilindro].fotos[valvula.id] = null;
+
+        // Remove a imagem visual do DOM.
+        const box =
+            document.getElementById(
+                `photo-${cilindro}-${valvula.id}`
+            );
+
+        if(box){
+
+            box.style.backgroundImage = "";
+            box.classList.remove("has-photo");
+
+            const hint =
+                box.querySelector(".photo-hint");
+
+            if(hint)
+                hint.style.display = "flex";
+
+            const input =
+                box.querySelector("input");
+
+            if(input)
+                input.value = "";
+
+        }
+
+    });
+
+    // Libera a prévia JPG temporária.
+    if(jpgUrlAtual){
+
+        URL.revokeObjectURL(jpgUrlAtual);
+        jpgUrlAtual = null;
+        jpgNomeAtual = "";
+
+    }
+
+    const preview =
+        document.getElementById("previewImage");
+
+    if(preview)
+        preview.removeAttribute("src");
+
+}
+
+
 function proximoCilindro(){
 
     if(cilindroAtual >= 6){
@@ -2399,8 +2454,11 @@ function proximoCilindro(){
         abrirFinalizacao();
 
         return;
-
     }
+
+    // Ao avançar, elimina definitivamente as fotos
+    // do cilindro que acabou de ser concluído.
+    liberarFotosCilindro(cilindroAtual);
 
     cilindroAtual++;
 
@@ -2908,6 +2966,67 @@ function fecharPreview(){
 
 
 /* =========================================================
+   PDF — FICHA FORM.194 COMO FUNDO
+========================================================= */
+
+const NOME_FUNDO_PDF =
+    "FORM.194_MEDIÇÃO DAS VALVULAS_UTE550_REV0_O&M (2).jpg";
+
+
+function imagemParaDataURL(url){
+
+    return new Promise((resolve,reject) => {
+
+        const img = new Image();
+
+        img.onload = () => {
+
+            const canvas =
+                document.createElement("canvas");
+
+            canvas.width = img.naturalWidth || img.width;
+            canvas.height = img.naturalHeight || img.height;
+
+            const ctx =
+                canvas.getContext("2d");
+
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+            resolve(
+                canvas.toDataURL(
+                    "image/jpeg",
+                    0.92
+                )
+            );
+
+        };
+
+        img.onerror = () => {
+
+            reject(
+                new Error(
+                    "Não foi possível carregar a ficha de fundo: " +
+                    NOME_FUNDO_PDF
+                )
+            );
+
+        };
+
+        img.src =
+            encodeURI(NOME_FUNDO_PDF);
+
+    });
+
+}
+
+
+/* =========================================================
    PDF
 ========================================================= */
 
@@ -2933,96 +3052,25 @@ async function gerarPDF(){
 
 
         /* -------------------------------------------------
-           CABEÇALHO
+           FICHA ORIGINAL COMO FUNDO
         ------------------------------------------------- */
 
-        pdf.setFillColor(
-            5,
-            15,
-            10
-        );
+        const fundoFicha =
+            await imagemParaDataURL(
+                NOME_FUNDO_PDF
+            );
 
-        pdf.rect(
+        /*
+           A ficha original ocupa toda a página A4.
+           Os dados do relatório são desenhados por cima dela.
+        */
+        pdf.addImage(
+            fundoFicha,
+            "JPEG",
             0,
             0,
             210,
-            297,
-            "F"
-        );
-
-
-        pdf.setFillColor(
-            255,
-            255,
-            255
-        );
-
-        pdf.rect(
-            10,
-            10,
-            190,
-            277,
-            "F"
-        );
-
-
-        /* -------------------------------------------------
-           TÍTULO
-        ------------------------------------------------- */
-
-        pdf.setFillColor(
-            8,
-            25,
-            17
-        );
-
-        pdf.rect(
-            10,
-            10,
-            190,
-            22,
-            "F"
-        );
-
-
-        pdf.setTextColor(
-            0,
-            255,
-            136
-        );
-
-        pdf.setFont(
-            "helvetica",
-            "bold"
-        );
-
-        pdf.setFontSize(15);
-
-        pdf.text(
-            "MEDIÇÃO DAS VÁLVULAS",
-            105,
-            19,
-            {
-                align:"center"
-            }
-        );
-
-
-        pdf.setFontSize(9);
-
-        pdf.setTextColor(
-            255,
-            255,
-            255
-        );
-
-        pdf.text(
-            "SCANIA 550 • RELATÓRIO DE INSPEÇÃO",
-            105,
-            26,
-            {
-                align:"center"
-            }
+            297
         );
 
 
